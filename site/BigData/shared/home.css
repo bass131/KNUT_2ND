@@ -1,0 +1,238 @@
+/* Only loaded by the course home. Lesson layouts remain unchanged. */
+body[data-page='home'] {
+  --bg: #f5f5f2;
+}
+.home-main .home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  min-height: 0;
+  padding: 20px 0 42px;
+}
+.home-main .home-hero h1 {
+  font-size: clamp(34px, 3.6vw, 54px);
+  line-height: 1.2;
+  letter-spacing: -0.05em;
+}
+.home-main .home-hero h1 span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.48em;
+  font-weight: 550;
+  margin-top: 20px;
+  letter-spacing: -0.025em;
+}
+.home-main .hero-description {
+  font-size: 15px;
+  max-width: 440px;
+}
+.home-main .eyebrow {
+  font-size: 11px;
+}
+.home-cover {
+  margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #efeee9;
+  box-shadow: 0 14px 40px #23345a0c;
+}
+.home-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+}
+.home-main .hero-actions .button {
+  border-radius: 7px;
+}
+.home-main .hero-caption {
+  font-size: 12px;
+}
+.home-main .course-overview {
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 38px;
+}
+.home-main .course-overview span {
+  font-size: 12px;
+}
+.home-main .section-heading h2 {
+  font-size: 27px;
+}
+.home-main .chapter-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.home-main .chapter-card {
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+.home-main .chapter-illustration {
+  height: 110px;
+}
+.home-main .chapter-card h3 {
+  font-size: 22px;
+  line-height: 1.45;
+}
+.home-main .chapter-card-content > p:not(.card-kicker) {
+  font-size: 14px;
+  line-height: 1.9;
+}
+.home-main .chapter-card-meta {
+  font-size: 11px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.home-main .card-kicker {
+  font-size: 12px;
+}
+.home-main .progress-caption {
+  font-size: 12px;
+}
+.home-main .chapter-tag {
+  font-size: 10px;
+}
+.home-main .chapter-card-content {
+  flex: 1;
+}
+.home-main .feature-row {
+  gap: 26px;
+}
+.home-main .feature-row p {
+  font-size: 14px;
+}
+.home-main .materials-banner {
+  border-radius: 14px;
+}
+.home-main .section-aside {
+  font-size: 12px;
+}
+.home-main .roadmap-note {
+  font-size: 13px;
+}
+.home-main .home-section {
+  margin-bottom: 38px;
+}
+[data-theme='dark'] body[data-page='home'] {
+  --bg: #161b22;
+}
+[data-theme='dark'] .home-main .home-cover {
+  box-shadow: none;
+}
+@media (max-width: 1250px) {
+  .home-main .chapter-cards {
+    grid-template-columns: 1fr;
+  }
+  .home-main .chapter-card {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    column-gap: 25px;
+  }
+  .home-main .chapter-card-top {
+    grid-column: 1/-1;
+    margin-bottom: 15px;
+  }
+  .home-main .chapter-illustration {
+    height: 100%;
+    max-height: 180px;
+    margin: 0;
+  }
+  .home-main .pipeline-mini {
+    flex-direction: column;
+    gap: 6px;
+  }
+  .home-main .pipeline-mini span {
+    padding: 5px 16px;
+  }
+  .home-main .pipeline-mini i {
+    transform: rotate(90deg);
+  }
+  .home-main .cluster-mini .mini-workers {
+    gap: 5px;
+  }
+  .home-main .mini-workers span {
+    padding: 7px 4px;
+  }
+  .home-main .hero-actions {
+    gap: 12px;
+  }
+  .home-main .home-hero {
+    gap: 22px;
+  }
+}
+@media (max-width: 1050px) {
+  .home-main .home-hero {
+    grid-template-columns: 1fr;
+  }
+  .home-main .home-cover {
+    max-height: 340px;
+  }
+  .home-main .home-cover img {
+    max-height: 340px;
+  }
+  .home-main .home-hero h1 {
+    font-size: 44px;
+  }
+}
+@media (max-width: 600px) {
+  .home-main .home-hero {
+    padding: 8px 0 30px;
+  }
+  .home-main .home-hero h1 {
+    font-size: 38px;
+  }
+  .home-main .home-cover {
+    max-height: none;
+  }
+  .home-main .home-cover img {
+    max-height: none;
+  }
+  .home-main .chapter-card {
+    display: flex;
+    padding: 22px;
+  }
+  .home-main .chapter-illustration {
+    display: none;
+  }
+  .home-main .chapter-card-top {
+    margin-bottom: 22px;
+  }
+  .home-main .course-overview {
+    gap: 12px;
+  }
+  .home-main .course-overview > div {
+    display: block;
+    text-align: left;
+  }
+  .home-main .course-overview strong {
+    display: block;
+  }
+  .home-main .course-overview span {
+    font-size: 11px;
+  }
+  .home-main .section-heading {
+    align-items: flex-start;
+  }
+  .home-main .section-aside {
+    display: none;
+  }
+  .home-main .materials-banner {
+    padding: 23px;
+  }
+}
+@media print {
+  .home-cover {
+    display: none;
+  }
+  .home-main .home-hero {
+    display: block;
+  }
+  .home-main .chapter-cards {
+    display: block;
+  }
+  .home-main .chapter-card {
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+}

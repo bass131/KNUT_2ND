@@ -1,0 +1,640 @@
+/* Reading rhythm and meaningful wrapping shared by both themes. */
+.main-content {
+  container-type: inline-size;
+  container-name: lesson;
+}
+.main-content :is(h1, h2, h3, h4) {
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  line-height: 1.45;
+}
+.main-content :is(p, li, td, th, summary, .quiz-options button, .visual-description) {
+  text-wrap: pretty;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.main-content:not(.home-main) {
+  font-size: 16px;
+  line-height: 1.95;
+  letter-spacing: -0.015em;
+}
+.main-content:not(.home-main)
+  > :is(.chapter-hero, .lesson-section, .callout, .table-wrap, .source-note, .chapter-footer) {
+  max-inline-size: 960px;
+  margin-inline: auto;
+}
+.main-content:not(.home-main) .lesson-section > p:not(.source-note) {
+  max-inline-size: 52rem;
+}
+.main-content:not(.home-main) :is(.card p, .card li, details p) {
+  font-size: 15px;
+  line-height: 1.95;
+}
+.main-content .hero-description {
+  line-height: 1.95;
+  text-wrap: pretty;
+}
+.intro-sentence {
+  display: inline;
+}
+.section-heading {
+  align-items: flex-start;
+}
+.section-heading h2,
+.section-heading > div {
+  min-inline-size: 0;
+}
+.section-heading .section-number {
+  margin-top: 0.35em;
+}
+.main-content .button {
+  flex-shrink: 0;
+  white-space: nowrap;
+  word-break: keep-all;
+}
+.chapter-footer {
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 14px;
+}
+.chapter-footer > div {
+  flex-basis: 100%;
+  min-inline-size: 0;
+  margin-bottom: 8px;
+}
+.chapter-footer h2 {
+  max-inline-size: 38rem;
+}
+.chapter-footer p {
+  margin-bottom: 10px;
+}
+.main-content .card-grid > .card {
+  margin-top: 0;
+}
+.card-grid {
+  align-items: stretch;
+}
+.main-content .term {
+  line-height: inherit;
+}
+
+/* Keep closing punctuation with the preceding word; lists separate concepts. */
+.main-content :is(p, li, td, th, summary, h1, h2, h3, h4, .visual-description) {
+  line-break: strict;
+}
+.main-content .explanation-list {
+  margin: 12px 0 20px;
+  padding-inline-start: 1.45em;
+  list-style: disc;
+}
+.main-content ol.explanation-list {
+  list-style: decimal;
+}
+.main-content .explanation-list > li {
+  padding-inline-start: 0.25em;
+  margin-block: 0;
+  line-height: 1.95;
+}
+.main-content .explanation-list > li + li {
+  margin-block-start: 0.7em;
+}
+.main-content .explanation-list > li::marker {
+  color: var(--accent-blue);
+  font-size: 0.85em;
+}
+.main-content .explanation-list > li > strong {
+  display: inline;
+  margin: 0;
+}
+.main-content :is(.card, .callout, .analogy, details) > .explanation-list:last-child {
+  margin-bottom: 0;
+}
+.main-content .explanation-list > li > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Inline examples break at authored separators, never arbitrary characters. */
+.main-content :not(pre) > code {
+  overflow-wrap: normal;
+  word-break: keep-all;
+  white-space: normal;
+  padding-inline: 0.2em;
+  box-decoration-break: slice;
+  -webkit-box-decoration-break: slice;
+  line-height: inherit;
+}
+.main-content pre {
+  max-inline-size: 100%;
+  tab-size: 2;
+  text-wrap: nowrap;
+}
+.main-content pre code {
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: nowrap;
+}
+.table-wrap {
+  max-inline-size: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: #8999b5 transparent;
+  overscroll-behavior-inline: contain;
+}
+.table-wrap table {
+  min-inline-size: 600px;
+  table-layout: fixed;
+  line-height: 1.9;
+}
+.table-wrap th,
+.table-wrap td {
+  min-inline-size: 0;
+  padding: 16px 18px;
+  text-wrap: pretty;
+}
+.table-wrap tr > :first-child {
+  inline-size: 28%;
+}
+.table-wrap table:has(tr > :nth-child(3)) tr > :first-child {
+  inline-size: 22%;
+}
+.table-wrap table:has(tr > :nth-child(4)) {
+  min-inline-size: 720px;
+}
+.table-wrap table:has(tr > :nth-child(4)) tr > :first-child {
+  inline-size: auto;
+}
+.table-scroll-hint {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 16px 0 7px;
+  line-height: 1.7;
+}
+.table-scroll-hint:not([hidden]) + .table-wrap {
+  margin-top: 0;
+}
+
+@container lesson (max-width:700px) {
+  .card-grid,
+  .card-grid.three,
+  .chapter-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .feature-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .chapter-card-meta {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+}
+@container lesson (max-width:640px) {
+  /* Keep each explanation visible instead of squeezing it into a narrow column. */
+  .main-content .table-wrap[data-responsive='rows'] {
+    overflow: visible;
+  }
+  .main-content .table-wrap[data-responsive='rows'] table {
+    display: block;
+    min-inline-size: 0;
+    inline-size: 100%;
+    table-layout: auto;
+  }
+  .main-content .table-wrap[data-responsive='rows'] caption {
+    display: block;
+    border-radius: 14px 14px 0 0;
+  }
+  .main-content .table-wrap[data-responsive='rows'] thead {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    clip-path: inset(50%);
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .main-content .table-wrap[data-responsive='rows'] tbody {
+    display: block;
+  }
+  .main-content .table-wrap[data-responsive='rows'] tr {
+    display: block;
+    border-bottom: 1px solid var(--line);
+    padding: 16px 18px;
+  }
+  .main-content .table-wrap[data-responsive='rows'] tr:last-child {
+    border-bottom: 0;
+  }
+  .main-content .table-wrap[data-responsive='rows'] tr > :first-child,
+  .main-content .table-wrap[data-responsive='rows'] th,
+  .main-content .table-wrap[data-responsive='rows'] td {
+    display: block;
+    inline-size: auto;
+    min-inline-size: 0;
+    border: 0;
+    background: none;
+    padding: 0;
+    text-align: left;
+  }
+  .main-content .table-wrap[data-responsive='rows'] tbody th {
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .main-content .table-wrap[data-responsive='rows'] td {
+    font-size: 15px;
+    line-height: 1.95;
+    margin-top: 12px;
+  }
+  .main-content .table-wrap[data-responsive='rows'] td:before {
+    content: attr(data-label);
+    display: block;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+}
+@media (max-width: 1100px) {
+  .main-content:not(.home-main) .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 760px) {
+  .main-content:not(.home-main) {
+    padding-inline: 22px;
+    font-size: 16px;
+  }
+  .main-content .section-heading h2 {
+    font-size: 24px;
+    line-height: 1.55;
+  }
+  .main-content .section-heading {
+    gap: 11px;
+  }
+  .main-content :is(.card, .callout, .analogy, .quiz) {
+    padding-inline: 20px;
+  }
+  .main-content .steps {
+    padding-left: 20px;
+  }
+  .main-content .steps > .step {
+    padding-left: 3px;
+  }
+  .main-content .cluster-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .main-content .cluster-connect {
+    max-inline-size: none;
+    padding-block: 2px;
+  }
+  .main-content .cluster-workers {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main-content .cluster-node {
+    font-size: 13px;
+    padding: 14px;
+  }
+  .main-content .cluster-node small,
+  .main-content .executor {
+    font-size: 12px;
+  }
+  .main-content .cluster-boundary {
+    font-size: 10px;
+    line-height: 1.8;
+  }
+  .main-content .visual-description {
+    font-size: 14px;
+    line-height: 1.9;
+    min-height: 0;
+  }
+  .main-content .visual-header {
+    align-items: flex-start;
+    row-gap: 7px;
+  }
+  .main-content .visual-header h3 {
+    flex-basis: 100%;
+    font-size: 17px;
+  }
+  .main-content .visual-badge {
+    font-size: 10px;
+  }
+  .main-content .visual-tabs button {
+    white-space: nowrap;
+  }
+  .main-content .chapter-footer h2 {
+    font-size: 25px;
+  }
+}
+@media (max-width: 380px) {
+  .main-content:not(.home-main) {
+    padding-inline: 17px;
+  }
+  .main-content .chapter-hero h1 {
+    font-size: 30px;
+  }
+  .main-content .section-heading h2 {
+    font-size: 22px;
+  }
+}
+/* Teaching text stays readable inside tables and diagrams on every viewport. */
+.main-content .table-wrap :is(table, th, td) {
+  font-size: 15px;
+}
+.main-content .table-wrap caption {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.main-content .table-wrap :is(th, td) code {
+  font-size: 14px;
+}
+.main-content .visual .visual-header {
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.main-content .visual .visual-header h3 {
+  font-size: 19px;
+}
+.main-content .visual .visual-badge {
+  font-size: 12px;
+  white-space: normal;
+}
+.main-content .visual .visual-tabs button {
+  font-size: 14px;
+  min-height: 42px;
+  white-space: normal;
+  text-align: left;
+}
+.main-content .visual .visual-description {
+  font-size: 16px;
+  line-height: 1.95;
+  min-height: 0;
+}
+.main-content .visual :is(.flow-node strong, .cluster-node) {
+  font-size: 16px;
+  min-inline-size: 0;
+}
+.main-content
+  .visual
+  :is(
+    .flow-node small,
+    .cluster-node small,
+    .cluster-boundary,
+    .cluster-connect,
+    .executor,
+    .port-bridge,
+    .cluster-flow,
+    .partition-block small,
+    .partition-result,
+    .sum-result small,
+    .port-route code
+  ) {
+  font-size: 14px;
+  line-height: 1.8;
+  word-break: keep-all;
+  text-wrap: pretty;
+}
+.main-content .visual .cluster-connect {
+  max-inline-size: 130px;
+}
+.main-content .visual :is(.cluster-top, .cluster-workers, .cluster-flow) {
+  max-inline-size: none;
+}
+.main-content .visual .partition-block {
+  min-inline-size: 0;
+}
+.main-content .visual .partition-block strong {
+  font-size: 22px;
+}
+.main-content .visual .flow-node {
+  min-inline-size: 0;
+}
+@container lesson (max-width:800px) {
+  .main-content .visual :is(.cluster-top, .cluster-workers, .port-route) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main-content .visual .cluster-connect {
+    max-inline-size: none;
+  }
+  .main-content .visual .flow-line {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main-content .visual .flow-arrow {
+    display: block;
+    justify-self: center;
+    transform: rotate(90deg);
+    line-height: 1;
+  }
+  .main-content .visual .partition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container lesson (max-width:360px) {
+  .main-content .visual .partition-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .main-content .visual .cluster-canvas {
+    padding: 12px;
+  }
+}
+@media print {
+  .main-content {
+    container-type: normal;
+  }
+  .main-content .table-wrap table {
+    min-inline-size: 0;
+    table-layout: auto;
+  }
+  .table-scroll-hint {
+    display: none !important;
+  }
+  .main-content pre,
+  .main-content pre code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-wrap: wrap;
+  }
+}
+
+/* Short, named reading blocks and locally bundled teaching illustrations. */
+.main-content .lesson-section > h3 {
+  margin-block: 34px 12px;
+  padding-block-start: 20px;
+  border-block-start: 1px solid var(--line);
+  font-size: 21px;
+  line-height: 1.55;
+}
+.main-content .lesson-section > .explanation-list {
+  max-inline-size: 52rem;
+}
+.main-content .steps > .step + .step {
+  border-block-start: 1px solid var(--line);
+  padding-block-start: 22px;
+}
+.main-content .lesson-section .lesson-figure {
+  max-inline-size: 720px;
+  margin: 26px auto 30px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface, #fff);
+}
+.main-content .lesson-figure img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+  background: #eae8e3;
+}
+.main-content .lesson-figure figcaption {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.main-content .lesson-figure figcaption strong {
+  color: var(--ink);
+}
+@media (max-width: 760px) {
+  .main-content .lesson-section > h3 {
+    font-size: 20px;
+    margin-block-start: 28px;
+    padding-block-start: 18px;
+  }
+  .main-content .lesson-figure figcaption {
+    padding: 14px 16px;
+  }
+}
+@media print {
+  .main-content .lesson-section .lesson-figure {
+    max-inline-size: 110mm;
+    break-inside: avoid;
+    background: white;
+  }
+}
+
+.main-content .analogy[data-labelled]::before {
+  display: none;
+}
+/* Chapter learning routes, source group labels, and original UI evidence. */
+.main-content > .learning-route,
+.main-content > .lesson-part {
+  max-inline-size: 960px;
+  margin-inline: auto;
+}
+.learning-route {
+  margin-block: 32px 26px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface);
+}
+.learning-route ol {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.learning-route li {
+  margin: 0;
+  min-inline-size: 0;
+}
+.learning-route a {
+  display: block;
+  padding: 12px 0;
+  text-decoration: none;
+  border-block-end: 2px solid var(--accent-blue);
+  height: 100%;
+}
+.learning-route a strong,
+.learning-route a span {
+  display: block;
+}
+.learning-route a span {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.learning-route > p:last-child {
+  margin: 0;
+  font-size: 15px;
+}
+.main-content > .lesson-part {
+  margin-block: 64px 0;
+  padding-block: 24px 0;
+  border-block-start: 2px solid var(--accent-blue);
+}
+.main-content > .lesson-part p {
+  margin: 0 0 8px;
+}
+.main-content > .lesson-part .eyebrow {
+  font-size: 16px;
+  letter-spacing: 0;
+}
+.toc-group {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  margin: 22px 0 7px;
+  padding-inline: 14px;
+}
+.toc-group:first-child {
+  margin-top: 10px;
+}
+.main-content .source-figure {
+  margin: 26px 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.main-content .source-figure img {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  background: #fff;
+}
+.main-content .source-figure figcaption {
+  margin: 0;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+@container lesson (max-width:700px) {
+  .learning-route ol {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+}
+@media (max-width: 760px) {
+  .learning-route {
+    padding: 20px;
+  }
+  .main-content > .lesson-part {
+    margin-top: 48px;
+  }
+  .main-content .source-figure figcaption {
+    padding: 14px 16px;
+  }
+}
+@media print {
+  .learning-route {
+    background: white;
+  }
+  .main-content > .lesson-part {
+    break-after: avoid;
+  }
+  .main-content .source-figure {
+    break-inside: avoid;
+  }
+  .main-content .source-figure img {
+    max-block-size: 100mm;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="빅데이터 1~3장 강의 정리와 Docker·Spark 실습 자료.">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>BigData — 나의 데이터 엔지니어링 노트</title>
+  <link rel="icon" href="shared/favicon.svg" type="image/svg+xml">
+  <script src="shared/theme.js"></script>
+  <link rel="stylesheet" href="shared/styles.css">
+  <link rel="stylesheet" href="shared/themes.css">
+  <link rel="stylesheet" href="shared/reading.css">
+  <link rel="stylesheet" href="shared/home.css">
+  <script src="shared/course/catalog.js" defer=""></script>
+  <script src="shared/course/state.js" defer=""></script>
+  <script src="shared/course/navigation.js" defer=""></script>
+  <script src="shared/course/content.js" defer=""></script>
+  <script src="shared/course/visuals.js" defer=""></script>
+  <script src="shared/course.js" defer=""></script>
+</head>
+<body data-page="home" data-root="./">
+  <div id="course-shell"></div>
+  <main id="main-content" class="main-content home-main">
+    <div class="home-hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> DATA ENGINEERING · 2026</p>
+        <h1>빅데이터<span>강의 정리 · Docker · Spark</span></h1>
+        <p class="hero-description">1~3장 개념 정리와 실습 자료.<br>데이터 엔지니어링, 환경 구성, 분산 처리.</p>
+        <div class="hero-actions"><a class="button" id="continue-learning" href="chapters/01/index.html">1장 열기 <span aria-hidden="true">↗</span></a><a class="text-link" href="#curriculum">강의 목록 <span aria-hidden="true">↓</span></a></div>
+        <p class="hero-caption">교수님 강의자료 126슬라이드 · 실습 PDF 2개 · 실습파일 기반</p>
+      </div>
+      <figure class="home-cover" aria-hidden="true"><img src="assets/covers/bigdata.png" alt="" width="1536" height="1024" fetchpriority="high"></figure>
+    </div>
+
+    <div class="course-overview" aria-label="학습 구성">
+      <div><strong>03</strong><span>개의 챕터</span></div><div><strong>126</strong><span>장의 강의자료</span></div><div><strong>02</strong><span>개의 실습 프로젝트</span></div>
+    </div>
+
+    <section id="curriculum" class="lesson-section home-section" data-title="학습 챕터">
+      <div class="section-heading"><div><p class="eyebrow">YOUR LEARNING PATH</p><h2>강의 목록</h2></div><span class="section-aside">1~3장</span></div>
+      <div class="chapter-cards">
+        <a class="chapter-card" href="chapters/01/index.html">
+          <div class="chapter-card-top"><span class="chapter-tag">CHAPTER 01</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <div class="chapter-illustration pipeline-mini" aria-hidden="true"><span>수집</span><i>→</i><span>변환</span><i>→</i><span>활용</span></div>
+          <div class="chapter-card-content"><p class="card-kicker">01 · 개념</p><h3>데이터 엔지니어링의 이해</h3><p>빅데이터의 필요성, 데이터 처리 과정, 과목의 주요 주제.</p><div class="chapter-card-meta"><span>개념 · 학습 로드맵 · AI 활용</span><span>16 슬라이드</span></div><div class="chapter-progress"><span data-chapter-progress="01"></span></div><span class="progress-caption" data-chapter-caption="01">학습을 시작해 보세요</span></div>
+        </a>
+        <a class="chapter-card" href="chapters/02/index.html">
+          <div class="chapter-card-top"><span class="chapter-tag purple">CHAPTER 02</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <div class="chapter-illustration cluster-mini" aria-hidden="true"><span class="mini-master">Master</span><div class="mini-workers"><span>Worker 01</span><span>Worker 02</span></div></div>
+          <div class="chapter-card-content"><p class="card-kicker">02 · 환경 구성</p><h3>Docker와 Spark 첫 실습</h3><p>컨테이너 네 개로 만드는 작은 클러스터. 환경을 준비하고 1부터 100까지의 합을 검증합니다.</p><div class="chapter-card-meta"><span>구조 · 단계별 실습 · 결과 확인</span><span>56 슬라이드</span></div><div class="chapter-progress"><span data-chapter-progress="02"></span></div><span class="progress-caption" data-chapter-caption="02">학습을 시작해 보세요</span></div>
+        </a>
+        <a class="chapter-card" href="chapters/03/index.html">
+          <div class="chapter-card-top"><span class="chapter-tag">CHAPTER 03</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+          <div class="chapter-illustration pipeline-mini" aria-hidden="true"><span>개념</span><i>→</i><span>관찰</span><i>→</i><span>측정</span></div>
+          <div class="chapter-card-content"><p class="card-kicker">03 · 분산 처리</p><h3>분산 처리와 Spark 실행 원리</h3><p>DataFrame과 실제 코드를 읽고, PPTX 실습과 guide를 따라 실행한 뒤 Worker와 Core 조건별 성능을 비교합니다.</p><div class="chapter-card-meta"><span>개념·코드 → 실습 → 성능 비교</span><span>54 슬라이드 · PDF 2개</span></div><div class="chapter-progress"><span data-chapter-progress="03"></span></div><span class="progress-caption" data-chapter-caption="03">학습을 시작해 보세요</span></div>
+        </a>
+      </div>
+      <p class="muted roadmap-note">제공된 1·2·3장 자료로 구성했습니다. 3장은 PPTX 개념·DataFrame 코드 해설 → PPTX 실습과 guide 실행 관찰 → exercise 성능 측정 순서로 학습합니다.</p>
+    </section>
+
+    <section id="how-to" class="lesson-section home-section" data-title="학습 자료 구성">
+      <div class="section-heading"><div><p class="eyebrow">STUDY MATERIALS</p><h2>학습 자료 구성</h2></div></div>
+      <div class="feature-row"><article><span class="feature-icon blue">Aa</span><h3>개념 해설</h3><p>주요 용어의 정의, 예시와 처리 과정 설명.</p></article><article><span class="feature-icon purple">⌘</span><h3>구조 시각화</h3><p>데이터 흐름과 Spark 실행 과정을 단계별로 확인.</p></article><article><span class="feature-icon green">✓</span><h3>실습과 확인 문제</h3><p>실행 명령, 예상 출력과 결과 확인 문제.</p></article></div>
+    </section>
+
+    <section id="materials" class="lesson-section home-section" data-title="원본 자료">
+      <div class="materials-banner"><div><h2>강의 출처</h2><p>강의자료를 바탕으로 정리한 학습 페이지입니다. 원본 파일은 공개하지 않습니다.</p></div></div>
+    </section>
+    <footer class="page-footer"><span>BigData · 나의 데이터 엔지니어링 노트</span><span>2026학년도 강의자료 기반 학습 가이드</span></footer>
+  </main>
+
+
+</body></html>

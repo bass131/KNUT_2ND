@@ -1,0 +1,91 @@
+/* 2장 전용 학습 흐름과 도식. 공통 강의 디자인을 이어 사용한다. */
+.reading-order{color:#455a73;font-size:15px;margin:24px 0}
+.section .learning-heading{display:flex;align-items:center;gap:12px;font-size:21px;margin:36px 0 22px}
+.learning-heading>span{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:10px;background:#e8f2ff;color:#0066cc;font-size:12px;font-weight:700}
+.concept-layout{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;gap:30px}
+.concept-layout>div{min-width:0}
+.section .concept-layout h4{font-size:26px;line-height:1.4;letter-spacing:-.7px;margin:0 0 18px}
+.concept-layout p{color:#455263;line-height:1.85}
+.concept-art{margin:0;min-width:0}
+.concept-art img{display:block;width:100%;height:auto;border-radius:20px}
+.concept-art figcaption,.principle figcaption{font-size:12px;line-height:1.6;color:#637184;margin-top:12px}
+.principle{margin:0;padding:26px;border:1px solid #dbe5f0;border-radius:20px;background:#f5f8fc}
+.principle-frame[hidden],.principle-nav[hidden]{display:none}
+.principle:not(.is-stepped) .principle-frame+.principle-frame{margin-top:28px;padding-top:24px;border-top:1px solid #dbe5f0}
+.frame-title{font-size:16px;font-weight:700;margin:0 0 22px;color:#273d56}
+.frame-title>span{color:#0066cc;margin-right:10px;font-variant-numeric:tabular-nums}
+.frame-explanation{font-size:14px;line-height:1.8;color:#455a73;margin:22px 0 0}
+.viz-flow{display:flex;align-items:center;justify-content:center;gap:12px;min-height:110px}
+.viz-node{min-width:0;flex:1;padding:18px 12px;border:1px solid #d6e0ec;background:#fff;border-radius:12px;text-align:center;overflow-wrap:anywhere}
+.viz-node small,.viz-cell small{display:block;color:#61738b;font-size:11px;line-height:1.5}
+.viz-node strong{display:block;font-size:20px;line-height:1.5;margin:5px 0;color:#243b53}
+.viz-arrow{color:#7f98b5;font-size:23px;flex:none}
+.viz-cells{display:flex;gap:8px;min-height:110px}
+.viz-cell{flex:1;min-width:0;border:1px solid #d6e0ec;border-radius:12px;background:white;padding:12px 4px;text-align:center}
+.viz-cell strong{display:block;font:26px/1.5 Consolas,monospace;margin:5px 0;color:#243b53}
+.viz-cell span{display:block;min-height:32px;font-size:11px;line-height:1.5;color:#455a73;overflow-wrap:anywhere}
+.viz-node.is-active,.viz-cell.is-active,.viz-bit.is-active{border-color:#8eb9eb;background:#e8f2ff}
+.viz-node.is-active strong,.viz-cell.is-active strong,.viz-bit.is-active strong{color:#0066cc}
+.viz-stack{display:flex;flex-direction:column;gap:8px;width:190px;max-width:100%;margin:auto;text-align:center}
+.viz-stack>small{font-size:12px;color:#61738b}
+.viz-stack .viz-node{padding:10px}
+.viz-bits{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:6px;min-height:100px;align-items:center}
+.viz-bit{border:1px solid #d6e0ec;border-radius:10px;background:white;text-align:center;padding:14px 2px}
+.viz-bit small{display:block;font-size:10px;color:#61738b}
+.viz-bit strong{display:block;font:26px/1.5 Consolas,monospace;color:#243b53}
+.principle-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #dbe5f0;padding-top:18px;margin-top:22px}
+.principle-nav button{flex:none}
+.principle-nav button:disabled{opacity:.4;cursor:default}
+.principle-status{font-size:12px;text-align:center;color:#455a73;line-height:1.6}
+.lesson-detail{margin-top:36px;padding-top:1px;border-top:1px solid #e5eaf0}
+.detail-bridge{font-size:16px;line-height:1.9;color:#455a73;margin-bottom:28px}
+.lesson-detail .card h4,.lesson-detail .control-row h4{margin-top:0;font-size:18px}
+.lesson-detail>.intro{color:#455a73;line-height:1.8}
+.section .socket-subheading{font-size:20px;line-height:1.5;margin:28px 0 16px}
+.socket-principle{margin-top:22px}
+.ring-slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:22px 0}
+.ring-slot{border:1px solid #cad9e9;border-radius:12px;background:white;text-align:center;padding:12px 4px;min-width:0}
+.ring-slot small{display:block;color:#65758a;font-size:10px}
+.ring-slot strong{display:block;font:24px Consolas,monospace;color:#0066cc;margin:7px 0}
+.ring-slot span{display:block;font-size:10px;color:#52677f;min-height:36px}
+.ring-slot[data-active="true"]{background:#e8f2ff;border-color:#8eb9eb}
+.ring-actions{display:flex;gap:10px;flex-wrap:wrap}
+.ring-status{font-size:13px;color:#455a73;margin-top:16px;min-height:3.6em}
+.topic-map{margin-top:32px}
+@media(max-width:760px){
+  .concept-layout{grid-template-columns:1fr;gap:18px}
+  .concept-art{max-width:420px;margin:auto}
+  .section .concept-layout h4{font-size:23px}
+  .principle{padding:18px}
+  .viz-flow{flex-direction:column;gap:8px}
+  .viz-node{width:100%;box-sizing:border-box}
+  .viz-arrow{transform:rotate(90deg);line-height:1}
+  .viz-cells{gap:4px}
+  .viz-cell strong{font-size:20px}
+  .viz-cell small,.viz-cell span{font-size:10px}
+  .viz-bits{gap:3px}
+  .viz-bit small{font-size:9px}
+  .viz-bit strong{font-size:21px}
+  .principle-nav{flex-wrap:wrap}
+  .principle-status{order:-1;width:100%}
+}
+@media(max-width:380px){
+  .ring-slots{gap:4px}.ring-slot strong{font-size:19px}.ring-slot small,.ring-slot span{font-size:9px}.ring-slot{padding:10px 2px}
+  .principle{padding:14px}.section .learning-heading{font-size:18px;gap:8px}
+}
+@media print{
+  .ring-actions,.principle-nav{display:none!important}
+  .ring-slots{max-width:140mm}
+  .concept-layout{display:block}
+  .concept-art{max-width:75mm;margin:12px auto}
+  .concept-art img{max-height:45mm;object-fit:contain}
+  .principle{padding:12px;break-inside:auto!important}
+  .principle-frame[hidden]{display:block!important}
+  .principle-frame{break-inside:avoid;margin-bottom:18px}
+  .viz-flow{flex-direction:row;min-height:0}
+  .viz-arrow{transform:none}
+  .viz-node{width:auto;padding:10px}
+  .viz-node strong{font-size:15px}
+  .viz-cells,.viz-bits{min-height:0}
+  .section .learning-heading{break-after:avoid;margin-top:20px}
+}

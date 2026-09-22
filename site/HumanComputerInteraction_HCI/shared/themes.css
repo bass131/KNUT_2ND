@@ -1,0 +1,473 @@
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #d8dfe9;
+  border-radius: 50%;
+  background: #f1f5fa;
+  color: #354b69;
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: #e4edf8;
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.home-header nav {
+  align-items: center;
+}
+@media (max-width: 520px) {
+  .top-actions .home-link {
+    display: none;
+  }
+  .home-header nav {
+    gap: 12px;
+  }
+  .theme-toggle {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+  .home-header {
+    gap: 12px;
+  }
+  .topbar {
+    padding-inline: 14px;
+  }
+  .top-actions {
+    gap: 8px;
+  }
+}
+@media screen {
+  :root {
+    color-scheme: light;
+  }
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --ink: #edf2fa;
+    --muted: #b4bfd0;
+    --blue: #99c7ff;
+    --bg: #1b2433;
+    --line: #354157;
+    --surface: #141b27;
+    --raised: #202b3c;
+    --soft: #1b2433;
+    --text-secondary: #c1ccdc;
+  }
+  [data-theme='dark'] body {
+    background: #101620;
+    color: var(--ink);
+  }
+  [data-theme='dark'] :is(h1, h2, h3, h4, legend, summary, dt) {
+    color: var(--ink);
+  }
+  [data-theme='dark'] :is(p, li, dd, td, small) {
+    color: var(--text-secondary);
+  }
+  [data-theme='dark'] a {
+    color: var(--blue);
+  }
+  [data-theme='dark'] :is(strong, b) {
+    color: inherit;
+  }
+  [data-theme='dark'] :is(.brand, .footer-brand) {
+    color: var(--ink);
+  }
+  [data-theme='dark'] .topbar {
+    background: #141b27ed;
+    border-color: var(--line);
+  }
+  [data-theme='dark'] .sidebar {
+    background: var(--surface);
+    border-color: var(--line);
+  }
+  [data-theme='dark']
+    :is(
+      .toc a,
+      .nav-kicker,
+      .nav-bottom,
+      .top-label,
+      .brand small,
+      .course-nav a,
+      .home-header nav a,
+      .home-link,
+      .full-lecture
+    ) {
+    color: var(--muted);
+  }
+  [data-theme='dark'] :is(.toc a:hover, .icon-btn:hover, .quiz label:hover) {
+    background: var(--raised);
+  }
+  [data-theme='dark'] .toc a[aria-current='location'] {
+    color: #afd3ff;
+    background: #253b59;
+  }
+  [data-theme='dark'] .course-nav a[aria-current] {
+    color: #afd3ff;
+  }
+  [data-theme='dark'] .theme-toggle {
+    background: #253247;
+    border-color: #43546e;
+    color: #f6d88e;
+  }
+  [data-theme='dark'] .theme-toggle:hover {
+    background: #304360;
+  }
+  [data-theme='dark'] :is(.pill, .primary, .chapter-actions a:first-child) {
+    color: #fff;
+    background: #2164b5;
+  }
+  [data-theme='dark'] .primary:hover {
+    background: #2d74c9;
+  }
+  [data-theme='dark'] :is(.secondary, .skip) {
+    background: var(--raised);
+    color: var(--ink);
+    border-color: #56647b;
+  }
+  [data-theme='dark']
+    :is(
+      .card,
+      .phase,
+      .process-card,
+      .term-grid article,
+      .evolution-row article,
+      .statement,
+      .inline-note,
+      .note,
+      .interactive,
+      .dimension-demo,
+      .axis-list,
+      .purpose-grid div,
+      .goal-no,
+      .footer
+    ) {
+    background: var(--soft);
+    border-color: var(--line);
+  }
+  [data-theme='dark']
+    :is(
+      .card.blue,
+      .evolution-row .current,
+      .memory-strip,
+      .process-ribbon,
+      .ux-icon,
+      .quiz-result
+    ) {
+    background: #1b304b;
+    color: #b4d6ff;
+  }
+  [data-theme='dark'] .card.purple {
+    background: #2a2540;
+  }
+  [data-theme='dark'] :is(.example, .support-box, .quiz, .table-wrap, .study-steps article) {
+    border-color: var(--line);
+  }
+  [data-theme='dark'] :is(.termline, .comparison-tip) {
+    background: #19283c;
+    border-color: #719acb;
+    color: var(--text-secondary);
+  }
+  [data-theme='dark'] :is(.definition-box, .definition-quote, .summary-page .definition-quote) {
+    background: #33212d;
+    border-color: #674150;
+    color: #ffb3c3;
+  }
+  [data-theme='dark'] :is(.red-text, .value-line b) {
+    color: #ffb3c3;
+  }
+  [data-theme='dark'] .definition-box p {
+    color: #f4d5de;
+  }
+  [data-theme='dark'] :is(.flag.blue, .visual-card mark) {
+    color: #b6d6ff;
+    background: #233957;
+  }
+  [data-theme='dark']
+    :is(.flag.red, .chapter-actions a:nth-child(2), .visual-card:nth-child(2) mark) {
+    color: #ffb9c8;
+    background: #402635;
+  }
+  [data-theme='dark'] .flag.supplement {
+    color: #d1d8e5;
+    background: #2c3546;
+  }
+  [data-theme='dark']
+    :is(
+      .source,
+      .section-index,
+      .evidence a,
+      .scope-note,
+      .term-mini,
+      .source-note,
+      .reading-note,
+      .hero-sub,
+      .hero .lede,
+      .chapter-hero .lede,
+      .intro,
+      .section .lead,
+      .card p,
+      .phase p,
+      .support-box p,
+      .term-grid p,
+      .process-card > p,
+      .process-card dd,
+      .inline-note small,
+      .purpose-grid span,
+      .essential > span:last-child,
+      .evolution-row p,
+      .health-flow div > span:last-child,
+      .loop-caption,
+      .return-path,
+      .process-note span,
+      .memory-strip small,
+      .term-grid small,
+      .verification-grid span,
+      .verification-notes,
+      .recall-actions span,
+      .glossary dd,
+      .term-count,
+      .art-caption,
+      .chapter-meta,
+      .card .mini,
+      .axis-list p
+    ) {
+    color: var(--text-secondary);
+  }
+  [data-theme='dark']
+    :is(
+      .micro,
+      .concept-map small,
+      .visual-card small,
+      .home-stats span,
+      .chapter-card-head,
+      .card-source,
+      .home-footer,
+      .study-path article > b
+    ) {
+    color: #b9c8e0;
+  }
+  [data-theme='dark']
+    :is(
+      .eyebrow,
+      .step .deliverable,
+      .demo-question,
+      .term-abbr,
+      .q-number,
+      .participation b,
+      .phase .question,
+      .termline b,
+      .inline-note > b,
+      .process-card dt,
+      .current .version-small,
+      .process-ribbon span,
+      .memory-strip b,
+      .memory-strip span,
+      .metaphors,
+      .health-flow b,
+      .recall-list .answer,
+      .recall-list .answer b
+    ) {
+    color: #a9ceff;
+  }
+  [data-theme='dark']
+    :is(
+      .example-chip,
+      .between,
+      .flow-arrow,
+      .value-line i,
+      .process-ribbon i,
+      .relation,
+      .verification-grid b,
+      .version-small,
+      .home-stats b
+    ) {
+    color: #c2cfe3;
+  }
+  [data-theme='dark']
+    :is(
+      .health-flow > span,
+      .esg-letter,
+      .esg-triad .phase:nth-child(2) .esg-letter,
+      .esg-triad .phase:nth-child(3) .esg-letter
+    ) {
+    color: #b3c4ff;
+  }
+  [data-theme='dark'] :is(.gradient-text) {
+    background: linear-gradient(100deg, #91c6ff 12%, #c1b3ff 65%, #e1adff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  [data-theme='dark'] :is(.segmented, .progress-track) {
+    background: #303d52;
+  }
+  [data-theme='dark'] .segmented button {
+    color: #c3cfe0;
+  }
+  [data-theme='dark'] .segmented button[aria-pressed='true'] {
+    background: #435775;
+    color: #fff;
+  }
+  [data-theme='dark'] :is(.flow-node, .dark-block .flow-node, .experience-path span) {
+    background: #2c3b52;
+    color: #eff5ff;
+  }
+  [data-theme='dark']
+    :is(
+      .flow-node small,
+      .dark-block small,
+      .dark-block p,
+      .rux p,
+      .rux .micro,
+      .experience-path small
+    ) {
+    color: #c8d4e7;
+  }
+  [data-theme='dark'] :is(.dark-block, .rux) {
+    background: #182336;
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  [data-theme='dark'] :is(caption, th) {
+    background: #202c3e;
+    color: #e2eaf5;
+  }
+  [data-theme='dark']
+    :is(td, th, .process-card dl > div, .glossary > div, .example-chip, .loop-caption) {
+    border-color: var(--line);
+  }
+  [data-theme='dark'] .study-table td:first-child {
+    background: #1d2b40;
+  }
+  [data-theme='dark'] .study-table tr + tr {
+    border-color: #566984;
+  }
+  [data-theme='dark'] .study-table td:before {
+    color: #afc9ed;
+  }
+  [data-theme='dark'] .glossary-search {
+    background: var(--soft);
+    border-color: #53647d;
+    color: var(--ink);
+  }
+  [data-theme='dark'] .glossary-search::placeholder {
+    color: #a6b4c8;
+  }
+  [data-theme='dark'] :is(.essential, .concept-map > div) {
+    background: #1c2b40;
+    border-color: #3a4d68;
+    color: var(--ink);
+  }
+  [data-theme='dark'] .essential:hover {
+    background: #263a56;
+    border-color: #7197c8;
+  }
+  [data-theme='dark'] .concept-map > div:nth-child(2) {
+    background: #2a2540;
+    border-color: #4e456d;
+  }
+  [data-theme='dark'] .concept-map > div:nth-child(3) {
+    background: #1a322f;
+    border-color: #355e57;
+  }
+  [data-theme='dark'] .keyword-pair span {
+    background: #2b3e59;
+    color: #d0e3ff;
+  }
+  [data-theme='dark'] .axis-line {
+    background: linear-gradient(90deg, #516682, #a3c6ff);
+  }
+  [data-theme='dark'] .axis-line:after {
+    background: #b2d1ff;
+    border-color: #1b2433;
+    box-shadow: 0 0 0 1px #a3c6ff;
+  }
+  [data-theme='dark']
+    :is(.home-header, .home-stats, .home-section, .home-footer, .study-path article) {
+    border-color: var(--line);
+  }
+  [data-theme='dark'] .home-visual {
+    background: radial-gradient(ellipse, #2a2949, transparent 70%);
+  }
+  [data-theme='dark'] :is(.visual-card, .chapter-card) {
+    background: #182231;
+    border-color: #344359;
+  }
+  [data-theme='dark'] .visual-card {
+    box-shadow: 0 18px 45px #0003;
+  }
+  [data-theme='dark']
+    :is(
+      .visual-card p,
+      .home-hero .lede,
+      .chapter-card-content > p,
+      .study-path p,
+      .study-steps p
+    ) {
+    color: var(--text-secondary);
+  }
+  [data-theme='dark'] .chapter-card-art {
+    background: radial-gradient(ellipse, #213857, transparent 70%);
+  }
+  [data-theme='dark'] .chapter-card:nth-child(2) .chapter-card-art {
+    background: radial-gradient(ellipse, #34294c, transparent 70%);
+  }
+  [data-theme='dark'] .chapter-card-art span {
+    background: #23344b;
+    border-color: #415d80;
+    color: #bfdcff;
+  }
+  [data-theme='dark'] .chapter-card:nth-child(2) .chapter-card-art span {
+    background: #332943;
+    border-color: #5c4b79;
+    color: #d9c4fb;
+  }
+  [data-theme='dark'] .material-list a {
+    background: #223249;
+    color: #b6d6ff;
+  }
+  [data-theme='dark'] .hero-art {
+    background:
+      radial-gradient(ellipse at 65% 65%, #2f2845 0%, transparent 56%),
+      radial-gradient(ellipse at 32% 65%, #1a354e 0%, transparent 57%);
+  }
+  [data-theme='dark'] :is(.orb, .orb.ai) {
+    background: linear-gradient(140deg, #2d3c53, #1c2738);
+    border-color: #516784;
+    box-shadow:
+      0 18px 40px #0003,
+      inset 0 0 0 4px #ffffff06;
+  }
+  [data-theme='dark'] :is(.orb svg, .orb span, .orb.ai svg, .connection::after) {
+    color: #c2d5f4;
+  }
+  [data-theme='dark'] .chapter-tag {
+    border-color: #57647b;
+    color: #c3cee0;
+  }
+  [data-theme='dark'] [style*='color'] {
+    color: var(--blue) !important;
+  }
+  [data-theme='dark'] :is(.goal b, .statement > b) {
+    color: var(--ink);
+  }
+}
+@media print {
+  html {
+    color-scheme: light;
+  }
+  .theme-toggle {
+    display: none !important;
+  }
+}

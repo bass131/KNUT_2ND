@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="ko"><head></head><body data-page="03" data-root="../../">﻿
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DataFrame과 실제 코드 해설, PPTX 실습과 guide, exercise 성능 비교를 순서대로 배우는 3장 학습 페이지입니다.">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>03. Spark는 어떻게 나누어 계산할까 · BigData</title>
+  <link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+  <script src="../../shared/theme.js"></script>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <link rel="stylesheet" href="../../shared/themes.css">
+  <link rel="stylesheet" href="../../shared/reading.css">
+  <script src="../../shared/course/catalog.js" defer=""></script>
+  <script src="../../shared/course/state.js" defer=""></script>
+  <script src="../../shared/course/navigation.js" defer=""></script>
+  <script src="../../shared/course/content.js" defer=""></script>
+  <script src="../../shared/course/visuals.js" defer=""></script>
+  <script src="../../shared/course.js" defer=""></script>
+
+
+<div id="course-shell"></div>
+<main id="main-content" class="main-content">
+  <header class="chapter-hero">
+    <p class="eyebrow">CHAPTER 03 · 분산처리와 Spark 실행 원리</p>
+    <h1>Spark는 어떻게<br><span class="title-purple">나누어 계산할까?</span></h1>
+    <p class="hero-description">DataFrame과 실제 코드를 먼저 읽고, PPTX의 실습 과정을 guide와 함께 따라갑니다. 두 Worker와 한 Worker의 실행 구조를 확인한 뒤, exercise에서 Worker 수와 사용 코어를 바꾸어 성능을 비교합니다.</p>
+    <div class="hero-meta"><span>PPTX 54슬라이드</span><span>guide 5쪽</span><span>exercise 6쪽</span></div>
+  </header>
+  <nav class="learning-route" aria-label="3장 학습 순서">
+    <p class="eyebrow">이번 장의 학습 순서</p>
+    <ol><li><a href="#distributed"><strong>A · PPTX 개념과 실제 코드</strong><span>01–07 · 분산 구조, DataFrame, 제출과 종료</span></a></li><li><a href="#guide-prepare"><strong>B · PPTX 실습과 guide</strong><span>08–10 · 준비, 두 Worker 관찰, 한 Worker 비교</span></a></li><li><a href="#exercise-prepare"><strong>C · exercise 성능 비교</strong><span>11–14 · 측정 코드, 자원 확장, 결과 해석</span></a></li></ol>
+    <p>PPTX 39–54번 슬라이드의 실행 과정과 guide 1–14단계를 한 흐름으로 묶었습니다. 각 단계를 한 번씩 진행하면 두 자료를 함께 학습할 수 있습니다. 예상값·원본 화면과 직접 측정한 결과는 구분하세요.</p>
+  </nav>
+  <div class="table-wrap"><table><caption>PPTX·guide와 exercise의 실행 환경</caption><thead><tr><th scope="col">자료</th><th scope="col">이 프로젝트의 실습 폴더</th><th scope="col">브라우저 주소</th></tr></thead><tbody><tr><th scope="row">PPTX·guide · 구조 관찰</th><td><code>실습자료/2장_실습자료</code></td><td>Master <code>localhost:8080</code><br>Driver <code>localhost:4040</code></td></tr><tr><th scope="row">exercise · 확장 실험</th><td><code>실습자료/3장_실습자료</code></td><td>Master <code>localhost:18080</code><br>Driver <code>localhost:24040</code></td></tr></tbody></table></div>
+
+  <p class="source-note">guide·PPTX 원문은 Driver UI를 14040으로 안내합니다. 현재 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">2장 배포 설정</span>은 <code>4040:4040</code>이므로 이 페이지의 실행용 주소는 <code>localhost:4040</code>입니다.</p>
+
+  <div class="lesson-part"><p class="eyebrow">A · PPTX 개념과 코드</p><p>개념을 익히고 실제 코드를 읽습니다.</p></div>
+  <section class="lesson-section" id="distributed" data-group="A · PPTX 개념과 코드" data-title="분산처리가 필요한 이유">
+    <div class="section-heading"><span class="section-number">01</span><h2>큰 일을 나누면 무엇이 달라질까</h2></div>
+    <p class="lead"><strong>분산처리</strong>는 큰 데이터를 나누어 여러 계산 자원이 함께 처리하는 방식입니다. 한 컴퓨터의 용량이나 처리 속도가 부족할 때 필요합니다.</p>
+    
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 시험지 채점 나누기</strong><p>시험지 네 묶음을 조교 두 명이 채점하면, 두 묶음은 처리하고 나머지는 기다립니다. <strong>데이터 조각 수와 동시에 일할 자원 수는 다릅니다.</strong></p></div>
+    <figure class="lesson-figure">
+      <img src="../../assets/learning/ch03-shared-work.png" width="1536" height="1024" loading="lazy" decoding="async" alt="두 조교가 각각 시험지 한 묶음을 채점하고, 나머지 묶음은 옆에서 대기하는 미니어처 장면">
+      <figcaption>AI 생성 학습용 비유 · 실제 Spark 화면이 아닙니다. 시험지 묶음은 데이터 조각, 조교는 동시에 일할 자원을 나타냅니다.</figcaption>
+    </figure>
+    <h3>계산에 쓰는 자원</h3>
+    <ul class="explanation-list"><li><strong>CPU / Core(코어):</strong> CPU는 명령을 실행하는 장치, 코어는 그 안에서 계산을 담당하는 단위.</li><li><strong>메모리:</strong> 계산 중 데이터를 보관하는 공간.</li><li><strong>디스크:</strong> 파일을 오래 저장하는 공간.</li></ul>
+    <p>여러 컴퓨터의 자원을 쓰면 용량과 처리량을 늘리고, 실패한 작업 일부를 다시 실행하도록 설계할 수 있습니다.</p>
+    <div class="table-wrap"><table><caption>자원을 늘리는 두 방법</caption><thead><tr><th scope="col">방법</th><th scope="col">실제 구조</th><th scope="col">제약</th></tr></thead><tbody><tr><th scope="row">Scale-up · 한 대 강화</th><td>한 컴퓨터의 CPU와 메모리를 늘립니다. 실습에서는 기존 계산용 컨테이너의 자원 설정 증가에 대응합니다.</td><td>장비 한 대가 지원하는 용량과 비용에 한계가 있습니다.</td></tr><tr><th scope="row">Scale-out · 대수 증가</th><td>컴퓨터를 추가하고 작업을 나눕니다. 실습에서는 Worker 컨테이너 수를 늘려 구조를 관찰합니다.</td><td>통신, 작업 배정, 결과 모으기와 장애 처리가 필요합니다.</td></tr></tbody></table></div>
+    <h3>데이터를 나누는 수와 일할 자원 수</h3><p><strong>Task(태스크)</strong>는 데이터 조각 하나를 처리하는 작업입니다. 이번 실습처럼 Task 하나가 코어 하나를 쓰면, <strong>동시 실행 상한은 준비된 Task 수와 사용 가능한 코어 수 중 작은 값</strong>입니다.</p><ul class="explanation-list"><li><strong>조각이 너무 적음:</strong> 일부 코어가 쉬게 됩니다.</li><li><strong>조각이 너무 많음:</strong> 작은 작업을 만들고 배정하는 비용이 커집니다.</li><li><strong>조각 크기가 불균형함:</strong> 가장 오래 걸리는 작업이 전체 완료를 늦춥니다.</li></ul><h3>나누고 모으는 데도 비용이 듭니다</h3>
+    <ul class="explanation-list"><li><strong>Scheduling · 작업 배정:</strong> 어떤 자원에 어떤 작업을 맡길지 정하고 상태를 추적합니다.</li><li><strong>Serialization / Deserialization · 직렬화와 역직렬화:</strong> 데이터를 전송할 바이트 형태로 바꾸고, 받은 쪽에서 복원합니다.</li><li><strong>Network I/O · 네트워크 입출력:</strong> 프로세스나 컴퓨터 사이에서 데이터를 주고받습니다. 집계나 표 합치기에서는 데이터 재배치도 필요합니다.</li></ul>
+    <div class="callout warning"><strong>한 PC 안의 여덟 Worker</strong><p>모든 컨테이너는 같은 Windows PC의 CPU와 메모리를 공유합니다. 여러 물리 서버의 성능·장애 환경과는 다릅니다. 작은 데이터는 분산처리 준비 비용 때문에 단일 프로세스가 더 빠를 수도 있습니다.</p></div>
+    <div class="quiz" data-answer="1" data-explanation="독립적인 입력 작업은 4개여도 동시에 실행할 코어가 2개라면 최대 2개씩 처리합니다. 데이터 조각 수와 동시에 일할 자원 수는 다릅니다."><h3>입력 작업이 4개, 사용 가능한 코어가 2개라면 동시에 실행할 수 있는 작업은?</h3><div class="quiz-options"><button type="button">항상 4개</button><button type="button">최대 2개</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">3장 PPTX</span> 실제 슬라이드 1–8. 슬라이드 번호는 파일 순서 기준입니다.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-distributed"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="spark" data-title="Spark의 역할과 범위">
+    <div class="section-heading"><span class="section-number">02</span><h2>계산을 맡는 엔진, Spark</h2></div>
+    <p class="lead"><strong>Apache Spark</strong>는 작업 배정과 데이터 이동을 관리하며 분산 계산을 실행하는 처리 엔진입니다. 수업에서는 Python으로 Spark를 사용하는 <strong>PySpark</strong>를 씁니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 재료 창고와 조리실</strong><p>파일 저장소가 재료를 보관하는 창고라면, Spark는 재료를 가공하는 조리실에 해당합니다. 저장과 계산의 역할을 구분하는 비유입니다.</p></div>
+    <h3>Spark가 등장한 배경</h3><p>Hadoop의 <strong>MapReduce</strong>는 모아 둔 데이터를 한 번에 처리하는 대규모 <strong>Batch(배치)</strong> 방식입니다. 반복 분석에서 데이터를 다시 읽고 중간 결과를 디스크에 쓰는 비용을 줄이려는 요구가 Spark의 배경이 되었습니다.</p><p class="muted">강의 연혁: 2009년 UC Berkeley AMPLab에서 시작 → 2010년 공개 → 2014년 Apache 최상위 프로젝트 승격.</p><h3>계산을 계획하고 재사용하는 기능</h3>
+    <ul class="explanation-list"><li><strong>DAG · 방향성 비순환 그래프:</strong> 처리 단계와 선후 관계를 화살표로 나타낸 실행 계획입니다. 연결을 따라가다 같은 단계로 되돌아오는 순환은 없습니다.</li><li><strong>cache / persist · 재사용 데이터 유지:</strong> 반복해서 쓰는 데이터를 메모리나 디스크에 보관하는 기능입니다. 이번 배포 성능 코드는 이를 호출하지 않습니다.</li><li><strong>Lineage · 계산 이력:</strong> 데이터 조각을 어떤 계산으로 만들었는지 기록합니다. 손실된 조각을 다시 계산하는 근거가 됩니다.</li><li><strong>DataFrame / SQL:</strong> 열 이름이 있는 표 형태의 데이터와, 그 표를 조회·변환하는 방식입니다. 더 낮은 수준의 분산 데이터 인터페이스로 RDD도 있지만 이번 예제는 DataFrame을 사용합니다.</li></ul>
+    <div class="table-wrap"><table><caption>데이터 플랫폼의 역할 구분</caption><thead><tr><th scope="col">역할</th><th scope="col">강의에 나온 예</th><th scope="col">Spark와의 관계</th></tr></thead><tbody><tr><th scope="row">수집</th><td>Kafka, 파일, CDC(데이터 변경 수집)</td><td>처리할 입력을 제공합니다.</td></tr><tr><th scope="row">저장</th><td>HDFS(분산 파일 시스템), 객체 저장소, Iceberg·Delta와 같은 표 관리 기술</td><td>Spark가 데이터를 읽고 처리 결과를 씁니다.</td></tr><tr><th scope="row">자원 관리</th><td>Standalone, YARN, Kubernetes</td><td>응용 프로그램에 계산 자원을 배정합니다. 이번에는 Spark의 Standalone을 씁니다.</td></tr><tr><th scope="row">처리</th><td>Spark</td><td>ETL(추출·변환·적재), SQL, 지속적으로 들어오는 데이터 처리, 기계학습용 특징 데이터 준비를 수행합니다.</td></tr><tr><th scope="row">일정과 활용</th><td>Airflow 등 실행 일정 도구, 분석용 저장소, BI(업무 분석), ML(기계학습)</td><td>작업 순서를 관리하거나 결과를 활용합니다.</td></tr></tbody></table></div>
+    <h3>어떤 일에 쓰일까</h3><p>큰 표를 합치는 <strong>Join(조인)</strong>, 집계, 데이터 정제, 반복 분석에 활용합니다. 짧은 응답이 중요한 서비스나 <strong>OLTP(온라인 거래 처리)</strong> 데이터베이스를 대신하는 용도로 일반화하지 않습니다.</p>
+    <details><summary>강의에 소개된 기업 사례와 관리형 서비스</summary><p>아래는 <strong>강의 당시 소개된 사례</strong>입니다.</p><ul class="explanation-list"><li><strong>Uber:</strong> 일괄 데이터 처리와 예측</li><li><strong>Pinterest:</strong> 광고 분석과 과거 데이터 재적재</li><li><strong>Airbnb:</strong> 결제·재무·기계학습 데이터 처리</li><li><strong>Paytm:</strong> 분석·보고서 파이프라인</li></ul><p>관리형 Spark 사례로 Amazon EMR, Google Cloud의 Managed Service for Apache Spark, Microsoft Fabric Spark, Databricks Runtime을 소개합니다.</p><ul class="explanation-list"><li><strong>관리형 클러스터:</strong> 사업자가 설치·운영을 담당합니다.</li><li><strong>Serverless:</strong> 서비스가 작업에 필요한 자원을 할당합니다.</li><li><strong>함께 쓰는 도구:</strong> 지연이 짧은 데이터 흐름 처리에는 Flink, 대화형 SQL에는 Trino나 분석용 데이터베이스를 소개합니다.</li></ul></details>
+    <div class="callout"><strong>확인 질문</strong><p>Spark가 종료되면 영구 저장한 결과 파일도 사라질까요? <strong>외부 저장소에 쓴 결과는 계산 엔진이 종료되어도 남을 수 있습니다.</strong> 결과를 저장한 위치를 확인하세요.</p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">3장 PPTX</span> 슬라이드 9–17.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-spark"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="roles" data-title="Master·Worker·Driver·Executor">
+    <div class="section-heading"><span class="section-number">03</span><h2>자원을 준비하는 역할과 계산하는 역할</h2></div>
+    <p class="lead">컨테이너가 켜져 있어도 계산은 아직 시작되지 않았을 수 있습니다. <strong>자원을 준비하는 역할</strong>과 <strong>제출한 프로그램을 계산하는 역할</strong>을 구분해 봅시다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 강의실 배정과 수업 진행</strong><p>시설 담당자는 강의실을 배정하고 수업 담당자는 수업을 진행합니다. 이처럼 Master는 자원을 배정하고 Driver는 계산 작업을 조정합니다.</p></div>
+    <h3>실행 위치와 프로그램을 구분하기</h3><ul class="explanation-list"><li><strong>Node(노드):</strong> 실행 위치. 이번 실습에서는 컨테이너로 구현합니다.</li><li><strong>Process(프로세스):</strong> 실행 중인 프로그램. Worker와 Executor는 같은 컨테이너 안의 서로 다른 프로세스입니다.</li><li><strong>Cluster(클러스터):</strong> 함께 일하는 계산 자원 구성.</li><li><strong>Application(애플리케이션):</strong> 제출한 Spark 프로그램 하나.</li></ul><h3>네 프로세스의 역할과 수명</h3>
+    <div class="table-wrap"><table><caption>이번 Standalone·client mode 실습의 네 프로세스</caption><thead><tr><th scope="col">프로세스</th><th scope="col">실행 위치</th><th scope="col">역할과 수명</th></tr></thead><tbody><tr><th scope="row">Master</th><td><code>spark-master</code></td><td>Worker 등록과 자원 배정을 담당합니다. 클러스터가 켜져 있는 동안 유지됩니다.</td></tr><tr><th scope="row">Worker</th><td>각 Worker 컨테이너</td><td>자원을 보고하고 Executor를 시작·감시합니다. Application 종료 후에도 유지됩니다.</td></tr><tr><th scope="row">Driver</th><td><code>spark-client</code></td><td>사용자 코드와 실행 계획을 관리하고 Task를 보냅니다. 제출 후 시작해 프로그램 종료 시 끝납니다.</td></tr><tr><th scope="row">Executor</th><td>Worker 컨테이너 내부</td><td>Application을 위해 시작되어 Task를 계산하고 중간 데이터를 관리합니다. Application 종료 시 정리됩니다.</td></tr></tbody></table></div>
+    <div data-visual="cluster"></div>
+    <p>위 그림은 <strong>학습용 구조 모형</strong>입니다. 다음 순서로 역할을 확인하세요.</p><ol class="explanation-list"><li><strong>준비:</strong> Master와 Worker가 켜지고 Client는 대기합니다.</li><li><strong>제출:</strong> <code>spark-submit</code>이 Driver를 시작합니다.</li><li><strong>자원 할당:</strong> 자원을 받은 Worker에서 Executor가 시작됩니다.</li><li><strong>계산:</strong> Executor가 Driver에서 작업을 받고 결과를 보냅니다. Master가 모든 데이터를 중계하지는 않습니다.</li></ol>
+    <h3>Driver 안에서 사용하는 진입점</h3><ul class="explanation-list"><li><strong>SparkSession:</strong> 표 형태의 데이터와 SQL을 사용하는 진입점.</li><li><strong>SparkContext:</strong> 클러스터 연결과 실행을 조정하는 구성 요소.</li><li><strong><code>--deploy-mode client</code>:</strong> 배포 스크립트의 이 설정 때문에 Driver가 <code>spark-client</code>에서 실행됩니다.</li></ul>
+    <div class="quiz" data-answer="0" data-explanation="Worker는 클러스터의 자원을 제공하는 프로세스이고, Executor는 특정 Application을 계산하는 프로세스입니다. 프로그램 종료와 클러스터 종료는 다릅니다."><h3>합계 프로그램이 종료된 뒤에도 Worker가 켜져 있어도 될까요?</h3><div class="quiz-options"><button type="button">네. 다음 Application을 기다릴 수 있습니다.</button><button type="button">아니요. 반드시 함께 종료되어야 합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">3장 PPTX</span> 슬라이드 18–22, 26, 28–29. 구조 보충 확인: <a href="https://spark.apache.org/docs/4.1.3/cluster-overview.html">Apache Spark 4.1.3 공식 실행 구조</a>.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-roles"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="dataframe" data-title="DataFrame · 표에서 숫자까지">
+    <div class="section-heading"><span class="section-number">04</span><h2>DataFrame · 표가 합계 숫자가 되는 과정</h2></div>
+    <p class="lead">여러 곳에 나뉜 데이터를 다루더라도, 코드에서는 열 이름으로 원하는 계산을 표현할 수 있어야 합니다. <strong>DataFrame(데이터프레임)</strong>은 이름이 있는 열로 구성된 표 형태의 분산 데이터입니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 나누어 보관한 성적표</strong><p>성적표를 여러 조교에게 나누어 주어도 “점수 열의 합계”라는 요청은 같습니다. 표의 열과 실제 보관 묶음을 구분해서 생각해 보세요.</p></div>
+    <h3>1. 행·열·스키마와 Partition 구분하기</h3>
+    <ul class="explanation-list">
+      <li><strong>Row(행):</strong> 데이터 한 건입니다. 숫자 예제에서는 숫자 하나가 한 행입니다.</li>
+      <li><strong>Column(열):</strong> 각 행에서 같은 종류의 값을 담는 항목입니다. 예제의 열 이름은 <code>id</code>입니다.</li>
+      <li><strong>Schema(스키마):</strong> 열 이름과 자료형 등 표의 구조입니다. <code>id</code>는 <code>long</code>, 즉 64비트 정수형입니다.</li>
+      <li><strong>Partition(파티션):</strong> 분산 계산을 위해 행들을 나눈 조각입니다. 열이 하나여도 Partition은 여러 개일 수 있습니다.</li>
+    </ul>
+    <p>Python 변수 <code>numbers</code>는 이 분산 표를 다루는 객체를 가리킵니다. 모든 행을 Python 리스트로 가져오는 것은 아닙니다. Spark는 데이터 생성과 변환 계획을 관리하고, 실행이 필요해지면 Executor가 조각별로 처리하게 합니다.</p>
+    <h3>2. 실제 코드에서 입력 표 만들기</h3>
+    <p><strong>읽기용 Python 코드</strong>입니다. <code>first_app.py</code>에서 이미 만든 <code>spark</code>를 사용하며, PowerShell에 직접 입력하지 않습니다.</p>
+    <pre><code>numbers = spark.range(1, 101, 1, 4)</code></pre>
+    <ul class="explanation-list">
+      <li><strong>첫째 인자 <code>1</code>:</strong> 시작값을 포함합니다.</li>
+      <li><strong>둘째 인자 <code>101</code>:</strong> 끝 경계는 포함하지 않으므로 마지막 값은 100입니다.</li>
+      <li><strong>셋째 인자 <code>1</code>:</strong> 숫자가 증가하는 간격입니다.</li>
+      <li><strong>넷째 인자 <code>4</code>:</strong> 입력 Partition 수입니다. Worker 수나 열 수가 아닙니다.</li>
+    </ul>
+    <div class="table-wrap"><table><caption>입력 표의 논리적 모습 · 이해를 위한 일부 행, 실제 실행 출력 아님</caption><thead><tr><th scope="col">행 설명</th><th scope="col">id · long</th></tr></thead><tbody><tr><th scope="row">시작값</th><td>1</td></tr><tr><th scope="row">다음 값</th><td>2</td></tr><tr><th scope="row">중간 행 생략</th><td>3부터 99까지</td></tr><tr><th scope="row">마지막 값</th><td>100</td></tr></tbody></table></div>
+    <p>표는 <strong>100행 × 1열</strong>이고 입력 Partition은 4개입니다. 위 표는 숫자의 범위를 보여 주기 위한 배열입니다. 일반적인 DataFrame의 출력 순서는 명시적으로 정렬해야 보장할 수 있습니다.</p>
+    <h3>3. 한 줄의 합계 코드를 네 단계로 풀기</h3>
+    <p>배포 파일에는 다음 한 줄이 있습니다.</p>
+    <pre><code>total = numbers.selectExpr("sum(id) AS total").first()["total"]</code></pre>
+    <p>아래는 <strong>같은 계산을 설명용 변수로 나눈 코드</strong>입니다. 원본 파일을 이렇게 수정할 필요는 없습니다.</p>
+    <pre><code>summary = numbers.selectExpr("sum(id) AS total")
+row = summary.first()
+total = row["total"]
+assert total == 5050, f"Unexpected result: {total}"</code></pre>
+    <ul class="explanation-list">
+      <li><strong><code>selectExpr</code>:</strong> SQL(표의 데이터를 조회·처리하는 언어) 식을 문자열로 받아 새 DataFrame을 정의합니다. 여기서는 전체 <code>id</code> 값을 더하는 계획입니다.</li>
+      <li><strong><code>sum(id) AS total</code>:</strong> <code>sum</code>은 합계, <code>AS total</code>은 결과 열의 이름입니다. 기존 <code>numbers</code>의 <code>id</code> 열을 덮어쓰지 않습니다.</li>
+      <li><strong><code>summary.first()</code>:</strong> 합계 표의 첫 행을 요구합니다. 이때 실제 계산이 필요해집니다. 입력의 첫 숫자 1을 가져오는 호출이 아닙니다.</li>
+      <li><strong><code>row["total"]</code>:</strong> 가져온 행에서 열 이름으로 값을 꺼냅니다. 이미 Driver가 받은 행을 읽으므로 별도의 분산 계산을 요청하지 않습니다.</li>
+      <li><strong><code>assert</code>:</strong> 참이어야 할 조건을 검사합니다. 합계가 5050과 다르면 오류를 내고 정상 확인 출력을 진행하지 않습니다.</li>
+    </ul>
+    <div class="table-wrap"><table><caption>변수별 자료형과 예상 값 · 실제 Spark 실행 결과와 구분</caption><thead><tr><th scope="col">변수</th><th scope="col">자료형</th><th scope="col">뜻과 예상 내용</th></tr></thead><tbody><tr><th scope="row"><code>numbers</code></th><td>DataFrame</td><td><code>id</code> 열에 1부터 100까지 있는 입력 표</td></tr><tr><th scope="row"><code>summary</code></th><td>DataFrame</td><td><code>total</code> 열의 한 행짜리 합계 표를 정의한 계획. 계산 결과는 5050</td></tr><tr><th scope="row"><code>row</code></th><td>Row</td><td>계산 후 받은 한 행 <code>Row(total=5050)</code></td></tr><tr><th scope="row"><code>total</code></th><td>Python 정수</td><td>행 안에서 꺼낸 숫자 <code>5050</code></td></tr></tbody></table></div>
+    <div class="callout tip"><strong>Python 변수 이름과 Spark 열 이름</strong><p><code>total = row["total"]</code>에서 왼쪽 <code>total</code>은 Python 변수 이름이고, 따옴표 안의 <code>"total"</code>은 <code>AS total</code>로 붙인 열 이름입니다. 우연히 이름이 같지만 역할은 다릅니다.</p></div>
+    <h3>4. 표의 구조와 실행 결과를 확인하는 도구</h3>
+    <p>아래는 코드 이해를 위한 <strong>선택적 확인 예시</strong>입니다. <code>show()</code>도 실행을 요청하므로, 원본 실습의 Job·Task 수를 관찰할 때는 코드를 추가하지 않고 배포 파일 그대로 실행하세요.</p>
+    <pre><code>numbers.printSchema()   # 열 이름과 자료형 확인
+summary.explain()       # 합계를 구할 실행 계획 확인
+summary.show()          # 결과를 계산해 표 형태로 출력</code></pre>
+    <p>이 합계 예제에서 <code>printSchema()</code>와 <code>explain()</code>은 구조와 계획을 보여 주고, <code>show()</code>는 실제 결과를 계산해 출력합니다.</p>
+    <p><strong>예상 결과의 핵심:</strong> 입력 스키마의 열은 <code>id: long</code>이고, 합계 표는 <code>total</code> 열 하나에 5050이 들어 있는 한 행입니다. 다음 절에서는 계획을 만드는 <strong>Transformation</strong>과 결과를 요구하는 <strong>Action</strong>을 구분합니다.</p>
+    <div class="quiz" data-answer="1" data-explanation="selectExpr는 합계 표를 정의합니다. first()가 그 표의 한 행을 가져오고, ['total']이 행에서 숫자 5050을 꺼냅니다."><h3>합계 코드의 first()가 가져오는 것은 무엇인가요?</h3><div class="quiz-options"><button type="button">입력 표의 숫자 1</button><button type="button">합계 표의 Row(total=5050)</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 실제 슬라이드 23, 32–34 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">배포 코드</span>. 표와 단계별 변수는 학습용 보충입니다. 공식 확인: <a href="https://spark.apache.org/docs/4.1.3/api/python/user_guide/dataframes.html">DataFrame·스키마</a> · <a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.SparkSession.range.html">range</a> · <a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.first.html">first</a>.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-dataframe"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="execution" data-title="지연 실행과 작업 단위">
+    <div class="section-heading"><span class="section-number">05</span><h2>계획을 만들고, 결과가 필요할 때 계산하기</h2></div>
+    <p class="lead">Spark는 변환 계획을 모아 두었다가 결과가 필요할 때 계산합니다. 여러 처리 단계를 함께 보고 실행 방법을 정하기 위해서입니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 주문서를 모은 뒤 조리하기</strong><p>주문서에 요리를 적는 단계와 실제로 조리하는 단계를 나누어 생각해 보세요. 변환은 계획을 만들고 실행 요청은 결과를 요구합니다. 주문서 줄 수가 실제 작업 수와 같지는 않습니다.</p></div>
+    <h3>계획과 실행 요청</h3>
+    <ul class="explanation-list"><li><strong>Transformation · 변환:</strong> 기존 DataFrame에서 새 DataFrame을 정의하는 연산입니다. 예제의 <code>selectExpr("sum(id) AS total")</code>은 합계를 구할 계획을 만듭니다.</li><li><strong>Action · 실행 요청:</strong> 실제 결과가 필요해 계산을 시작시키는 연산입니다. 이번 예제의 <code>first()</code>가 이에 해당합니다.</li><li><strong>Lazy Evaluation · 지연 실행:</strong> Action이 필요해질 때까지 변환을 모아 실행 계획으로 다루는 방식입니다.</li></ul>
+    <div class="table-wrap"><table><caption>계산을 나누는 단위</caption><thead><tr><th scope="col">단위</th><th scope="col">의미</th><th scope="col">합계 예제</th></tr></thead><tbody><tr><th scope="row">Partition</th><td>데이터를 나눈 조각</td><td>1부터 100을 네 조각으로 나눕니다.</td></tr><tr><th scope="row">Task</th><td>Executor가 한 Partition을 처리하는 실행 단위</td><td>입력 조각별 합계를 계산합니다.</td></tr><tr><th scope="row">Job</th><td>Action의 결과를 구하려고 시작하는 계산 단위</td><td><code>first()</code>로 합계 결과를 요구합니다.</td></tr><tr><th scope="row">Stage</th><td>데이터 재배치 경계를 기준으로 나뉜 Task 묶음</td><td>부분 합계 단계와 최종 합계 단계가 있습니다.</td></tr></tbody></table></div>
+    <h3>계산 단위의 포함 관계</h3><p><strong>Application → Job → Stage → Task</strong> 순으로 포함됩니다. <strong>Shuffle(셔플)</strong>은 다음 계산에 맞춰 데이터를 재배치하는 과정이며 Stage를 나누는 경계가 됩니다. 화면의 Job 수가 코드의 Action 호출 수와 항상 같지는 않습니다.</p>
+    <div data-visual="partitions"></div>
+    <ul class="explanation-list"><li><strong>부분 합계:</strong> 325 + 950 + 1575 + 2200 = <strong>5050</strong>.</li><li><strong>원본에서 완료한 Task:</strong> 입력 계산 4개 + 최종 집계 1개 = 총 5개.</li><li><strong>구분할 점:</strong> 입력 Partition이 4개여도 프로그램 전체의 Task가 4개인 것은 아닙니다.</li></ul>
+    <div class="quiz" data-answer="1" data-explanation="selectExpr는 합계 DataFrame을 정의하고 first()가 결과를 요구합니다. 이후 total 열의 값을 꺼내 정답과 비교합니다."><h3>이번 합계 예제에서 계산 결과를 실제로 요구하는 호출은?</h3><div class="quiz-options"><button type="button"><code>selectExpr(...)</code></button><button type="button"><code>first()</code></button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">3장 PPTX</span> 슬라이드 23–27, 45–48.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-execution"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="dataframe-wordcount" data-title="DataFrame · 단어 세기 코드 해설">
+    <div class="section-heading"><span class="section-number">06</span><h2>단어 세기 · 코드마다 표가 어떻게 바뀔까</h2></div>
+    <p class="lead">문장별 텍스트에서 단어별 등장 횟수를 구하려면, 한 문장을 여러 단어 행으로 바꾸고 같은 단어를 모아야 합니다. PPTX 24번 슬라이드의 코드를 작은 입력으로 따라가 봅시다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 문장 카드를 잘라 단어별로 모으기</strong><p>문장 카드를 단어마다 잘라 같은 단어끼리 쌓고, 더 두꺼운 묶음부터 놓는 과정입니다. 실제 Spark에서는 문자열을 나누고, 행을 늘리고, 그룹별로 집계한 뒤 정렬합니다.</p></div>
+    <h3>1. 슬라이드의 전체 코드와 읽는 순서</h3>
+    <div class="callout warning"><strong>원본을 읽는 예제</strong><p>아래 HDFS(여러 컴퓨터에 파일을 나누어 저장하는 파일 시스템)의 <code>week10</code> 입력과 서비스는 이번 배포 자료에 없습니다. PowerShell 실행 명령이 아닙니다. 실제로 실행할 합계 실습은 뒤의 <a href="#guide-prepare">PPTX 실습·guide</a>에서 진행합니다.</p></div>
+    <pre><code>from pyspark.sql import SparkSession, functions as F
+spark = SparkSession.builder.appName("df-wordcount").getOrCreate()
+lines = spark.read.text("hdfs:///user/$USER/week10/input")
+words = (lines
+    .select(F.explode(F.split(F.col("value"), r"\s+")).alias("word"))
+    .where(F.col("word") != ""))
+result = words.groupBy("word").count().orderBy(F.desc("count"))
+result.write.mode("overwrite").parquet("hdfs:///user/$USER/week10/df-output")
+spark.stop()</code></pre>
+    <p><code>functions as F</code>는 Spark 함수들을 <code>F</code>라는 짧은 이름으로 쓰겠다는 뜻입니다. <code>lines → words → result</code>는 입력 표, 단어 표, 집계 표에 붙인 Python 변수 이름입니다.</p>
+    <h3>2. read.text · 한 줄을 한 행으로 읽기</h3>
+    <pre><code>lines = spark.read.text("hdfs:///user/$USER/week10/input")</code></pre>
+    <p>기본 텍스트 읽기는 줄마다 한 행을 만들고, 내용은 <code>value</code>라는 문자열 열에 넣습니다. 아래부터는 <strong>학습용으로 가정한 세 줄</strong>을 사용합니다. 원본 입력 데이터나 실제 실행 출력은 아닙니다.</p>
+    <div class="table-wrap"><table><caption>가정한 입력 · lines의 value 열</caption><thead><tr><th scope="col">입력 줄</th><th scope="col">value · 문자열</th></tr></thead><tbody><tr><th scope="row">첫째 줄</th><td><code>spark spark</code></td></tr><tr><th scope="row">둘째 줄</th><td><code>data spark</code></td></tr><tr><th scope="row">셋째 줄</th><td><code>""</code> · 빈 문자열</td></tr></tbody></table></div>
+    <h3>3. col → split → explode → alias · 문장을 단어 행으로 바꾸기</h3>
+    <pre><code>words = (lines
+    .select(F.explode(F.split(F.col("value"), r"\s+")).alias("word"))
+    .where(F.col("word") != ""))</code></pre>
+    <p>괄호가 많을 때는 가장 안쪽 함수부터 읽습니다. 다음 함수들이 만든 열 표현식을 <code>select</code>에 전달하면, 그 열을 가진 새 DataFrame을 정의합니다.</p>
+    <ul class="explanation-list">
+      <li><strong><code>F.col("value")</code>:</strong> 입력의 <code>value</code> 열을 가리키는 표현식입니다. 지금 당장 문자열 한 개를 꺼내는 동작은 아닙니다.</li>
+      <li><strong><code>F.split(..., r"\s+")</code>:</strong> 공백을 기준으로 문자열을 배열로 나눕니다. <code>\s+</code>는 하나 이상의 공백 문자를 뜻하는 정규식(문자열을 찾거나 나누는 규칙)이고, <code>r</code>은 Python에서 역슬래시를 그대로 쓰게 합니다.</li>
+      <li><strong><code>F.explode(...)</code>:</strong> 배열의 원소 하나를 행 하나로 펼칩니다. 두 단어가 들어 있던 한 행이 두 행이 됩니다.</li>
+      <li><strong><code>.alias("word")</code>:</strong> 펼친 결과 열에 <code>word</code>라는 이름을 붙입니다.</li>
+      <li><strong><code>.where(F.col("word") != "")</code>:</strong> 단어가 빈 문자열이 아닌 행만 남깁니다. 비교 연산자 <code>!=</code>는 “같지 않다”라는 뜻입니다.</li>
+    </ul>
+    <div class="table-wrap"><table><caption>첫 문장 하나의 중간 모습 · 학습용 예상값</caption><thead><tr><th scope="col">단계</th><th scope="col">값 또는 행</th><th scope="col">구조 변화</th></tr></thead><tbody><tr><th scope="row">입력</th><td><code>"spark spark"</code></td><td>문자열 하나, 한 행</td></tr><tr><th scope="row">split</th><td><code>["spark", "spark"]</code></td><td>문자열 배열, 아직 한 행</td></tr><tr><th scope="row">explode와 alias</th><td><code>word="spark"</code>인 행 2개</td><td>배열의 원소가 각각 별도 행</td></tr></tbody></table></div>
+    <p>세 줄 전체에 적용하면 빈 문자열 제거 후 <code>spark</code>, <code>spark</code>, <code>data</code>, <code>spark</code>의 <strong>4개 행</strong>이 남습니다. 여기까지는 어떤 단어를 셀지 정하는 변환 계획입니다.</p>
+    <h3>4. groupBy와 count · 같은 단어를 모아 세기</h3>
+    <pre><code>result = words.groupBy("word").count().orderBy(F.desc("count"))</code></pre>
+    <ul class="explanation-list">
+      <li><strong><code>groupBy("word")</code>:</strong> 같은 <code>word</code> 값끼리 묶어서 집계하도록 지정합니다. 중간 결과는 그룹 집계를 준비하는 <code>GroupedData</code> 객체입니다.</li>
+      <li><strong>이어서 호출한 <code>count()</code>:</strong> 각 그룹의 행 수를 <code>count</code> 열에 담는 DataFrame을 정의합니다. 단어의 글자 수를 세는 것이 아닙니다.</li>
+      <li><strong><code>orderBy(F.desc("count"))</code>:</strong> 등장 횟수가 큰 행부터 정렬합니다. 횟수가 같은 단어끼리의 순서는 이 코드로 정하지 않습니다.</li>
+    </ul>
+    <div class="table-wrap"><table><caption>result를 계산하면 얻을 학습용 예상 표</caption><thead><tr><th scope="col">word · 문자열</th><th scope="col">count · 정수</th></tr></thead><tbody><tr><th scope="row">spark</th><td>3</td></tr><tr><th scope="row">data</th><td>1</td></tr></tbody></table></div>
+    <div class="callout tip"><strong>같은 count라는 이름, 다른 반환값</strong><ul class="explanation-list"><li><strong><code>words.groupBy("word").count()</code>:</strong> 단어별 개수의 <strong>DataFrame</strong>을 만드는 변환입니다.</li><li><strong><code>words.count()</code>:</strong> 전체 행 수를 계산해 <strong>Python 정수</strong>를 돌려주는 Action입니다. 위 가정에서는 4입니다.</li></ul></div>
+    <h3>5. write.parquet · 결과 저장이 계산을 요구하기</h3>
+    <pre><code>result.write.mode("overwrite").parquet("hdfs:///user/$USER/week10/df-output")
+spark.stop()</code></pre>
+    <ul class="explanation-list">
+      <li><strong><code>result.write</code>:</strong> 결과를 저장하는 도구를 얻습니다.</li>
+      <li><strong><code>mode("overwrite")</code>:</strong> 같은 출력 위치가 이미 있으면 기존 결과를 교체하는 저장 모드입니다.</li>
+      <li><strong><code>parquet(...)</code>:</strong> 열을 기준으로 데이터를 저장하는 <strong>Parquet(파케이)</strong> 형식으로 결과를 씁니다. 이 저장 요청이 계산을 요구하는 Action입니다. 출력 경로에는 여러 데이터 파일이 생길 수 있습니다.</li>
+      <li><strong><code>spark.stop()</code>:</strong> 저장을 마친 뒤 SparkSession을 종료합니다.</li>
+    </ul>
+    <h3>6. 표의 변환이 Stage와 Shuffle로 연결되는 지점</h3>
+    <ol class="explanation-list"><li><strong>Stage A:</strong> 입력 조각에서 단어 분리, 빈 문자열 제거, 부분 집계를 수행합니다.</li><li><strong>첫 Shuffle:</strong> 여러 조각에 있던 같은 단어의 집계 정보를 모읍니다. <strong>Stage B</strong>에서 단어별 최종 개수를 구합니다.</li><li><strong>두 번째 Shuffle:</strong> 횟수 기준 전체 정렬에 맞게 데이터를 재배치합니다. <strong>Stage C</strong>에서 정렬하고 저장합니다.</li></ol>
+    <p>이는 슬라이드가 설명하는 실행 구조입니다. 실제 Job·Stage 수는 Spark가 선택한 실행 계획에 따라 확인해야 합니다. 코드 한 줄이 반드시 Stage 하나에 대응하지는 않습니다.</p>
+    <div class="quiz" data-answer="1" data-explanation="groupBy 뒤의 count()는 그룹별 집계 DataFrame을 정의합니다. 이 코드에서는 parquet 저장이 결과를 요구하여 계산을 실행합니다."><h3>슬라이드의 단어 세기 코드에서 결과 계산을 요구하는 부분은?</h3><div class="quiz-options"><button type="button"><code>groupBy("word").count()</code>만 호출할 때</button><button type="button"><code>write.mode(...).parquet(...)</code>로 저장할 때</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 실제 슬라이드 23–25. 전체 코드는 슬라이드 24, 입력과 중간 표는 학습용 보충입니다. 공식 확인: <a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.functions.explode.html">explode</a> · <a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.GroupedData.count.html">그룹별 count</a> · <a href="https://spark.apache.org/docs/latest/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrame.count.html">전체 count</a>.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-dataframe-wordcount"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="code" data-title="실제 코드 · 제출부터 종료까지">
+    <div class="section-heading"><span class="section-number">07</span><h2>실제 코드 · 명령이 5050을 출력하기까지</h2></div>
+    <p class="lead">앞에서는 계산식 안의 데이터 변화를 보았습니다. 이제 그 계산을 어떤 프로세스가 시작하고, 결과를 어떻게 확인한 뒤 종료하는지 세 파일을 연결해 읽습니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 실험실 배치도와 실험 지시서</strong><p>배치도는 사용할 장비를 준비하고, 지시서는 실험을 시작하며, 실험식은 계산을 정합니다. 설정 파일과 제출 스크립트, Python 코드도 역할이 나뉩니다.</p></div>
+    <h3>1. compose.yaml · 계산을 시작할 환경 준비</h3>
+    <ul class="explanation-list"><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">compose.yaml</span>:</strong> Master·Worker·Client 서비스와 네트워크를 정의합니다. 현재 파일에는 Worker 3개가 정의되어 있으며 이번 비교는 Worker 1·2만 사용합니다.</li><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">apps/run.sh</span>:</strong> 준비된 환경에 Python 프로그램을 제출하고 Driver·Executor 자원 조건을 전달합니다.</li><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">apps/first_app.py</span>:</strong> DataFrame을 만들고 합계를 검증한 뒤 UI 관찰 시간을 확보합니다.</li></ul>
+    <p><code>docker compose up</code>으로 컨테이너를 시작한 상태와 Application을 제출한 상태를 구분하세요. 계산 제출은 다음 명령으로 별도 수행합니다.</p>
+    <h3>2. PowerShell 명령 · Client 안의 run.sh 호출</h3>
+    <p><strong>실행 흐름을 읽는 예시</strong>입니다. 실제 입력은 다음 <a href="#guide-prepare">PPTX 실습</a>에서 준비를 마친 후 한 번 수행합니다.</p>
+    <pre><code>docker compose exec spark-client bash /opt/spark/apps/run.sh --wait-seconds 300</code></pre>
+    <ul class="explanation-list"><li><strong><code>docker compose exec spark-client</code>:</strong> 이미 실행 중인 Client 컨테이너 안에서 명령을 실행합니다.</li><li><strong><code>bash /opt/spark/apps/run.sh</code>:</strong> 컨테이너 안의 Bash 셸로 제출 스크립트를 읽습니다. 호스트의 <code>apps</code> 폴더가 이 경로에 연결되어 있습니다.</li><li><strong><code>--wait-seconds 300</code>:</strong> 계산이 끝난 후 UI를 300초 유지하라는 Python 프로그램 인자입니다.</li></ul>
+    <h3>3. run.sh · spark-submit으로 Driver 시작</h3>
+    <p><strong>배포 파일의 전체 코드</strong>입니다. Bash 스크립트를 읽기 위한 것으로, 아래 내용을 PowerShell에 붙여 넣지는 않습니다.</p>
+    <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+exec /opt/spark/bin/spark-submit \
+  --master spark://spark-master:7077 \
+  --deploy-mode client \
+  --driver-memory 512m \
+  --executor-memory 512m \
+  --executor-cores 1 \
+  --total-executor-cores 2 \
+  --conf spark.dynamicAllocation.enabled=false \
+  --conf spark.driver.host=spark-client \
+  --conf spark.driver.bindAddress=0.0.0.0 \
+  --conf spark.driver.port=39000 \
+  --conf spark.blockManager.port=39001 \
+  /opt/spark/apps/first_app.py "$@"</code></pre>
+    <ul class="explanation-list"><li><strong><code>set -euo pipefail</code>:</strong> 명령 실패나 미정의 변수 같은 오류를 놓치지 않도록 셸 동작을 설정합니다.</li><li><strong><code>exec</code>와 <code>spark-submit</code>:</strong> 셸 프로세스를 Spark 제출 프로그램으로 교체합니다. 이 예제는 <code>client</code> 모드이므로 Driver가 Client 컨테이너에서 실행됩니다.</li><li><strong>줄 끝의 <code>\</code>:</strong> 여러 줄에 쓴 내용을 하나의 Bash 명령으로 이어 줍니다.</li><li><strong>마지막 <code>"$@"</code>:</strong> 전달받은 인자를 유지합니다. 앞의 <code>--wait-seconds 300</code>이 <code>first_app.py</code>까지 도착합니다.</li></ul>
+    <div class="table-wrap"><table><caption>제출 옵션의 대상과 실제 의미</caption><thead><tr><th scope="col">옵션</th><th scope="col">대상과 뜻</th></tr></thead><tbody><tr><th scope="row"><code>--master spark://spark-master:7077</code></th><td>Driver가 연결할 내부 Master 주소</td></tr><tr><th scope="row"><code>--deploy-mode client</code></th><td>프로그램을 제출한 위치에서 Driver 실행</td></tr><tr><th scope="row"><code>--driver-memory 512m</code></th><td>Driver의 JVM(자바 실행 환경) 메모리</td></tr><tr><th scope="row"><code>--executor-memory 512m</code></th><td>Executor 하나의 JVM 메모리</td></tr><tr><th scope="row"><code>--executor-cores 1</code></th><td>Executor 하나가 사용할 코어 수</td></tr><tr><th scope="row"><code>--total-executor-cores 2</code></th><td>이 Application 전체가 사용할 Executor 코어의 상한</td></tr></tbody></table></div>
+    <h3>4. --conf · Executor 조정과 내부 통신</h3>
+    <ul class="explanation-list"><li><strong><code>spark.dynamicAllocation.enabled=false</code>:</strong> 실행 중 동적으로 Executor 수를 조정하는 기능을 끕니다.</li><li><strong><code>spark.driver.host=spark-client</code>:</strong> Executor에 알릴 Driver 주소입니다.</li><li><strong><code>spark.driver.bindAddress=0.0.0.0</code>:</strong> 컨테이너 안의 모든 네트워크 인터페이스에서 Driver 연결을 받습니다.</li><li><strong><code>spark.driver.port=39000</code>:</strong> Driver의 내부 통신 포트입니다.</li><li><strong><code>spark.blockManager.port=39001</code>:</strong> 데이터 블록의 저장과 전송을 관리하는 BlockManager의 내부 통신 포트입니다.</li></ul>
+    <p>내부 통신 주소와 브라우저로 보는 Driver UI의 <code>localhost:4040</code>는 용도가 다릅니다.</p>
+    <h3>5. first_app.py · 실제 전체 코드 읽기</h3>
+    <p><strong>배포 파일의 전체 Python 코드</strong>입니다. 숫자를 계산하는 줄 전후에 준비·검증·정리 코드가 있다는 점을 보세요. 코드 안의 영어 주석은 원본 그대로입니다.</p>
+    <pre><code>"""Week 2: submit, verify a known answer, observe the UI, and stop."""
+import argparse
+import time
+from pyspark.sql import SparkSession
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--wait-seconds", type=int, default=120)
+args = parser.parse_args()
+
+spark = SparkSession.builder.appName("Week02-First-App").getOrCreate()
+try:
+    spark.sparkContext.setLogLevel("WARN")
+    print(f"MASTER={spark.sparkContext.master}", flush=True)
+    print(f"APP_ID={spark.sparkContext.applicationId}", flush=True)
+    assert spark.sparkContext.master == "spark://spark-master:7077"
+
+    # Four input partitions. DataFrame syntax is covered next week.
+    numbers = spark.range(1, 101, 1, 4)
+    total = numbers.selectExpr("sum(id) AS total").first()["total"]
+    print(f"SUM_1_TO_100={total}", flush=True)
+    assert total == 5050, f"Unexpected result: {total}"
+    print("CHECK=PASS", flush=True)
+    print(f"UI observation: {max(0, args.wait_seconds)} seconds", flush=True)
+    time.sleep(max(0, args.wait_seconds))
+finally:
+    spark.stop()
+print("APP_STOPPED", flush=True)</code></pre>
+    <h3>6. 인자 읽기와 SparkSession 생성</h3>
+    <ul class="explanation-list"><li><strong><code>argparse</code>:</strong> 명령 뒤에 준 인자를 읽는 Python 도구입니다. <code>type=int</code>는 정수로 읽고, <code>default=120</code>은 생략했을 때의 값입니다.</li><li><strong><code>parse_args()</code>:</strong> 전달받은 300을 <code>args.wait_seconds</code>에 저장합니다. 인자 이름의 하이픈은 속성 이름에서 밑줄이 됩니다.</li><li><strong><code>SparkSession.builder</code>:</strong> 세션 설정을 준비합니다. <code>appName</code>은 UI에 보일 이름이고, <code>getOrCreate()</code>는 기존 세션을 사용하거나 새 세션을 만듭니다.</li><li><strong><code>spark.sparkContext</code>:</strong> 현재 연결과 Application 정보를 확인합니다. 실제 계산을 조정하는 SparkContext는 Driver 안에서 동작합니다.</li></ul>
+    <h3>7. 연결 확인 → DataFrame 계산 → 정답 검증</h3>
+    <ul class="explanation-list"><li><strong><code>setLogLevel("WARN")</code>:</strong> 이후 로그 출력을 경고 이상 중심으로 줄입니다. 앞서 나온 시작 로그까지 없애지는 않습니다.</li><li><strong><code>MASTER</code>와 <code>APP_ID</code>:</strong> 연결 주소와 실행 식별자를 출력합니다. 첫 <code>assert</code>는 의도한 분산 Master에 연결했는지 검사합니다.</li><li><strong><code>numbers</code>와 <code>total</code>:</strong> 앞서 본 <a href="#dataframe">표 → 합계 표 → Row → 정수</a>의 흐름입니다. <code>first()</code>에서 결과 계산을 요구합니다.</li><li><strong><code>SUM_1_TO_100</code>와 두 번째 <code>assert</code>:</strong> 숫자를 출력하고, 손계산한 정답 5050과 비교합니다. 통과한 뒤에야 <code>CHECK=PASS</code>가 출력됩니다.</li><li><strong><code>flush=True</code>:</strong> 관찰할 메시지가 출력 버퍼에 머물지 않도록 즉시 내보냅니다.</li></ul>
+    <h3>8. UI 대기 → 자원 정리 → 다음 실습</h3>
+    <ul class="explanation-list"><li><strong><code>max(0, args.wait_seconds)</code>:</strong> 음수 대기 시간을 0으로 보정합니다.</li><li><strong><code>time.sleep(...)</code>:</strong> 합계 계산이 끝난 후 Python 프로그램을 잠시 유지합니다. 이 시간에 UI를 봅니다.</li><li><strong><code>finally: spark.stop()</code>:</strong> <code>try</code> 블록의 성공·실패와 관계없이 Spark 종료를 시도합니다. Session과 Context를 종료하고 Executor를 정리합니다.</li><li><strong><code>APP_STOPPED</code>:</strong> 정상 경로에서 종료 정리를 마친 뒤 출력합니다. 앞서 예외가 발생하면 <code>finally</code>가 실행되어도 이 출력에 도달하지 않을 수 있으므로 오류 로그도 확인합니다.</li></ul>
+    <p>프로그램이 끝나도 Master와 Worker 컨테이너는 다음 제출을 기다릴 수 있습니다. 뒤의 실습에서 Application 종료와 클러스터 종료를 따로 관찰합니다.</p>
+    <div class="callout"><strong>확인 질문</strong><p>전체 코어 상한이 2인데 Worker 한 개만 살아 있고 코어가 1개라면? <strong>제공 가능한 1개 코어 안에서 계산합니다.</strong> 제출 옵션의 상한이 실제 자원을 새로 만들지는 않습니다.</p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 실제 슬라이드 28–37 · 위에 연결한 실제 2장 배포 파일. 현재 Compose의 Worker 3 추가분을 반영하되 원본 파일은 수정하지 않습니다.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-code"> 이 내용을 이해했어요</label>
+  </section>
+
+  <div class="lesson-part"><p class="eyebrow">B · PPTX 실습과 guide</p><p>PPTX의 실행 화면을 guide의 점검 절차와 연결해 한 번씩 실습합니다.</p></div>
+  <section class="lesson-section" id="guide-prepare" data-group="B · PPTX 실습과 guide" data-title="PPTX 실습 · guide 준비">
+    <div class="section-heading"><span class="section-number">08</span><h2>PPTX 실습 · guide와 함께 실행 환경 준비하기</h2></div>
+    <p class="lead">PPTX의 실습은 <strong>준비 → 두 Worker에서 계산 → 화면 관찰 → 한 Worker와 비교 → 복원·종료</strong> 순서입니다. guide는 이 과정을 명령과 확인값으로 풀어 쓴 절차서입니다. 두 자료를 함께 보며 아래 순서대로 한 번 진행하면 됩니다.</p><div class="callout tip"><strong>앞의 코드가 실제 실행으로 이어집니다</strong><p>2장 실습 파일을 재사용합니다. <code>compose.yaml</code>로 계산 자원을 준비하고, 다음 절에서 <code>run.sh</code>를 통해 앞에서 읽은 <code>first_app.py</code>를 제출합니다. 현재 절은 아직 5050을 계산하는 단계가 아닙니다.</p></div>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 실험 전 장비 점검</strong><p>실험 전에 전원, 장비 연결, 측정기를 각각 점검하듯 확인합니다. 이미지가 정상이어도 네트워크 연결은 별도로 검사해야 합니다.</p></div>
+    <ol class="steps">
+      <li class="step"><h3>준비 1 · Docker와 폴더 확인 · PPTX 39 / guide 1–3단계</h3><p>Docker Desktop에서 <strong>Engine running</strong>을 기다린 뒤 실행하세요. <strong>실행 위치: index.html이 있는 최상위 폴더의 PowerShell.</strong></p><p class="muted">원본의 <code>C:\bigdata\week02-lab</code> 대신 프로젝트의 실제 폴더를 사용합니다.</p><pre><code>docker info
+cd ".\실습자료\2장_실습자료"
+Get-ChildItem
+docker compose config --quiet</code></pre><ul class="explanation-list"><li><strong>Docker:</strong> <code>docker info</code>에 Client와 Server가 모두 표시.</li><li><strong>폴더:</strong> <code>compose.yaml</code>과 <code>apps</code> 확인.</li><li><strong>설정:</strong> <code>docker compose config --quiet</code>가 오류 없이 종료.</li></ul></li>
+      <li class="step"><h3>준비 2 · 이미지와 PySpark 검사 · PPTX 39 / guide 4–5단계</h3><p><strong>이후 실행 위치: 2장 실습 폴더의 PowerShell.</strong></p><pre><code>docker image ls spark:4.1.3-scala2.13-java21-python3-ubuntu</code></pre><p>이미지가 없을 때만 내려받습니다.</p><pre><code>docker pull spark:4.1.3-scala2.13-java21-python3-ubuntu</code></pre><p>일회용 Client 컨테이너의 <strong>로컬 모드 · 코어 1개</strong>로 검사합니다. 분산 계산은 다음 단계에서 확인합니다.</p><pre><code>docker compose run --rm --no-deps --entrypoint /opt/spark/bin/spark-submit spark-client --master "local[1]" /opt/spark/apps/check_pyspark.py</code></pre><ul class="explanation-list"><li><strong>예상 버전:</strong> <code>PYSPARK_VERSION=4.1.3</code></li><li><strong>예상 검사 결과:</strong> <code>PYSPARK_IMAGE_CHECK=PASS</code></li></ul></li>
+      <li class="step"><h3>준비 3 · 두 Worker 시작하기 · PPTX 40 / guide 6단계</h3><p><strong>실행 위치: 2장 실습 폴더의 PowerShell.</strong> 이전 Application이 실행 중이라면 먼저 종료를 기다립니다.</p><div class="callout warning"><strong>현재 배포 파일에는 세 번째 Worker도 있습니다</strong><p>현재 <code>compose.yaml</code>에는 <code>spark-worker-3</code>가 추가되어 있습니다. PPTX·guide의 두 Worker 조건을 만들기 위해 사용할 네 서비스를 지정합니다. 이어지는 <code>stop</code> 명령은 이전에 켜 둔 세 번째 Worker가 있다면 중지합니다.</p></div><pre><code>docker compose up -d spark-master spark-worker-1 spark-worker-2 spark-client
+docker compose stop spark-worker-3
+docker compose ps -a</code></pre><p><code>spark-worker-3</code>가 목록에 있다면 Exited여야 합니다. 아직 만든 적이 없다면 목록에 없어도 됩니다.</p></li><li class="step"><h3>준비 4 · 등록된 자원 확인하기 · PPTX 41 / guide 7단계</h3><ul class="explanation-list"><li><strong>컨테이너:</strong> <code>spark-master</code>, <code>spark-worker-1</code>, <code>spark-worker-2</code>, <code>spark-client</code> 모두 Up.</li><li><strong>Master 상태:</strong> healthy 표시.</li><li><strong><a href="http://localhost:8080">Master UI · localhost:8080</a>:</strong> ALIVE Worker 2개, Cores Total 2 / Used 0. Application 제출 전이므로 사용 코어는 0입니다.</li></ul><p>이전에 중지한 Worker의 DEAD 행이 남아 있어도 현재 ALIVE 수가 기준입니다.</p></li><li class="step"><h3>준비 5 · 컨테이너 통신 확인하기 · guide 8단계</h3><pre><code>docker compose exec spark-client python3 /opt/spark/apps/check_network.py</code></pre><ul class="explanation-list"><li><strong>이름 확인:</strong> 네 서비스의 DNS(이름을 주소로 찾는 기능) 검사 통과.</li><li><strong>연결 확인:</strong> Master <code>7077</code>과 Worker 내부 <code>8081</code> 포트의 TCP 연결 통과.</li><li><strong>최종 결과:</strong> <code>NETWORK_CHECK=PASS</code>.</li></ul></li>
+    </ol>
+    <div class="callout warning"><strong>여기서 막혔다면</strong><ul class="explanation-list"><li><strong>Server / pipe 오류:</strong> Docker Desktop 실행 상태 확인.</li><li><strong>설정 파일을 찾지 못함:</strong> 현재 폴더 확인.</li><li><strong>이미지 검사 실패:</strong> 이미지 태그와 로그 확인.</li><li><strong>Worker가 없음:</strong> <code>docker compose logs spark-master spark-worker-1 spark-worker-2</code>로 진단.</li></ul><p>로그 명령은 보충 진단용입니다. Master의 healthy는 웹 응답 확인이므로 Worker 등록도 따로 확인하세요.</p></div>
+    <div class="callout"><strong>확인 질문</strong><p>컨테이너가 네 개 Up인데 Used Cores가 0이면 고장일까요? <strong>Application 제출 전이라면 정상입니다.</strong> 준비된 자원과 사용 중인 자원을 구분하세요.</p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">lab-guide</span> 1–3쪽, 단계 1–8 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 슬라이드 39–41 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">이미지 검사 원본</span> · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">네트워크 검사 원본</span>.</p>
+    <p class="callout tip"><strong>다음 절로 이동할 조건:</strong> ALIVE Worker 2개, Used Cores 0, <code>NETWORK_CHECK=PASS</code>를 확인했습니다. Master UI를 열어 둔 채 Application을 제출합니다.</p><label class="completion"><input type="checkbox" data-complete="03-guide-prepare"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="guide-observe" data-title="PPTX 실습 · 두 Worker 관찰">
+    <div class="section-heading"><span class="section-number">09</span><h2>PPTX 실습 · guide와 함께 두 Worker 관찰하기</h2></div>
+    <p class="lead">정답 5050은 계산의 정확성을 보여 줍니다. 그 계산에 어떤 자원이 참여했는지는 Master UI와 Driver UI를 함께 봐야 알 수 있습니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 배정표와 작업 기록</strong><p>배정표는 누가 참여했는지, 작업 기록은 무슨 일을 끝냈는지 보여 줍니다. Master UI는 자원 배정, Driver UI는 계산 기록을 확인하는 화면입니다.</p></div>
+    <h3>실행 1 · 읽었던 합계 코드 제출하기 · PPTX 42 / guide 9단계</h3><p><strong>실행 위치: 2장 실습 폴더의 PowerShell.</strong> 앞 절의 두 Worker 준비가 끝난 상태입니다. 계산 후 300초 동안 프로그램을 유지하도록 실행합니다.</p>
+    <pre><code>docker compose exec spark-client bash /opt/spark/apps/run.sh --wait-seconds 300</code></pre>
+    <p><strong>예상 출력의 주요 부분</strong>입니다. <code>APP_ID</code>는 실행마다 달라지고 시작 로그가 추가됩니다.</p>
+    <pre><code>MASTER=spark://spark-master:7077
+APP_ID=app-...
+SUM_1_TO_100=5050
+CHECK=PASS
+UI observation: 300 seconds</code></pre>
+    <h3>관찰 1 · 계산 뒤 UI를 열 시간 · PPTX 42–43 / guide 10단계</h3><p>위 메시지가 보이면 아래 화면을 여세요. <code>APP_STOPPED</code>가 나오면 Application과 Driver UI가 종료됩니다. PowerShell이 돌아오지 않아도 관찰 대기 중이라면 정상입니다.</p>
+    <h3>관찰 2 · 화면별 역할 구분하기 · PPTX 43</h3><div class="table-wrap"><table><caption>원본의 Worker 2개 관찰 사례와 직접 확인할 항목</caption><thead><tr><th scope="col">화면</th><th scope="col">확인할 항목</th><th scope="col">읽는 방법</th></tr></thead><tbody><tr><th scope="row"><a href="http://localhost:8080">Master · 8080</a></th><td>Workers 2 Alive, Cores 2 Total / 2 Used, <code>Week02-First-App</code> RUNNING</td><td>클러스터 자원과 실행 중인 Application 확인</td></tr><tr><th scope="row"><a href="http://localhost:4040">Driver · 4040</a> / Jobs</th><td>원본에는 Job 0의 Task 4개, Job 1의 완료 Task 1개와 Skipped 4개</td><td>작업의 완료 여부를 확인하고, 생략된 항목을 완료 횟수에 더하지 않기</td></tr><tr><th scope="row">Driver / Stages</th><td>원본에는 Stage 0의 4개, Stage 2의 1개 완료, Stage 1은 Skipped</td><td>입력 계산과 최종 집계가 나뉜다는 점 확인</td></tr><tr><th scope="row">Driver / Executors</th><td>Driver 행과 Executor 2개, Executor마다 1 Core, 완료 Task 합계 5개</td><td>Driver 행을 Worker 쪽 Executor 개수에서 제외</td></tr><tr><th scope="row"><a href="http://localhost:8081">Worker 1 · 8081</a> / <a href="http://localhost:8082">Worker 2 · 8082</a></th><td>각 Worker의 자원과 Executor</td><td>Worker가 제공한 자원과 그 안의 실행 프로세스 구분</td></tr></tbody></table></div>
+    <h3>관찰 3 · Master에서 사용 자원 확인 · PPTX 44 / guide 10단계</h3><p><a href="http://localhost:8080">Master UI</a>를 새로 고칩니다. 준비할 때 0이던 Used Cores가 2로 바뀝니다. Running Applications의 <code>Week02-First-App</code>과 터미널의 <code>APP_ID</code>를 연결해서 보세요. 대기 중에는 합계 계산이 끝났어도 Application이 살아 있어 자원 할당이 유지됩니다.</p>
+<h3>관찰 4 · Jobs에서 실행 요청의 결과 보기 · PPTX 45 / guide 10단계</h3><p><a href="http://localhost:4040">Driver UI</a>의 <strong>Jobs</strong> 탭을 엽니다. Job은 실제 계산 요청으로 만들어진 실행 단위입니다. 원본의 Job 0은 Task 4개를, Job 1은 Task 1개를 완료했고 이전 부분의 Task 4개는 Skipped로 표시됩니다.</p>
+<h3>관찰 5 · Stages에서 나누고 모으는 과정 보기 · PPTX 46 / guide 10단계</h3><p><strong>Stages</strong> 탭에서는 Job 안의 계산 단계를 봅니다. 네 입력 Partition은 입력 Stage의 Task 네 개로 처리됩니다. 부분 합계를 모아 전체 합계 하나를 만드는 마지막 Stage에는 Task 한 개가 필요합니다.</p><p>화면을 <strong>입력 Partition 4개 → 부분 계산 Task 4개 → 최종 집계 Task 1개 → 5050</strong>으로 연결해서 설명해 보세요.</p>
+<h3>관찰 6 · Executors에서 Task 수행자 확인 · PPTX 47–48 / guide 10단계</h3><p><strong>Executors</strong> 탭의 Driver 행은 제외하고 Worker 쪽 Executor를 셉니다. 각 Executor가 1 Core를 쓰고 두 Executor의 완료 Task 합계가 5이면, 앞의 4개 입력 계산과 1개 최종 집계가 두 계산 프로세스에 배정된 것입니다.</p><div class="callout tip"><strong>Job 번호보다 계산 구조</strong><ul class="explanation-list"><li><strong>핵심 구조:</strong> 입력 Task 4개 + 최종 집계 Task 1개, 합계 5050.</li><li><strong>달라질 수 있는 표시:</strong> Job·Stage 번호와 Skipped 표시는 버전·실행 계획에 따라 다를 수 있습니다.</li><li><strong>Executor별 배분:</strong> 완료 Task가 2개와 3개로 나뉘는 등 실행마다 달라질 수 있습니다.</li></ul></div>
+    <div class="quiz" data-answer="1" data-explanation="Executors 화면은 Driver도 한 행으로 표시합니다. Worker 쪽 Executor 수는 Driver 행을 제외하고 세어야 합니다."><h3>Executors 화면에 Driver 1행과 Executor 2행이 보이면 계산용 Executor는 몇 개일까요?</h3><div class="quiz-options"><button type="button">3개</button><button type="button">2개</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">lab-guide</span> 3쪽, 단계 9–10 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 슬라이드 42–48의 실행 화면. 이 페이지 제작 과정의 Docker 실행 결과와 구분합니다.</p>
+    <p class="callout tip"><strong>다음 절로 이동할 조건:</strong> 5050 / PASS, Executor 2개, 완료 Task 합계 5개를 기록한 뒤 <code>APP_STOPPED</code>까지 기다립니다. 그다음 Worker 수만 바꿉니다.</p><label class="completion"><input type="checkbox" data-complete="03-guide-observe"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="guide-compare" data-title="PPTX 실습 · 한 Worker 비교">
+    <div class="section-heading"><span class="section-number">10</span><h2>PPTX 실습 · guide와 함께 한 Worker와 비교하기</h2></div>
+    <p class="lead">입력 데이터와 분할은 그대로 두고 Worker만 줄입니다. <strong>해야 할 일의 수</strong>와 <strong>동시에 처리할 수</strong>가 어떻게 다른지 확인합니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 채점 담당자 한 명이 자리를 비우면</strong><p>조교 한 명이 자리를 비워도 남은 조교가 같은 시험지 묶음을 차례로 채점할 수 있습니다. 실습도 계산이 끝난 뒤 Worker를 줄여 비교하므로, 계산 도중 장애 복구 실험은 아닙니다.</p></div>
+    <ol class="steps"><li class="step"><h3>비교 1 · 종료 후 Worker 하나 줄이기 · PPTX 49 / guide 11단계</h3><p><strong>실행 위치: 2장 실습 폴더의 PowerShell.</strong> 먼저 <code>APP_STOPPED</code>까지 기다린 다음 실행합니다.</p><pre><code>docker compose stop spark-worker-2
+docker compose ps -a</code></pre><p>Master UI에서 ALIVE Worker가 1개로 줄었는지 확인합니다. 두 개가 남았다면 <code>spark-worker-3</code>가 켜져 있는지 확인하고 중지하세요.</p></li><li class="step"><h3>비교 2 · 같은 코드 다시 실행 · PPTX 49–51 / guide 12단계</h3><p>입력이나 Partition 수를 바꾸지 않고 같은 명령을 실행합니다. <code>UI observation: 300 seconds</code>가 나오면 Master와 Driver 화면을 새로 고칩니다.</p><pre><code>docker compose exec spark-client bash /opt/spark/apps/run.sh --wait-seconds 300</code></pre><ul class="explanation-list"><li><strong>컨테이너:</strong> <code>spark-worker-2</code>는 Exited.</li><li><strong>Master:</strong> ALIVE Worker 1개. 중지한 Worker의 DEAD 행은 이전 실행 기록 때문에 원본보다 많을 수 있습니다.</li><li><strong>계산 결과:</strong> <code>SUM_1_TO_100=5050</code>, <code>CHECK=PASS</code>.</li><li><strong>Driver의 Executors 화면:</strong> Driver를 제외한 Executor 1개, 완료 Task 5개.</li></ul></li><li class="step"><h3>비교 3 · 같은 기준으로 결과 정리 · PPTX 52·54 / guide 5쪽</h3><div class="table-wrap"><table><caption>guide에서 비교할 예상 결과</caption><thead><tr><th scope="col">항목</th><th scope="col">Worker 2개</th><th scope="col">Worker 1개</th></tr></thead><tbody><tr><th scope="row">Worker 쪽 Executor / 사용 코어</th><td>2개 / 2개</td><td>1개 / 1개</td></tr><tr><th scope="row">입력 Partition / 입력 Task</th><td>4개 / 4개</td><td>4개 / 4개</td></tr><tr><th scope="row">최종 집계 Task / 완료 Task 합계</th><td>1개 / 5개</td><td>1개 / 5개</td></tr><tr><th scope="row">동시 Task 상한</th><td>2개</td><td>1개</td></tr><tr><th scope="row">합계와 검증</th><td>5050 / PASS</td><td>5050 / PASS</td></tr></tbody></table></div>
+    <div class="callout"><strong>확인 질문</strong><p>Worker를 줄였는데 왜 입력 Task와 합계는 같을까요? <strong>입력 데이터와 분할 수를 바꾸지 않았기 때문입니다.</strong> 바뀐 것은 동시에 처리할 자원입니다. 100개 숫자는 너무 작으므로 이 실습에서 실행 시간 차이를 성능 결론으로 삼지 않습니다.</p></div></li><li class="step"><h3>비교 4 · 두 Worker 복원 후 종료 · PPTX 53 / guide 13–14단계</h3><p>두 번째 <code>APP_STOPPED</code>를 확인한 뒤 실행합니다.</p><pre><code>docker compose start spark-worker-2
+docker compose ps -a</code></pre><p>Master UI에서 ALIVE Worker가 다시 2개인지 확인한 다음 환경을 정리합니다.</p><pre><code>docker compose down
+docker compose ps -a</code></pre><p>서비스 목록이 비었는지 확인하세요. 이 프로젝트의 실습 파일과 Spark 이미지는 유지되며 다음 exercise에서도 이미지를 재사용합니다.</p></li></ol>
+        <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">lab-guide</span> 3–5쪽, 단계 11–14와 결과표 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX</span> 슬라이드 49–54.</p>
+    <p class="callout tip"><strong>다음 실험으로 이동할 조건:</strong> 두 Worker와 한 Worker의 정답·Task 수·동시 실행 수를 설명했고, <code>docker compose down</code> 뒤 서비스 목록이 비었습니다. 이제 3장 파일로 입력을 크게 늘려 성능을 비교합니다.</p><label class="completion"><input type="checkbox" data-complete="03-guide-compare"> 이 내용을 이해했어요</label>
+  </section>
+
+  <div class="lesson-part"><p class="eyebrow">C · exercise 성능 비교</p><p>구조를 확인한 뒤 같은 계산의 자원 조건과 시간을 비교합니다.</p></div>
+  <div class="lesson-part"><p class="eyebrow">C · exercise 성능 비교</p><p>구조를 확인한 뒤 같은 계산의 자원 조건과 시간을 비교합니다.</p></div>
+  <section class="lesson-section" id="exercise-prepare" data-group="C · exercise 성능 비교" data-title="exercise · 확장 실험 준비">
+    <div class="section-heading"><span class="section-number">11</span><h2>exercise · 비교할 조건을 먼저 고정하기</h2></div>
+    <p class="lead">Worker가 늘면 빨라지는지 알려면 입력과 계산을 같게 두어야 합니다. exercise에서는 3장 전용 파일로 Worker 1·2·4·8개를 비교합니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 같은 분량의 일을 다른 인원으로</strong><p>인원 효과를 비교하려면 맡기는 일의 분량도 같아야 합니다. 실제 실험에서는 입력 범위, Partition 수, 반복 수를 고정합니다.</p></div>
+    <h3>준비 1 · guide 종료 후 3장 폴더로 이동 · exercise 1단계</h3><p><strong>실행 위치: 앞 절을 마친 2장 실습 폴더의 PowerShell.</strong> guide 클러스터를 종료한 뒤 형제 폴더로 이동합니다.</p><p class="muted">원본의 <code>C:\bigdata\week03-scaling-lab</code>에 해당하는 프로젝트 폴더입니다.</p>
+    <pre><code>cd "..\3장_실습자료"
+Get-ChildItem
+Get-ChildItem .\apps
+docker info
+docker compose config --quiet</code></pre>
+    <p>이 절부터 시작한다면 <strong>index.html이 있는 최상위 폴더에서</strong> <code>cd ".\실습자료\3장_실습자료"</code>로 이동하세요. 이후 exercise의 모든 Compose 명령은 3장 실습 폴더에서 실행합니다.</p>
+    <ul class="explanation-list"><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">compose.yaml</span>:</strong> 프로젝트 이름은 <code>bigdata-week03-scale</code>입니다. Master, 복제 가능한 <code>spark-worker</code>, Client를 정의합니다.</li><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">apps/run_performance.sh</span>:</strong> <code>TOTAL_EXECUTOR_CORES</code> 환경변수를 전체 Executor 코어 상한으로 전달합니다. 지정하지 않으면 1입니다.</li><li><strong><span title="원본 자료와 작업 문서는 공개하지 않습니다.">apps/performance_app.py</span>:</strong> 같은 합계를 여러 번 계산하고 시간의 중앙값을 출력합니다.</li></ul>
+    <h3>준비 2 · 모든 조건에서 같게 둘 값</h3><div class="table-wrap"><table><caption>배포 코드와 exercise의 공통 측정 조건</caption><thead><tr><th scope="col">조건</th><th scope="col">값</th><th scope="col">읽는 방법</th></tr></thead><tbody><tr><th scope="row">입력 범위</th><td><code>--end 1000000001</code></td><td>1부터 1,000,000,000까지. 끝값은 제외합니다.</td></tr><tr><th scope="row">입력 Partition</th><td><code>--partitions 128</code></td><td>입력을 128개로 나눕니다.</td></tr><tr><th scope="row">반복 수</th><td><code>--repetitions 3</code></td><td>하나의 Application 안에서 합계 Action을 세 번 실행합니다.</td></tr><tr><th scope="row">Executor</th><td>각각 1 Core / 512m</td><td>이번 설정에서는 할당된 코어 수와 Executor 수가 대응합니다.</td></tr><tr><th scope="row">Worker</th><td>각각 1 Core / 1g</td><td>Spark에 보고하는 자원 설정입니다. 컨테이너 자체의 엄격한 메모리 상한을 뜻하지 않습니다.</td></tr><tr><th scope="row">대표 시간</th><td><code>MEDIAN_SECONDS</code></td><td>세 번 측정값을 정렬했을 때 가운데 값입니다.</td></tr></tbody></table></div>
+    <h3>준비 3 · 측정 범위 먼저 이해하기</h3><ul class="explanation-list"><li><strong>입력 생성:</strong> <code>spark.range</code>가 숫자를 만듭니다. 10억 행 파일을 미리 만들지 않습니다.</li><li><strong>시간 측정:</strong> <code>time.perf_counter()</code>로 집계 표현식 <code>selectExpr(...).first()["total"]</code> 직전부터 결과를 받은 직후까지 측정합니다. 집계 계획 생성과 실제 계산·결과 반환이 이 구간에 포함됩니다.</li><li><strong>측정에서 제외:</strong> Docker 시작, Application의 나머지 수명, 계산 뒤 UI 대기 300초.</li></ul>
+    <h3>준비 4 · 제출 옵션이 Python 코드로 이어지는 경로</h3><p>다음은 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">실제 run_performance.sh</span>에서 가져온 전체 제출 명령입니다. <strong>읽기용 Bash 코드</strong>이며 PowerShell에 직접 붙여 넣지 않습니다. 다음 절의 <code>docker compose exec</code> 명령이 이 파일을 컨테이너 안에서 실행합니다.</p><pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+TOTAL_EXECUTOR_CORES="${TOTAL_EXECUTOR_CORES:-1}"
+
+exec /opt/spark/bin/spark-submit \
+  --master spark://spark-master:7077 \
+  --deploy-mode client \
+  --driver-memory 512m \
+  --executor-memory 512m \
+  --executor-cores 1 \
+  --total-executor-cores "${TOTAL_EXECUTOR_CORES}" \
+  --conf spark.dynamicAllocation.enabled=false \
+  --conf spark.driver.host=spark-client \
+  --conf spark.driver.bindAddress=0.0.0.0 \
+  --conf spark.driver.port=39000 \
+  --conf spark.blockManager.port=39001 \
+  /opt/spark/apps/performance_app.py "$@"</code></pre><ul class="explanation-list"><li><strong><code>TOTAL_EXECUTOR_CORES</code>:</strong> PowerShell 명령의 <code>-e TOTAL_EXECUTOR_CORES=4</code>가 이 실행 프로세스에 환경변수 4를 전달합니다. 스크립트는 그 값을 <code>--total-executor-cores</code>에 넣습니다. 생략하면 1입니다.</li><li><strong><code>--executor-cores 1</code>:</strong> Executor 하나가 사용할 코어를 1개로 고정합니다. Worker 하나도 1 Core이므로 전체 코어 상한을 늘리면 여러 Worker에 Executor를 배정할 수 있습니다.</li><li><strong><code>spark.dynamicAllocation.enabled=false</code>:</strong> 이번 비교에서는 동적 자원 할당을 끄고 제출한 코어 조건을 유지합니다.</li><li><strong><code>"$@"</code>:</strong> 명령 뒤의 <code>--end</code>, <code>--partitions</code>, <code>--repetitions</code>, <code>--wait-seconds</code> 인자를 Python 파일로 그대로 전달합니다. 코어 수는 제출 옵션이고 입력 범위·반복 수는 Python 프로그램의 인자입니다.</li></ul>
+<h3>준비 5 · performance_app.py의 실제 계산 과정 읽기</h3><p>아래는 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">performance_app.py 원본</span>의 핵심 발췌입니다. <strong>읽기용 Python 코드</strong>이며 앞의 SparkSession 생성과 인자 검사는 생략했습니다. 변수 <code>args</code>에는 명령행 인자를 읽은 값이, <code>spark</code>에는 생성한 SparkSession이 들어 있습니다.</p><pre><code>numbers = spark.range(1, args.end, 1, args.partitions)
+expected = (args.end - 1) * args.end // 2
+elapsed_values = []
+
+for run_number in range(1, args.repetitions + 1):
+    started = time.perf_counter()
+    total = numbers.selectExpr("SUM(id) AS total").first()["total"]
+    elapsed = time.perf_counter() - started
+
+    assert total == expected, f"Unexpected result: {total}"
+    elapsed_values.append(elapsed)
+    print(f"RUN_{run_number}_SECONDS={elapsed:.3f}", flush=True)
+
+median_seconds = statistics.median(elapsed_values)
+print(f"SUM_RESULT={total}", flush=True)
+print(f"MEDIAN_SECONDS={median_seconds:.3f}", flush=True)
+print("CHECK=PASS", flush=True)
+print(f"UI observation: {max(0, args.wait_seconds)} seconds", flush=True)
+time.sleep(max(0, args.wait_seconds))</code></pre><ul class="explanation-list"><li><strong>1. 입력 DataFrame:</strong> <code>spark.range</code>는 <code>id</code> 열을 가진 분산 DataFrame을 만듭니다. 기본값에서는 1부터 10억까지의 행을 128개 Partition으로 다룰 계획입니다. Python 리스트나 10억 행 파일을 먼저 만들지 않습니다.</li><li><strong>2. 예상 정답:</strong> <code>expected</code>는 Python 정수입니다. 1부터 <code>end - 1</code>까지의 등차수열 합 공식을 계산하며 Spark 실행과 독립적으로 정답을 확인하는 기준입니다.</li><li><strong>3. 반복과 타이머:</strong> <code>range(1, args.repetitions + 1)</code>은 기본값에서 1, 2, 3 순으로 반복합니다. <code>started</code>와 <code>elapsed</code>는 시간을 나타내는 Python 실수이며 <code>elapsed</code>의 단위는 초입니다. 반복마다 집계 표현식을 새로 만들고 결과를 요청합니다.</li><li><strong>4. 반환형 변화:</strong> <code>selectExpr(...)</code>는 <code>total</code> 열이 있는 집계 DataFrame을 정의합니다. <code>first()</code>가 계산을 요청해 첫 <code>Row</code>를 Driver로 가져오고, <code>["total"]</code>이 그 행에서 Python 정수 합계를 꺼냅니다. 기본 예상값은 <code>500000000500000000</code>입니다.</li><li><strong>5. 검증 후 기록:</strong> <code>assert</code>가 예상 합계와 일치하는지 검사한 다음 시간을 <code>elapsed_values</code>라는 Python 리스트에 저장합니다. 정답이 다르면 검증 오류로 중단하므로 성공한 측정처럼 기록하면 안 됩니다.</li><li><strong>6. 대표값과 대기:</strong> <code>statistics.median</code>은 세 시간 중 가운데 값을 돌려줍니다. <code>RUN_1_SECONDS</code>부터 <code>RUN_3_SECONDS</code>, 합계, 중앙값, PASS를 출력한 뒤 UI 관찰 시간만큼 기다립니다. 관찰 대기는 위 타이머 밖이므로 중앙값에 더해지지 않습니다.</li></ul><p>원본은 이후 <code>finally</code>에서 <code>spark.stop()</code>을 호출하고 <code>APP_STOPPED</code>를 출력합니다. 하나의 Application 안에서 같은 입력 정의로 세 번 집계하지만 <code>cache()</code>나 <code>persist()</code>는 호출하지 않습니다.</p><div class="callout tip"><strong>입력 크기를 조정할 때</strong><p>시간이 너무 짧거나 길면 <code>--end</code>를 조정하되 <strong>모든 비교 조건에서 같은 값</strong>을 쓰세요. 정답은 <code>(end - 1) × end ÷ 2</code>로 바뀝니다. 가장 빠른 한 번만 고르지 말고 세 번과 중앙값을 기록합니다.</p></div>
+    <details><summary>3장 Worker는 어떻게 복제할 수 있을까</summary><ul class="explanation-list"><li><strong>서비스:</strong> 2장의 <code>spark-worker-1</code>·<code>spark-worker-2</code> 대신 <code>spark-worker</code> 서비스 하나를 복제합니다.</li><li><strong>호스트 이름:</strong> 각 컨테이너의 <code>HOSTNAME</code> 환경변수를 사용합니다.</li><li><strong>Compose의 <code>$$</code>:</strong> 변수를 컨테이너 안의 셸에서 해석하도록 전달합니다.</li><li><strong>Worker UI 포트:</strong> 호스트 포트를 고정 공개하지 않아 복제 시 충돌을 피합니다. 관찰은 Master·Driver UI에서 진행합니다.</li></ul></details>
+    <div class="callout"><strong>확인 질문</strong><p>반복 시간이 9초, 4초, 5초라면 중앙값은? <strong>5초입니다.</strong> 이는 중앙값 설명을 위한 가상 숫자이며 이번 실험의 측정값이 아닙니다.</p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">exercise</span> 1–2쪽, 6쪽 · 위에 연결한 3장 배포 파일. 시간 측정 범위는 <code>performance_app.py</code>를 기준으로 설명합니다. 변수 표기 보충: <a href="https://docs.docker.com/reference/compose-file/interpolation/">Docker 공식 문서의 $$ 처리</a>.</p>
+    <p class="callout tip"><strong>다음 절로 이동할 조건:</strong> 3장 폴더에서 설정 검사를 통과했고, 코어 조건과 입력·반복 조건의 차이를 설명할 수 있습니다. 기록표 A에 쓸 결과를 만들기 위해 1 / 1 조건부터 실행합니다.</p><label class="completion"><input type="checkbox" data-complete="03-exercise-prepare"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="exercise-scale" data-title="exercise · Worker와 코어 늘리기">
+    <div class="section-heading"><span class="section-number">12</span><h2>exercise · 1개에서 8개까지 같은 계산하기</h2></div>
+    <p class="lead">Worker를 늘리는 명령과 Application이 사용할 코어를 늘리는 명령은 별개입니다. 두 값을 함께 바꾸고 실제 할당 상태를 확인합니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 좌석 확보와 좌석 신청</strong><p>자리를 여덟 개 준비해도 이용자가 한 자리만 신청하면 모두 쓰지는 않습니다. Worker 수는 준비한 자원, 전체 Executor 코어 상한은 이번 프로그램의 사용 한도에 대응합니다.</p></div>
+    <p><strong>실행 위치: 3장 실습 폴더의 PowerShell.</strong> 이전 실행의 <code>APP_STOPPED</code>를 확인한 뒤 다음 조건으로 넘어가세요.</p><ul class="explanation-list"><li><strong>각 조건의 순서:</strong> Worker 수 변경 → Master 등록 확인 → 측정 명령 실행.</li><li><strong><code>--scale spark-worker=N</code>:</strong> N은 추가 수가 아니라 유지할 Worker의 <strong>전체 수</strong>.</li></ul>
+    <ol class="steps">
+      <li class="step"><h3>조건 A1 · Worker 1개·전체 코어 1개 · exercise 2–3단계</h3><pre><code>docker compose up -d --scale spark-worker=1
+docker compose ps -a</code></pre><p><strong>측정 전 확인:</strong> <a href="http://localhost:18080">Master UI</a>에서 ALIVE Worker 1개와 Total Cores 1을 확인합니다. 등록이 완료되면 아래 측정 명령을 실행하세요.</p><pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=1 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 0</code></pre><p>한 명령 안에서 세 번 계산합니다. <code>RUN_1_SECONDS</code>, <code>RUN_2_SECONDS</code>, <code>RUN_3_SECONDS</code>와 <code>MEDIAN_SECONDS</code>를 기록하세요.</p></li>
+      <li class="step"><h3>조건 A2 · Worker 2개·전체 코어 2개 · exercise 4단계</h3><pre><code>docker compose up -d --scale spark-worker=2
+docker compose ps -a</code></pre><p><strong>측정 전 확인:</strong> <a href="http://localhost:18080">Master UI</a>에서 ALIVE Worker 2개와 Total Cores 2를 확인합니다. 등록이 완료되면 아래 측정 명령을 실행하세요.</p><pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=2 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 0</code></pre><p>시간과 검증 결과를 기록하고, <strong>표 B에 쓸 실제 Executor 수</strong>도 확인하세요.</p><div class="callout tip"><strong>2 / 2 조건의 화면을 놓쳤다면</strong><ol class="explanation-list"><li>Worker 2개를 유지합니다.</li><li>같은 측정 명령의 <code>--wait-seconds 0</code>만 <code>--wait-seconds 300</code>으로 바꿔 실행합니다.</li><li>대기 중 <a href="http://localhost:24040">Driver UI</a>에서 Driver 행을 제외한 Executor 수를 기록합니다.</li><li><code>APP_STOPPED</code>까지 기다린 뒤 다음 조건을 진행합니다.</li></ol></div></li>
+      <li class="step"><h3>조건 A3 · Worker 4개·전체 코어 4개 · exercise 5단계</h3><p><strong>exercise의 빈칸 풀이:</strong> 3쪽의 물음표에는 Worker 수를 4로 맞추는 첫 명령이 들어갑니다.</p><pre><code>docker compose up -d --scale spark-worker=4
+docker compose ps -a</code></pre><p><strong>측정 전 확인:</strong> <a href="http://localhost:18080">Master UI</a>에서 ALIVE Worker 4개와 Total Cores 4를 확인합니다. 등록이 완료되면 아래 측정 명령을 실행하세요.</p><pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=4 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 0</code></pre><p>세 번의 측정 시간, 중앙값과 검증 결과를 기록합니다.</p></li>
+      <li class="step"><h3>조건 A4 · Worker 8개·전체 코어 8개 · exercise 6단계</h3><p><strong>exercise의 빈칸 풀이:</strong> 두 번째 물음표에는 Worker 수를 8로 맞추는 첫 명령이 들어갑니다.</p><pre><code>docker compose up -d --scale spark-worker=8
+docker compose ps -a</code></pre><p><strong>측정 전 확인:</strong> <a href="http://localhost:18080">Master UI</a>에서 ALIVE Worker 8개와 Total Cores 8을 확인합니다. 등록이 완료되면 아래 측정 명령을 실행하세요.</p><pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=8 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 0</code></pre><p>측정값과 검증 결과를 기록합니다. PC의 CPU·메모리가 부족해 조건을 실행하지 못했다면 미측정으로 남기고 오류와 환경을 기록합니다.</p></li>
+    </ol>
+    <h3>기록 A · 같은 정답을 확인하고 시간 비교하기</h3><p>기본 입력의 <strong>예상 정답</strong>은 아래와 같습니다. 시간은 자신의 PC에서 측정해 기록하세요.</p>
+    <pre><code>SUM_RESULT=500000000500000000
+CHECK=PASS
+UI observation: 0 seconds
+APP_STOPPED</code></pre>
+    <div class="table-wrap"><table><caption>기록표 A · Worker와 전체 코어 동시 증가, 시간은 직접 기록</caption><thead><tr><th scope="col">Worker / 요청 Core</th><th scope="col">예상 Executor</th><th scope="col">중앙값(초)</th><th scope="col">Speedup</th><th scope="col">효율(%)</th></tr></thead><tbody><tr><th scope="row">1 / 1</th><td>1개</td><td>미측정</td><td>1.00 (기준)</td><td>100 (기준)</td></tr><tr><th scope="row">2 / 2</th><td>2개</td><td>미측정</td><td>계산 후 기록</td><td>계산 후 기록</td></tr><tr><th scope="row">4 / 4</th><td>4개</td><td>미측정</td><td>계산 후 기록</td><td>계산 후 기록</td></tr><tr><th scope="row">8 / 8</th><td>8개</td><td>미측정</td><td>계산 후 기록</td><td>계산 후 기록</td></tr></tbody></table></div>
+    <h3>계산 A · 중앙값에서 Speedup과 효율 구하기</h3><ul class="explanation-list"><li><strong>Speedup · 속도 향상 비율:</strong> Worker 1개의 중앙값을 해당 조건의 중앙값으로 나눕니다. 같은 양의 일을 얼마나 짧은 시간에 처리했는지 나타냅니다.</li><li><strong>효율:</strong> <code>Speedup ÷ Worker 수 × 100</code>입니다. 이 표는 Worker마다 1 Core이고 Worker와 요청 Core를 함께 늘린 조건입니다.</li></ul>
+    <div class="callout"><strong>확인 질문</strong><p>Worker를 4개로 늘렸지만 제출 옵션을 1 Core로 두면 표 A의 4 / 4 조건일까요? <strong>아닙니다.</strong> Worker 제공량과 Application 코어 상한을 모두 확인해야 합니다.</p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">exercise</span> 2–4쪽, 단계 2–6과 결과표 A · <a href="https://docs.docker.com/reference/cli/docker/compose/up/">Docker 공식 문서의 --scale 옵션</a>. 물음표를 채운 명령은 배포 서비스명에 맞춘 풀이입니다.</p>
+    <p class="callout tip"><strong>다음 절로 이동할 조건:</strong> 표 A의 네 조건과 실제 2 / 2 Executor 수를 기록했습니다. Worker는 8개를 유지하고, 마지막 실행의 <code>APP_STOPPED</code> 이후 전체 코어 상한만 2로 바꿉니다.</p><label class="completion"><input type="checkbox" data-complete="03-exercise-scale"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="exercise-fixed" data-title="exercise · 코어 2개로 고정">
+    <div class="section-heading"><span class="section-number">13</span><h2>exercise · Worker가 많아도 덜 쓸 수 있다</h2></div>
+    <p class="lead">Worker는 여덟 개 유지하고 전체 Executor 코어 상한만 두 개로 줄입니다. <strong>준비된 자원</strong>과 <strong>Application이 쓰는 자원</strong>을 비교합니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 열린 창구와 실제 담당 창구</strong><p>창구 여덟 개 중 두 곳에만 업무를 배정하면 나머지는 그 업무를 처리하지 않습니다. 이번 설정도 Executor마다 1 Core이므로 전체 2 Core 상한이 참여 수를 제한합니다.</p></div>
+    <h3>조건 B · Worker 8개 유지·전체 코어만 2개 · exercise 7단계</h3><p><strong>실행 위치: 3장 실습 폴더의 PowerShell.</strong> Worker 8개가 등록되어 있고 이전 Application이 종료된 상태에서 실행합니다.</p>
+    <pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=2 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 0</code></pre>
+    <h3>확인 B · 준비한 코어와 실제 할당 구분하기</h3><ul class="explanation-list"><li><strong>Master의 Total Cores:</strong> 8.</li><li><strong>이 Application의 Used Cores:</strong> 최대 2.</li><li><strong>Executor:</strong> 다른 Application이 없고 등록·할당이 정상이면 2개. Driver 행은 제외합니다.</li></ul>
+    <div data-visual="scaling"></div>
+    <p class="muted">학습용 모형은 자원 사용과 입력 Task의 동시 실행 상한을 보여 줍니다. 속도 예측은 아니며 최종 집계·통신 시간은 별도로 필요합니다.</p>
+    <h3>기록 B · 앞의 2 / 2 조건과 연결해서 비교하기</h3><p>첫 행은 앞 절에서 기록한 2 / 2 결과입니다. 둘째 행에는 방금 실행한 8 / 2 결과를 적습니다. 실제 Executor 수는 Driver 행을 제외해 기록합니다.</p><div class="table-wrap"><table><caption>기록표 B · 전체 코어 2개 고정</caption><thead><tr><th scope="col">Worker / 요청 Core</th><th scope="col">실제 Executor</th><th scope="col">중앙값(초)</th><th scope="col">관찰</th></tr></thead><tbody><tr><th scope="row">2 / 2</th><td>직접 확인</td><td>표 A의 2 / 2 결과</td><td>모두 참여하는지 확인</td></tr><tr><th scope="row">8 / 2</th><td>직접 확인</td><td>이번 실행값 기록</td><td>나머지 Worker가 이 Application 계산에 참여하는지 확인</td></tr></tbody></table></div>
+    <details><summary>계산이 너무 빨라 2 Core 할당 화면을 놓쳤다면</summary><p>관찰 대기만 300초로 바꾸는 보충 실행입니다. <code>UI observation: 300 seconds</code>가 보이면 <a href="http://localhost:18080">Master UI</a>와 <a href="http://localhost:24040">Driver UI</a>를 확인하고 <code>APP_STOPPED</code>까지 기다리세요.</p><pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=2 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 300</code></pre></details>
+    <div class="quiz" data-answer="0" data-explanation="각 Executor가 1 Core이고 전체 Executor 코어 상한이 2이므로 이 Application이 쓸 수 있는 Executor는 최대 2개입니다. Worker가 8개라는 사실만으로 모두 계산에 참여하지 않습니다."><h3>이번 설정에서 Worker 8개, 전체 Executor 2 Core라면 계산용 Executor는?</h3><div class="quiz-options"><button type="button">최대 2개</button><button type="button">항상 8개</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">exercise</span> 4쪽의 단계 7과 결과표 B, 6쪽 풀이 기준 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">제출 스크립트</span>.</p>
+    <p class="callout tip"><strong>다음 절로 이동할 조건:</strong> 2 / 2와 8 / 2의 중앙값·실제 Executor 수를 표 B에 기록했습니다. <code>APP_STOPPED</code> 뒤 Worker 8개를 유지한 채 이번에는 8 Core를 요청해 전체 자원 사용을 관찰합니다.</p><label class="completion"><input type="checkbox" data-complete="03-exercise-fixed"> 이 내용을 이해했어요</label>
+  </section>
+
+  <section class="lesson-section" id="exercise-review" data-title="exercise · UI와 성능 해석">
+    <div class="section-heading"><span class="section-number">14</span><h2>exercise · 측정값을 구조로 설명하기</h2></div>
+    <p class="lead">시간이 줄었다는 결론에는 같은 정답, 같은 입력, 실제 자원 사용이라는 근거가 필요합니다. 마지막으로 여덟 Core 실행을 관찰하고 비교 결과를 설명합니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 사람이 늘어도 좁은 작업장은 같다</strong><p>사람이 늘어도 통로와 작업대를 공유하면 기다림이 생깁니다. 이 실습도 한 PC의 CPU·메모리를 공유하므로 Worker 수만큼 빨라진다고 보장할 수 없습니다.</p></div>
+    <h3>관찰 실행 · 8 / 8 조건에 UI 대기 추가 · exercise 8단계</h3><p><strong>실행 위치: 3장 실습 폴더의 PowerShell.</strong> Worker 8개 상태에서 이전 실행 종료를 확인하고 진행합니다.</p>
+    <pre><code>docker compose exec -e TOTAL_EXECUTOR_CORES=8 spark-client bash /opt/spark/apps/run_performance.sh --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 300</code></pre>
+    <h3>화면 기록 · Master → Executors → Jobs·Stages</h3><p><code>UI observation: 300 seconds</code>가 나오면 확인하세요.</p><ul class="explanation-list"><li><strong><a href="http://localhost:18080">Master · localhost:18080</a>:</strong> ALIVE Worker 8개 / Used Cores 8.</li><li><strong><a href="http://localhost:24040">Driver · localhost:24040</a>의 Executors:</strong> Driver를 제외한 Executor 8개.</li><li><strong>Jobs / Stages:</strong> 각 반복의 Task 수와 완료 상태. guide의 총 5 Task를 이 실험에 그대로 대입하지 않습니다.</li></ul><h3>결과 해석 · 표 A와 표 B로 답하기 · exercise 9단계</h3>
+    <ul class="explanation-list"><li><strong>정확성:</strong> 모든 조건에서 같은 <code>SUM_RESULT</code>와 <code>CHECK=PASS</code>가 나왔는지 먼저 확인합니다. 정답이 다르면 속도 비교를 결론 내리지 않습니다.</li><li><strong>동시 실행의 증가:</strong> Worker와 코어를 함께 늘리면 동시에 실행할 입력 Task가 늘어날 수 있습니다. 입력 Partition 수는 128로 같습니다.</li><li><strong>비용과 자원 경합:</strong> Executor 관리, Task 배정, 결과 집계, 컨테이너 간 통신에 시간이 필요합니다. 같은 PC의 자원을 놓고 경쟁하면 8 Worker가 4 Worker보다 느리거나 비슷할 수 있습니다.</li><li><strong>첫 실행의 영향:</strong> JVM 초기화와 실행 코드 생성의 영향을 받을 수 있습니다. 중앙값은 유난히 큰 한 측정값의 영향을 줄여 주지만 모든 변동을 제거하지는 않습니다.</li><li><strong>2 / 2와 8 / 2 비교:</strong> Application이 사용하는 코어 상한은 같습니다. Worker를 더 만들었다는 사실만으로 네 배 빨라질 이유는 없으며, 실제 차이는 측정값과 자원 상태를 근거로 설명합니다.</li></ul>
+    <h3>결과 정리 · 직접 측정한 값으로 설명 작성하기</h3><details><summary>결과 설명에 사용할 기록 틀</summary><p>다른 문서에 복사해 직접 관찰한 값을 채우세요.</p><pre><code>입력 end / partitions / repetitions:
+PC와 Docker에 사용 가능한 CPU·메모리:
+조건별 RUN_1 / RUN_2 / RUN_3 / MEDIAN_SECONDS:
+조건별 SUM_RESULT / CHECK:
+Master의 ALIVE Worker / Total Cores / Used Cores:
+Driver를 제외한 Executor 수와 Task 관찰:
+표 A의 Speedup / 효율:
+2 Worker·2 Core와 8 Worker·2 Core 비교:
+8 Worker와 4 Worker 비교 및 가능한 이유:
+오류 또는 미측정 조건:</code></pre></details>
+    <div class="callout warning"><strong>실패하거나 값이 예상과 다르면</strong><ul class="explanation-list"><li><strong>먼저 확인:</strong> 3장 폴더, Master 포트 18080, 이전 Application 종료 여부.</li><li><strong>Worker 부족:</strong> <code>docker compose ps -a</code>와 <code>docker compose logs spark-worker</code> 확인.</li><li><strong>코어 부족:</strong> 제출 명령의 <code>TOTAL_EXECUTOR_CORES</code>와 Master 자원 상태 확인.</li><li><strong>Driver UI 종료:</strong> 관찰 대기 300초로 다시 실행.</li></ul><p class="muted">로그 명령은 보충 진단용입니다.</p></div>
+    <h3>종료 · Application 종료 후 환경 정리 · exercise 10단계</h3><p><code>APP_STOPPED</code>를 확인한 뒤 <strong>3장 실습 폴더의 PowerShell</strong>에서 실행합니다.</p>
+    <pre><code>docker compose down
+docker compose ps -a</code></pre>
+    <p>확장 실습의 컨테이너와 네트워크가 제거되고 서비스 목록이 비었는지 확인합니다. 계산이 끝난 것과 실습 환경을 종료한 것은 서로 다른 단계입니다.</p>
+    <div class="quiz" data-answer="1" data-explanation="이 실습은 한 PC의 CPU와 메모리를 공유합니다. 통신·작업 배정·집계 비용과 자원 경합 때문에 Worker 증가에 비례한 성능 향상은 보장되지 않습니다."><h3>8 Worker가 4 Worker보다 느렸다면 올바른 다음 행동은?</h3><div class="quiz-options"><button type="button">8 Worker 결과를 빼고 항상 빨라진다고 결론 내립니다.</button><button type="button">정답과 실제 자원 사용을 확인하고 측정값과 비용을 함께 설명합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+    <p class="source-note">출처: <span title="원본 자료와 작업 문서는 공개하지 않습니다.">exercise</span> 5–6쪽, 단계 8–10과 풀이 기준 · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">성능 측정 코드</span>.</p>
+    <label class="completion"><input type="checkbox" data-complete="03-exercise-review"> 이 내용을 이해했어요</label>
+  </section>
+
+
+  <footer class="chapter-footer"><p>3장에서는 계산의 정확성, 실행 구조, 성능을 각각 확인했습니다. 원본 자료의 순서대로 다시 살펴볼 수 있습니다.</p><div class="hero-actions"><a class="button secondary" href="../02/index.html">이전 · 2장</a><a class="button" href="../../index.html">학습 홈</a></div><p class="source-note"><span title="원본 자료와 작업 문서는 공개하지 않습니다.">PPTX 원본</span> · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">guide 원본</span> · <span title="원본 자료와 작업 문서는 공개하지 않습니다.">exercise 원본</span></p></footer>
+</main>
+
+
+</body></html>

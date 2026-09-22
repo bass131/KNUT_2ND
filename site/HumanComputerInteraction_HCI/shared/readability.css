@@ -1,0 +1,447 @@
+/* Diagram labels should remain readable at ordinary zoom, including on phones. */
+.reading-sentence {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+.explanation-list {
+  list-style: disc;
+  margin: 16px 0 0;
+  padding-left: 24px;
+  font-size: 15px;
+  line-height: 1.95;
+}
+ol.explanation-list {
+  list-style: decimal;
+}
+.section .explanation-list li + li {
+  margin-top: 12px;
+}
+.explanation-list li::marker {
+  color: var(--blue);
+}
+.explanation-list strong:first-child,
+.explanation-list b:first-child {
+  font-weight: 700;
+}
+.explanation-group {
+  margin: 25px 0;
+}
+.section .explanation-group h3 {
+  margin: 0 0 12px;
+  font-size: 21px;
+}
+.section .explanation-group h4 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+.termline .explanation-list {
+  font-size: 14px;
+  margin: 0;
+}
+.termline .explanation-list li + li {
+  margin-top: 12px;
+}
+.note .explanation-list,
+.comparison-tip .explanation-list {
+  font-size: 14px;
+  margin-top: 10px;
+}
+@media print {
+  .reading-sentence {
+    display: inline;
+  }
+  .explanation-list li {
+    break-inside: avoid;
+  }
+}
+.card p,
+.summary-page .card p,
+.phase p,
+.esg-triad p,
+.support-box p,
+.term-grid p,
+.study-steps p {
+  font-size: 15px;
+  line-height: 1.9;
+}
+.card .mini,
+.micro,
+.concept-map small,
+.visual-card small,
+.health-flow .micro,
+.esg-triad .micro {
+  font-size: 12px;
+  letter-spacing: 0.7px;
+  line-height: 1.7;
+}
+.visual-card p,
+.chapter-card-content > p,
+.study-path p {
+  font-size: 15px;
+  line-height: 1.9;
+}
+.chapter-card-content > p {
+  min-height: 86px;
+}
+.visual-card {
+  max-width: 360px;
+}
+.home-visual {
+  min-width: 0;
+}
+.chapter-card-art span {
+  font-size: 17px;
+}
+.chapter-card-art {
+  min-height: 144px;
+  height: auto;
+  padding-block: 22px;
+}
+.concept-map span {
+  font-size: 17px;
+}
+.concept-map strong {
+  font-size: 27px;
+}
+.orb span {
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.art-caption {
+  font-size: 12px;
+}
+.connection::after {
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.flow-node {
+  font-size: 18px;
+  line-height: 1.6;
+}
+.flow-node small {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.flow-arrow {
+  font-size: 22px;
+}
+.phase .question,
+.ux-triad .phase .question {
+  font-size: 16px;
+  min-height: 0;
+}
+.example-chip {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.essential > span:last-child,
+.evolution-row p,
+.participation span,
+.participation b,
+.health-flow div > span:last-child,
+.purpose-grid b,
+.purpose-grid span,
+.experience-path,
+.metaphors,
+.relation small,
+.term-grid small,
+.process-note span {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.evolution-row h3 {
+  font-size: 17px;
+}
+.purpose-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.purpose-grid div {
+  padding: 18px 14px;
+}
+.loop-caption,
+.term-mini {
+  font-size: 14px !important;
+}
+.return-path {
+  font-size: 14px;
+  line-height: 1.8;
+  padding: 12px;
+}
+.experience-path small {
+  font-size: 13px;
+}
+.process-card > p,
+.process-card dl > div {
+  font-size: 15px;
+  line-height: 1.9;
+}
+.process-card dl > div {
+  grid-template-columns: minmax(100px, 32%) 1fr;
+  gap: 15px;
+}
+.process-ribbon span {
+  font-size: 24px;
+}
+.process-ribbon {
+  gap: 12px;
+}
+.memory-strip b,
+.memory-strip small {
+  font-size: 13px;
+}
+.memory-strip span {
+  font-size: 16px;
+}
+.keyword-pair span {
+  font-size: 13px;
+}
+.support-title {
+  font-size: 15px;
+}
+.verification-grid span {
+  font-size: 13px;
+}
+.axis-row {
+  grid-template-columns: 135px 1fr 145px;
+  font-size: 15px;
+  gap: 15px;
+}
+.axis-list {
+  gap: 22px;
+}
+.axis-list p {
+  font-size: 13px;
+}
+table,
+.table-wrap td,
+.table-wrap th,
+.table-wrap td p {
+  font-size: 15px !important;
+  line-height: 1.9;
+}
+table caption,
+.study-table caption {
+  font-size: 14px;
+}
+.section .evidence,
+.evidence a,
+.section .evidence a,
+.flag {
+  font-size: 12px;
+}
+.evidence {
+  gap: 10px;
+}
+.source {
+  font-size: 12px;
+}
+.segmented button {
+  font-size: 14px;
+  padding: 12px 8px;
+}
+.demo-tag {
+  font-size: 12px;
+}
+.dimension-demo p,
+.demo-panel p {
+  font-size: 15px;
+}
+@media (max-width: 1100px) {
+  .triad {
+    grid-template-columns: 1fr;
+  }
+  .phase {
+    padding: 25px;
+  }
+  .evolution-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .between {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+  .evolution-row h3 {
+    min-height: 0;
+  }
+  .home-hero {
+    gap: 28px;
+  }
+  .visual-card:nth-child(2) {
+    margin-left: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .chapter-card-art span {
+    font-size: 16px;
+    padding: 12px;
+  }
+  .chapter-card-art {
+    gap: 10px;
+  }
+  .chapter-card-content > p {
+    min-height: 0;
+  }
+  .chapter-card-head {
+    gap: 10px;
+  }
+  .esg-triad {
+    grid-template-columns: 1fr;
+  }
+  .esg-triad .phase {
+    padding: 23px;
+  }
+  .esg-triad .micro {
+    font-size: 12px;
+  }
+  .esg-triad p {
+    font-size: 15px;
+  }
+  .health-flow {
+    flex-direction: column;
+    gap: 14px;
+  }
+  .health-flow > div {
+    width: 100%;
+    background: var(--bg);
+    padding: 18px;
+    border-radius: 14px;
+  }
+  .health-flow > span {
+    transform: rotate(90deg);
+  }
+  .health-flow div > span:last-child {
+    font-size: 15px;
+  }
+  .process-ribbon {
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+  }
+  .process-ribbon span {
+    font-size: 23px;
+  }
+  .process-ribbon i {
+    transform: rotate(90deg);
+  }
+  .purpose-grid {
+    grid-template-columns: 1fr;
+  }
+  .purpose-grid div:last-child {
+    grid-column: auto;
+  }
+  .purpose-grid b,
+  .purpose-grid span {
+    font-size: 15px;
+  }
+  .process-card dl > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+  .process-card dd {
+    margin: 0;
+  }
+  .participation div {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .essential-grid {
+    grid-template-columns: 1fr;
+  }
+  .essential b {
+    font-size: 23px;
+  }
+  .essential > span:last-child {
+    font-size: 14px;
+  }
+  .concept-map strong {
+    font-size: 25px;
+  }
+  .concept-map span {
+    font-size: 17px;
+  }
+  .axis-row {
+    grid-template-columns: 86px 1fr 105px;
+    gap: 8px;
+    font-size: 14px;
+  }
+  .axis-list {
+    padding: 20px 14px;
+  }
+  .orb {
+    width: 112px;
+    height: 126px;
+  }
+  .hero-art {
+    gap: 35px;
+    height: 270px;
+  }
+  .orb span {
+    font-size: 12px;
+  }
+  .art-caption {
+    font-size: 11px;
+  }
+  .connection::after {
+    font-size: 9px;
+    top: -47px;
+  }
+  .study-table td:before {
+    font-size: 12px;
+  }
+  .study-table caption {
+    font-size: 14px;
+  }
+  .table-wrap th,
+  .table-wrap td {
+    padding: 15px;
+  }
+  .source {
+    font-size: 11px;
+  }
+  .section-head {
+    flex-wrap: wrap;
+  }
+  .segmented {
+    flex-wrap: wrap;
+  }
+  .segmented button {
+    font-size: 13px;
+    min-width: 75px;
+  }
+}
+@media print {
+  .card p,
+  .phase p,
+  table,
+  .table-wrap td,
+  .table-wrap th {
+    font-size: 11pt !important;
+  }
+  .health-flow,
+  .process-ribbon {
+    flex-direction: row;
+  }
+  .process-ribbon i,
+  .health-flow > span {
+    transform: none;
+  }
+  .esg-triad,
+  .triad {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .essential-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .evolution-row {
+    grid-template-columns: 1fr 20px 1fr 20px 1fr;
+  }
+  .between {
+    transform: none;
+  }
+}

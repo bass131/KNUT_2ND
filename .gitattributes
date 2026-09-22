@@ -1,0 +1,2 @@
+# Preserve original bytes, including CP949 Dev-C++ sources and existing line endings.
+* -text

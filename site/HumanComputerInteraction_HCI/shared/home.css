@@ -1,0 +1,218 @@
+/* HCI home only; no chapter or summary imports this stylesheet. */
+.home-page {
+  background: #f6f4f8;
+}
+.home-header,
+.home-main {
+  max-width: 1240px;
+}
+.home-header {
+  height: 84px;
+}
+.home-hero {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding: 56px 0 44px;
+  gap: 45px;
+}
+.home-hero h1 {
+  font-size: clamp(35px, 3.8vw, 54px);
+  line-height: 1.25;
+  letter-spacing: -0.06em;
+}
+.home-hero h1 span {
+  display: block;
+  font-size: 0.48em;
+  color: var(--muted);
+  font-weight: 550;
+  letter-spacing: -0.02em;
+  margin-top: 20px;
+}
+.home-hero .lede {
+  font-size: 16px;
+}
+.home-cover {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #efeeea;
+  box-shadow: 0 16px 45px #4b37620c;
+}
+.home-cover img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  display: block;
+}
+.home-hero .primary {
+  border-radius: 7px;
+  background: #695187;
+}
+.home-header .brand small {
+  letter-spacing: 0.08em;
+}
+.home-section {
+  padding-block: 42px;
+}
+.home-section h2 {
+  font-size: 28px;
+}
+.chapter-card {
+  border-radius: 12px;
+  box-shadow: 0 8px 24px #39304e05;
+}
+.chapter-card-art {
+  height: 118px;
+}
+.chapter-card-content > p {
+  font-size: 15px;
+  line-height: 1.9;
+  min-height: 0;
+}
+.chapter-card-head {
+  font-size: 12px;
+}
+.chapter-actions a {
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 14px 10px;
+  background: #695187;
+}
+.chapter-actions a:nth-child(2) {
+  background: #eee7f5;
+  color: #60417e;
+}
+.card-source {
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+.home-stats {
+  gap: 40px;
+}
+.home-stats span {
+  font-size: 13px;
+}
+.study-path p {
+  font-size: 14px;
+  line-height: 1.9;
+}
+.study-path h3 {
+  font-size: 20px;
+}
+.material-list a {
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 6px;
+}
+.home-footer {
+  font-size: 12px;
+}
+.home-header nav {
+  flex-wrap: wrap;
+  gap: 20px;
+}
+[data-theme='dark'] .home-page {
+  background: #1c1922;
+}
+[data-theme='dark'] .chapter-actions a {
+  background: #b39bce;
+  color: #201928;
+}
+[data-theme='dark'] .chapter-actions a:nth-child(2) {
+  background: #382d45;
+  color: #dfcef4;
+}
+[data-theme='dark'] .home-hero .primary {
+  background: #b39bce;
+  color: #201928;
+}
+@media (max-width: 850px) {
+  .home-hero {
+    gap: 24px;
+  }
+  .home-hero h1 {
+    font-size: 38px;
+  }
+  .home-header .brand small {
+    display: none;
+  }
+  .home-header nav {
+    gap: 15px;
+  }
+  .home-hero .hero-links {
+    gap: 16px;
+  }
+}
+@media (max-width: 650px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    padding-top: 32px;
+  }
+  .home-hero h1 {
+    font-size: clamp(30px, 7.8vw, 42px);
+  }
+  .home-cover {
+    width: 100%;
+  }
+  .home-header {
+    height: auto;
+    min-height: 76px;
+    flex-wrap: wrap;
+    padding-block: 16px;
+    gap: 14px;
+  }
+  .home-header nav {
+    gap: 14px;
+    font-size: 12px;
+  }
+  .home-header nav a {
+    padding-block: 7px;
+  }
+  .home-stats {
+    gap: 14px;
+  }
+  .home-stats span {
+    font-size: 11px;
+  }
+  .chapter-cards {
+    grid-template-columns: 1fr;
+  }
+  .chapter-actions {
+    grid-template-columns: 1fr;
+  }
+  .home-stats b {
+    font-size: 26px;
+  }
+  .home-section {
+    padding-block: 35px;
+  }
+}
+@media print {
+  .home-cover {
+    display: none;
+  }
+  .home-hero {
+    display: block;
+  }
+  .chapter-card {
+    break-inside: avoid;
+  }
+  .chapter-actions a {
+    border: 1px solid #999;
+  }
+}
+
+/* Keep the home-only palette off the printed page. */
+@media print {
+  .home-page,
+  [data-theme='dark'] .home-page {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .home-page .chapter-actions a,
+  .home-page .hero-links a {
+    background: #fff !important;
+    color: #222 !important;
+    border: 1px solid #999;
+  }
+}
