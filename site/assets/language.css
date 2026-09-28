@@ -1,0 +1,53 @@
+.knut-language {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 12px 0;
+  margin: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.knut-language button {
+  min-width: 76px;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid #b8c2d1;
+  border-radius: 10px;
+  background: #fff;
+  color: #314057;
+  font:
+    600 13px/1.4 system-ui,
+    sans-serif;
+  letter-spacing: normal;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.knut-language button[aria-pressed='true'] {
+  border-color: #1e5fb3;
+  background: #eaf2ff;
+  color: #174b91;
+}
+.knut-language button:focus-visible {
+  outline: 3px solid #357acf;
+  outline-offset: 3px;
+}
+:root[data-theme='dark'] .knut-language button {
+  border-color: #64748b;
+  background: #202936;
+  color: #e1e9f5;
+}
+:root[data-theme='dark'] .knut-language button[aria-pressed='true'] {
+  border-color: #a0c3ff;
+  background: #263e62;
+  color: #c6ddff;
+}
+html[lang='en'] body {
+  word-break: normal;
+}
+@media print {
+  .knut-language {
+    display: none !important;
+  }
+}

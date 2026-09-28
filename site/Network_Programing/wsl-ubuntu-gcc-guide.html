@@ -5,17 +5,128 @@
 <meta name="description" content="Windows 11에서 WSL 2와 Ubuntu를 설치하고 GCC로 C 프로그램을 빌드하는 한국어 실습 가이드">
 <title>Windows 11 · Ubuntu &amp; GCC 시작 가이드</title>
 <style>
-:root{--paper:#f7f8fa;--ink:#182333;--muted:#536174;--line:#dce2e8;--accent:#bd420e;--blue:#235bb5}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.8 "Segoe UI","Malgun Gothic",sans-serif}a{color:var(--blue);text-underline-offset:4px}button,input{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #ed8b36;outline-offset:4px}.layout{max-width:1240px;margin:auto;display:grid;grid-template-columns:240px minmax(0,1fr);gap:56px;padding:44px 32px}aside{position:sticky;top:28px;align-self:start}.brand{font-weight:800;letter-spacing:2px;font-size:13px;color:var(--accent)}.nav-title{font-size:22px;font-weight:750;margin:12px 0 28px}nav a{display:block;color:var(--muted);text-decoration:none;padding:8px 12px;border-left:2px solid var(--line);font-size:14px}nav a:hover{color:var(--accent);border-color:var(--accent);background:#fff}.side-note{font-size:12px;color:var(--muted);margin-top:26px}.print{margin-top:14px;padding:8px 15px;background:#fff;border:1px solid var(--line);border-radius:8px}main{min-width:0}.hero{padding:22px 0 36px;border-bottom:1px solid var(--line)}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:750;color:var(--accent)}h1{font-size:clamp(32px,4.6vw,52px);line-height:1.24;letter-spacing:-2px;margin:18px 0}h1 span{color:var(--accent)}.lead{max-width:650px;color:var(--muted);font-size:18px}.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}.tags span{border:1px solid var(--line);background:#fff;border-radius:30px;padding:4px 13px;font-size:12px}.flow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:26px 0 0;font-size:14px;font-weight:600}.flow b{color:var(--accent)}section{padding:38px 0 12px;border-bottom:1px solid var(--line)}h2{font-size:25px;letter-spacing:-.7px;margin:0 0 16px}h2 .num{color:var(--accent);font-size:15px;display:block;letter-spacing:1px;margin-bottom:6px}h3{font-size:18px;margin:26px 0 9px}p{margin:10px 0 16px}ul,ol{padding-left:23px}li{margin:6px 0}.note{background:#fff3e9;border-left:3px solid #d96226;padding:14px 18px;margin:20px 0;border-radius:0 8px 8px 0}.note.blue{background:#edf3fc;border-color:var(--blue)}.terminal{background:#152131;color:#e7edf6;border-radius:10px;overflow:hidden;margin:14px 0 18px}.terminal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 16px;border-bottom:1px solid #344151;color:#c0ccdb;font-size:12px}.terminal-head .shell{color:#a9caff}.terminal.ubuntu .shell{color:#ffbb91}.copy{background:#26374c;color:#fff;border:1px solid #536176;border-radius:5px;padding:3px 10px;font-size:12px;white-space:nowrap}pre{overflow:auto;padding:18px;margin:0;line-height:1.65;font-size:14px;tab-size:4}code{font-family:Consolas,"Cascadia Code",monospace}p code,li code,td code{background:#e9edf2;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;margin:15px 0 24px}th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:11px 12px}th{background:#edf0f4}.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:white;border:1px solid var(--line);padding:18px;border-radius:10px}.card strong{display:block;margin-bottom:7px}.card p{font-size:14px;color:var(--muted);margin:0}details{background:white;border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:12px 0}summary{cursor:pointer;font-weight:650}details p{font-size:14px}.checklist{display:grid;gap:10px;margin:20px 0}.checklist label{display:flex;align-items:flex-start;gap:12px;padding:13px 16px;background:#fff;border:1px solid var(--line);border-radius:8px}.checklist input{margin-top:8px;accent-color:var(--accent)}.progress{font-size:14px;color:var(--accent);font-weight:700}footer{padding:30px 0;color:var(--muted);font-size:13px}.sources{font-size:13px}.status{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);padding:10px 20px;background:#182333;color:white;border-radius:8px;max-width:90%;box-shadow:0 6px 25px #0002}.status:empty{display:none}.skip{position:absolute;top:-80px;left:10px;background:white;padding:10px;z-index:5}.skip:focus{top:10px}@media(max-width:850px){.layout{grid-template-columns:1fr;padding:24px 20px;gap:10px}aside{position:static}.nav-title{margin:6px 0 12px}nav{display:flex;flex-wrap:wrap;gap:4px}nav a{border:1px solid var(--line);border-radius:6px;padding:5px 9px}.side-note{display:none}.print{margin-top:12px}.hero{padding-top:16px}.cards{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:white;font-size:11pt}.layout{display:block;padding:0;max-width:none}aside,.copy,.status,.skip{display:none}h1{font-size:30pt}section{padding-top:22px}.terminal{background:#f4f4f4;color:#111;border:1px solid #ccc;break-inside:avoid}.terminal-head,.terminal-head .shell,.terminal.ubuntu .shell{color:#333}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10pt}h2,h3{break-after:avoid}.card,.note{break-inside:avoid}a{color:#222}.hero{padding-top:0}}
+:root{--paper:#fff;--ink:#1d1d1f;--muted:#626269;--line:#d2d2d7;--accent:#0071e3;--blue:#0066cc}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:108px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;letter-spacing:-.025em;word-break:keep-all;overflow-wrap:break-word}
+a{color:var(--blue);text-underline-offset:4px}
+button,input{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.layout{width:100%;margin:auto}
+aside{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:28px;padding:14px max(28px,calc((100vw - 1104px)/2));background:rgba(255,255,255,.94);backdrop-filter:blur(20px);border-bottom:1px solid #00000016}
+.brand{font-size:20px;font-weight:800;letter-spacing:-.6px;white-space:nowrap}
+.nav-title,.side-note{display:none}
+aside nav{display:flex;gap:18px;margin-left:auto}
+aside nav a{display:flex;align-items:center;min-height:44px;padding:0 4px;font-size:13px;white-space:nowrap;color:#424245;text-decoration:none}
+aside nav a:hover{color:var(--blue)}
+.print{min-height:44px;margin:0;border:0;background:var(--accent);color:#fff;border-radius:24px;padding:8px 16px;font-size:13px;white-space:nowrap}
+main{min-width:0;max-width:1160px;margin:auto;padding:0 28px}
+.hero{text-align:center;padding:80px 0 56px}
+.eyebrow{color:var(--muted);font-size:15px;font-weight:600}
+h1{font-size:clamp(36px,5.2vw,64px);font-weight:750;line-height:1.2;letter-spacing:-.055em;margin:22px 0 26px;text-wrap:balance}
+.lead{font-size:21px;line-height:1.7;margin:0;color:var(--muted);text-wrap:pretty}
+.lead + .lead{margin-top:12px}
+.tags{display:flex;justify-content:center;flex-wrap:wrap;margin-top:26px;gap:18px}
+.tags span{color:var(--muted);font-size:13px}
+.hero-actions{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:16px 28px;margin:32px 0}
+.hero-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;text-decoration:none;font-size:16px}
+.hero-actions .primary{background:var(--accent);color:#fff;padding:10px 23px;border-radius:28px}
+.flow{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin:36px 0 0;padding:0;font-size:14px;font-weight:600}
+.flow li{position:relative;margin:0;padding:14px 12px;border:1px solid #e8e8ed;border-radius:14px;background:#f5f5f7;text-align:center}
+.flow li:not(:last-child)::after{content:"→";position:absolute;left:100%;top:50%;width:28px;transform:translateY(-50%);color:var(--muted)}
+.roadmap{background:#f5f5f7;border-radius:28px;padding:32px;margin:0 0 40px}
+.roadmap-title{font-size:27px;font-weight:700;margin:0 0 8px;letter-spacing:-1px;color:var(--ink)}
+.roadmap-sub{color:var(--muted);font-size:15px;margin:0 0 28px}
+.roadmap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.roadmap-group{min-width:0;background:#fff;border-radius:20px;padding:24px}
+.roadmap-group .chapter{font-size:12px;letter-spacing:1px;color:var(--muted)}
+.roadmap-group h3{font-size:21px;margin:10px 0 18px}
+.roadmap-group a{display:flex;min-height:44px;gap:10px;align-items:baseline;font-size:14px;text-decoration:none;color:#515154;padding:9px 0}
+.roadmap-group a:hover{color:var(--blue)}
+.roadmap-group a span{flex-shrink:0;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+section{margin:0;padding:56px 0 40px;border-bottom:1px solid #e8e8ed}
+h2{font-size:34px;line-height:1.35;letter-spacing:-1.2px;margin:0 0 28px}
+h2 .num{font-size:12px;color:var(--muted);display:block;letter-spacing:1.5px;margin-bottom:14px}
+h2 small,h3 small{font-size:15px;font-weight:400;color:var(--muted)}
+h3{font-size:21px;line-height:1.5;letter-spacing:-.6px;margin:36px 0 16px}
+p{margin:0 0 20px;color:#424245}
+ul,ol{padding-left:24px;margin:20px 0}
+li{color:#424245;margin:8px 0}
+strong{color:var(--ink)}
+.note,.note.blue{background:#f5f5f7;border:0;border-radius:16px;padding:22px 24px;font-size:15px;margin:28px 0}
+.note.blue{background:#f0f6fc}
+.note p:last-child{margin-bottom:0}
+.terminal{border-radius:18px;background:#1d1d1f;color:#f5f5f7;overflow:hidden;margin:28px 0;box-shadow:0 5px 20px #00000009}
+.terminal-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;border-bottom:1px solid #ffffff18;color:#b7b7bd;font-size:13px;letter-spacing:0}
+.terminal-head > span{min-width:0}
+.terminal-head .shell{color:#a8ccf0}.terminal.ubuntu .shell{color:#eac8ad}
+.copy{flex-shrink:0;min-width:60px;min-height:44px;background:#ffffff0d;color:#f5f5f7;border:1px solid #ffffff25;border-radius:22px;padding:8px 14px;font-size:13px;white-space:nowrap}
+.copy:hover{background:#ffffff20}
+pre{overflow:auto;padding:24px;margin:0;line-height:1.75;font-size:14px;tab-size:4;letter-spacing:0}
+code{font-family:Consolas,"Cascadia Code",monospace}
+p code,li code,td code,.note > code{background:#f0f0f3;padding:2px 5px;border-radius:4px;overflow-wrap:anywhere;font-size:.9em}
+.table-wrap{overflow-x:auto;margin:28px 0;border:1px solid #e8e8ed;border-radius:16px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:0}
+th,td{text-align:left;vertical-align:top;border-bottom:1px solid #e8e8ed;padding:16px}
+th{background:#f5f5f7}tr:last-child td{border-bottom:0}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:28px 0}
+.card{min-width:0;background:#f5f5f7;border-radius:20px;padding:24px}
+.card strong{display:block;font-size:18px;margin-bottom:12px}
+.card p{font-size:15px;color:var(--muted);margin:0}
+details{background:#fff;border-bottom:1px solid #e8e8ed;padding:20px 0;margin:0}
+summary{min-height:44px;cursor:pointer;font-size:17px;font-weight:650;padding:6px 0}
+details p{font-size:16px;margin:20px 0 0}
+.checklist{display:grid;gap:14px;margin:28px 0}
+.checklist label{display:flex;align-items:flex-start;gap:14px;padding:20px;background:#f5f5f7;border-radius:14px}
+.checklist input{width:18px;height:18px;margin-top:6px;flex-shrink:0;accent-color:var(--accent)}
+.checklist label:has(input:checked){background:#edf5fc}
+.progress{font-size:15px;color:var(--accent);font-weight:700}
+.sources{color:var(--muted);font-size:13px;margin-top:28px}
+footer{padding:38px 0 50px;color:var(--muted);font-size:13px}
+footer p{color:inherit}
+.status{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);padding:12px 20px;background:#1d1d1f;color:#fff;border-radius:16px;max-width:90%;box-shadow:0 6px 25px #0002;z-index:20;font-size:14px}
+.status:empty{display:none}
+.skip{position:absolute;top:-80px;left:10px;background:#fff;padding:10px;z-index:30}
+.skip:focus{top:10px}
+@media(max-width:850px){
+ aside{padding:12px 24px;gap:18px}aside nav{gap:12px}.brand{font-size:18px}
+ main{padding:0 24px}.hero{padding:56px 0 40px}.lead{font-size:18px}
+ .roadmap{padding:24px}.roadmap-grid{grid-template-columns:1fr}.roadmap-group{padding:22px}.roadmap-group h3{margin:6px 0 14px}
+ section{padding:44px 0 32px}h2{font-size:29px}
+}
+@media(max-width:620px){
+ html{scroll-padding-top:132px}
+ aside{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;padding:10px 20px}
+ aside nav{grid-row:2;grid-column:1/-1;justify-content:space-between;margin:0;gap:8px}
+ .brand{font-size:17px}.print{font-size:12px;padding:8px 12px}
+ main{padding:0 20px}.hero{padding-top:40px}.lead{font-size:17px}
+ .tags{gap:10px 14px}.tags span{font-size:12px}
+ .flow{grid-template-columns:1fr;gap:24px;margin-top:28px}
+ .flow li{padding:10px}.flow li:not(:last-child)::after{content:"↓";left:50%;top:100%;width:24px;height:24px;line-height:24px;transform:translateX(-50%)}
+ .roadmap{padding:20px;border-radius:22px}.hero-actions{gap:10px 16px}
+ .cards{grid-template-columns:1fr;gap:20px}.card{padding:22px}
+ pre{font-size:13px;padding:20px}.terminal-head{padding:12px 16px}
+ .note,.note.blue{padding:20px}h2{font-size:27px}th,td{padding:12px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{
+ body{background:#fff;font-size:11pt}.layout{display:block}
+ aside,.copy,.status,.skip,.hero-actions,.roadmap{display:none}
+ main{max-width:none;padding:0}.hero{padding:0 0 20px}h1{font-size:30pt}.lead{font-size:12pt}
+ section{padding:24px 0 12px}h2{font-size:20pt}h2,h3{break-after:avoid}
+ .terminal{background:#f5f5f7;color:#111;box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+ .terminal-head,.terminal-head .shell,.terminal.ubuntu .shell{color:#333}
+ pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10pt}
+ .card,.note,.flow{break-inside:avoid}.table-wrap{overflow:visible}a{color:#222}
+ .tags,.flow{margin-top:12px}.flow{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .flow li:not(:last-child)::after{content:"→";left:100%;top:50%;width:28px;height:auto;transform:translateY(-50%)}
+ footer{padding:20px 0}
+}
+
+/* Explanatory notation is translated; executable code keeps its original bytes. */
+.code-label{font-family:Consolas,"SFMono-Regular",monospace;font-size:.9em;background:var(--soft,#f5f5f7);padding:.12em .35em;border-radius:5px;overflow-wrap:anywhere}
 </style>
-<style>
-/* Spacious typography and quiet surfaces inspired by Apple's product pages. */
-:root{--paper:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--accent:#0071e3;--blue:#0066cc}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",sans-serif;letter-spacing:-.025em;word-break:keep-all;overflow-wrap:break-word}html{scroll-padding-top:96px}.layout{display:block;max-width:none;padding:0}aside{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:28px;padding:15px max(24px,calc((100vw - 1080px)/2));background:rgba(255,255,255,.88);backdrop-filter:blur(20px);border-bottom:1px solid #00000016}.brand{font-size:20px;letter-spacing:-.6px;color:var(--ink);white-space:nowrap}.nav-title,.side-note{display:none}aside nav{display:flex;gap:24px;margin-left:auto}aside nav a{padding:0;border:0;font-size:12px;white-space:nowrap;color:#424245}aside nav a:hover{background:none;color:var(--blue)}.print{margin:0;border:0;background:var(--accent);color:white;border-radius:30px;padding:5px 14px;font-size:12px;white-space:nowrap}main{max-width:1080px;margin:auto;padding:0 28px}.hero{text-align:center;padding:90px 0 66px;border:0}.eyebrow{color:#6e6e73;font-size:15px;letter-spacing:0;font-weight:600}h1{font-size:clamp(40px,6.2vw,76px);font-weight:750;line-height:1.16;letter-spacing:-.065em;margin:22px 0 26px}h1 span{color:var(--ink)}.lead{font-size:21px;line-height:1.6;max-width:660px;margin:0 auto;color:#6e6e73}.tags{justify-content:center;margin-top:26px;gap:18px}.tags span{padding:0;border:0;color:var(--muted);font-size:12px;background:none}.flow{justify-content:center;margin:36px auto 0;font-size:13px;color:#515154;gap:18px}.flow b{color:#a1a1a6}.hero-actions{display:flex;justify-content:center;align-items:center;gap:28px;margin:32px 0}.hero-actions a{text-decoration:none;font-size:16px}.hero-actions .primary{background:var(--accent);color:white;padding:10px 23px;border-radius:30px}.roadmap{background:#f5f5f7;border-radius:28px;padding:36px;margin:0 0 46px}.roadmap-title{font-size:27px;font-weight:700;margin:0 0 7px;letter-spacing:-1px}.roadmap-sub{color:var(--muted);font-size:15px;margin:0 0 25px}.roadmap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.roadmap-group{background:white;border-radius:20px;padding:24px}.roadmap-group .chapter{font-size:11px;letter-spacing:1px;color:var(--muted)}.roadmap-group h3{font-size:21px;margin:10px 0 18px}.roadmap-group a{display:flex;gap:10px;align-items:baseline;font-size:13px;text-decoration:none;color:#515154;padding:7px 0}.roadmap-group a:hover{color:var(--blue)}.roadmap-group a span{color:#86868b;font-size:11px;font-variant-numeric:tabular-nums}section{max-width:820px;margin:0 auto;padding:64px 0 46px;border-color:#e8e8ed}h2{font-size:36px;line-height:1.3;letter-spacing:-1.5px;margin-bottom:28px}h2 .num{font-size:12px;color:#86868b;letter-spacing:1.5px;margin-bottom:14px}h2 small{font-size:15px;font-weight:400;color:var(--muted)}h3{margin-top:32px;font-size:21px;letter-spacing:-.6px}p,li{color:#424245}strong{color:#1d1d1f}.note,.note.blue{background:#f5f5f7;border:0;border-radius:16px;padding:20px 24px;font-size:14px;margin:24px 0}.note.blue{background:#f0f6fc}.terminal{border-radius:18px;background:#1d1d1f;color:#f5f5f7;margin:20px 0 26px;box-shadow:0 5px 20px #00000009}.terminal-head{padding:13px 20px;border-color:#ffffff18;color:#a1a1a6;letter-spacing:0}.terminal-head .shell{color:#a8ccf0}.terminal.ubuntu .shell{color:#eac8ad}.copy{border:1px solid #ffffff25;background:#ffffff0d;border-radius:20px;padding:3px 12px;color:#f5f5f7}.copy:hover{background:#ffffff20}pre{padding:23px;font-size:14px;letter-spacing:0}p code,li code,td code{background:#f0f0f3;font-size:.9em}.cards{gap:18px}.card{border:0;background:#f5f5f7;border-radius:20px;padding:25px}.card strong{font-size:18px}th{background:#f5f5f7}td,th{padding:14px;border-color:#e8e8ed}details{border:0;border-bottom:1px solid #e8e8ed;border-radius:0;padding:21px 0;margin:0}summary{font-size:17px}details p{padding-top:10px}.checklist label{background:#f5f5f7;border:0;border-radius:14px;padding:18px}.checklist input{width:17px;height:17px;margin-top:6px;flex-shrink:0}.checklist label:has(input:checked){background:#edf5fc}.progress{font-size:14px}.sources{color:var(--muted);font-size:12px;margin-top:26px}footer{max-width:820px;margin:auto;padding:38px 0 50px;font-size:12px;color:#86868b}.status{z-index:20;background:#1d1d1f;border-radius:24px;font-size:14px}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline-color:#0071e3}
-@media(max-width:850px){aside{padding:14px 22px;gap:18px}aside nav{gap:18px}aside nav a{border:0}.brand{font-size:18px}main{padding:0 24px}.hero{padding:65px 0 46px}.lead{font-size:18px}.roadmap{padding:24px}.roadmap-grid{grid-template-columns:1fr}.roadmap-group{padding:22px}.roadmap-group h3{margin:6px 0 10px}.roadmap-group a{padding:6px 0}section{padding:45px 0 32px}h2{font-size:29px}.cards{grid-template-columns:1fr}}
-@media(max-width:560px){aside{gap:12px;padding:13px 16px}aside nav{gap:14px}aside nav a:nth-child(2),aside nav a:nth-child(3){display:none}.print{font-size:11px;padding:5px 10px}main{padding:0 20px}.hero{padding-top:52px}h1{font-size:42px}.lead{font-size:17px}.flow{gap:10px;font-size:11px}.tags{gap:12px}.tags span{font-size:11px}.roadmap{padding:20px;border-radius:22px}.hero-actions{gap:22px}pre{font-size:12px;padding:18px}.terminal-head{padding:12px 15px}.note,.note.blue{padding:18px}h2{font-size:27px}}
-@media print{aside,.hero-actions,.roadmap{display:none}main{max-width:none;padding:0}.hero{padding:0 0 20px}h1{font-size:30pt}.lead{font-size:12pt}section{max-width:none;padding:24px 0 12px}h2{font-size:20pt}.terminal{background:#f5f5f7;color:#111;box-shadow:none;border:1px solid #ddd}.terminal-head,.terminal-head .shell,.terminal.ubuntu .shell{color:#333}pre{font-size:10pt}.tags,.flow{margin-top:12px}footer{max-width:none;padding:20px 0}}
-</style>
-</head>
+<link rel="stylesheet" href="Lecture_HTML/shared/language.css"><script src="Lecture_HTML/shared/translations-en.js" defer=""></script><script src="Lecture_HTML/shared/language.js" defer=""></script></head>
 <body>
 <a class="skip" href="#main">본문으로 바로가기</a>
 <div class="layout">
@@ -31,18 +142,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",san
 <main id="main">
 <header class="hero">
 <div class="eyebrow">WINDOWS에서 시작하는 LINUX</div>
-<h1>Ubuntu를 설치하고,<br><span>첫 C 프로그램까지.</span></h1>
-<p class="lead">Windows 11에서 WSL 2를 준비하고 Ubuntu, GCC, GDB를 연결하는 단계별 실습 가이드입니다. 각 코드 위의 실행 위치를 확인하며 따라오세요.</p>
+<h1>Windows 11에서 Ubuntu와 GCC 시작하기</h1>
+<p class="lead">WSL 2와 Ubuntu를 설치하고 GCC로 C 프로그램을 빌드합니다.</p>
+<p class="lead">명령을 실행하기 전에 코드 위에 표시된 터미널을 확인하세요.</p>
 <div class="tags"><span>입문자용</span><span>명령어 복사 지원</span><span>C / C++ 개발 환경</span></div>
 <div class="hero-actions"><a class="primary" href="#prepare">설정 시작하기</a><a href="#gcc">GCC 설정 바로 보기 ›</a></div>
-<div class="flow"><span>Windows 11</span><b>→</b><span>WSL 2</span><b>→</b><span>Ubuntu</span><b>→</b><span>GCC로 빌드</span></div>
+<ol class="flow" aria-label="환경 설정 순서"><li>Windows 11</li><li>WSL 2</li><li>Ubuntu</li><li>GCC로 빌드</li></ol>
 </header>
 <div class="roadmap" id="contents" role="navigation" aria-label="전체 단계별 목차">
-<p class="roadmap-title">하나씩, 차근차근.</p><p class="roadmap-sub">처음이라면 설치부터. 준비되어 있다면 필요한 단계부터.</p>
+<p class="roadmap-title">단계별 목차</p><p class="roadmap-sub">처음 설치할 때는 STEP 01부터, 설치를 마쳤다면 필요한 단계로 이동하세요.</p>
 <div class="roadmap-grid">
-<div class="roadmap-group"><div class="chapter">CHAPTER 01</div><h3>리눅스의 시작.</h3><a href="#prepare"><span>01</span>시작 전 확인</a><a href="#install"><span>02</span>WSL + Ubuntu 설치</a><a href="#launch"><span>02-1</span>WSL 1·2에서 Ubuntu 실행</a><a href="#ubuntu"><span>03</span>Ubuntu 초기 설정</a><a href="#files"><span>04</span>작업 폴더 준비</a></div>
-<div class="roadmap-group"><div class="chapter">CHAPTER 02</div><h3>코드를 실행하는 순간.</h3><a href="#gcc"><span>05</span>GCC 설치와 첫 빌드</a><a href="#debug"><span>06</span>GDB 디버깅</a><a href="#vscode"><span>07</span>VS Code 연결</a></div>
-<div class="roadmap-group"><div class="chapter">CHAPTER 03</div><h3>조금 더 익숙하게.</h3><a href="#linux"><span>08</span>리눅스 기본 명령</a><a href="#network"><span>09</span>네트워크 실습</a><a href="#trouble"><span>10</span>문제 해결</a><a href="#finish"><span>11</span>완료 체크</a></div>
+<div class="roadmap-group"><div class="chapter">CHAPTER 01</div><h3>Ubuntu 설치와 실행</h3><a href="#prepare"><span>01</span>시작 전 확인</a><a href="#install"><span>02</span>WSL + Ubuntu 설치</a><a href="#launch"><span>02-1</span>WSL 1·2에서 Ubuntu 실행</a><a href="#ubuntu"><span>03</span>Ubuntu 초기 설정</a><a href="#files"><span>04</span>작업 폴더 준비</a></div>
+<div class="roadmap-group"><div class="chapter">CHAPTER 02</div><h3>컴파일과 디버깅</h3><a href="#gcc"><span>05</span>GCC 설치와 첫 빌드</a><a href="#debug"><span>06</span>GDB 디버깅</a><a href="#vscode"><span>07</span>VS Code 연결</a></div>
+<div class="roadmap-group"><div class="chapter">CHAPTER 03</div><h3>명령어와 문제 해결</h3><a href="#linux"><span>08</span>리눅스 기본 명령</a><a href="#network"><span>09</span>네트워크 실습</a><a href="#trouble"><span>10</span>문제 해결</a><a href="#finish"><span>11</span>완료 체크</a></div>
 </div></div>
 <section id="prepare"><h2><span class="num">STEP 01</span>시작 전 확인</h2>
 <p>WSL은 Windows에서 리눅스 환경을 실행하는 기능입니다. Ubuntu는 여기에 설치할 리눅스 배포판이며, GCC는 Ubuntu 안에서 사용할 컴파일러입니다.</p>
@@ -57,7 +169,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Malgun Gothic",san
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl --version
 wsl --status
 wsl -l -v</code></pre></div>
-<div class="note blue"><strong>WSL 설치와 Ubuntu 설치는 별개입니다.</strong> WSL 버전이 출력되어도 <code>wsl -l -v</code>에서 “설치된 배포가 없습니다”가 나오면 현재 Windows 계정에 등록된 리눅스가 없는 상태입니다. 다음 배포판 설치 단계로 진행하세요. “기본 버전: 2”만으로 Ubuntu 설치가 확인되는 것은 아닙니다.</div>
+<div class="note blue"><p><strong>WSL 설치와 Ubuntu 설치는 별개입니다.</strong> WSL 버전이 출력되어도 <code>wsl -l -v</code>에서 “설치된 배포가 없습니다”가 나오면 현재 Windows 계정에 등록된 리눅스가 없는 상태입니다.</p>
+<p>“기본 버전: 2”만으로 Ubuntu 설치가 확인되는 것은 아닙니다. 배포판이 없다면 다음 설치 단계로 진행하세요.</p></div>
 <h3>② 설치할 배포판 선택</h3>
 <p>시작 메뉴에서 PowerShell을 검색해 <strong>관리자 권한으로 실행</strong>합니다. 먼저 온라인 목록에 원하는 배포판 이름이 있는지 확인하세요.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --list --online</code></pre></div>
@@ -65,17 +178,20 @@ wsl -l -v</code></pre></div>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --install -d Ubuntu-22.04</code></pre></div>
 <p>재부팅 안내가 나오면 작업을 저장하고 Windows를 재부팅합니다. 이후 시작 메뉴에서 Ubuntu 22.04를 열거나 아래 명령으로 실행하고, STEP 03의 사용자 계정을 만듭니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -d Ubuntu-22.04</code></pre></div>
-<p>추천 자료는 Windows 기능 활성화와 Store 설치를 나누어 설명합니다. 이미 WSL 버전이 정상 출력되는 환경에서는 배포판 설치부터 진행할 수 있습니다. 최신 WSL의 커널은 WSL 업데이트로 관리하므로 별도의 구형 커널 패키지 설치부터 시작할 필요는 없습니다.</p>
+<p>추천 자료는 Windows 기능 활성화와 Store 설치를 나누어 설명합니다. 이미 WSL 버전이 정상 출력되는 환경에서는 배포판 설치부터 진행할 수 있습니다.</p>
+<p>최신 WSL의 커널은 WSL 업데이트로 관리하므로 별도의 구형 커널 패키지 설치부터 시작할 필요는 없습니다.</p>
 <h3>WSL 2 사용 여부 확인</h3>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -l -v</code></pre></div>
-<p>목록에서 <strong>Ubuntu-22.04 행의 VERSION이 2</strong>인지 확인합니다. <code>Stopped</code>는 종료된 상태라는 뜻이며 오류가 아닙니다. <code>Ubuntu</code>나 <code>Ubuntu-24.04</code>처럼 다른 이름이 표시되면 이후 명령의 <code>Ubuntu-22.04</code> 자리에 실제 등록된 이름을 사용하세요.</p>
+<p>목록에서 <strong>Ubuntu-22.04 행의 VERSION이 2</strong>인지 확인합니다. <code>Stopped</code>는 종료된 상태라는 뜻이며 오류가 아닙니다.</p>
+<p><code>Ubuntu</code>나 <code>Ubuntu-24.04</code>처럼 다른 이름이 표시되면 이후 명령의 <code>Ubuntu-22.04</code> 자리에 실제 등록된 이름을 사용하세요.</p>
 <p>VERSION이 1인 경우에만 다음 명령을 실행합니다. 기존 배포판에 중요한 파일이 있다면 먼저 백업하세요.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 필요한 경우</span></div><pre><code>wsl --set-version Ubuntu-22.04 2</code></pre></div>
 <p class="sources">설치 및 WSL 버전 확인: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Microsoft WSL 설치 문서</a></p>
 </section>
 <section id="launch"><h2><span class="num">STEP 02-1</span>WSL 1·2에서 Ubuntu 실행하기</h2>
 <p>설치한 Ubuntu를 처음 열거나, PC를 재시작한 뒤 다시 실습할 때 사용하는 순서입니다. 여기서 실행하는 것은 명령어를 입력하는 <strong>Ubuntu 터미널(Bash)</strong>입니다. Ubuntu 바탕화면 전체가 열리는 것은 아닙니다.</p>
-<div class="note blue"><strong>WSL 1과 WSL 2의 Ubuntu 실행 명령은 같습니다.</strong> WSL은 실행 환경의 이름이고, 1·2는 배포판에 적용된 실행 방식입니다. 별도의 <code>wsl2</code> 명령을 찾을 필요 없이 <code>wsl</code>을 사용합니다. 이 가이드의 실습 기준은 WSL 2입니다.</div>
+<div class="note blue"><p><strong>WSL 1과 WSL 2의 Ubuntu 실행 명령은 같습니다.</strong> WSL은 실행 환경의 이름이고, 1·2는 배포판에 적용된 실행 방식입니다.</p>
+<p>별도의 <code>wsl2</code> 명령을 찾을 필요 없이 <code>wsl</code>을 사용합니다. 이 가이드의 실습 기준은 WSL 2입니다.</p></div>
 <h3>① PowerShell에서 설치된 Ubuntu 이름 확인</h3>
 <p>Windows 시작 메뉴에서 <strong>PowerShell</strong>을 열고 아래 명령을 한 줄씩 실행합니다. 일반적인 Ubuntu 실행에는 관리자 권한이 필요하지 않습니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl --version
@@ -89,7 +205,8 @@ wsl -l -v</code></pre></div>
 <h3>② 이름을 지정해 Ubuntu 열기</h3>
 <p>같은 PowerShell 창에서 실행합니다. <code>-d</code>는 열 배포판을 지정하므로, 다른 리눅스가 기본값이어도 원하는 Ubuntu로 들어갈 수 있습니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -d Ubuntu-22.04</code></pre></div>
-<p>최초 실행에서 사용자 이름과 비밀번호를 요청하면 <a href="#ubuntu">STEP 03의 계정 생성 안내</a>를 따라 설정합니다. 이미 계정을 만들었다면 보통 그 사용자로 바로 들어갑니다. 성공하면 같은 창에 다음과 비슷한 프롬프트가 표시됩니다. 사용자 이름·PC 이름·현재 경로는 환경마다 다릅니다.</p>
+<p>최초 실행에서 사용자 이름과 비밀번호를 요청하면 <a href="#ubuntu">STEP 03의 계정 생성 안내</a>를 따라 설정합니다. 이미 계정을 만들었다면 보통 그 사용자로 바로 들어갑니다.</p>
+<p>성공하면 같은 창에 다음과 비슷한 프롬프트가 표시됩니다. 사용자 이름·PC 이름·현재 경로는 환경마다 다릅니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span>Ubuntu · Bash 프롬프트 예시 · 입력하지 마세요</span></div><pre class="output"><code>student@MY-PC:~$</code></pre></div>
 <h3>③ Ubuntu 안에 들어왔는지 확인</h3>
 <p>이제 아래 명령은 <strong>Ubuntu · Bash</strong>에서 실행합니다. PowerShell에서 열면 시작 위치가 Windows 폴더에 대응하는 <code>/mnt/c/...</code>일 수 있으므로, 먼저 <code>cd ~</code>로 Linux 홈 폴더로 이동합니다.</p>
@@ -97,7 +214,8 @@ wsl -l -v</code></pre></div>
 whoami
 pwd
 cat /etc/os-release</code></pre></div>
-<p>예상 결과는 차례로 자신의 Linux 사용자 이름, <code>/home/사용자명</code> 경로, <code>NAME="Ubuntu"</code> 등이 포함된 배포판 정보입니다. Ubuntu 버전 번호와 WSL의 VERSION 1·2는 서로 다른 정보입니다. 처음 설정 중이라면 <a href="#ubuntu">STEP 03</a>으로, 설정을 마쳤다면 <a href="#files">작업 폴더</a>로 이어가세요.</p>
+<p>예상 결과는 차례로 자신의 Linux 사용자 이름, <span class="code-label">/home/사용자명</span> 경로, <code>NAME="Ubuntu"</code> 등이 포함된 배포판 정보입니다. Ubuntu 버전 번호와 WSL의 VERSION 1·2는 서로 다른 정보입니다.</p>
+<p>처음 설정 중이라면 <a href="#ubuntu">STEP 03</a>으로, 설정을 마쳤다면 <a href="#files">작업 폴더</a>로 이어가세요.</p>
 <h3>④ 시작 메뉴나 Windows Terminal로 열기</h3>
 <ul><li><strong>시작 메뉴:</strong> 설치한 Ubuntu 앱(예: Ubuntu 22.04)을 검색해 엽니다.</li><li><strong>Windows Terminal:</strong> 새 탭 버튼 옆의 펼침 메뉴에서 설치한 Ubuntu 프로필을 선택합니다. 목록에 없다면 PowerShell 탭에서 ②의 명령을 사용하면 됩니다.</li><li><strong>네트워크 실습용 터미널 두 개:</strong> PowerShell 탭을 두 개 열고 각각 같은 배포판 이름으로 ②의 명령을 실행합니다. 두 창이 같은 Ubuntu 환경을 사용하므로 서버와 클라이언트를 나누어 실행할 수 있습니다.</li></ul>
 <h3>⑤ 기본 Ubuntu를 짧은 명령으로 열기 <small>· 선택</small></h3>
@@ -135,7 +253,7 @@ sudo apt install git curl nano</code></pre></div>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>mkdir -p ~/projects/network-practice
 cd ~/projects/network-practice
 pwd</code></pre></div>
-<p>출력은 <code>/home/사용자명/projects/network-practice</code> 형태입니다. Windows의 현재 작업 폴더에도 다음처럼 접근할 수 있습니다.</p>
+<p>출력은 <span class="code-label">/home/사용자명/projects/network-practice</span> 형태입니다. Windows의 현재 작업 폴더에도 다음처럼 접근할 수 있습니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash · Windows 폴더 접근 예시</span></div><pre><code>ls /mnt/c/Users/USER/Desktop/Network_Programing</code></pre></div>
 <p>Ubuntu의 현재 폴더를 Windows 탐색기로 열려면 <code>explorer.exe .</code>를 실행합니다. 이 가이드의 C 실습은 <code>~/projects/network-practice</code>에서 진행합니다.</p>
 <p class="sources">파일 위치와 Windows 연동: <a href="https://learn.microsoft.com/en-us/windows/wsl/filesystems">Microsoft 파일 시스템 안내</a></p>
@@ -149,7 +267,8 @@ g++ --version
 make --version
 gdb --version
 command -v gcc</code></pre></div>
-<p><code>build-essential</code>은 GCC, G++, Make와 기본 개발 헤더 등을 설치합니다. <code>gdb</code>는 디버거입니다. 버전 번호는 Ubuntu 버전에 따라 다르며, 기본 구성에서 GCC 경로는 보통 <code>/usr/bin/gcc</code>입니다.</p>
+<p><code>build-essential</code>은 GCC, G++, Make와 기본 개발 헤더 등을 설치합니다. <code>gdb</code>는 디버거입니다.</p>
+<p>버전 번호는 Ubuntu 버전에 따라 다르며, 기본 구성에서 GCC 경로는 보통 <code>/usr/bin/gcc</code>입니다.</p>
 <div class="note blue">APT로 설치하면 보통 PATH를 따로 설정할 필요가 없습니다. Windows에 설치한 GCC와 WSL의 GCC는 별도이므로, 위 확인 명령은 Ubuntu 안에서 실행하세요.</div>
 <h3>② 소스 파일 작성</h3>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>cd ~/projects/network-practice
@@ -190,14 +309,16 @@ next
 print port
 continue
 quit</code></pre></div>
-<p><code>break main</code>은 main 함수에 중단점을 설정합니다. <code>run</code>으로 시작하고, 변수 초기화 줄에서 <code>next</code>를 실행한 뒤 <code>print port</code>로 값 9000을 확인합니다. <code>continue</code>는 계속 실행하고 <code>quit</code>는 GDB를 종료합니다.</p>
+<p><code>break main</code>은 main 함수에 중단점을 설정합니다. <code>run</code>으로 시작하고, 변수 초기화 줄에서 <code>next</code>를 실행한 뒤 <code>print port</code>로 값 9000을 확인합니다.</p>
+<p><code>continue</code>는 계속 실행하고 <code>quit</code>는 GDB를 종료합니다.</p>
 </section>
 <section id="vscode"><h2><span class="num">STEP 07</span>VS Code에서 편집하기 <small>· 선택</small></h2>
 <ol><li>Windows에 <a href="https://code.visualstudio.com/">VS Code</a>를 설치합니다.</li><li>VS Code 확장 화면에서 Microsoft의 <strong>WSL</strong> 확장을 설치합니다.</li><li>Ubuntu에서 아래 명령으로 프로젝트를 엽니다.</li></ol>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>cd ~/projects/network-practice
 code .</code></pre></div>
 <p>최초 연결에는 VS Code 서버 다운로드가 필요할 수 있습니다. 창 왼쪽 아래에 <strong>WSL: Ubuntu</strong>가 표시되는지 확인하고, 확장 화면에서 Microsoft의 <strong>C/C++</strong> 확장을 WSL 환경에 설치합니다.</p>
-<p>VS Code의 터미널 → 새 터미널에서 <code>command -v gcc</code>를 실행해 리눅스 컴파일러 경로를 확인하세요. <code>hello.c</code>를 열고 터미널에서 STEP 05의 GCC 명령으로 빌드하면 됩니다. IntelliSense에서 컴파일러 경로를 요구하면 <code>/usr/bin/gcc</code>를 지정합니다.</p>
+<p>VS Code의 터미널 → 새 터미널에서 <code>command -v gcc</code>를 실행해 리눅스 컴파일러 경로를 확인하세요.</p>
+<p><code>hello.c</code>를 열고 터미널에서 STEP 05의 GCC 명령으로 빌드하면 됩니다. IntelliSense에서 컴파일러 경로를 요구하면 <code>/usr/bin/gcc</code>를 지정합니다.</p>
 <p class="sources">편집기 연결과 C/C++ 설정: <a href="https://code.visualstudio.com/docs/cpp/config-wsl">VS Code 공식 WSL 튜토리얼</a></p>
 </section>
 <section id="linux"><h2><span class="num">STEP 08</span>자주 쓰는 리눅스 명령</h2>
@@ -215,13 +336,16 @@ ss -lnt</code></pre></div>
 <p>Ubuntu 터미널을 두 개 엽니다. 같은 Ubuntu 배포판 안에서 서버와 클라이언트를 실행합니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu 터미널 1 · 서버</span></div><pre><code>nc -l 127.0.0.1 9000</code></pre></div>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu 터미널 2 · 클라이언트</span></div><pre><code>nc 127.0.0.1 9000</code></pre></div>
-<p>한쪽에서 문장을 입력하고 Enter를 누르면 반대쪽에 표시됩니다. <code>127.0.0.1</code>은 자신의 루프백 주소, <code>9000</code>은 포트입니다. 종료는 <code>Ctrl + C</code>입니다. 외부 PC와 연결하는 구성은 WSL 네트워크 모드와 방화벽에 따라 별도 설정이 필요합니다.</p>
+<p>한쪽에서 문장을 입력하고 Enter를 누르면 반대쪽에 표시됩니다. <code>127.0.0.1</code>은 자신의 루프백 주소, <code>9000</code>은 포트입니다. 종료는 <code>Ctrl + C</code>입니다.</p>
+<p>외부 PC와 연결하는 구성은 WSL 네트워크 모드와 방화벽에 따라 별도 설정이 필요합니다.</p>
 </section>
 <section id="trouble"><h2><span class="num">STEP 10</span>막혔을 때 확인할 것</h2>
-<details><summary>Ubuntu 실행 시 지정한 이름의 배포판이 없다고 나와요</summary><p>PowerShell에서 <code>wsl -l -v</code>를 실행하고 NAME 열의 이름을 그대로 사용하세요. 예를 들어 이름이 <code>Ubuntu</code>이면 <code>wsl -d Ubuntu</code>로 엽니다. 설치 가능한 배포판을 보여 주는 <code>wsl --list --online</code>과 이미 설치된 배포판 목록은 다릅니다. <a href="#launch">Ubuntu 실행 가이드</a>에서 확인 순서를 볼 수 있습니다.</p></details>
+<details><summary>Ubuntu 실행 시 지정한 이름의 배포판이 없다고 나와요</summary><p>PowerShell에서 <code>wsl -l -v</code>를 실행하고 NAME 열의 이름을 그대로 사용하세요. 예를 들어 이름이 <code>Ubuntu</code>이면 <code>wsl -d Ubuntu</code>로 엽니다.</p>
+<p>설치 가능한 배포판을 보여 주는 <code>wsl --list --online</code>과 이미 설치된 배포판 목록은 다릅니다. <a href="#launch">Ubuntu 실행 가이드</a>에서 확인 순서를 볼 수 있습니다.</p></details>
 <details><summary>wsl -l -v에 “설치된 배포가 없습니다”가 나와요</summary><p>WSL 실행 파일은 있지만 현재 Windows 계정에 배포판이 등록되지 않은 상태입니다. <a href="#install">STEP 02</a>에서 온라인 목록을 확인한 후 Ubuntu를 설치하고 최초 계정 설정을 마치세요. 다른 Windows 계정에서 설치했다면 현재 계정의 목록에는 나타나지 않을 수 있습니다.</p></details>
 <details><summary>WSL1이 지원되지 않는다는 메시지가 나와요</summary><p>WSL 2를 사용할 때 WSL1 지원 안내만으로 실패라고 판단하지 않습니다. <code>wsl -l -v</code>에 Ubuntu 행과 VERSION 2가 표시되는지, 해당 Ubuntu를 실제로 실행할 수 있는지 확인하세요.</p></details>
-<details><summary>sudo가 비활성화되어 있거나 비밀번호가 틀리다고 나와요</summary><p>PowerShell의 Windows용 sudo가 아닌 Ubuntu 안의 sudo를 사용해야 합니다. PowerShell에서 <code>wsl -d Ubuntu-22.04</code>로 들어간 다음 <code>sudo whoami</code>를 실행하세요. 비밀번호는 Windows PIN이 아니라 Ubuntu 계정 생성 때 정한 비밀번호입니다. 입력 중 글자가 보이지 않는 것은 정상입니다.</p></details>
+<details><summary>sudo가 비활성화되어 있거나 비밀번호가 틀리다고 나와요</summary><p>PowerShell의 Windows용 sudo가 아닌 Ubuntu 안의 sudo를 사용해야 합니다. PowerShell에서 <code>wsl -d Ubuntu-22.04</code>로 들어간 다음 <code>sudo whoami</code>를 실행하세요.</p>
+<p>비밀번호는 Windows PIN이 아니라 Ubuntu 계정 생성 때 정한 비밀번호입니다. 입력 중 글자가 보이지 않는 것은 정상입니다.</p></details>
 <details><summary>WSL 설치가 0%에서 멈추거나 도움말만 나와요</summary><p>PowerShell에서 배포판 목록을 확인하고 웹 다운로드 방식으로 다시 시도합니다.</p><div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --list --online
 wsl --install --web-download -d Ubuntu-22.04</code></pre></div></details>
 <details><summary>가상화 관련 오류로 Ubuntu가 시작되지 않아요</summary><p>설치 후 재부팅했는지, 작업 관리자에서 CPU 가상화가 활성화되어 있는지 확인합니다. BIOS/UEFI에서 Intel VT-x 또는 AMD-V/SVM 설정은 제조사 안내를 따르세요. 오류가 계속되면 <a href="https://learn.microsoft.com/en-us/windows/wsl/troubleshooting">Microsoft 문제 해결 문서</a>에서 오류 코드를 확인하세요.</p></details>
@@ -240,7 +364,8 @@ wsl -d Ubuntu-22.04</code></pre></div></details>
 <div class="checklist"><label><input type="checkbox"><span>PowerShell에서 실제 배포판 이름으로 Ubuntu를 열고, <code>whoami</code>와 <code>cat /etc/os-release</code>로 사용자와 Ubuntu 정보를 확인했다.</span></label><label><input type="checkbox"><span>PowerShell의 <code>wsl -l -v</code>에서 Ubuntu 배포판 행과 VERSION 2를 확인했다.</span></label><label><input type="checkbox"><span>Ubuntu 계정을 만들고 <code>sudo whoami</code>의 root 출력과 패키지 업데이트를 확인했다.</span></label><label><input type="checkbox"><span>Ubuntu에서 <code>gcc --version</code>과 <code>gdb --version</code>이 출력된다.</span></label><label><input type="checkbox"><span><code>hello.c</code>를 컴파일하고 <code>./hello</code>의 출력을 확인했다.</span></label><label><input type="checkbox"><span>GDB에서 main에 멈추고 port 변수 값을 확인했다.</span></label></div>
 <div class="note blue">다음 작업부터는 <a href="#launch">Ubuntu 실행 가이드</a>에 따라 Ubuntu를 열고 <code>cd ~/projects/network-practice</code>로 이동해 소스를 편집하고 GCC로 빌드하면 됩니다.</div>
 </section>
-<footer>Windows 11 · WSL 2 · Ubuntu · GCC 실습 가이드<br>공식 문서 확인일: 2026년 9월 7일. 설치되는 Ubuntu 및 도구 버전에 따라 화면과 출력은 다를 수 있습니다. 본문은 오프라인에서도 볼 수 있으며, 설치와 외부 문서 열기에는 인터넷이 필요합니다.</footer>
+<footer><p>Windows 11 · WSL 2 · Ubuntu · GCC 실습 가이드</p>
+<p>공식 문서 확인일: 2026년 9월 7일. 설치되는 Ubuntu 및 도구 버전에 따라 화면과 출력은 다를 수 있습니다. 본문은 오프라인에서도 볼 수 있으며, 설치와 외부 문서 열기에는 인터넷이 필요합니다.</p></footer>
 </main></div>
 <div id="status" class="status" role="status" aria-live="polite"></div>
 <script>

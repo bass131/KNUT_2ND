@@ -98,6 +98,7 @@
       document.getElementById('no-terms').hidden = count !== 0;
     }
     search?.addEventListener('input', filter);
+    document.addEventListener('knut:languagechange', filter);
     filter();
     return { search, filter };
   }
@@ -107,6 +108,12 @@
     if (!quiz) return;
     const questions = [...quiz.querySelectorAll('.quiz')];
     const score = document.getElementById('quiz-score');
+    const answerLabels = new Map(
+      [...quiz.querySelectorAll('input')].map((input) => [
+        input,
+        input.parentElement.textContent.trim(),
+      ]),
+    );
     quiz.addEventListener('submit', (event) => {
       event.preventDefault();
       let correct = 0;
@@ -117,20 +124,24 @@
         const result = question.querySelector('.quiz-result');
         if (choice) answered++;
         if (ok) correct++;
-        let explanation = question.dataset.explanation;
+        const fragments = [
+          ok ? '정답입니다. ' : choice ? '다시 확인해 보세요. ' : '아직 답을 선택하지 않았습니다. ',
+        ];
         if (quiz.dataset.answerLabel === 'true') {
           const answer = [...question.querySelectorAll('input')].find(
             (input) => input.value === question.dataset.answer,
           );
-          explanation = '정답: ' + answer.parentElement.textContent.trim() + ' — ' + explanation;
+          fragments.push('정답: ', answerLabels.get(answer), ' — ');
         }
         result.hidden = false;
-        result.textContent =
-          (ok
-            ? '정답입니다. '
-            : choice
-              ? '다시 확인해 보세요. '
-              : '아직 답을 선택하지 않았습니다. ') + explanation;
+        fragments.push(question.dataset.explanation);
+        result.replaceChildren(
+          ...fragments.map((text) => {
+            const span = document.createElement('span');
+            span.textContent = text;
+            return span;
+          }),
+        );
       });
       score.textContent = correct + ' / ' + questions.length + ' 정답 · ' + answered + '문항 응답';
     });

@@ -15,7 +15,7 @@
     };
     const icon = (name) =>
       `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${icons[name]}</svg>`;
-    const mobile = matchMedia('(max-width: 760px)');
+    const mobile = matchMedia('(max-width: 1024px)');
     const currentSections = $$('.lesson-section[data-title]');
     const chapterHref = (id, hash = '') =>
       `${root}chapters/${id}/index.html${hash ? '#' + hash : ''}`;
@@ -38,7 +38,7 @@
       <a class="sidebar-home ${pageId === 'home' ? 'active' : ''}" href="${root}index.html" ${pageId === 'home' ? 'aria-current="page"' : ''}>${icon('home')} 학습 홈</a>
       <p class="sidebar-label">COURSE CHAPTERS</p>
       <nav aria-label="챕터와 섹션">${chapters.map((c) => `<a class="chapter-nav ${pageId === c.id ? 'active' : ''}" href="${chapterHref(c.id)}" ${pageId === c.id ? 'aria-current="page"' : ''}><small>CHAPTER ${c.id}</small>${c.title}</a>${pageId === c.id ? `<div class="toc">${toc}</div>` : ''}`).join('')}${pageId === 'home' ? `<div class="toc">${toc}</div>` : ''}</nav>
-      <div class="sidebar-bottom"><div class="sidebar-progress-label"><span>나의 학습 진도</span><span id="total-progress-caption">0 / ${totalSections}</span></div><div class="progress-track" role="progressbar" aria-label="전체 학습 진도" aria-valuemin="0" aria-valuemax="${totalSections}" aria-valuenow="0"><span id="total-progress-bar"></span></div><p class="sidebar-hint" id="storage-hint">이해한 내용을 체크해 보세요.<br>이 브라우저에 진도를 기억해 둘게요.</p><a class="sidebar-sources" href="${root}index.html#materials">강의 출처 <span aria-hidden="true">↗</span></a></div>
+      <div class="sidebar-bottom"><div class="sidebar-progress-label"><span>나의 학습 진도</span><span id="total-progress-caption">0 / ${totalSections}</span></div><div class="progress-track" role="progressbar" aria-label="전체 학습 진도" aria-valuemin="0" aria-valuemax="${totalSections}" aria-valuenow="0"><span id="total-progress-bar"></span></div><p class="sidebar-hint" id="storage-hint">이해한 내용을 체크해 보세요.<br>이 브라우저에 진도를 기억해 둘게요.</p><a class="sidebar-sources" href="${root}index.html#materials">실습 파일과 출처 <span aria-hidden="true">↗</span></a></div>
     </aside>
     <dialog class="search-dialog" id="search-dialog" aria-label="강의 섹션 검색"><div class="search-field">${icon('search')}<input id="search-input" type="search" aria-label="검색어" placeholder="예: Driver, 포트, 데이터 흐름" autocomplete="off"><button type="button" class="icon-button" id="search-close" aria-label="검색 닫기">${icon('close')}</button></div><div class="search-results" id="search-results" aria-live="polite"></div><div class="search-shortcut-hint">강의 섹션 제목과 핵심 용어 검색 · Tab으로 결과 이동 · Esc로 닫기</div></dialog>
     <div class="toast" role="status" id="toast" hidden></div><a class="back-to-top" href="#main-content" aria-label="맨 위로 이동" hidden>↑</a>`;
@@ -196,6 +196,8 @@
       c.sections.map((s) => ({
         chapter: c.id,
         title: s[1],
+        chapterTitle: c.title,
+        keywords: s[2],
         terms: `${s[1]} ${s[2]} ${c.title}`,
         href: chapterHref(c.id, s[0]),
       })),
@@ -203,9 +205,12 @@
     function renderSearch() {
       const query = $('#search-input').value.trim().toLocaleLowerCase();
       const terms = query.split(/\s+/).filter(Boolean);
-      const found = searchItems.filter((item) =>
-        terms.every((term) => item.terms.toLocaleLowerCase().includes(term)),
-      );
+      const translate = (value) => window.KnutLanguage?.translate(value) || value;
+      const found = searchItems.filter((item) => {
+        const searchable =
+          `${item.terms} ${translate(item.title)} ${translate(item.keywords)} ${translate(item.chapterTitle)}`.toLocaleLowerCase();
+        return terms.every((term) => searchable.includes(term));
+      });
       $('#search-results').innerHTML = found.length
         ? found
             .map(
@@ -228,6 +233,9 @@
     $('#search-close').addEventListener('click', () => $('#search-dialog').close());
     $('#search-dialog').addEventListener('close', () => $('#search-open').focus());
     $('#search-input').addEventListener('input', renderSearch);
+    document.addEventListener('knut:languagechange', () => {
+      if ($('#search-dialog').open) renderSearch();
+    });
     $('#search-dialog').addEventListener('click', (e) => {
       if (e.target === e.currentTarget) {
         const r = e.currentTarget.getBoundingClientRect();

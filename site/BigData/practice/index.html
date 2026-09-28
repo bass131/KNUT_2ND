@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="ko"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1~3장 실습 파일과 실행 안내 · BigData</title>
+  <meta name="description" content="합성 CSV 처리, Docker·Spark 구성, 단어 집계, Worker 성능 비교의 전체 코드와 입력 파일.">
+  <link rel="icon" href="../shared/favicon.svg" type="image/svg+xml">
+  <script src="../shared/theme.js"></script>
+  <link rel="stylesheet" href="../shared/styles.css">
+  <link rel="stylesheet" href="../shared/themes.css">
+  <link rel="stylesheet" href="../shared/reading.css">
+  <script src="../shared/course/catalog.js" defer=""></script>
+  <script src="../shared/course/state.js" defer=""></script>
+  <script src="../shared/course/navigation.js" defer=""></script>
+  <script src="../shared/course/content.js" defer=""></script>
+  <script src="../shared/course/visuals.js" defer=""></script>
+  <script src="../shared/course.js" defer=""></script>
+  <link rel="stylesheet" href="../shared/language.css">
+  <script src="../shared/translations-en.js" defer=""></script>
+  <script src="../shared/language.js" defer=""></script>
+</head>
+<body data-page="home" data-root="../">
+<div id="course-shell"></div>
+<main id="main-content" class="main-content">
+  <header class="chapter-hero">
+    <p class="eyebrow">BIGDATA · 1~3장 보충 실습</p>
+    <h1>보충 실습 파일과 실행 안내</h1>
+    <p class="hero-description">주문 CSV를 정리하고, Spark에서 합계와 단어 수를 구한 뒤, Worker 수에 따른 실행 시간을 비교합니다. 필요한 코드·입력·확인 파일을 이 페이지에서 받을 수 있습니다.</p>
+    <p><a href="../index.html">빅데이터 홈</a> · <a href="../chapters/01/index.html">1장</a> · <a href="../chapters/02/index.html">2장</a> · <a href="../chapters/03/index.html">3장</a></p>
+  </header>
+
+  <section class="lesson-section" id="start" data-title="준비와 파일 받기">
+    <div class="section-heading"><span class="section-number">01</span><h2>실행할 폴더부터 준비하기</h2></div>
+    <p>이곳의 프로그램과 데이터는 1~3장 개념을 연습하도록 별도로 작성한 보충 예제입니다. 교수님이 제공한 <code>실습자료/</code>의 파일과는 구분합니다. 주문과 문장은 합성 데이터이며 개인정보가 없습니다.</p>
+    <p>이 페이지의 파일은 <code>practice/</code>에 있습니다. 제공 실습과 서비스 이름·포트가 다르므로 파일 준비부터 종료까지 이 페이지의 순서로 진행하세요.</p>
+    <p><a href="#start">파일·환경 준비</a> → <a href="#sources">전체 코드 확인</a> → <a href="#orders">주문 CSV</a> → <a href="#spark">Spark 합계</a> → <a href="#wordcount">단어 집계</a> → <a href="#benchmark">성능 비교</a> · <a href="#finish">오류 확인·종료</a></p>
+    <div class="table-wrap"><table><caption>실습별 준비물과 확인 결과</caption><thead><tr><th scope="col">순서</th><th scope="col">준비물</th><th scope="col">완료 기준</th></tr></thead><tbody>
+      <tr><th scope="row">1장 · 주문 CSV</th><td>Python 3.10 이상, 아래 파일</td><td>5행 → 주문 3개 · 35,000원, 예상 CSV와 일치</td></tr>
+      <tr><th scope="row">2장 · 첫 Spark 계산</th><td>Docker Desktop, Compose, Spark 이미지</td><td>Worker 등록 2개, 합계 5050, 정상 종료</td></tr>
+      <tr><th scope="row">3장 · 단어 집계</th><td>같은 Docker 환경, words.txt</td><td>단어 3종의 횟수와 Parquet 재읽기 일치</td></tr>
+      <tr><th scope="row">3장 · 자원 비교</th><td>같은 Docker 환경, 여유 CPU·메모리</td><td>같은 정답·조건별 시간·실제 Executor 기록</td></tr>
+    </tbody></table></div>
+    <h3>1. 파일을 폴더 구조대로 저장하기</h3>
+    <p>PC에 <code>bigdata-practice</code> 폴더를 만들고 아래 파일을 같은 구조로 저장합니다. 링크의 <strong>파일 받기</strong>로 내려받거나 <a href="#sources">전체 코드</a>를 복사하여 UTF-8로 저장하세요. 파일 이름 뒤에 <code>.txt</code>가 추가되지 않았는지 확인합니다.</p>
+    <p>GitHub 저장소 전체를 내려받았다면 <code>site/BigData/practice</code>에 이미 파일이 있습니다. 로컬 제작본은 <code>BigData/practice</code>입니다. 어느 경우든 <strong>compose.yaml이 있는 폴더</strong>에서 명령을 실행합니다.</p>
+    <pre><code>bigdata-practice/
+  compose.yaml
+  apps/
+    order_pipeline.py
+    check_cluster.py
+    sum_app.py
+    wordcount_app.py
+    benchmark_app.py
+    submit.sh
+  data/
+    orders.csv
+    words.txt
+  expected/
+    orders-clean.csv
+    wordcounts.csv
+  results-template.csv
+  output/                 ← 실행 결과를 저장할 빈 폴더</code></pre>
+    <ul class="explanation-list">
+      <li><a href="compose.yaml" download="">compose.yaml 파일 받기</a> · Docker 서비스 구성.</li>
+      <li><a href="apps/order_pipeline.py" download="">order_pipeline.py 파일 받기</a> · 1장 CSV 처리.</li>
+      <li><a href="apps/check_cluster.py" download="">check_cluster.py 파일 받기</a> · Worker 등록 검사.</li>
+      <li><a href="apps/sum_app.py" download="">sum_app.py 파일 받기</a> · 합계 5050.</li>
+      <li><a href="apps/submit.sh" download="">submit.sh 파일 받기</a> · 클러스터 제출.</li>
+      <li><a href="apps/wordcount_app.py" download="">wordcount_app.py 파일 받기</a> · 단어 집계.</li>
+      <li><a href="apps/benchmark_app.py" download="">benchmark_app.py 파일 받기</a> · 반복 시간 측정.</li>
+      <li><a href="data/orders.csv" download="">orders.csv 파일 받기</a> · 합성 주문 5행.</li>
+      <li><a href="data/words.txt" download="">words.txt 파일 받기</a> · 빈 줄을 포함한 합성 문장.</li>
+      <li><a href="expected/orders-clean.csv" download="">orders-clean.csv 파일 받기</a> · CSV 예상 결과.</li>
+      <li><a href="expected/wordcounts.csv" download="">wordcounts.csv 파일 받기</a> · 단어 수 예상 결과.</li>
+      <li><a href="results-template.csv" download="">results-template.csv 파일 받기</a> · 비어 있는 성능 기록표.</li>
+    </ul>
+    <h3>2. Python 확인 · 1장에 사용</h3>
+    <p><strong>실행 위치: 위 폴더의 Windows PowerShell.</strong> 아래가 Python 3.10 이상을 출력하면 준비됐습니다. Windows의 <code>python</code> 명령이 Store를 열면 설치된 Python 실행 경로를 확인하거나 <a href="https://www.python.org/downloads/windows/">Python 공식 배포</a>로 설치합니다.</p>
+    <pre><code>python --version
+New-Item -ItemType Directory -Force output</code></pre>
+    <ul class="explanation-list">
+      <li><strong>WSL·macOS·Linux:</strong> <code>python3 --version</code>과 <code>mkdir -p output</code>을 사용합니다.</li>
+      <li><strong>1장 예제:</strong> Python에 기본으로 포함된 표준 라이브러리만 쓰므로 <code>pip install</code>이 필요 없습니다.</li>
+      <li><strong>2~3장 예제:</strong> Docker 이미지 안의 Python·Java·PySpark를 사용합니다.</li>
+    </ul>
+    <h3>3. Docker 확인 · 2~3장에 사용</h3>
+    <p>Windows에서는 <a href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktop 공식 설치 안내</a>에 따라 WSL 2 기반 Linux 컨테이너 환경을 준비합니다. 이미 설치되어 있다면 Docker Desktop을 열고 Engine이 실행될 때까지 기다립니다.</p>
+    <pre><code>wsl --status
+docker version
+docker compose version
+docker info --format '{{.OSType}}'
+docker compose config</code></pre>
+    <ul class="explanation-list">
+      <li><strong>성공 기준:</strong> <code>docker version</code>에 Client와 Server가 모두 나오고, 운영체제 값은 <code>linux</code>, Compose 설정 검사는 오류 없이 끝납니다.</li>
+      <li><strong>컴퓨터 자원:</strong> 먼저 Worker 1~2개로 시작합니다. Worker당 1 Core·1g는 Spark에 알리는 자원량이며 Docker의 메모리 제한이 아닙니다. 8개 실험은 호스트 여유 메모리·CPU가 충분할 때만 진행합니다.</li>
+      <li><strong>연결:</strong> 학습 페이지·파일은 내려받은 뒤 오프라인으로 볼 수 있습니다. Docker 설치와 최초 이미지 받기에는 인터넷이 필요합니다.</li>
+    </ul>
+    <p class="source-note">구성 근거: 기존 1~3장 실습에서 사용하는 Spark 이미지와 자원 개념. 공개 예제는 별도로 작성했습니다. 설치·서비스 순서는 <a href="https://docs.docker.com/compose/how-tos/startup-order/">Docker 공식 문서</a>를 확인했습니다.</p>
+  </section>
+
+  <section class="lesson-section" id="orders" data-title="1장 · CSV 파이프라인">
+    <div class="section-heading"><span class="section-number">02</span><h2>같은 주문은 한 번만 계산하기</h2></div>
+    <p>수집된 파일에 같은 주문이 다시 들어올 수 있습니다. 읽은 행을 모두 더하면 재전송까지 매출로 계산합니다. 1장 주문 예제에 A003을 추가하여 중복 판단 규칙을 직접 실행해 봅니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 영수증 번호 대조</strong><p>같은 영수증이 두 장 있어도 판매는 한 번입니다. 번호는 같은데 금액이 다르면 한 장을 임의로 버리지 않고 확인해야 합니다.</p></div>
+    <div class="card-grid"><article class="card"><h3>입력 계약</h3><ul class="explanation-list"><li><strong>열:</strong> <code>order_id,order_date,amount</code> 순서.</li><li><strong>주문 번호:</strong> 빈 값은 오류. 양끝 공백은 제거.</li><li><strong>날짜:</strong> ISO 날짜를 읽어 <code>YYYY-MM-DD</code>로 저장.</li><li><strong>금액:</strong> 음수가 아닌 정수 원 단위.</li></ul></article><article class="card"><h3>중복·실패 규칙</h3><ul class="explanation-list"><li><strong>동일 ID·날짜·금액:</strong> 한 건으로 합침.</li><li><strong>동일 ID·다른 날짜나 금액:</strong> 충돌 오류로 종료.</li><li><strong>잘못된 입력:</strong> 결과 파일을 교체하기 전에 실패.</li><li><strong>재실행:</strong> 정렬한 동일 결과를 저장.</li></ul></article></div>
+    <p><strong>실행 위치: bigdata-practice 폴더의 PowerShell.</strong></p>
+    <pre><code>python apps/order_pipeline.py
+Get-Content output/orders-clean.csv
+Compare-Object (Get-Content expected/orders-clean.csv) (Get-Content output/orders-clean.csv)
+$LASTEXITCODE</code></pre>
+    <ul class="explanation-list">
+      <li><strong>결과 파일 비교:</strong> <code>Compare-Object</code>에 차이 행이 없으면 텍스트가 같습니다.</li>
+      <li><strong>프로그램 종료 확인:</strong> <code>$LASTEXITCODE</code>는 마지막 Python 프로세스의 종료 코드이며 정상은 <code>0</code>입니다. 차이 비교 자체의 성공 여부를 이 변수로 판단하지 않습니다.</li>
+    </ul>
+    <pre><code>INPUT_ROWS=5
+UNIQUE_ORDERS=3
+DUPLICATE_ROWS=2
+TOTAL_AMOUNT=35000</code></pre>
+    <p>위 값은 제공 입력의 <strong>예상 출력</strong>입니다. 실제 출력에는 결과 파일 위치도 나옵니다. WSL·macOS·Linux에서는 <code>python3 apps/order_pipeline.py</code> 뒤 <code>diff expected/orders-clean.csv output/orders-clean.csv</code>로 비교할 수 있습니다.</p>
+    <h3>코드가 수행하는 네 단계</h3>
+    <ol class="explanation-list"><li><strong>수집:</strong> <code>csv.DictReader</code>가 열 이름을 키로 가진 행을 읽습니다.</li><li><strong>변환:</strong> 날짜·정수 변환과 중복/충돌 검사를 수행하고 주문 ID를 키로 보관합니다.</li><li><strong>저장:</strong> ID순으로 임시 파일을 완성한 뒤 결과 파일로 교체합니다. 입력 파일은 읽기만 합니다.</li><li><strong>제공:</strong> 정리된 CSV와 행 수·총액을 출력하여 사람이 예상 결과와 대조합니다.</li></ol>
+    <h3>직접 바꿔 확인하기</h3>
+    <p>원본 입력을 보존하고 실험용 사본을 만들어 편집합니다.</p>
+    <pre><code>Copy-Item data/orders.csv output/orders-test.csv
+notepad output/orders-test.csv
+python apps/order_pipeline.py --input output/orders-test.csv --output output/orders-test-clean.csv
+$LASTEXITCODE</code></pre>
+    <ul class="explanation-list"><li><strong>같은 행 추가:</strong> 입력·중복 수만 증가하고 총액은 같습니다.</li><li><strong>A002의 금액을 한 행에서만 변경:</strong> <code>conflicting order_id A002</code> 오류와 종료 코드 1. 결과를 갱신하지 않습니다.</li><li><strong>금액을 문자·음수로 변경:</strong> 변환·범위 오류. 입력 규칙 위반을 조용히 건너뛰지 않습니다.</li><li><strong>동일 명령 재실행:</strong> 내용이 같아야 합니다. 원본 보존과 결정적인 정렬이 재현에 도움이 됩니다.</li></ul>
+    <div class="callout"><strong>확인 질문</strong><p>이 코드는 입력 100배에도 항상 적절할까요? 고유 주문을 Python 사전에 모두 보관하므로 메모리도 늘어납니다. 이 작은 예제로 정확성 규칙을 먼저 정하고, 큰 입력의 분산 처리에서는 데이터 분할과 중복 제거 비용을 다시 설계해야 합니다.</p></div>
+    <p><a href="#source-order-pipeline">order_pipeline.py 전체 코드</a> · <a href="../chapters/01/index.html#data-pipeline">1장 개념으로 돌아가기</a></p>
+  </section>
+
+  <section class="lesson-section" id="spark" data-title="2장 · Spark 첫 계산">
+    <div class="section-heading"><span class="section-number">03</span><h2>이미지 → 등록 → 계산 순서로 확인하기</h2></div>
+    <p>이미지를 받았다는 사실과 분산 계산이 성공했다는 사실은 다릅니다. 먼저 한 컨테이너에서 계산한 뒤 Worker 등록과 클러스터 계산을 각각 확인합니다.</p>
+    <h3>보충 실습의 서비스·포트 확인하기</h3>
+    <div class="table-wrap"><table><caption>이번 compose.yaml의 역할과 경로</caption><thead><tr><th scope="col">항목</th><th scope="col">설정</th><th scope="col">의미</th></tr></thead><tbody>
+      <tr><th scope="row">Master</th><td>spark-master · 내부 7077</td><td>Worker 자원을 등록하고 Application에 배정</td></tr>
+      <tr><th scope="row">Worker</th><td>spark-worker · 복제 가능</td><td>각 1 Core·1g, 실행 시 2개로 복제</td></tr>
+      <tr><th scope="row">Client / Driver</th><td>spark-client</td><td>submit.sh가 여기에서 Driver를 시작</td></tr>
+      <tr><th scope="row">브라우저 UI</th><td>Master 28080 · Driver 24041</td><td>호스트에서 localhost로 접속</td></tr>
+      <tr><th scope="row">앱·입력·정답</th><td>apps · data · expected</td><td>Client에 읽기 전용 연결</td></tr>
+      <tr><th scope="row">출력</th><td>output → /opt/spark/lab-output</td><td>Client에서 쓰면 PC의 output에 보존</td></tr>
+    </tbody></table></div>
+    <p>2장 실습의 Worker 1·2 이름과 8080/4040 포트를 이 명령에 섞지 않습니다. 공개 실습의 프로젝트 이름은 <code>knut-public-spark</code>입니다. 여러 학습 환경을 동시에 켜면 CPU·메모리가 공유되므로 성능 측정은 한 환경만 켜고 진행합니다.</p>
+    <h3>1. 이미지와 local[2] 계산</h3>
+    <p><strong>실행 위치: compose.yaml이 있는 폴더의 PowerShell.</strong></p>
+    <pre><code>docker compose pull
+docker compose run --rm --no-deps --entrypoint /opt/spark/bin/spark-submit spark-client --master "local[2]" /opt/spark/apps/sum_app.py
+$LASTEXITCODE</code></pre>
+    <p>예상 결과는 <code>MASTER=local[2]</code>, <code>SUM_1_TO_100=5050</code>, <code>CHECK=PASS</code>, <code>APP_STOPPED</code>, 종료 코드 0입니다.</p>
+    <p><code>local[2]</code>는 하나의 Java 실행 환경(JVM) 안에서 작업 스레드 두 개를 쓰는 모드입니다. 클러스터 Worker 두 개의 등록 여부는 다음 단계에서 검사합니다.</p>
+    <p>이미지 태그는 기존 강의 파일의 <code>spark:4.1.3-scala2.13-java21-python3-ubuntu</code>를 따르며 <a href="https://github.com/docker-library/official-images/blob/master/library/spark">Docker 공식 이미지 목록</a>에도 등록되어 있습니다. <code>manifest unknown</code>이면 태그·레지스트리 주소를 확인하세요. 다른 버전을 사용한다면 버전을 기록한 뒤 처음부터 다시 검증합니다.</p>
+    <h3>2. Worker 두 개 시작·등록 확인</h3>
+    <pre><code>docker compose up -d --scale spark-worker=2
+docker compose ps
+docker compose exec spark-client python3 /opt/spark/apps/check_cluster.py --workers 2
+$LASTEXITCODE</code></pre>
+    <p><code>ALIVE_WORKERS=2 TOTAL_CORES=2</code>와 <code>REGISTRATION_CHECK=PASS</code>를 확인합니다. 검사기는 Master의 상태 JSON을 읽어 등록을 기다립니다. <a href="http://localhost:28080">Master UI · localhost:28080</a>의 ALIVE Worker 수도 2개여야 합니다.</p>
+    <p><code>healthy</code>는 Master HTTP 응답 여부입니다. 등록 검사가 통과해도 Driver로 되돌아오는 연결과 실제 계산은 다음 단계에서 확인해야 합니다.</p>
+    <h3>3. 클러스터에 앱 제출</h3>
+    <pre><code>docker compose exec spark-client bash /opt/spark/apps/submit.sh sum_app.py --wait-seconds 120
+$LASTEXITCODE</code></pre>
+    <p><code>MASTER=spark://spark-master:7077</code>와 합계 5050을 확인합니다. <code>UI_WAIT_SECONDS=120</code>이 나오면 별도 브라우저에서 <a href="http://localhost:24041">Driver UI · localhost:24041</a>를 엽니다. 터미널은 관찰 대기 중이므로 다음 앱을 겹쳐 실행하지 않습니다.</p>
+    <ul class="explanation-list"><li><strong>Executors:</strong> Driver 행을 제외하고 계산 Executor와 할당 Core를 기록합니다.</li><li><strong>Jobs / Stages:</strong> <code>range</code>의 입력 Partition 4개와 부분 합계·최종 합계 구조를 확인합니다.</li><li><strong>출력의 explain:</strong> Spark가 세운 물리 실행계획입니다. 출력 계획과 UI의 실제 실행 정보를 함께 읽습니다.</li><li><strong>종료:</strong> <code>APP_STOPPED</code>와 종료 코드 0을 확인합니다. 종료 후에는 이 Driver UI가 닫힙니다.</li></ul>
+    <div class="callout"><strong>확인 질문</strong><p>입력 Partition이 4개인데 Core가 2개라면 네 작업을 모두 동시에 실행할까요? 동시에 실행할 수 있는 작업 수는 배정된 Core에 제한됩니다. 입력 분할 수와 동시에 사용할 자원을 구분해 기록하세요.</p></div>
+    <h3>4. Worker 하나로 같은 답 확인</h3>
+    <pre><code>docker compose up -d --scale spark-worker=1
+docker compose exec spark-client python3 /opt/spark/apps/check_cluster.py --workers 1
+docker compose exec -e TOTAL_EXECUTOR_CORES=1 spark-client bash /opt/spark/apps/submit.sh sum_app.py --wait-seconds 120</code></pre>
+    <p>합계와 입력은 같고 가용 자원이 달라집니다. 100개 숫자는 너무 작아 실행 시간을 성능 결론으로 쓰기 어렵습니다. 계속 학습하면 다음 절로, 오늘 끝내면 <a href="#finish">종료 절차</a>로 이동합니다.</p>
+    <p><a href="#source-compose">Compose 전체 설정</a> · <a href="#source-sum">계산 앱 전체 코드</a> · <a href="#source-submit">제출 스크립트 전체 코드</a> · <a href="../chapters/02/index.html#first-app">2장 해설</a></p>
+    <p class="source-note">client 모드와 local[N]의 의미: <a href="https://spark.apache.org/docs/4.1.3/submitting-applications.html">Spark 4.1.3 공식 제출 안내</a>. Standalone의 Worker·Core 구성: <a href="https://spark.apache.org/docs/4.1.3/spark-standalone.html">Spark 4.1.3 Standalone 문서</a>.</p>
+  </section>
+
+  <section class="lesson-section" id="wordcount" data-title="3장 · 단어 수와 Parquet">
+    <div class="section-heading"><span class="section-number">04</span><h2>입력 문장이 집계 표로 바뀌는 과정</h2></div>
+    <p>3장 HDFS 코드의 연산을 제공된 파일로 실행합니다. 이번 입력은 Client 컨테이너에만 연결하므로 <code>local[2]</code>로 실행합니다. 앞 절 클러스터의 Worker에 로컬 파일이 자동으로 공유되는 것은 아닙니다.</p>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 문장 카드를 단어별로 모으기</strong><p>문장을 단어 카드로 자르고 같은 단어끼리 모아 셉니다. 실제 코드는 문자열 열을 배열로 나눈 뒤, 배열 원소를 여러 행으로 펼치고 집계합니다.</p></div>
+    <p><strong>실행 위치: 같은 PowerShell. 앞 앱의 APP_STOPPED 이후.</strong> Client가 실행 중인 상태에서 아래를 실행합니다.</p>
+    <pre><code>docker compose exec spark-client /opt/spark/bin/spark-submit --master "local[2]" /opt/spark/apps/wordcount_app.py
+$LASTEXITCODE
+Get-ChildItem output/wordcounts</code></pre>
+    <p>예상 결과는 <code>WORDCOUNT_CHECK=PASS</code>, <code>APP_STOPPED</code>, 종료 코드 0입니다. 출력의 단어 표는 아래와 같습니다.</p>
+    <div class="table-wrap"><table><caption>제공 입력의 예상 집계</caption><thead><tr><th scope="col">word</th><th scope="col">count</th></tr></thead><tbody><tr><td>spark</td><td>3</td></tr><tr><td>data</td><td>2</td></tr><tr><td>pipeline</td><td>1</td></tr></tbody></table></div>
+    <p>Parquet는 같은 열의 값을 모아 저장하는 파일 형식입니다. Spark는 지정 경로에 데이터를 나누어 담은 part 파일과 성공 표시를 만듭니다. <code>Get-ChildItem</code>으로 이 출력 폴더의 파일 목록을 확인합니다.</p>
+    <h3>입력에서 출력까지 연산 읽기</h3>
+    <ol class="explanation-list"><li><strong>read.text:</strong> 한 줄을 문자열 <code>value</code> 한 행으로 읽습니다. 빈 줄도 살펴봅니다.</li><li><strong>split:</strong> 하나 이상의 공백을 기준으로 단어 배열을 만듭니다.</li><li><strong>explode · alias:</strong> 배열의 원소를 각각 <code>word</code> 행으로 펼칩니다.</li><li><strong>where:</strong> 빈 단어를 제외합니다. 대소문자나 문장부호는 바꾸지 않습니다.</li><li><strong>groupBy · count:</strong> 같은 단어를 모아 횟수를 계산합니다. 재배치인 Shuffle이 필요할 수 있습니다.</li><li><strong>orderBy:</strong> 횟수 내림차순, 동률이면 단어 오름차순으로 화면을 정렬합니다.</li><li><strong>write · read:</strong> Parquet로 저장하고 다시 읽어 예상 CSV와 비교합니다. 저장 후 행의 순서가 유지된다고 가정하지 않습니다.</li></ol>
+    <h3>재실행과 입력 변경</h3>
+    <p>기존 결과를 보존하도록 기본 저장 모드는 <code>errorifexists</code>입니다. 같은 실습을 다시 실행하려면 새 출력 경로를 지정합니다.</p>
+    <pre><code>docker compose exec spark-client /opt/spark/bin/spark-submit --master "local[2]" /opt/spark/apps/wordcount_app.py --output /opt/spark/lab-output/wordcounts-run2</code></pre>
+    <p>입력을 바꾸면 <code>expected/wordcounts.csv</code>의 기대값도 사람이 계산하여 바꿔야 합니다. 예를 들어 <code>Spark</code>는 <code>spark</code>와 별도 단어입니다. 자동 정규화를 넣기 전에 어떤 표기를 같은 단어로 볼지 규칙을 정하세요.</p>
+    <div class="callout"><strong>확인 질문</strong><p>왜 결과 검사에서 collect를 쓸 수 있을까요? 이 합성 입력은 서로 다른 단어가 3개뿐이며 코드도 최대 101행만 가져와 100종을 넘으면 중단합니다. 대규모 결과 전체를 Driver에 모으는 일반 해법은 아닙니다.</p></div>
+    <p><a href="#source-wordcount">단어 집계 전체 코드</a> · <a href="../chapters/03/index.html#dataframe-wordcount">3장 연산별 표 해설</a></p>
+    <p class="source-note">텍스트의 한 줄·value 열·UTF-8 읽기: <a href="https://spark.apache.org/docs/4.1.1/api/python/reference/pyspark.sql/api/pyspark.sql.DataFrameReader.text.html">DataFrameReader.text 공식 API</a>.</p>
+  </section>
+
+  <section class="lesson-section" id="benchmark" data-title="3장 · Worker 성능 비교">
+    <div class="section-heading"><span class="section-number">05</span><h2>정답을 고정하고 자원을 바꾸기</h2></div>
+    <p>성능 비교는 같은 입력·연산·검증 규칙에서 시작합니다. 먼저 작은 입력으로 코드와 설정을 확인한 뒤 충분한 자원이 있을 때 큰 입력을 선택합니다. 숫자는 <code>spark.range</code>로 생성하므로 별도 거대 입력 파일은 없습니다.</p>
+    <h3>1. 작은 입력으로 실행 경로 확인</h3>
+    <p><strong>실행 위치: compose.yaml이 있는 폴더의 PowerShell.</strong> 앞 앱의 <code>APP_STOPPED</code>를 확인한 뒤 실행합니다.</p>
+    <pre><code>docker compose up -d --scale spark-worker=1
+docker compose exec spark-client python3 /opt/spark/apps/check_cluster.py --workers 1
+docker compose exec -e TOTAL_EXECUTOR_CORES=1 spark-client bash /opt/spark/apps/submit.sh benchmark_app.py --end 1000001 --partitions 128 --repetitions 3
+$LASTEXITCODE</code></pre>
+    <p>1부터 1,000,000까지의 예상 합은 <code>500000500000</code>입니다. <code>end</code>는 포함하지 않는 끝값입니다. 각 실행 시간과 <code>CHECK=PASS</code>를 확인한 뒤 종료까지 기다립니다.</p>
+    <h3>2. 기록할 입력·측정 방법 고정</h3>
+    <ul class="explanation-list"><li><strong>수업 규모:</strong> <code>--end 1000000001</code>이면 1~10억, 예상 합은 <code>500000000500000000</code>입니다.</li><li><strong>작은 PC:</strong> 더 작은 end를 유지해도 됩니다. 비교할 모든 조건의 end를 같게 바꾸고 기록표에도 반영합니다.</li><li><strong>고정값:</strong> Partition 128, 반복 3회, Executor당 1 Core·512m. 제출 파일에서 동적 할당과 AQE(실행 중 계획 조정)는 꺼서 비교 조건을 단순하게 둡니다.</li><li><strong>측정 범위:</strong> 집계 DataFrame 정의 직전부터 first가 결과를 돌려줄 때까지. Docker 시작·SparkSession 준비·계산 후 UI 대기는 제외합니다.</li><li><strong>첫 실행:</strong> JVM 준비·코드 생성·Executor 할당 비용이 섞일 수 있습니다. 세 실행 모두 기록하며 첫 값을 숨기지 않습니다. 캐시는 사용하지 않습니다.</li></ul>
+    <h3>3. Worker와 Core를 함께 1 → 2 → 4 → 8로 늘리기</h3>
+    <p><strong>PowerShell에서 아래 블록을 조건마다 실행합니다.</strong> 먼저 <code>$workers = 1</code>, 다음은 2, 4, 8로 바꿉니다. 앞 앱의 <code>APP_STOPPED</code>를 확인한 뒤 다음 조건을 실행하세요. 실행하지 못한 조건은 기록표에서 미측정으로 남깁니다.</p>
+    <pre><code>$workers = 1
+docker compose up -d --scale "spark-worker=$workers"
+docker compose exec spark-client python3 /opt/spark/apps/check_cluster.py --workers $workers
+docker compose exec -e "TOTAL_EXECUTOR_CORES=$workers" spark-client bash /opt/spark/apps/submit.sh benchmark_app.py --end 1000000001 --partitions 128 --repetitions 3
+$LASTEXITCODE</code></pre>
+    <p>등록 검사에 실패하면 제출하지 말고 원인을 먼저 해결합니다. Master UI의 ALIVE Worker와 Total Cores, 앱 출력의 REQUESTED_CORES를 같이 확인하세요. 요청 Core 수는 상한이며 실제 할당량과 항상 같지는 않습니다.</p>
+    <h3>4. Worker 8개에서 Core 상한만 2로 고정</h3>
+    <pre><code>docker compose exec spark-client python3 /opt/spark/apps/check_cluster.py --workers 8
+docker compose exec -e TOTAL_EXECUTOR_CORES=2 spark-client bash /opt/spark/apps/submit.sh benchmark_app.py --end 1000000001 --partitions 128 --repetitions 3 --wait-seconds 120</code></pre>
+    <p>동일 시점의 Master 사용 Core와 Driver UI의 실제 Executor를 기록합니다. Worker 8개를 준비해도 이 앱의 Executor Core 합은 최대 2입니다. 앞의 2 Worker·2 Core 조건과 비교하면 준비된 Worker 수와 앱이 쓰는 자원을 구분할 수 있습니다.</p>
+    <p>2/2 조건의 화면을 놓쳤다면 그 조건으로 되돌려 동일 명령에 <code>--wait-seconds 120</code>을 추가해 관찰합니다. 관찰용 재실행의 시간은 앞 측정값과 섞지 않고 따로 표시합니다.</p>
+    <h3>5. 기록표 해석</h3>
+    <p><a href="results-template.csv" download="">빈 CSV 기록표</a>에 직접 실행한 결과를 적습니다. 코드가 출력한 시간만 실제 측정값입니다.</p>
+    <ul class="explanation-list">
+      <li><strong>실행 결과:</strong> 각 RUN 시간, 중앙값, 실제 Executor, 검증 결과를 기록합니다.</li>
+      <li><strong>측정 환경:</strong> 운영체제, Docker/Spark 버전, CPU, 메모리, 동시에 실행한 앱을 별도로 메모합니다.</li>
+    </ul>
+    <div class="table-wrap"><table><caption>계산식과 주의할 점</caption><thead><tr><th scope="col">항목</th><th scope="col">계산</th><th scope="col">해석</th></tr></thead><tbody><tr><th scope="row">중앙값</th><td>세 시간을 정렬한 가운데 값</td><td>단일 이상값의 영향을 줄이되 원자료도 보존</td></tr><tr><th scope="row">Speedup</th><td>1/1 조건 중앙값 ÷ 비교 조건 중앙값</td><td>같은 입력에서 얼마나 빨라졌는지</td></tr><tr><th scope="row">효율</th><td>Speedup ÷ 사용 Core 수 × 100</td><td>1 Core 기준 자원 증가와 비교; 실제 할당도 확인</td></tr></tbody></table></div>
+    <div class="callout"><strong>확인 질문</strong><p>8 Worker가 4 Worker보다 느리면 코드가 반드시 틀린 걸까요? 같은 PC의 CPU·메모리 경합, 통신·스케줄링 비용, 초기 실행 비용을 확인합니다. 정답이 같다는 증거와 성능 이유를 나누어 설명하세요. 큰 차이가 반복되면 조건별 Application을 여러 번 다시 실행하여 변동도 기록합니다.</p></div>
+    <p><a href="#source-benchmark">측정 앱 전체 코드</a> · <a href="../chapters/03/index.html#exercise-review">3장 성능 해석으로 돌아가기</a></p>
+  </section>
+
+  <section class="lesson-section" id="finish" data-title="오류 확인과 종료">
+    <div class="section-heading"><span class="section-number">06</span><h2>실패한 단계를 좁히고 종료하기</h2></div>
+    <div class="table-wrap"><table><caption>증상별 확인 순서</caption><thead><tr><th scope="col">증상</th><th scope="col">확인할 것</th></tr></thead><tbody>
+      <tr><th scope="row">docker 명령 없음 / Server 오류</th><td>Desktop 설치, 실행 상태, Linux 컨테이너 모드. 설치 성공과 Engine 시작을 구분합니다.</td></tr>
+      <tr><th scope="row">이미지 pull 실패</th><td>태그 존재, 인터넷·프록시·로그인 제한. 오류를 기록하고 이미지가 없으면 다음 단계로 진행하지 않습니다.</td></tr>
+      <tr><th scope="row">파일 없음</th><td>Compose 현재 폴더, apps/data/expected 이름과 확장자, 내려받은 실제 파일 내용.</td></tr>
+      <tr><th scope="row">Worker 등록 실패</th><td>Master/Worker 로그와 상태, 메모리 부족·종료 여부. healthy만으로 성공 판단하지 않습니다.</td></tr>
+      <tr><th scope="row">Initial job has not accepted any resources</th><td>ALIVE Worker, 가용 Core/메모리, 이전 앱 종료 여부, submit.sh의 Driver 호스트 설정.</td></tr>
+      <tr><th scope="row">포트 사용 중</th><td>28080/24041을 쓰는 기존 프로세스 확인. Compose의 호스트 포트를 바꾸면 안내 URL도 맞춥니다.</td></tr>
+      <tr><th scope="row">Driver UI가 안 열림</th><td>앱이 이미 끝났는지 확인. wait-seconds를 주고 대기 메시지가 나온 동안 접속합니다.</td></tr>
+      <tr><th scope="row">submit.sh의 $'\r' 오류</th><td>편집기에서 Bash 파일 줄바꿈을 LF로 저장. 제공 파일의 LF를 유지합니다.</td></tr>
+      <tr><th scope="row">Parquet 경로 이미 존재</th><td>기존 결과를 남기고 새 --output 경로를 지정합니다.</td></tr>
+      <tr><th scope="row">출력 Permission denied</th><td>호스트 output의 쓰기 권한과 공유 설정. 컨테이너 사용자와 Linux 파일 소유자가 다를 수 있습니다.</td></tr>
+    </tbody></table></div>
+    <p><strong>실행 위치: 공개 실습 폴더의 PowerShell.</strong> 로그부터 확인하고 완료 후 환경을 내립니다.</p>
+    <pre><code>docker compose ps -a
+docker compose logs --tail 100 spark-master spark-worker
+# 실행 중인 앱의 APP_STOPPED를 확인한 뒤 종료
+docker compose down
+docker compose ps -a</code></pre>
+    <p>이 프로젝트의 컨테이너와 기본 네트워크가 제거됩니다. 바인드 마운트한 PC의 <code>output</code>과 원본 입력은 남습니다. 다음에는 같은 폴더에서 <code>up</code>으로 시작한 뒤 등록부터 다시 확인합니다.</p>
+    <div class="callout"><strong>이 자료의 실행 확인 범위</strong><p>합계·단어 수는 코드와 합성 입력으로 정한 예상값입니다. 검증 PC에 Docker·Java·PySpark가 없어 Spark 계산·Worker 등록·Parquet·성능 시간은 실행하지 못했습니다. 측정 CSV에는 시간을 채우지 않았으며, 자신의 환경에서 실행한 값으로 기록해야 합니다.</p></div>
+  </section>
+
+  <section class="lesson-section" id="sources" data-title="전체 코드와 입력">
+    <div class="section-heading"><span class="section-number">07</span><h2>파일별 전체 내용</h2></div>
+    <p>아래에서 파일 이름을 누르면 전체 내용이 펼쳐집니다. 다운로드 파일과 같은 UTF-8 텍스트이며, 각 코드 블록의 복사 버튼으로 가져올 수 있습니다.</p>
+    <ul class="explanation-list">
+      <li><strong>Python 코드:</strong> 지정된 <code>.py</code> 파일로 저장하고 앞 절의 실행 명령을 사용합니다. PowerShell에 코드 한 줄씩 붙여 넣지 않습니다.</li>
+      <li><strong>Bash 코드:</strong> <code>apps/submit.sh</code>로 저장합니다. 앞 절의 <code>docker compose exec</code> 명령이 컨테이너 안에서 실행합니다.</li>
+    </ul>
+    <details id="source-compose"><summary>compose.yaml · 서비스·포트·파일 연결</summary><pre data-source="compose.yaml"><code># Independently authored public lab. Run commands from this directory.
+name: knut-public-spark
+
+x-runtime: &amp;runtime
+  image: spark:4.1.3-scala2.13-java21-python3-ubuntu
+  init: true
+  environment:
+    PYSPARK_PYTHON: python3
+
+services:
+  spark-master:
+    &lt;&lt;: *runtime
+    hostname: spark-master
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command: ["org.apache.spark.deploy.master.Master", "--host", "spark-master", "--port", "7077", "--webui-port", "8080"]
+    ports:
+      - "127.0.0.1:28080:8080"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+
+  spark-worker:
+    &lt;&lt;: *runtime
+    entrypoint: ["/bin/bash", "-lc"]
+    command:
+      - &gt;-
+        exec /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+        --host "$$HOSTNAME" --cores 1 --memory 1g
+        --work-dir /tmp/spark-work spark://spark-master:7077
+    depends_on:
+      spark-master:
+        condition: service_healthy
+
+  spark-client:
+    &lt;&lt;: *runtime
+    hostname: spark-client
+    entrypoint: ["/bin/bash", "-lc"]
+    command: ["exec sleep infinity"]
+    ports:
+      - "127.0.0.1:24041:4040"
+    volumes:
+      - ./apps:/opt/spark/apps:ro
+      - ./data:/opt/spark/lab-data:ro
+      - ./expected:/opt/spark/lab-expected:ro
+      - ./output:/opt/spark/lab-output
+    depends_on:
+      spark-master:
+        condition: service_healthy
+</code></pre></details>
+    <details id="source-order-pipeline"><summary>apps/order_pipeline.py · CSV 파이프라인 전체</summary><pre data-source="apps/order_pipeline.py"><code>"""Small, synthetic CSV pipeline. Python standard library only."""
+import argparse
+import csv
+from datetime import date
+from pathlib import Path
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[1]
+FIELDS = ["order_id", "order_date", "amount"]
+
+
+def clean_orders(source):
+    unique = {}
+    input_rows = 0
+    with source.open(encoding="utf-8-sig", newline="") as stream:
+        reader = csv.DictReader(stream)
+        if reader.fieldnames != FIELDS:
+            raise ValueError("CSV header must be order_id,order_date,amount")
+        for line, row in enumerate(reader, start=2):
+            input_rows += 1
+            if None in row or any(row[key] is None for key in FIELDS):
+                raise ValueError(f"line {line}: expected three columns")
+            order_id = row["order_id"].strip()
+            if not order_id:
+                raise ValueError(f"line {line}: empty order_id")
+            order_date = date.fromisoformat(row["order_date"].strip()).isoformat()
+            amount = int(row["amount"])
+            if amount &lt; 0:
+                raise ValueError(f"line {line}: amount must be nonnegative")
+            record = (order_date, amount)
+            if order_id in unique and unique[order_id] != record:
+                raise ValueError(f"line {line}: conflicting order_id {order_id}")
+            unique[order_id] = record
+    return unique, input_rows
+
+
+def run(source, output):
+    if source.resolve() == output.resolve():
+        raise ValueError("input and output must be different files")
+    orders, input_rows = clean_orders(source)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", newline="", dir=output.parent,
+            prefix="orders-", suffix=".tmp", delete=False,
+        ) as stream:
+            temporary = Path(stream.name)
+            writer = csv.writer(stream, lineterminator="\n")
+            writer.writerow(FIELDS)
+            for order_id, (order_date, amount) in sorted(orders.items()):
+                writer.writerow([order_id, order_date, amount])
+        temporary.replace(output)
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+    print(f"INPUT_ROWS={input_rows}")
+    print(f"UNIQUE_ORDERS={len(orders)}")
+    print(f"DUPLICATE_ROWS={input_rows - len(orders)}")
+    print(f"TOTAL_AMOUNT={sum(amount for _, amount in orders.values())}")
+    print(f"OUTPUT={output}")
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", type=Path, default=ROOT / "data/orders.csv")
+    parser.add_argument("--output", type=Path, default=ROOT / "output/orders-clean.csv")
+    args = parser.parse_args()
+    try:
+        run(args.input, args.output)
+    except (ValueError, OSError) as error:
+        parser.exit(1, f"ERROR: {error}\n")
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></details>
+    <details id="source-check-cluster"><summary>apps/check_cluster.py · Worker 등록 검사 전체</summary><pre data-source="apps/check_cluster.py"><code>"""Wait for the requested number of live one-core workers; no PySpark needed."""
+import argparse
+import json
+import time
+from urllib.error import URLError
+from urllib.request import urlopen
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--workers", type=int, required=True)
+    parser.add_argument("--timeout", type=int, default=90)
+    args = parser.parse_args()
+    if args.workers &lt; 1 or args.timeout &lt; 1:
+        parser.error("workers and timeout must be positive")
+    deadline = time.monotonic() + args.timeout
+    observed = "master not reached"
+    while time.monotonic() &lt; deadline:
+        try:
+            with urlopen("http://spark-master:8080/json/", timeout=3) as response:
+                status = json.load(response)
+            live = [worker for worker in status["workers"] if worker["state"] == "ALIVE"]
+            cores = sum(int(worker["cores"]) for worker in live)
+            observed = f"ALIVE_WORKERS={len(live)} TOTAL_CORES={cores}"
+            if len(live) == args.workers and cores == args.workers:
+                print(observed)
+                print("REGISTRATION_CHECK=PASS")
+                return
+        except (URLError, TimeoutError, OSError, ValueError, KeyError) as error:
+            observed = str(error)
+        time.sleep(1)
+    parser.exit(1, f"REGISTRATION_CHECK=FAIL: {observed}\n")
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></details>
+    <details id="source-sum"><summary>apps/sum_app.py · 합계 계산 전체</summary><pre data-source="apps/sum_app.py"><code>"""Verify a known answer and leave time to inspect the Spark UI."""
+import argparse
+import time
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--wait-seconds", type=int, default=0)
+    args = parser.parse_args()
+    if args.wait_seconds &lt; 0:
+        parser.error("wait-seconds must be nonnegative")
+    from pyspark.sql import SparkSession, functions as F
+
+    spark = SparkSession.builder.appName("Public-First-Sum").getOrCreate()
+    try:
+        spark.sparkContext.setLogLevel("WARN")
+        print(f"MASTER={spark.sparkContext.master}", flush=True)
+        print(f"APP_ID={spark.sparkContext.applicationId}", flush=True)
+        numbers = spark.range(1, 101, 1, 4)
+        numbers.printSchema()
+        result = numbers.agg(F.sum("id").alias("total"))
+        result.explain()
+        total = result.first()["total"]
+        if total != 5050:
+            raise ValueError(f"expected 5050, received {total}")
+        print(f"SUM_1_TO_100={total}", flush=True)
+        print("CHECK=PASS", flush=True)
+        print(f"UI_WAIT_SECONDS={args.wait_seconds}", flush=True)
+        time.sleep(args.wait_seconds)
+    finally:
+        spark.stop()
+    print("APP_STOPPED", flush=True)
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></details>
+    <details id="source-submit"><summary>apps/submit.sh · 제출 옵션 전체</summary><pre data-source="apps/submit.sh"><code>#!/usr/bin/env bash
+set -euo pipefail
+
+app="${1:-sum_app.py}"
+if (( $# &gt; 0 )); then shift; fi
+case "$app" in
+  sum_app.py|benchmark_app.py) ;;
+  *) echo "Choose sum_app.py or benchmark_app.py" &gt;&amp;2; exit 2 ;;
+esac
+cores="${TOTAL_EXECUTOR_CORES:-2}"
+if [[ ! "$cores" =~ ^[1-9][0-9]*$ ]]; then
+  echo "TOTAL_EXECUTOR_CORES must be a positive integer" &gt;&amp;2
+  exit 2
+fi
+
+exec /opt/spark/bin/spark-submit \
+  --master spark://spark-master:7077 \
+  --deploy-mode client \
+  --driver-memory 512m \
+  --executor-memory 512m \
+  --executor-cores 1 \
+  --total-executor-cores "$cores" \
+  --conf spark.dynamicAllocation.enabled=false \
+  --conf spark.sql.adaptive.enabled=false \
+  --conf spark.driver.host=spark-client \
+  --conf spark.driver.bindAddress=0.0.0.0 \
+  --conf spark.driver.port=39000 \
+  --conf spark.blockManager.port=39001 \
+  "/opt/spark/apps/$app" "$@"
+</code></pre></details>
+    <details id="source-wordcount"><summary>apps/wordcount_app.py · 단어 집계 전체</summary><pre data-source="apps/wordcount_app.py"><code>"""Count the supplied small text fixture, save Parquet, then read it back."""
+import argparse
+import csv
+from pathlib import Path
+
+
+def small_counts(frame):
+    rows = frame.limit(101).collect()
+    if len(rows) &gt; 100:
+        raise ValueError("this teaching check supports at most 100 distinct words")
+    return {row["word"]: row["count"] for row in rows}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--input", default="/opt/spark/lab-data/words.txt")
+    parser.add_argument("--expected", default="/opt/spark/lab-expected/wordcounts.csv")
+    parser.add_argument("--output", default="/opt/spark/lab-output/wordcounts")
+    args = parser.parse_args()
+    with Path(args.expected).open(encoding="utf-8-sig", newline="") as stream:
+        expected = {row["word"]: int(row["count"]) for row in csv.DictReader(stream)}
+    from pyspark.sql import SparkSession, functions as F
+
+    spark = SparkSession.builder.appName("Public-Wordcount").getOrCreate()
+    try:
+        spark.sparkContext.setLogLevel("WARN")
+        if not spark.sparkContext.master.startswith("local["):
+            raise ValueError("use --master local[2]: files are mounted only in the client")
+        lines = spark.read.text(args.input)
+        words = lines.select(
+            F.explode(F.split(F.col("value"), r"\s+")).alias("word")
+        ).where(F.col("word") != "")
+        counts = words.groupBy("word").count()
+        ordered = counts.orderBy(F.desc("count"), F.asc("word"))
+        print("INPUT_LINES")
+        lines.show(truncate=False)
+        print("WORD_ROWS")
+        words.show(truncate=False)
+        print("WORD_COUNTS")
+        ordered.show(truncate=False)
+        ordered.explain()
+        if small_counts(ordered) != expected:
+            raise ValueError("word counts differ from the expected CSV")
+        ordered.write.mode("errorifexists").parquet(args.output)
+        restored = spark.read.parquet(args.output)
+        if small_counts(restored) != expected:
+            raise ValueError("Parquet round-trip check failed")
+        print("WORDCOUNT_CHECK=PASS", flush=True)
+        print(f"PARQUET_OUTPUT={args.output}", flush=True)
+    finally:
+        spark.stop()
+    print("APP_STOPPED", flush=True)
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></details>
+    <details id="source-benchmark"><summary>apps/benchmark_app.py · 반복 측정 전체</summary><pre data-source="apps/benchmark_app.py"><code>"""Measure repeated aggregation actions; timings are produced only by real runs."""
+import argparse
+import statistics
+import time
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--end", type=int, default=1_000_001)
+    parser.add_argument("--partitions", type=int, default=128)
+    parser.add_argument("--repetitions", type=int, default=3)
+    parser.add_argument("--wait-seconds", type=int, default=0)
+    args = parser.parse_args()
+    if not 2 &lt;= args.end &lt;= 4_294_967_296:
+        parser.error("end must be 2..4294967296 (keeps the sum within signed 64-bit)")
+    if args.partitions &lt; 1 or args.repetitions &lt; 1 or args.wait_seconds &lt; 0:
+        parser.error("partitions/repetitions must be positive; wait must be nonnegative")
+    from pyspark.sql import SparkSession, functions as F
+
+    spark = SparkSession.builder.appName("Public-Worker-Benchmark").getOrCreate()
+    try:
+        spark.sparkContext.setLogLevel("WARN")
+        context = spark.sparkContext
+        print(f"MASTER={context.master}", flush=True)
+        print(f"APP_ID={context.applicationId}", flush=True)
+        print(f"REQUESTED_CORES={context.getConf().get('spark.cores.max', 'unset')}", flush=True)
+        print(f"END_EXCLUSIVE={args.end}", flush=True)
+        print(f"PARTITIONS={args.partitions}", flush=True)
+        print(f"REPETITIONS={args.repetitions}", flush=True)
+        numbers = spark.range(1, args.end, 1, args.partitions)
+        expected = (args.end - 1) * args.end // 2
+        durations = []
+        for repeat in range(1, args.repetitions + 1):
+            started = time.perf_counter()
+            total = numbers.agg(F.sum("id").alias("total")).first()["total"]
+            elapsed = time.perf_counter() - started
+            if total != expected:
+                raise ValueError(f"expected {expected}, received {total}")
+            durations.append(elapsed)
+            print(f"RUN_{repeat}_SECONDS={elapsed:.6f}", flush=True)
+        print(f"SUM_RESULT={total}", flush=True)
+        print(f"MEDIAN_SECONDS={statistics.median(durations):.6f}", flush=True)
+        print("CHECK=PASS", flush=True)
+        print(f"UI_WAIT_SECONDS={args.wait_seconds}", flush=True)
+        time.sleep(args.wait_seconds)
+    finally:
+        spark.stop()
+    print("APP_STOPPED", flush=True)
+
+
+if __name__ == "__main__":
+    main()
+</code></pre></details>
+    <details><summary>data/orders.csv · 합성 주문</summary><pre data-source="data/orders.csv"><code>order_id,order_date,amount
+A001,2026-09-01,10000
+A002,2026-09-01,20000
+A002,2026-09-01,20000
+A003,2026-09-02,5000
+A003,2026-09-02,5000
+</code></pre></details>
+    <details><summary>data/words.txt · 합성 문장</summary><pre data-source="data/words.txt"><code>spark spark
+data spark
+
+data pipeline
+</code></pre></details>
+    <details><summary>expected/orders-clean.csv · 주문 예상 결과</summary><pre data-source="expected/orders-clean.csv"><code>order_id,order_date,amount
+A001,2026-09-01,10000
+A002,2026-09-01,20000
+A003,2026-09-02,5000
+</code></pre></details>
+    <details><summary>expected/wordcounts.csv · 단어 예상 결과</summary><pre data-source="expected/wordcounts.csv"><code>word,count
+spark,3
+data,2
+pipeline,1
+</code></pre></details>
+    <details><summary>results-template.csv · 미측정 기록표</summary><pre data-source="results-template.csv"><code>condition,workers,requested_cores,end_exclusive,partitions,repetitions,run1_seconds,run2_seconds,run3_seconds,median_seconds,observed_executors,check,notes
+A1,1,1,1000000001,128,3,,,,,,,not_measured
+A2,2,2,1000000001,128,3,,,,,,,not_measured
+A3,4,4,1000000001,128,3,,,,,,,not_measured
+A4,8,8,1000000001,128,3,,,,,,,not_measured
+B,8,2,1000000001,128,3,,,,,,,not_measured
+</code></pre></details>
+  </section>
+  <footer class="chapter-footer"><div><h2>강의에서 실행 구조 다시 읽기</h2><p>입력 규칙, DataFrame 변화, Driver·Executor·Task를 실행 결과와 연결하세요.</p></div><a class="button" href="../chapters/03/index.html">3장 열기</a><a class="button secondary" href="../index.html">빅데이터 홈</a></footer>
+</main>
+
+
+</body></html>

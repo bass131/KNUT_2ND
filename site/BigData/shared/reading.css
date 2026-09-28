@@ -3,6 +3,30 @@
   container-type: inline-size;
   container-name: lesson;
 }
+
+/* English text can be longer than Korean labels on narrow screens. */
+html[lang='en']
+  .main-content
+  :is(h1, h2, h3, h4, p, li, td, th, summary, button, .button, .text-link, .visual *) {
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+html[lang='en'] .main-content :is(.button, .text-link) {
+  min-inline-size: 0;
+  max-inline-size: 100%;
+  white-space: normal;
+}
+html[lang='en'] .main-content :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+html[lang='en'] .analogy::before {
+  content: 'Learning analogy';
+}
+.main-content .port-destination {
+  display: block;
+  font-size: 14px;
+  line-height: 1.8;
+}
 .main-content :is(h1, h2, h3, h4) {
   text-wrap: balance;
   word-break: keep-all;
@@ -20,11 +44,43 @@
   letter-spacing: -0.015em;
 }
 .main-content:not(.home-main)
-  > :is(.chapter-hero, .lesson-section, .callout, .table-wrap, .source-note, .chapter-footer) {
+  > :is(
+    .chapter-hero,
+    .lesson-section,
+    .source-pack,
+    .callout,
+    .table-wrap,
+    .source-note,
+    .chapter-footer
+  ) {
   max-inline-size: 960px;
   margin-inline: auto;
 }
 .main-content:not(.home-main) .lesson-section > p:not(.source-note) {
+  max-inline-size: 52rem;
+}
+.source-pack {
+  min-inline-size: 0;
+  margin-block-end: 64px;
+  scroll-margin-top: 95px;
+}
+.source-pack > h3 {
+  margin-block: 32px 14px;
+  font-size: 20px;
+}
+.source-file {
+  min-inline-size: 0;
+  margin-block-start: 32px;
+  padding-block-start: 24px;
+  border-block-start: 1px solid var(--line);
+  scroll-margin-top: 95px;
+}
+.source-file h4 {
+  margin-block: 0 12px;
+  font-size: 18px;
+}
+.source-pack > p,
+.source-file > p {
   max-inline-size: 52rem;
 }
 .main-content:not(.home-main) :is(.card p, .card li, details p) {
@@ -566,16 +622,66 @@
   font-size: 15px;
 }
 .main-content > .lesson-part {
-  margin-block: 64px 0;
-  padding-block: 24px 0;
-  border-block-start: 2px solid var(--accent-blue);
+  --part-accent: var(--accent-blue);
+  --part-tint: var(--tint-blue);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  align-items: center;
+  gap: 28px;
+  margin-block: 96px 40px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-block-start: 4px solid var(--part-accent);
+  border-radius: 20px;
+  background: var(--part-tint);
+}
+.lesson-part[data-part='B'] {
+  --part-accent: var(--accent-purple);
+  --part-tint: var(--tint-purple);
+}
+.lesson-part[data-part='C'] {
+  --part-accent: var(--accent-teal);
+  --part-tint: var(--tint-teal);
+}
+.lesson-part .part-copy {
+  min-inline-size: 0;
+}
+.main-content .lesson-part .part-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 0 0 18px;
+  font-size: 38px;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.part-title > span:last-child {
+  min-inline-size: 0;
+}
+.part-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 48px;
+  block-size: 48px;
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  color: var(--part-accent);
+  font-size: 28px;
+  letter-spacing: 0;
+}
+.lesson-part .part-art {
+  display: block;
+  inline-size: 180px;
+  block-size: 180px;
+  object-fit: contain;
 }
 .main-content > .lesson-part p {
-  margin: 0 0 8px;
-}
-.main-content > .lesson-part .eyebrow {
-  font-size: 16px;
-  letter-spacing: 0;
+  margin: 0;
+  max-inline-size: 38rem;
 }
 .toc-group {
   font-size: 12px;
@@ -616,11 +722,122 @@
   .learning-route {
     padding: 20px;
   }
-  .main-content > .lesson-part {
-    margin-top: 48px;
-  }
   .main-content .source-figure figcaption {
     padding: 14px 16px;
+  }
+}
+/* Clear transitions throughout lessons and the practice guide. */
+@media screen {
+  .main-content:not(.home-main) .section-heading h2 {
+    font-size: 34px;
+    line-height: 1.4;
+  }
+  .main-content:not(.home-main) .lesson-section > .section-heading {
+    padding-block-start: 28px;
+    border-block-start: 2px solid var(--line);
+    margin-block-end: 28px;
+    gap: 18px;
+  }
+  .main-content:not(.home-main) .lesson-part + .lesson-section > .section-heading {
+    padding-block-start: 0;
+    border-block-start: 0;
+  }
+  .main-content:not(.home-main) .section-number {
+    inline-size: 46px;
+    block-size: 46px;
+    margin-top: 0;
+    font-size: 17px;
+    font-weight: 750;
+    background: var(--tint-blue);
+    color: var(--accent-blue);
+  }
+  .main-content:not(.home-main) :is(.lesson-section, .source-pack) > h3 {
+    margin-block: 52px 18px;
+    padding-block-start: 26px;
+    border-block-start: 1px solid var(--line);
+    font-size: 27px;
+    font-weight: 750;
+    line-height: 1.45;
+    letter-spacing: -0.035em;
+  }
+  .main-content:not(.home-main) .source-file {
+    margin-block-start: 48px;
+    padding-block-start: 30px;
+  }
+  .main-content:not(.home-main) .source-file > h4 {
+    margin-block-end: 18px;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+  .main-content:not(.home-main) .steps > .step > h3 {
+    margin-block-end: 16px;
+    font-size: 24px;
+    font-weight: 750;
+    line-height: 1.5;
+  }
+  .main-content:not(.home-main) .source-file > h4 code {
+    font-size: 0.88em;
+  }
+}
+@container lesson (max-width:700px) {
+  .main-content > .lesson-part {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    margin-block: 64px 32px;
+    padding: 24px;
+  }
+  .main-content .lesson-part .part-title {
+    font-size: 30px;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .part-letter {
+    inline-size: 38px;
+    block-size: 38px;
+    border-radius: 10px;
+    font-size: 23px;
+  }
+  .lesson-part .part-art {
+    grid-row: 1;
+    inline-size: 104px;
+    block-size: 104px;
+    margin-block-end: 12px;
+  }
+  .main-content:not(.home-main) .section-heading h2 {
+    font-size: 28px;
+  }
+  .main-content:not(.home-main) .lesson-section > .section-heading {
+    gap: 12px;
+  }
+  .main-content:not(.home-main) .section-number {
+    inline-size: 38px;
+    block-size: 38px;
+    font-size: 15px;
+  }
+  .main-content:not(.home-main) :is(.lesson-section, .source-pack) > h3 {
+    margin-block: 42px 16px;
+    padding-block-start: 22px;
+    font-size: 24px;
+  }
+  .main-content:not(.home-main) .source-file > h4 {
+    font-size: 22px;
+  }
+  .main-content:not(.home-main) .steps > .step > h3 {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .main-content > .lesson-part {
+    padding: 20px;
+  }
+  .main-content .lesson-part .part-title {
+    font-size: 27px;
+  }
+  .main-content:not(.home-main) .section-heading h2 {
+    font-size: 26px;
+  }
+  .main-content:not(.home-main) :is(.lesson-section, .source-pack) > h3 {
+    font-size: 23px;
   }
 }
 @media print {
@@ -629,6 +846,19 @@
   }
   .main-content > .lesson-part {
     break-after: avoid;
+    display: block;
+    margin-block: 24pt 16pt;
+    padding: 16pt 0 0;
+    border-inline: 0;
+    border-block-end: 0;
+    border-radius: 0;
+    background: white;
+  }
+  .main-content .lesson-part .part-title {
+    font-size: 22pt;
+  }
+  .lesson-part .part-art {
+    display: none;
   }
   .main-content .source-figure {
     break-inside: avoid;

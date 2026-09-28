@@ -36,3 +36,19 @@
 /site/**/.env*
 /site/**/*.pem
 /site/**/*.key
+
+# Reviewed learning downloads; original PDF/PPTX and development tools stay private.
+!/site/BigData/practice/apps/benchmark_app.py
+!/site/BigData/practice/apps/check_cluster.py
+!/site/BigData/practice/apps/order_pipeline.py
+!/site/BigData/practice/apps/sum_app.py
+!/site/BigData/practice/apps/wordcount_app.py
+!/site/BigData/실습자료/2장_실습자료/README.md
+!/site/BigData/실습자료/2장_실습자료/apps/check_network.py
+!/site/BigData/실습자료/2장_실습자료/apps/check_pyspark.py
+!/site/BigData/실습자료/2장_실습자료/apps/first_app.py
+!/site/BigData/실습자료/3장_실습자료/apps/performance_app.py
+
+# User-requested practice ZIPs; each archive is checked against its exact source list.
+!/site/BigData/downloads/spark-execution-lab.zip
+!/site/BigData/downloads/spark-performance-lab.zip

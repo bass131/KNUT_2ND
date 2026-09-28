@@ -15,16 +15,19 @@
   <script src="../../shared/course/content.js" defer=""></script>
   <script src="../../shared/course/visuals.js" defer=""></script>
   <script src="../../shared/course.js" defer=""></script>
+  <link rel="stylesheet" href="../../shared/language.css">
+  <script src="../../shared/translations-en.js" defer=""></script>
+  <script src="../../shared/language.js" defer=""></script>
 </head>
 <body data-page="01" data-root="../../">
   <div id="course-shell"></div>
   <main id="main-content" class="main-content">
     <header class="chapter-hero">
       <p class="eyebrow">CHAPTER 01 · DATA ENGINEERING</p>
-      <h1>데이터가 흐르는<br><span class="title-blue">길을 만듭니다.</span></h1>
+      <h1>데이터 처리 흐름과 <span class="title-blue">검증의 기초</span></h1>
       <p class="hero-description">작은 주문표에서 시작해 데이터 처리의 흐름, Spark의 역할, 결과를 검증하는 방법을 익힙니다.</p>
       <div class="hero-meta"><span>입문 · 개념과 학습 준비</span><span>7개 학습 섹션</span><span>강의 1장 · 16슬라이드 기반</span></div>
-      <p><a class="button" href="#first-words">처음부터 읽기</a> </p>
+      <p><a class="button" href="#first-words">처음부터 읽기</a> <span class="source-reference">교수님 강의자료</span></p>
     </header>
 
     <section class="lesson-section" id="first-words" data-title="처음 만나는 빅데이터">
@@ -71,12 +74,13 @@
       </ol>
       <div class="card-grid"><article class="card"><h3>계산 뒤 확인할 세 가지</h3><ul class="explanation-list"><li><strong>누락:</strong> 빠진 주문이 없는가?</li><li><strong>재실행:</strong> 다시 실행해도 같은 기준인가?</li><li><strong>복구:</strong> 중단 후 처리를 재개할 수 있는가?</li></ul></article><article class="card"><h3>저장소도 목적에 따라 다릅니다.</h3><ul class="explanation-list"><li><strong>데이터 레이크:</strong> 다양한 데이터를 폭넓게 보관하는 저장소입니다.</li><li><strong>데이터 웨어하우스:</strong> 분석하기 좋게 정리한 데이터를 다루는 저장 체계입니다.</li></ul></article></div>
       <div class="quiz" data-answer="1" data-explanation="명세에서 A002는 같은 주문의 재전송입니다. 이 기준을 적용하면 2건, 30,000원입니다. 프로그램이 오류 없이 끝나도 50,000원이 나왔다면 요구사항을 충족하지 못한 것입니다."><h3>확인 질문 · 위 명세에 맞는 결과는 무엇인가요?</h3><div class="quiz-options"><button type="button">3건 · 50,000원</button><button type="button">2건 · 30,000원</button><button type="button">파일을 읽었으므로 검증 완료</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
+      <div class="callout tip"><strong>직접 실행 · 주문 CSV 파이프라인</strong><p>이 절을 읽은 뒤 <a href="../../practice/index.html#orders">합성 주문 5행을 정리하는 공개 실습</a>을 실행해 보세요. 입력 CSV, Python 전체 코드, 예상 결과를 제공하며 중복·충돌·재실행을 확인합니다. Python 표준 라이브러리만 사용합니다.</p></div>
       <p class="source-note">근거: 1장 실제 슬라이드 2–3. 주문표와 계산 결과는 강의 목표를 설명하는 학습용 예제이며 실습 실행 결과가 아닙니다.</p>
       <label class="completion"><input type="checkbox" data-complete="01-data-pipeline"> 이 내용을 이해했어요</label>
     </section>
 
     <section class="lesson-section" id="four-skills" data-title="네 가지 역량과 Spark 용어">
-      <div class="section-heading"><span class="section-number">03</span><h2>코드 다음에 물어야 할 네 가지</h2></div>
+      <div class="section-heading"><span class="section-number">03</span><h2>데이터 시스템을 만드는 네 가지 역량</h2></div>
       <p class="lead">“실행됐다”에서 멈추지 않고, 무엇을 계산했고 어디서 실행됐으며 커져도 괜찮은지 설명합니다.</p>
       <div class="analogy" data-labelled=""><strong>학습용 비유 · 공동 요리의 책임</strong><p>함께 요리할 때는 조리뿐 아니라 역할 배분·품질 유지·완성품 확인도 필요합니다. 데이터 시스템에서도 아래 네 역량을 함께 익힙니다.</p></div>
       <div class="card-grid">
@@ -92,7 +96,7 @@
         <tr><th scope="row">Partition</th><td>나누어 처리할 데이터 조각</td><td>각자 맡은 문제 묶음</td></tr>
         <tr><th scope="row">Shuffle</th><td>다음 계산에 필요한 기준으로 데이터를 실행 자원 사이에 재분배하는 과정</td><td>담당 기준이 바뀌어 문제지를 다시 나누기</td></tr>
       </tbody></table></div>
-      <div class="callout tip"><strong>Worker와 Executor 구분하기</strong><p>Worker는 계산 자원을 제공하고 Executor를 실행합니다. Executor는 실제 데이터 처리 작업을 수행하는 프로세스입니다. 두 역할의 관계는 2장에서 실습합니다.</p></div>
+      <div class="callout tip"><strong>Worker와 Executor 구분하기</strong><ul class="explanation-list"><li><strong>Worker:</strong> 계산 자원을 제공하고 Executor를 실행합니다.</li><li><strong>Executor:</strong> 실제 데이터 처리 작업을 수행하는 프로세스입니다.</li></ul><p>두 역할의 관계는 2장에서 실습합니다.</p></div>
       <details><summary>더 알아보기 · 실행을 살펴보는 도구는 무엇인가요?</summary><ul class="explanation-list"><li><strong>Spark UI:</strong> 작업 상태와 실행 정보를 보는 웹 화면입니다.</li><li><strong>실행계획(Execution Plan):</strong> Spark가 계산을 어떤 연산 순서로 수행하려는지 나타냅니다. DataFrame의 <code>explain()</code>으로 계획을 살펴볼 수 있습니다.</li><li><strong>Join:</strong> 공통 키를 기준으로 표를 연결하는 연산입니다. 예를 들어 주문표와 상품표를 상품 번호로 연결합니다.</li></ul><p>이전 수업의 관련 용어도 함께 연결해 보세요.</p><ul class="explanation-list"><li><strong>Hadoop:</strong> 분산 데이터 저장·처리 기술군입니다.</li><li><strong>HDFS:</strong> 파일을 여러 컴퓨터에 나누어 저장하는 시스템입니다.</li><li><strong>MapReduce:</strong> 나누어 계산하고 결과를 모으는 처리 모델입니다.</li></ul><p>여기서는 배경 이름만 연결하고, 별도 강의자료가 없는 세부 구현은 다루지 않습니다.</p></details>
       <details><summary>확인 질문 · Partition은 컴퓨터 한 대를 뜻하나요?</summary><p>아닙니다. Partition은 데이터 조각입니다. 하나의 실행 자원이 여러 조각을 차례로 처리할 수 있습니다. 데이터 조각 수와 컴퓨터 수를 같은 것으로 생각하지 마세요.</p></details>
       <p class="source-note">근거: 1장 실제 슬라이드 4–5, 10. 용어의 쉬운 정의와 비유는 학습용 보충입니다.</p>
@@ -100,7 +104,7 @@
     </section>
 
     <section class="lesson-section" id="semester-map" data-title="한 학기의 학습 지도">
-      <div class="section-heading"><span class="section-number">04</span><h2>먼저 실행하고, 연결하고, 검증합니다.</h2></div>
+      <div class="section-heading"><span class="section-number">04</span><h2>Spark 기초부터 전체 파이프라인까지</h2></div>
       <p>학기 흐름은 <strong>Spark 실행 이해 → 저장·실시간 처리 연결 → 전체 파이프라인 검증</strong>입니다. 아래 표에서는 주차별 큰 흐름을 확인하세요.</p>
       <div class="analogy" data-labelled=""><strong>학습용 비유 · 작은 가게에서 물류 체계로</strong><p>가게의 주문 정리부터 익힌 뒤 창고·배송을 연결하고, 전체 주문이 잘 도착하는지 확인하는 학습 순서에 빗댈 수 있습니다.</p></div>
       <div class="table-wrap"><table><caption>교수님 자료의 주차 구간 그대로 보는 로드맵</caption><thead><tr><th scope="col">주차</th><th scope="col">강의 범위</th><th scope="col">처음 배우는 학생의 질문</th></tr></thead><tbody>
@@ -110,7 +114,7 @@
         <tr><th scope="row">14주</th><td>통합 Data Engineering: 전체 파이프라인, 데이터 품질, 장애 복구, AI를 활용한 구현</td><td>처음부터 끝까지 이어지는 시스템을 어떻게 검증할까?</td></tr>
         <tr><th scope="row">15주</th><td>기말시험</td><td>설계·구현·검증의 선택을 설명할 수 있을까?</td></tr>
       </tbody></table></div>
-      <div class="callout"><strong>현재 학습 페이지는 1–3장입니다.</strong><p>표의 후반 주차는 교수님이 제시한 학기 계획이며, 해당 주차의 상세 본문은 아직 제공되지 않습니다.</p></div>
+      <div class="callout"><strong>현재 학습 페이지는 1–4장입니다.</strong><p>표의 후반 주차는 교수님이 제시한 학기 계획이며, 해당 주차의 상세 본문은 아직 제공되지 않습니다.</p></div>
       <details><summary>낯선 이름 빠르게 보기 · 데이터 포맷과 후반 기술</summary>
         <div class="table-wrap"><table><thead><tr><th scope="col">이름</th><th scope="col">우선 알아둘 뜻</th></tr></thead><tbody>
           <tr><th scope="row">CSV</th><td>쉼표 등 구분자로 열을 나눈 텍스트 파일 형식</td></tr>
@@ -133,7 +137,8 @@
     <section class="lesson-section" id="reproducible-lab" data-title="같은 환경에서 시작하기">
       <div class="section-heading"><span class="section-number">05</span><h2>Docker는 실습을 위한 준비 도구입니다.</h2></div>
       <p class="lead">친구의 PC에서는 되는데 내 PC에서는 안 된다면, 코드를 보기 전에 실행 환경이 같은지 확인해야 합니다.</p>
-      <p><strong>재현 가능한 환경</strong>은 같은 설정으로 다시 실행할 수 있게 구성한 환경입니다. 수업에서는 Windows PC의 Docker Desktop과 WSL2를 사용합니다.</p>
+      <p><strong>재현 가능한 환경</strong>은 같은 설정으로 다시 실행할 수 있게 구성한 환경입니다.</p>
+      <p>수업에서는 Windows PC의 Docker Desktop과 WSL2를 사용합니다. 아래에서 두 도구의 역할과 환경 구성에 필요한 용어를 먼저 살펴봅니다.</p>
       <div class="analogy" data-labelled=""><strong>학습용 비유 · 실험 키트</strong><p>실험 재료와 조립 설명서를 맞추듯, 이미지와 설정 파일로 시작 조건을 맞춥니다. PC 자원·네트워크는 다를 수 있어 실행 결과는 별도로 확인해야 합니다.</p></div>
       <h3>환경을 만드는 도구와 구성 요소</h3>
       <ul class="explanation-list"><li><strong>WSL2:</strong> Windows에서 Linux 환경을 실행하는 기반.</li><li><strong>Docker:</strong> 실행 환경을 컨테이너로 관리하는 도구.</li></ul>
@@ -148,12 +153,12 @@
       <p>이미지의 버전·구성을 가리키는 이름이 <strong>태그</strong>입니다. 2장 배포 파일의 값은 <code>spark:4.1.3-scala2.13-java21-python3-ubuntu</code>이며, 실습 때 이 값을 기준으로 맞춥니다.</p>
       <details><summary>2장 명령 미리 보기 · 시작·상태 확인·정리</summary><div class="card-grid"><article class="card"><h3>실행을 관리하는 동사</h3><ul class="explanation-list"><li><strong><code>up</code>:</strong> 구성에 따라 컨테이너를 생성하고 시작합니다.</li><li><strong><code>ps</code>:</strong> 상태를 확인합니다.</li><li><strong><code>logs</code>:</strong> 실행 기록을 확인합니다.</li><li><strong><code>exec</code>:</strong> 실행 중인 컨테이너 안에서 명령을 수행합니다.</li><li><strong><code>stop</code>:</strong> 기존 컨테이너를 정지합니다.</li><li><strong><code>start</code>:</strong> 정지한 기존 컨테이너를 다시 시작합니다.</li><li><strong><code>down</code>:</strong> Compose가 만든 컨테이너와 네트워크를 정리합니다.</li></ul><p>실제 명령 순서와 실행 위치는 2장에서 안내합니다.</p></article><article class="card"><h3>준비 → 상태 → 계산 검증</h3><p>설치 확인만으로 실습이 끝나지 않습니다. 다음 순서로 증거를 모읍니다.</p><ol class="explanation-list"><li>이미지 확인</li><li>서비스 시작</li><li>Worker 등록 확인</li><li>통신 확인</li><li>작은 계산 실행</li></ol><p><a href="../02/index.html">2장: Docker와 Spark 실습으로 이동 →</a></p></article></div></details>
       <div class="quiz" data-answer="1" data-explanation="같은 이미지는 실행 환경을 맞추는 데 도움이 됩니다. 하지만 Worker 등록, 네트워크, 실제 계산 결과는 따로 확인해야 합니다. 이미지를 받았다는 사실만으로 분산 계산이 성공한 것은 아닙니다."><h3>확인 질문 · 같은 이미지를 받았다면 무엇을 알 수 있나요?</h3><div class="quiz-options"><button type="button">분산 계산 결과가 반드시 정확하다</button><button type="button">실행 환경을 맞추는 출발점이 마련됐다</button><button type="button">내 PC의 메모리가 자동으로 늘었다</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-      <p class="source-note">근거: 1장 실제 슬라이드 7–8, 16. 구체적인 이미지와 파일 연결은 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">배포 compose.yaml</span> 기준. 16번 슬라이드의 설치 안내는 2장 실습으로 연결합니다.</p>
+      <p class="source-note">근거: 1장 실제 슬라이드 7–8, 16. 구체적인 이미지와 파일 연결은 <a href="../../실습자료/2장_실습자료/compose.yaml">배포 compose.yaml</a> 기준. 16번 슬라이드의 설치 안내는 2장 실습으로 연결합니다.</p>
       <label class="completion"><input type="checkbox" data-complete="01-reproducible-lab"> 이 내용을 이해했어요</label>
     </section>
 
     <section class="lesson-section" id="verify-ai" data-title="AI 코드도 직접 검증">
-      <div class="section-heading"><span class="section-number">06</span><h2>“맞는 값”과 “괜찮은 구조”를 함께 봅니다.</h2></div>
+      <div class="section-heading"><span class="section-number">06</span><h2>계산 결과와 실행 구조를 함께 검증하기</h2></div>
       <p>AI는 코드·테스트 초안과 오류 분석을 돕습니다. <strong>정확성·확장성·성능을 확인하고 선택의 이유를 설명하는 일</strong>은 개발자의 책임입니다.</p>
       <div class="analogy" data-labelled=""><strong>학습용 비유 · 계산기 답을 검산하기</strong><p>계산기에 중복 주문을 입력하면 계산은 맞아도 매출은 틀립니다. AI 코드도 입력과 계산 기준이 맞는지 사람이 검산해야 합니다.</p></div>
       <h3>검증은 세 단계로 진행합니다.</h3>
@@ -175,12 +180,12 @@ print(row["total"])</code></pre><ul class="explanation-list"><li><strong><code>a
       <ul class="explanation-list"><li><strong>Transformation:</strong> 데이터를 어떻게 바꿀지 표현하는 연산입니다. 위 B의 <code>agg</code>는 집계를 표현합니다.</li><li><strong>Action:</strong> 결과를 요청하거나 저장하는 등 계산을 수행하게 하는 연산입니다. B의 <code>first()</code>는 결과를 요청하며, A의 <code>collect()</code>도 Action입니다.</li></ul><p>Spark에서는 코드를 적는 순서와 실제 데이터 계산 시점을 구분하는 습관이 필요합니다.</p>
       <details><summary>더 알아보기 · collect()는 항상 잘못된 코드인가요?</summary><p>작은 결과를 의도적으로 가져올 때는 사용할 수 있습니다. 기준은 “몇 행, 몇 바이트가 Driver에 모이는가?”입니다.</p><ul class="explanation-list"><li><strong>다른 수집 방식:</strong> <code>toPandas()</code>도 데이터를 Driver의 pandas 표로 가져옵니다.</li><li><strong>Python 반복문:</strong> 큰 데이터를 한곳에 모아 순차 처리하는지 확인합니다.</li><li><strong>그룹별 집계:</strong> 그룹 수가 많으면 집계 결과도 커질 수 있습니다.</li><li><strong>성능 판단:</strong> 같은 조건에서 시간과 자원 사용을 측정해야 합니다.</li></ul></details>
       <div class="quiz" data-answer="1" data-explanation="정답 일치와 확장성은 별도로 검증해야 합니다. 원본 전체를 collect하면 Driver로 모이는 양이 입력과 함께 늘어납니다. 위 B는 최종 결과 한 행을 가져오지만, 실제 실행 비용은 실행계획과 UI로 확인해야 합니다."><h3>확인 질문 · 두 코드가 5,050을 출력했다면?</h3><div class="quiz-options"><button type="button">두 코드의 확장성과 속도도 같다</button><button type="button">작은 입력의 정답은 같아도 데이터 이동과 실행 구조는 더 확인해야 한다</button><button type="button">collect()가 있는 코드는 어떤 경우에도 실행하면 안 된다</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-      <p class="source-note">근거: 1장 실제 슬라이드 9–10, 14. 코드 비교는 검증 질문을 구체화한 학습용 예제입니다. 배포 실습의 1–100 합계 예제는 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">first_app.py</span>에서 확인할 수 있습니다.</p>
+      <p class="source-note">근거: 1장 실제 슬라이드 9–10, 14. 코드 비교는 검증 질문을 구체화한 학습용 예제입니다. 배포 실습의 1–100 합계 예제는 <a href="../../실습자료/2장_실습자료/apps/first_app.py">first_app.py</a>에서 확인할 수 있습니다.</p>
       <label class="completion"><input type="checkbox" data-complete="01-verify-ai"> 이 내용을 이해했어요</label>
     </section>
 
     <section class="lesson-section" id="next-step" data-title="진로와 첫 장 마무리">
-      <div class="section-heading"><span class="section-number">07</span><h2>도구 이름보다, 설명할 수 있는 경험</h2></div>
+      <div class="section-heading"><span class="section-number">07</span><h2>데이터 엔지니어의 역량과 학습 점검</h2></div>
       <p class="lead">작은 파이프라인 하나라도 “왜 이렇게 만들었고 어떻게 확인했는지” 말할 수 있는 경험을 쌓아 갑니다.</p>
       <p>강의의 채용 자료는 Python·SQL부터 대용량 처리, 저장 구조, 운영·협업까지 다룹니다. 이번 수업에서는 작은 데이터 흐름을 구현하고 오류를 찾아 설명하는 경험을 쌓습니다.</p>
       <div class="analogy" data-labelled=""><strong>학습용 비유 · 공구보다 수리 과정</strong><p>수리에는 고장 찾기 → 공구 선택 → 수리 → 작동 확인이 필요합니다. 기술 이름도 이런 문제 해결 과정에 연결해 익혀 보세요.</p></div>
@@ -205,15 +210,15 @@ print(row["total"])</code></pre><ul class="explanation-list"><li><strong><code>a
         <dt>Vector</dt><dd>수치의 배열입니다.</dd>
         <dt>Graph</dt><dd>대상과 관계를 표현하는 구조입니다.</dd>
       </dl></details>
-      <details><summary>강의 속 진로·통계 자료와 출처를 확인하려면</summary><p>슬라이드 11은 <strong>2026년 9월 기준</strong> 채용공고 분석, 12–13은 수요·임금 참고 자료, 14는 AI 생산성 조사입니다. 강의 당시의 참고 자료이며, 원본도 국내 임금을 추정값으로 표시합니다.</p><p>인용 제목·URL과 원문 표현은 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">슬라이드 추출 원문</span>의 11–15절과 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">원본 PPTX</span>에서 확인할 수 있습니다.</p></details>
+      <details><summary>강의 속 진로·통계 자료 읽기</summary><p>슬라이드 11은 <strong>2026년 9월 기준</strong> 채용공고 분석, 12–13은 수요·임금 참고 자료, 14는 AI 생산성 조사입니다. 강의 당시의 참고 자료이며, 국내 임금은 추정값으로 표시되어 있습니다.</p><p>이 절에서는 데이터 수집·정리·분석·검증을 연결하는 직무 역량을 살펴봅니다. 통계는 조사 시점과 표본에 따라 달라지므로 현재 취업 시장의 수치로 일반화하지 않습니다.</p></details>
       <h3>다음 장으로 가기 전, 내 말로 확인하기</h3>
       <ul class="checklist"><li>DE를 “수집 → 변환 → 저장 → 제공”의 흐름으로 설명할 수 있다.</li><li>Driver·Executor는 실행 역할이고 Partition은 데이터 조각임을 구분한다.</li><li>Docker는 실행 환경 준비 도구이며 실제 계산 성공은 따로 검증해야 함을 안다.</li><li>작은 입력의 정답 일치와 큰 입력의 실행 가능성이 다른 질문임을 설명할 수 있다.</li></ul>
       <details><summary>확인 질문 · 지금 당장 해야 할 한 가지는 무엇인가요?</summary><p>2장에서 PC → Docker 컨테이너 → Spark 역할의 관계를 읽고, 배포 파일 위치에서 실행하며 상태·통신·결과를 확인하세요.</p></details>
-      <p class="source-note">근거: 1장 실제 슬라이드 11–15 및 슬라이드 2의 강의 목표. 진로 통계의 현재 유효성을 별도로 주장하지 않습니다. 모든 16슬라이드의 원문은 <span title="원본 자료와 작업 문서는 공개하지 않습니다.">전체 추출 문서</span>에 있습니다.</p>
+      <p class="source-note">근거: 1장 실제 슬라이드 11–15 및 슬라이드 2의 강의 목표. 진로 통계의 현재 유효성을 별도로 주장하지 않습니다.</p>
       <label class="completion"><input type="checkbox" data-complete="01-next-step"> 이 내용을 이해했어요</label>
     </section>
 
-    <footer class="chapter-footer"><div><p class="eyebrow">NEXT · CHAPTER 02</p><h2>이제, 작은 Spark 실험실을 만듭니다.</h2><p>Docker의 구조부터 첫 분산 계산 5,050까지 단계별로 따라갑니다.</p></div><a class="button" href="../02/index.html">2장 실습 시작 →</a><a class="button secondary" href="../../index.html">학습 홈</a></footer>
+    <footer class="chapter-footer"><div><p class="eyebrow">NEXT · CHAPTER 02</p><h2>Docker와 Spark 실습 환경 만들기</h2><p>Docker의 구조부터 첫 분산 계산 5,050까지 단계별로 따라갑니다.</p></div><a class="button" href="../02/index.html">2장 실습 시작 →</a><a class="button secondary" href="../../index.html">학습 홈</a></footer>
   </main>
 
 

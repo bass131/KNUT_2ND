@@ -105,6 +105,10 @@ ol.explanation-list {
 .concept-map span {
   font-size: 17px;
 }
+.concept-map > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 .concept-map strong {
   font-size: 27px;
 }
@@ -118,6 +122,9 @@ ol.explanation-list {
 .connection::after {
   font-size: 11px;
   letter-spacing: 1px;
+}
+html[lang='en'] .connection::after {
+  content: 'INTERACTION';
 }
 .flow-node {
   font-size: 18px;

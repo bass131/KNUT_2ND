@@ -122,6 +122,7 @@
       code.innerHTML = highlightCode(value);
       const label = document.createElement('span');
       label.className = 'code-label';
+      label.setAttribute('translate', 'yes');
       label.textContent = value.startsWith('#!/usr/bin/env bash')
         ? 'BASH · 파일 내용'
         : /^(import |from |"""|spark =|numbers =)/m.test(value)

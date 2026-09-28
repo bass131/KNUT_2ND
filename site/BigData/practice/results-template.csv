@@ -1,0 +1,6 @@
+condition,workers,requested_cores,end_exclusive,partitions,repetitions,run1_seconds,run2_seconds,run3_seconds,median_seconds,observed_executors,check,notes
+A1,1,1,1000000001,128,3,,,,,,,not_measured
+A2,2,2,1000000001,128,3,,,,,,,not_measured
+A3,4,4,1000000001,128,3,,,,,,,not_measured
+A4,8,8,1000000001,128,3,,,,,,,not_measured
+B,8,2,1000000001,128,3,,,,,,,not_measured

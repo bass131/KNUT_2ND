@@ -111,7 +111,7 @@
         (index) => {
           const route = routes[index];
           return {
-            body: `<div class="port-route"><div class="flow-node active"><strong>${route.left}</strong><code>${route.from}</code></div><div class="port-bridge">${route.bridge}</div><div class="flow-node"><strong>${route.right}</strong><code>${route.to}</code></div></div>`,
+            body: `<div class="port-route"><div class="flow-node active"><strong>${route.left}</strong><code>${route.from}</code></div><div class="port-bridge">${route.bridge}</div><div class="flow-node"><strong>${route.right}</strong><span class="port-destination">${route.to}</span></div></div>`,
             description: route.desc,
           };
         },

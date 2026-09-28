@@ -1,0 +1,51 @@
+# Independently authored public lab. Run commands from this directory.
+name: knut-public-spark
+
+x-runtime: &runtime
+  image: spark:4.1.3-scala2.13-java21-python3-ubuntu
+  init: true
+  environment:
+    PYSPARK_PYTHON: python3
+
+services:
+  spark-master:
+    <<: *runtime
+    hostname: spark-master
+    entrypoint: ["/opt/spark/bin/spark-class"]
+    command: ["org.apache.spark.deploy.master.Master", "--host", "spark-master", "--port", "7077", "--webui-port", "8080"]
+    ports:
+      - "127.0.0.1:28080:8080"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080', timeout=3)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+
+  spark-worker:
+    <<: *runtime
+    entrypoint: ["/bin/bash", "-lc"]
+    command:
+      - >-
+        exec /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+        --host "$$HOSTNAME" --cores 1 --memory 1g
+        --work-dir /tmp/spark-work spark://spark-master:7077
+    depends_on:
+      spark-master:
+        condition: service_healthy
+
+  spark-client:
+    <<: *runtime
+    hostname: spark-client
+    entrypoint: ["/bin/bash", "-lc"]
+    command: ["exec sleep infinity"]
+    ports:
+      - "127.0.0.1:24041:4040"
+    volumes:
+      - ./apps:/opt/spark/apps:ro
+      - ./data:/opt/spark/lab-data:ro
+      - ./expected:/opt/spark/lab-expected:ro
+      - ./output:/opt/spark/lab-output
+    depends_on:
+      spark-master:
+        condition: service_healthy
