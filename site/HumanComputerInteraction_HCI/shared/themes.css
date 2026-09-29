@@ -386,12 +386,10 @@
     color: #d0e3ff;
   }
   [data-theme='dark'] .axis-line {
-    background: linear-gradient(90deg, #516682, #a3c6ff);
+    background: var(--blue);
   }
   [data-theme='dark'] .axis-line:after {
-    background: #b2d1ff;
-    border-color: #1b2433;
-    box-shadow: 0 0 0 1px #a3c6ff;
+    border-color: var(--blue);
   }
   [data-theme='dark']
     :is(.home-header, .home-stats, .home-section, .home-footer, .study-path article) {
@@ -438,9 +436,7 @@
     color: #b6d6ff;
   }
   [data-theme='dark'] .hero-art {
-    background:
-      radial-gradient(ellipse at 65% 65%, #2f2845 0%, transparent 56%),
-      radial-gradient(ellipse at 32% 65%, #1a354e 0%, transparent 57%);
+    background: var(--bg);
   }
   [data-theme='dark'] :is(.orb, .orb.ai) {
     background: linear-gradient(140deg, #2d3c53, #1c2738);

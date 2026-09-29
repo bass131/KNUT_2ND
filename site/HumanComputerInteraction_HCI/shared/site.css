@@ -192,21 +192,20 @@
   font-size: 12px;
 }
 .axis-line {
-  height: 3px;
+  height: 2px;
   position: relative;
-  background: linear-gradient(90deg, #d6e3f5, #809dd6);
+  background: var(--blue);
 }
 .axis-line:after {
   content: '';
   position: absolute;
-  right: 25%;
-  top: -5px;
-  width: 12px;
-  height: 12px;
-  border: 3px solid white;
-  border-radius: 50%;
-  background: #2467bd;
-  box-shadow: 0 0 0 1px #bbcee8;
+  right: 0;
+  top: -4px;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid var(--blue);
+  border-right: 2px solid var(--blue);
+  transform: rotate(45deg);
 }
 .axis-list p {
   font-size: 11px;

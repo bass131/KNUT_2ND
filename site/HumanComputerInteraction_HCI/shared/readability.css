@@ -2,6 +2,7 @@
 .reading-sentence {
   display: inline-block;
   max-width: 100%;
+  padding-inline-end: 0.2em;
   vertical-align: top;
   white-space: normal;
   word-break: keep-all;
@@ -52,6 +53,17 @@ ol.explanation-list {
   margin-top: 10px;
 }
 @media print {
+  .learning-figure {
+    max-width: 160mm;
+    margin-inline: auto;
+  }
+  .learning-figure img {
+    max-height: 80mm;
+    object-fit: contain;
+  }
+  .learning-figure figcaption {
+    font-size: 10pt;
+  }
   .reading-sentence {
     display: inline;
   }
@@ -258,6 +270,161 @@ table caption,
 .demo-panel p {
   font-size: 15px;
 }
+/* Reading finish: visible grouping and consistent type across all chapters. */
+@media screen {
+  .content {
+    max-width: 1120px;
+    padding-inline: 48px;
+  }
+  .section {
+    padding-block: 64px;
+  }
+  .section h2,
+  .summary-page .section h2 {
+    font-size: clamp(27px, 2.65vw, 36px);
+    line-height: 1.4;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+  .section h3 {
+    line-height: 1.5;
+    letter-spacing: -0.025em;
+  }
+  .section > h3 {
+    margin-top: 40px;
+  }
+  .section p,
+  .summary-page .section p,
+  .section .explanation-list,
+  .section ul,
+  .section ol,
+  .answer,
+  .glossary dd {
+    font-size: 16px;
+    line-height: 1.95;
+  }
+  .section .lead,
+  .section .intro {
+    font-size: 18px;
+  }
+  .section > p + :is(.grid, .concept-map, .triad, .flow, .dimension-demo, .study-steps),
+  .section > :is(.grid, .concept-map, .triad, .flow, .dimension-demo, .study-steps) + p {
+    margin-top: 28px;
+  }
+  .section > :is(.comparison-tip, .table-wrap, .example, .support-box, .termline, details) {
+    margin-block: 28px;
+  }
+  .section .evidence {
+    margin-bottom: 18px;
+  }
+  .section .source-excerpt + .evidence {
+    margin-top: 28px;
+  }
+  .section .source-excerpt {
+    margin: 0 0 20px;
+    padding: 18px 22px;
+    border-left: 3px solid var(--blue);
+    border-radius: 0 10px 10px 0;
+    background: var(--bg);
+    overflow-wrap: anywhere;
+  }
+  .section .source-excerpt.red {
+    border-left-color: #c14155;
+  }
+  .source,
+  .section .evidence,
+  .section .source-page,
+  .section .flag,
+  .section .reading-note,
+  .section .source-note,
+  .nav-bottom {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .source {
+    white-space: normal;
+    text-align: right;
+  }
+  .toc a {
+    font-size: 13px;
+    line-height: 1.7;
+    padding-block: 12px;
+  }
+  .chapter-hero h1,
+  .summary-page .chapter-hero h1 {
+    font-size: clamp(34px, 3.8vw, 54px);
+    line-height: 1.3;
+    letter-spacing: -0.04em;
+  }
+  .course-nav {
+    font-size: 14px;
+    gap: 12px 24px;
+  }
+  .course-nav a,
+  .chapter-end a,
+  .hero-links a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .quiz label,
+  summary {
+    min-height: 44px;
+  }
+  .search-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0;
+  }
+  .search-row .glossary-search {
+    flex: 1 1 240px;
+    min-width: 0;
+    margin: 0;
+  }
+  .search-count {
+    font-size: 14px;
+  }
+  .dimension-demo h3 {
+    margin-top: 12px;
+  }
+  .segmented button[data-usability] {
+    flex: 1 1 128px;
+    min-height: 44px;
+  }
+  @media (max-width: 820px) {
+    .content {
+      padding-inline: 28px;
+    }
+    .section {
+      padding-block: 48px;
+    }
+  }
+  @media (max-width: 520px) {
+    .content {
+      padding-inline: 22px;
+    }
+    .section h2,
+    .summary-page .section h2 {
+      font-size: 27px;
+    }
+    .section h3 {
+      font-size: 21px;
+    }
+    .section .lead,
+    .section .intro {
+      font-size: 17px;
+    }
+    .course-nav {
+      padding: 18px 22px;
+      gap: 8px 18px;
+    }
+    .section .source-excerpt {
+      padding: 16px;
+    }
+  }
+}
 @media (max-width: 1100px) {
   .triad {
     grid-template-columns: 1fr;
@@ -422,7 +589,231 @@ table caption,
     min-width: 75px;
   }
 }
+/* Figures share a solid frame, legible labels, and a stable mobile layout. */
+.hero-art.interaction-map {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 140px minmax(0, 1fr);
+  gap: 24px;
+  max-width: 820px;
+  height: auto;
+  margin: 36px auto 20px;
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--bg);
+}
+.interaction-node {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 10px;
+  min-height: 182px;
+  padding: 20px 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface, #fff);
+}
+.interaction-node svg {
+  width: 46px;
+  height: 46px;
+  color: var(--blue);
+}
+.interaction-node strong {
+  font-size: 20px;
+  line-height: 1.5;
+}
+.interaction-node span,
+.interaction-exchange span,
+.interaction-map figcaption {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.interaction-exchange {
+  display: grid;
+  gap: 16px;
+}
+.interaction-exchange > div {
+  display: grid;
+  gap: 2px;
+}
+.interaction-exchange b {
+  font-size: 36px;
+  line-height: 1;
+  color: var(--blue);
+}
+.interaction-map figcaption {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-wrap: balance;
+}
+:is(.flow-node, .evolution-row article, .phase, .process-card, .purpose-grid > div) {
+  border: 1px solid var(--line);
+}
+.flow-node {
+  align-content: center;
+  min-height: 138px;
+  padding: 24px 18px;
+}
+.health-flow > div {
+  align-self: stretch;
+  align-content: center;
+  padding: 22px 18px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--bg);
+}
+.flow-arrow,
+.between,
+.health-flow > span,
+.process-ribbon i {
+  color: var(--blue);
+  font-size: 24px;
+}
+.concept-map > div {
+  border-top: 3px solid var(--blue);
+  padding: 26px 24px;
+}
+.concept-map small {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+}
+.concept-map strong {
+  margin-block: 10px;
+  display: block;
+  margin-right: 0;
+  font-size: clamp(23px, 2.5vw, 29px);
+  line-height: 1.4;
+}
+.axis-list {
+  border: 1px solid var(--line);
+  padding: 28px;
+}
+.axis-list p {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  margin: 0;
+  font-size: 14px;
+}
+.table-wrap {
+  border-color: var(--line);
+  border-radius: 16px;
+}
+.table-wrap :is(th, td) {
+  padding: 18px 20px;
+  vertical-align: top;
+}
+.table-wrap caption {
+  padding: 18px 20px;
+  text-align: left;
+  font-weight: 650;
+  line-height: 1.7;
+}
+.learning-figure {
+  margin: 32px 0;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface, #fff);
+  break-inside: avoid;
+}
+.learning-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #f8fafc;
+}
+.learning-figure figcaption {
+  padding: 20px 24px;
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.85;
+}
+.learning-figure .figure-kind {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 650;
+}
+.learning-figure .figure-open {
+  display: flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 12px;
+  padding-block: 8px;
+  font-size: 14px;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .hero-art.interaction-map {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 20px;
+  }
+  .interaction-node {
+    min-height: 0;
+    grid-template-columns: 44px minmax(0, 1fr);
+    justify-items: start;
+    text-align: left;
+    gap: 3px 16px;
+    padding: 18px;
+  }
+  .interaction-node svg {
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+  .interaction-node strong {
+    font-size: 18px;
+  }
+  .interaction-exchange {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .interaction-exchange > div {
+    justify-items: center;
+    gap: 8px;
+  }
+  .interaction-exchange b {
+    transform: rotate(90deg);
+  }
+  .flow-node {
+    min-height: 0;
+  }
+  .axis-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 16px;
+  }
+  .axis-row .axis-line {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    margin-right: 4px;
+  }
+  .axis-list {
+    padding: 20px 18px;
+  }
+  .axis-row > span:last-child {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+  .learning-figure figcaption {
+    padding: 18px;
+  }
+}
 @media print {
+  .learning-figure .figure-open {
+    display: none;
+  }
+  .learning-figure figcaption {
+    font-size: 10pt;
+  }
   .card p,
   .phase p,
   table,

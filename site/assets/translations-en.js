@@ -22,12 +22,13 @@ window.KNUT_TRANSLATIONS = {
     'Spark DataFrame 프로그래밍': 'Spark DataFrame programming',
     '빅데이터 학습 홈': 'Big Data home',
     인간컴퓨터상호작용: 'Human–Computer Interaction',
-    '사람과 기술의 상호작용을 이해하고,': 'Understand how people interact with technology.',
-    '교수님 강조 요약으로 핵심 개념 복습하기.':
-      'Review key concepts with summaries of the instructor’s emphasis.',
+    'HCI 3.0과 사용자경험,': 'HCI 3.0 and user experience,',
+    '유용성·사용성의 원리와 교수님 강조 요약.':
+      'usefulness, usability, and summaries of the instructor’s emphasis.',
     'HCI 3.0의 개념': 'Concepts of HCI 3.0',
     'HCI 3.0과 사용자경험': 'HCI 3.0 and user experience',
     '유용성의 원리': 'Principles of usefulness',
+    '사용성의 원리': 'Principles of usability',
     'HCI 학습 홈': 'HCI home',
     '네트워크 프로그래밍': 'Network Programming',
     'C 기초, 소켓 생성과 오류 처리.': 'C fundamentals, socket creation, and error handling.',

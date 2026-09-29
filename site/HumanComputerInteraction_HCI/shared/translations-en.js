@@ -1,6 +1,18 @@
 /* Authored English translations. Korean content remains in the HTML. */
 window.KNUT_TRANSLATIONS = {
   text: {
+    '그림 크게 보기': 'View full-size image',
+    '이해 보완 · 가상 사례': 'Supplement · hypothetical example',
+    사람: ' Human',
+    '목표 · 판단 · 피드백': 'Goals · judgment · feedback',
+    '입력 · 피드백': 'Input · feedback',
+    '정보 · 결과': 'Information · results',
+    'AI 기반 시스템': 'AI-based system',
+    '지각 · 추론 · 실행': ' Perception · Reasoning · Action',
+    '사람은 결과를 검토하고, 피드백으로 시스템의 다음 행동에 참여합니다.':
+      'People review results and use feedback to shape the system’s next action.',
+    '세 차원의 방향을 비교한 개념 도식입니다. 실제 측정값을 나타내지 않습니다.':
+      'This conceptual diagram compares the directions of the three dimensions. It does not show measured values.',
     '상세 검증 보고서': 'Detailed verification report',
     '원본 대조 기록': 'Source comparison record',
     '내용·강조 대조 기록': 'Content and emphasis comparison record',
@@ -26,7 +38,6 @@ window.KNUT_TRANSLATIONS = {
     '전체 강의 · 강조 요약 · 개념 적용 활동':
       ' Full lectures · Emphasis summaries · Concept application activities',
     '원본 58쪽': ' 58 source pages',
-    사람: ' Human',
     경험: ' Experience',
     'HCI 3.0의 개념': ' The concept of HCI 3.0',
     '인간과 AI의 상호작용, 디지털 헬스, 경험 설계 원리와 개발 과정.':
@@ -191,7 +202,7 @@ window.KNUT_TRANSLATIONS = {
     실행: ' Action',
     '판단을 실제 행동으로 연결': ' Turn judgments into actual actions',
     'AI의 작업과 사람이 참여하는 지점': ' AI tasks and points of human participation',
-    단계: ' Stage',
+    단계: 'Stage',
     'AI의 역할': ' AI’s role',
     'HCI의 설계 질문': ' HCI design question',
     '센서나 사용자 입력으로 필요한 데이터를 수집하고 인식합니다.':
@@ -239,7 +250,7 @@ window.KNUT_TRANSLATIONS = {
       ' uses digital technology to improve disease prevention, diagnosis, treatment, and health management. This chapter focuses on the connections among digital biomarkers, AI, and digital therapeutics.',
     '건강 서비스는 환자 혼자 사용하는 앱으로 끝나지 않습니다. 의료진, 보호자, 보험회사, 공공기관 등 여러 관계자가 참여합니다. 디지털 기술은 의료기관 밖의 일상 데이터도 연결하여 서비스의 접근성, 효율성, 개인화를 높이는 데 기여할 수 있습니다. 여기서':
       ' A health service extends beyond an app used by a patient alone. Healthcare professionals, caregivers, insurers, public institutions, and other stakeholders participate. Digital technology can connect everyday data from outside medical facilities to improve accessibility, efficiency, and personalization. Here, ',
-    개인화: ' personalization',
+    개인화: 'Personalization',
     '란 사람마다 다른 상태와 필요에 맞추어 서비스 내용을 조정하는 것입니다.':
       ' means adjusting service content to each person’s condition and needs.',
     측정: ' Measurement',
@@ -418,7 +429,7 @@ window.KNUT_TRANSLATIONS = {
     '원본 p. 39의 평가 관점을 학습용으로 재구성':
       ' Evaluation perspectives adapted for study from source p. 39',
     '평가 관점': ' Evaluation perspective',
-    '확인할 내용': ' What to check',
+    '확인할 내용': 'What to examine',
     '실세계 헬스 분석': ' Real-world health analysis',
     '실제 사용에서의 사용 적합성, 임상적 안전성, 건강 증진 효과':
       ' Suitability for use, clinical safety, and health benefits in actual use',
@@ -834,7 +845,6 @@ window.KNUT_TRANSLATIONS = {
     '시험 대비, 핵심만.': ' Core concepts for exam preparation.',
     '한눈에 보는 강조': ' Emphasis at a glance',
     'HCI의 정의와 발전': ' HCI definition and evolution',
-    '지각 · 추론 · 실행': ' Perception · Reasoning · Action',
     '디지털 헬스 · DBM · DTx': ' Digital health · DBM · DTx',
     '사용자 경험의 세 원리': ' Three user experience principles',
     '분석 · 기획 · 설계 · 평가': ' Analysis · Planning · Design · Evaluation',
@@ -974,7 +984,7 @@ window.KNUT_TRANSLATIONS = {
     '누가 관련되어 있는가?': ' Who is involved?',
     과업: ' Tasks',
     '어떤 목표·작업인가?': ' What goals and work?',
-    맥락: ' Context',
+    맥락: 'Context',
     '어떤 환경·상황인가?': ' What environment and situation?',
     '가치와 서비스 방향 결정': ' Decide the value and service direction',
     '구조·기능·표현 구체화': ' Specify structure, functions, and representation',
@@ -1204,7 +1214,7 @@ window.KNUT_TRANSLATIONS = {
     '실재감의 조절 요인 · 원본 pp. 17, 20–23':
       ' Factors regulating presence · Source pp. 17, 20–23',
     요인: ' Factor',
-    뜻: ' Meaning',
+    뜻: 'Meaning',
     '하위 요소와 구분': ' Components and distinctions',
     '생동감 · Vividness': ' Vividness',
     '지각적 속성': ' Perceptual attribute',
@@ -1617,7 +1627,7 @@ window.KNUT_TRANSLATIONS = {
     '도전성 · Challenge': ' Challenge',
     '능력에 맞는 과제로 참여 동기를 이끄는 특성.':
       ' A quality that encourages participation through tasks matched to ability.',
-    '적응성 · Adaptivity': ' Adaptivity',
+    '적응성 · Adaptivity': 'Adaptivity',
     '사용자의 요구에 맞춰 시스템이 변화하는 특성.':
       ' The system’s capacity to change according to user needs.',
     '에이전트 인지 · Agent-awareness': ' Agent-awareness',
@@ -1757,7 +1767,7 @@ window.KNUT_TRANSLATIONS = {
     '관계의 밀도·강도': ' relationship density and strength',
     '가 파랑 강조입니다.': ' are emphasized in blue.',
     '명칭과 구분을 함께 기억하기': ' Remember names together with distinctions',
-    구분: ' Category',
+    구분: 'Group',
     '정의 · 이해 보완': ' Definition · Supplementary explanation',
     '개인의 행동과 환경 변화에 따른 관계':
       ' Relationships arising from individual behavior and environmental changes',
@@ -1852,7 +1862,7 @@ window.KNUT_TRANSLATIONS = {
     '목표와 맥락': ' Goals and context',
     '모형과 목적': ' Models and purpose',
     검증: ' Verification',
-    '유효성과 환경 적합성': ' Efficacy and environmental suitability',
+    '유효성과 환경 적합성': 'Efficacy and environmental fit',
     '강의자료 58쪽 기반': ' Based on 58 pages of lecture materials',
     '은 사용자가 디지털 시스템을 통해 자신의 목적을 효과적으로 달성하도록 돕는 원리입니다. “기능이 많다”보다 “내가 필요한 일을 해낼 수 있다”가 핵심입니다.':
       ' is the principle of helping users achieve their purposes effectively through digital systems. The key is “I can do what I need,” beyond “it has many features.”',
@@ -1865,7 +1875,7 @@ window.KNUT_TRANSLATIONS = {
     '원하는 목적을 달성할 수 있는가?': ' Can the desired purpose be achieved?',
     '과제를 제출하고 제출 기록을 확인할 수 있는가?':
       ' Can students submit assignments and check submission records?',
-    '사용성 · Usability': ' Usability',
+    '사용성 · Usability': 'Usability',
     '그 목적을 얼마나 쉽게 수행하는가?': ' How easily can the purpose be achieved?',
     '제출 버튼을 찾고 파일을 올리는 과정이 이해하기 쉬운가?':
       ' Is finding the submission button and uploading a file easy to understand?',
@@ -1910,7 +1920,7 @@ window.KNUT_TRANSLATIONS = {
     '문제 공간의 네 요소': ' Four elements of a problem space',
     'p. 11의 명칭과 p. 12 미로 그림의 대응':
       ' Names on p. 11 and their mapping to the maze on p. 12',
-    요소: ' Element',
+    요소: 'Element',
     '쉬운 설명': ' Plain explanation',
     '원본의 책 구매 사례': ' The source’s book-purchase example',
     '시초 상태 · Initial State': ' Initial state',
@@ -2181,7 +2191,7 @@ window.KNUT_TRANSLATIONS = {
     '조건이 통제된 실험 환경': ' A controlled experimental environment',
     '사용자가 실제로 사용하는 다양한 환경':
       ' The diverse environments where users actually use the product',
-    '확인 질문': ' Review question',
+    '확인 질문': 'Review question',
     '의도한 이점과 긍정적 효과가 나타나는가?':
       ' Do the intended benefits and positive effects occur?',
     '실제 조건에서도 사용자 요구를 충족하는가?':
@@ -2425,8 +2435,8 @@ window.KNUT_TRANSLATIONS = {
     '기존 데이터에 지나치게 의존해 새 데이터에 잘 대응하지 못하는 상태이다.':
       ' Excessive dependence on existing data that causes poor responses to new data.',
     '객관식 정답과 이유 · 인쇄용 답안': ' Multiple-choice answers and reasons · Print answer key',
-    '2번 선택지.': ' Option 2.',
-    '1번 선택지.': ' Option 1.',
+    '2번 선택지.': 'Option 2.',
+    '1번 선택지.': 'Option 1.',
     '3번 선택지.': ' Option 3.',
     '이해 보완 · 직접 만든 복습 질문입니다. 실제 시험 문제나 채점 기준이 아닙니다. 먼저 답한 뒤 이유와 원본 페이지를 대조하세요.':
       ' Supplementary explanation · Original review questions. They are not actual exam questions or grading criteria. Answer first, then compare your reasoning with the source pages.',
@@ -2776,8 +2786,8 @@ window.KNUT_TRANSLATIONS = {
     '입니다. p. 32는 두 색상에 함께 포함되므로 서로 다른 페이지는':
       '. Since p. 32 includes both colors, the number of distinct pages is ',
     '22쪽': ' 22',
-    '본문 빨강 · 선정 페이지': ' Red body-text emphasis · Selected pages',
-    '본문 파랑 · 선정 페이지': ' Blue body-text emphasis · Selected pages',
+    '본문 빨강 · 선정 페이지': 'Body red · selected pages',
+    '본문 파랑 · 선정 페이지': 'Body blue · selected pages',
     '제외한 색상:': ' Excluded colors: ',
     '표지·마지막 페이지의 이메일 링크(pp. 1·58), 교재 구성 목차·장 위치 안내(pp. 2–3), 그림의 선·배경·라벨·캡션 색상입니다.':
       ' Email links on the cover and final page (pp. 1 and 58), textbook contents and chapter-position guidance (pp. 2–3), and diagram lines, backgrounds, labels, and captions.',
@@ -2835,6 +2845,755 @@ window.KNUT_TRANSLATIONS = {
     '다시 확인해 보세요.': ' Review your answer.',
     '아직 답을 선택하지 않았습니다.': ' You have not selected an answer yet.',
     '정답:': ' Answer: ',
+    '사용성(Usability)은 특정 사용자와 사용 맥락에서 목표를 효과적·효율적·만족스럽게 달성할 수 있는 정도입니다. 기능이 존재하는지만 보지 않고, 그 기능으로 일을 수행하는 과정을 평가합니다.':
+      'Usability is the extent to which particular users can achieve goals effectively, efficiently, and satisfactorily in a particular context of use. It evaluates the process of doing the work, as well as the availability of functions.',
+    기준: 'Criterion',
+    '과제 제출 예시 · 이해 보완': 'Assignment submission · learning example',
+    '효과성 · Effectiveness': 'Effectiveness',
+    '목표를 정확하고 완전하게 달성했는가?': 'Was the goal achieved accurately and completely?',
+    '올바른 과목에 의도한 파일이 제출되었다.':
+      'The intended file was submitted to the correct course.',
+    '효율성 · Efficiency': 'Efficiency',
+    '목표 달성에 필요한 시간·노력·자원은 적절한가?':
+      'Were the time, effort, and resources appropriate for the outcome?',
+    '과목과 파일을 반복해서 찾지 않고 제출했다.':
+      'The student submitted without repeatedly locating the course and file.',
+    '만족도 · Satisfaction': 'Satisfaction',
+    '사용 과정이 편안하고 납득할 만했는가?': 'Was the process comfortable and acceptable?',
+    '완료 상태가 분명해서 제출 여부를 걱정하지 않는다.':
+      'A clear completion state removes uncertainty about submission.',
+    '사용성은 속도 하나로 판단하지 않습니다.': 'Usability cannot be judged by speed alone.',
+    '유용성과 사용성을 구분하기': 'Distinguishing usefulness from usability',
+    '3장의 유용성은 사용자의 목적에 실제로 도움이 되는지를 묻습니다. 4장의 사용성은 그 목적을 이루는 과정이 얼마나 편리한지를 묻습니다. 필요한 파일을 제출할 수 있어도 메뉴를 찾기 어렵고 완료 여부가 불분명하면 사용성이 낮을 수 있습니다.':
+      'Chapter 3 asks whether the system actually helps users achieve their purpose. Chapter 4 asks how usable that process is. A system may support file submission while offering poor usability through hard-to-find menus and unclear completion feedback.',
+    '사용자와 서비스의 관계까지 살펴보기': 'Consider the wider service context',
+    '원본의 새미톡 사례는 익숙한 메신저에서 인지 훈련에 참여하도록 구성한 설계 선택을 설명합니다. 화려한 화면보다 대상 사용자의 익숙한 사용 방식에 주목한 사례입니다. 이 설명은 강의 사례의 설계 의도를 다루며 치료 효과를 새로 판단하지 않습니다.':
+      'The source uses Saemitalk to illustrate a design choice: delivering cognitive training through a familiar messenger. It highlights familiar interaction for the intended users. This discussion concerns the design example in the lecture and makes no new assessment of treatment effectiveness.',
+    'HCI 3.0에서는 한 사람과 한 화면의 관계뿐 아니라 다른 사람, 기관, 연결된 서비스와의 상호작용도 고려합니다. 빠른 처리와 함께 감정적 부담, 사회적 관계, 사용 맥락을 살펴야 한다는 것이 pp. 8–11의 설명입니다.':
+      'In HCI 3.0, evaluation also considers interactions with other people, organizations, and connected services. Pages 8–11 extend the discussion beyond speed to emotional burden, social relationships, and context.',
+    '사용성의 의미와 세 가지 평가 기준': 'Usability and three evaluation criteria',
+    '사용적합성은 누가, 어디서, 어떤 접점을 통해 시스템을 사용하는지 함께 살펴보는 관점입니다. 사용과 관련된 위험을 줄이고 안전하고 효과적인 사용을 돕는 것이 원본의 설명입니다.':
+      'Use appropriateness examines who uses a system, where they use it, and the interfaces they encounter. The source emphasizes reducing use-related risks and supporting safe and effective use.',
+    '살펴볼 조건': 'Conditions to examine',
+    '예약 서비스 예시 · 이해 보완': 'Booking service · learning example',
+    사용자: 'User',
+    '경험, 지식, 신체적 특성, 학습 가능성, 담당 역할':
+      'Experience, knowledge, physical characteristics, ability to learn, and role',
+    '처음 예약하는 사람과 반복 예약하는 직원은 필요한 안내가 다르다.':
+      'First-time customers and staff making repeat bookings need different guidance.',
+    '사용 환경': 'Use environment',
+    '장소, 소음, 조명, 시간 압박, 기기와 연결 상태':
+      'Location, noise, lighting, time pressure, device, and connectivity',
+    '이동 중 작은 화면에서 날짜와 시간을 구별할 수 있어야 한다.':
+      'Dates and times must remain distinguishable on a small screen while moving.',
+    '사용자 인터페이스': 'User interface',
+    '화면, 소리, 촉각 피드백 등 사용자가 접하는 상호작용':
+      'Screens, sounds, tactile feedback, and other points of interaction',
+    '예약 완료를 색뿐 아니라 문구와 예약 번호로 알린다.':
+      'Booking completion is shown with text and a booking number as well as color.',
+    '같은 화면도 사용자와 환경에 따라 평가가 달라집니다.':
+      'The same interface can perform differently for different users and environments.',
+    '사용 환경은 장소 이름만 적는 항목이 아닙니다. 같은 집이라도 소음이 크거나 한 손으로 조작해야 한다면 필요한 피드백과 입력 방법이 달라집니다.':
+      'An environment is more than a place name. Noise or one-handed operation can change the feedback and input methods required, even in the same home.',
+    '사용적합성: 사용자·환경·인터페이스':
+      'Use appropriateness: users, environments, and interfaces',
+    속성: 'Attribute',
+    '하위 속성': 'Subattributes',
+    '기본적 속성': 'Basic attributes',
+    효율성: 'Efficiency',
+    '반응성·단축성': 'Responsiveness and minimal action',
+    '빠르고 간단하게 수행하는가?': 'Can the task be completed quickly and simply?',
+    정확성: 'Accuracy',
+    '사전방지·감지·회복': 'Prevention, detection, and recovery',
+    '오류를 줄이고 수정할 수 있는가?': 'Can errors be reduced and corrected?',
+    '부수적 속성': 'Secondary attributes',
+    의미성: 'Meaningfulness',
+    '변화제시성·이해가능성·학습성': 'Change presentation, comprehensibility, and learnability',
+    '필요한 정보와 기능을 이해할 수 있는가?':
+      'Are relevant information and functions understandable?',
+    유연성: 'Flexibility',
+    '주도권·대체성·다중성·개인화·연결성':
+      'Autonomy, substitutability, multiplicity, personalization, and connectivity',
+    '상황에 맞는 방식으로 사용할 수 있는가?': 'Can users work in ways that suit their situation?',
+    일관성: 'Consistency',
+    '예측가능성·친숙성·일반화가능성': 'Predictability, familiarity, and generalizability',
+    '익힌 규칙을 다음 사용에도 적용할 수 있는가?': 'Can learned rules be applied again?',
+    '사용성의 속성 구조 · 원본 pp. 16–18의 재구성':
+      'Usability attribute structure · adapted from pp. 16–18',
+    '속성은 사용성을 구체적으로 측정하거나 점검하기 위해 나눈 특성입니다. 원본은 효율성·정확성을 기본적 속성, 의미성·유연성·일관성을 부수적 속성으로 구분합니다.':
+      'Attributes are characteristics used to measure or inspect usability. The source groups efficiency and accuracy as basic attributes, and meaningfulness, flexibility, and consistency as secondary attributes.',
+    '‘부수적’은 중요하지 않다는 뜻이 아닙니다. 원본은 시스템 특성에 따라 적용 방식이 달라지는 속성으로 설명하며, 기본적 속성과 서로 보완한다고 말합니다. 또한 p. 9의 효과성·효율성·만족도와 이 다섯 속성은 서로 다른 분류 수준입니다.':
+      'Secondary does not mean unimportant. The source describes attributes whose application depends on the system and that complement basic attributes. The three criteria on p. 9 and these five attributes also represent different levels of classification.',
+    '사용성의 다섯 속성': 'Five usability attributes',
+    '효율성은 과업을 빠르고 간단하게 달성하는 정도입니다. 반응성은 입력에 대한 시스템의 반응을, 단축성은 사용자가 거치는 절차를 살펴봅니다.':
+      'Efficiency concerns completing tasks quickly and simply. Responsiveness examines the system response to input; minimal action examines the steps required of the user.',
+    '반응성: 실제 지연과 체감 지연': 'Responsiveness: actual and perceived delay',
+    '시스템 지체는 기기나 처리 과정에서 생기는 지연입니다. 네트워크 지체는 연결과 데이터 전달 과정에서 생기는 지연입니다. 원인을 구분해야 개선할 위치를 찾을 수 있습니다.':
+      'System delay arises within the device or processing work. Network delay arises in connections and data transfer. Distinguishing the causes helps locate the improvement needed.',
+    '진행 상태, 완료 예상 시간, 오류 메시지는 사용자가 기다리는 이유를 이해하도록 돕습니다. 상태 표시를 추가했다고 실제 처리 시간이 줄어든 것은 아닙니다.':
+      'Progress indicators, completion estimates, and error messages help users understand a wait. Adding an indicator does not itself reduce processing time.',
+    'AI 기능은 처리량과 응답 시간을 함께 고려해야 합니다. 원본은 기획자와 개발자가 기기·자체 시스템·클라우드의 역할을 협의하도록 설명합니다.':
+      'AI features require consideration of workload and response time. The lecture calls for designers and developers to coordinate the roles of devices, local systems, and cloud services.',
+    '단축성: 반복 작업과 불필요한 입력 줄이기':
+      'Minimal action: reduce repetition and unnecessary input',
+    방법: 'Method',
+    '도움이 되는 점': 'Benefit',
+    '함께 확인할 점 · 이해 보완': 'Also check · learning supplement',
+    '기본값·자동완성·최근 항목': 'Defaults, autocomplete, and recent items',
+    '반복 입력과 탐색을 줄인다.': 'Reduce repeated entry and searching.',
+    '자동 입력 결과를 확인하고 수정할 수 있는가?':
+      'Can users inspect and correct automatically supplied values?',
+    '단축키·단축 경로': 'Keyboard shortcuts and shorter routes',
+    '숙련자의 자주 쓰는 작업을 빠르게 한다.': 'Speed up frequent tasks for experienced users.',
+    '초보자가 전체 구조를 이해할 기본 경로도 있는가?':
+      'Is a standard route available for beginners to understand the structure?',
+    '즉시 검증·일괄 처리': 'Inline validation and batch actions',
+    '재입력과 같은 동작의 반복을 줄인다.': 'Reduce re-entry and repeated actions.',
+    '여러 항목에 적용되는 결과와 오류를 알 수 있는가?':
+      'Are the results and errors of actions on multiple items clear?',
+    '낙관적 UI': 'Optimistic UI',
+    '서버 확인 전에 화면에 결과를 먼저 반영한다.':
+      'Update the interface before server confirmation.',
+    '실패하면 상태를 되돌리고 이유를 알리는가?':
+      'Does failure restore the state and explain what happened?',
+    '원본 p. 20의 단축성 패턴과 점검 질문':
+      'Minimal-action patterns from p. 20 and review questions',
+    '클릭 수가 적다는 이유만으로 항상 좋은 설계가 되지는 않습니다. 삭제나 제출처럼 결과를 확인해야 하는 단계는 오류 비용과 함께 판단합니다. ‘추천 상위 3개’는 원본의 설계 예시이며 모든 서비스에 고정되는 규칙은 아닙니다.':
+      "Fewer clicks do not always mean better design. Confirmation for actions such as deletion or submission must be considered alongside error cost. The source's top-three recommendation pattern is a design example, not a fixed rule for every service.",
+    '효율성: 반응성과 단축성': 'Efficiency: responsiveness and minimal action',
+    '정확성은 사용자가 의도한 결과를 얻도록 오류를 예방하고, 발생한 오류를 알아차리게 하며, 수정할 수 있게 하는 특성입니다. 사용자의 주의력에만 의존하지 않고 실수가 생길 수 있는 과정을 설계합니다.':
+      'Accuracy supports intended outcomes by preventing errors, making errors noticeable, and enabling correction. It designs for situations in which mistakes can occur instead of relying entirely on user attention.',
+    '핵심 역할': 'Purpose',
+    '파일 제출 예시 · 이해 보완': 'File submission · learning example',
+    사전방지: 'Prevention',
+    '문제가 생기기 전에 잘못된 행동을 줄인다.': 'Reduce incorrect actions before a problem occurs.',
+    '허용 파일 형식과 크기를 선택 전에 안내한다.':
+      'Show allowed file types and sizes before selection.',
+    '오류 감지': 'Detection',
+    '발생한 문제와 수정할 위치를 알린다.': 'Identify the problem and where it can be corrected.',
+    '‘파일이 20 MB를 초과했습니다’라고 해당 항목 옆에 표시한다.':
+      "Show 'The file exceeds 20 MB' beside the affected field.",
+    '후방 회복': 'Backward recovery',
+    '오류 이전 상태로 되돌린다.': 'Return to a state before the error.',
+    '잘못 삭제한 첨부 파일을 실행 취소로 복구한다.':
+      'Undo the accidental removal of an attachment.',
+    '전방 회복': 'Forward recovery',
+    '문제를 처리하고 작업을 계속할 수 있게 한다.': 'Handle the problem so work can continue.',
+    '연결 오류 뒤 작성 내용을 유지하고 업로드를 재시도한다.':
+      'Preserve the draft and retry an upload after a connection error.',
+    '같은 피드백도 어느 시점의 오류를 다루는지 구분합니다.':
+      'Distinguish which stage of an error a feedback mechanism addresses.',
+    '예방과 감지가 겹치는 사례': 'When prevention and detection overlap',
+    '이메일 주소의 잘못된 형식을 즉시 알려 주는 기능은 잘못된 입력을 감지합니다. 동시에 최종 제출이 실패하는 일을 예방합니다. 분류할 때는 ‘무엇을 오류로 보고, 어느 시점을 기준으로 하는가’를 먼저 말해야 합니다.':
+      'Immediate feedback on an invalid email address detects an input error and can also prevent failure at final submission. Classification therefore requires stating the error being considered and the point in time used as the reference.',
+    '균형성의 법칙: 원본 p. 24가 선택의 자유와 행동 제약의 균형을 설명할 때 쓰는 이름입니다. 위험한 조작을 다른 버튼과 구별하고 간격을 확보하는 사례로 이해합니다.':
+      'Law of Equilibrium is the label used on p. 24 for balancing freedom of choice and constraints. The source illustrates it by distinguishing risky actions and spacing them apart from other buttons.',
+    '사전심사: 입력값이나 조건을 미리 검사합니다. 오류 안내에는 색뿐 아니라 무엇이 잘못됐고 어떻게 고칠지 적습니다.':
+      'Pre-check mechanisms inspect values or conditions in advance. Error feedback should explain the issue and its remedy, rather than rely on color alone.',
+    '시각·청각 피드백: 사용 환경에 맞춰 서로 보완합니다. 소리만으로 알리면 소음을 듣기 어려운 상황이나 조용히 사용해야 하는 상황에서 놓칠 수 있습니다.':
+      'Visual and auditory feedback should complement each other according to context. Sound alone can be missed in noisy environments or when quiet operation is required.',
+    'p. 23의 ‘복원(Redo)’는 원문의 표현입니다. 일반적인 편집 명령에서 Undo는 실행 취소, Redo는 취소한 동작을 다시 실행하는 뜻이므로 둘을 같은 기능으로 외우지 않습니다. p. 28의 메일 취소 시간은 강의 예시의 수치입니다.':
+      'The source labels Redo as restoration on p. 23. In common editing commands, Undo reverses an action and Redo reapplies an undone action; they are not the same function. The email cancellation duration on p. 28 belongs to the lecture example.',
+    '정확성: 오류 예방·감지·회복': 'Accuracy: error prevention, detection, and recovery',
+    '의미성은 사용자가 원하는 정보와 기능이 자신의 목적·상황에 맞게 제공되는 정도입니다. 정보가 많더라도 지금 할 일과 관련이 없거나 해석하기 어렵다면 의미성이 높다고 보기 어렵습니다.':
+      "Meaningfulness concerns whether information and functions fit the user's purpose and situation. A large quantity of information is not enough if it is irrelevant to the current task or difficult to interpret.",
+    '과제 제출 화면에 적용 · 이해 보완': 'Assignment interface · learning example',
+    변화제시성: 'Change presentation',
+    '즉시적 제시: 필요한 시점에 제공 / 부가적 제시: 판단을 돕는 보조 정보':
+      'Just-in-time: information at the needed moment / Added value: supporting information for decisions',
+    '파일 선택 직후 크기 제한을 알려 주고, 마감까지 남은 시간을 함께 보여 준다.':
+      'Show the size constraint after file selection and provide the time remaining before the deadline.',
+    이해가능성: 'Comprehensibility',
+    '가독성: 읽기 쉬운 표시 / 논리성: 행동과 결과를 연결하는 흐름':
+      'Readability: legible presentation / Logic: a flow connecting actions and outcomes',
+    '과목·파일·제출 상태를 구분하고 ‘과제 제출’처럼 결과를 알 수 있는 버튼 이름을 쓴다.':
+      "Distinguish the course, file, and submission status, and use a result-oriented label such as 'Submit assignment'.",
+    학습성: 'Learnability',
+    '매뉴얼: 맥락 안에서의 안내 / 과업적합성: 목표에 맞는 작업 흐름':
+      'Guidance: help within context / Task fit: a workflow aligned with the goal',
+    '처음 제출할 때 예시를 제공하고, 파일 선택 → 확인 → 제출 → 완료 확인 순서로 구성한다.':
+      'Provide an example for first-time users and follow selection → review → submission → completion confirmation.',
+    '의미성의 세 갈래와 각각의 두 요소':
+      'Three branches of meaningfulness and their paired components',
+    '변화제시성과 반응성의 차이': 'Change presentation versus responsiveness',
+    '반응성은 입력에 대한 시스템 반응을 봅니다. 변화제시성은 사용자의 상황이 달라질 때 필요한 정보를 적절한 시점에 드러내는지를 봅니다. 업로드 진행률은 반응성을 돕고, 마감이 가까워졌을 때 제출 조건을 알려 주는 것은 변화제시성으로 설명할 수 있습니다.':
+      "Responsiveness concerns the system's response to input. Change presentation concerns revealing relevant information as the user's situation changes. Upload progress supports responsiveness; timely information about submission conditions illustrates change presentation.",
+    '읽기 쉬움과 이해하기 쉬움을 함께 설계하기': 'Design for both reading and understanding',
+    '가독성은 글자 크기·행간·대비·정보 위계와 관련됩니다. 논리성은 메뉴와 버튼의 단서로 다음 결과를 예상하게 합니다. ‘정보의 향기’는 링크나 이름이 목적지의 내용을 짐작하게 하는 단서라는 뜻입니다.':
+      'Readability concerns type size, spacing, contrast, and hierarchy. Logic makes the next outcome predictable from menus and buttons. Information scent means clues in labels or links that suggest what lies ahead.',
+    '학습 안내는 처음에 한 번 보이고 사라지기보다 필요할 때 다시 찾을 수 있어야 합니다. 온보딩은 처음 사용하는 사람이 주요 기능을 익히도록 안내하는 과정입니다.':
+      'Learning guidance should be available again when needed, rather than disappear after one display. Onboarding introduces essential functions to a new user.',
+    '과업적합성은 사용자의 관찰 → 결정 → 실행 → 확인 흐름에 맞춰 기능을 배치하는 것입니다. 서로 다른 메뉴의 기능도 하나의 과업을 완성하는 데 필요하다면 가까이 둘 수 있습니다.':
+      'Task fit organizes functions around observation → decision → action → confirmation. Functions from different categories can be placed together when they contribute to one task.',
+    '원본의 본문 크기·행간·온보딩 단계 수는 설계 체크리스트의 예시입니다. 수치 하나를 모든 화면의 정답으로 적용하기보다 사용자, 내용 길이, 화면 크기에 맞춰 실제로 읽고 수행할 수 있는지 확인합니다.':
+      "The source's type sizes, line spacing, and onboarding step counts are checklist examples. Instead of treating one number as universally correct, check actual reading and task performance for the users, content, and screen size.",
+    '의미성: 필요한 정보와 기능 제공하기': 'Meaningfulness: relevant information and functions',
+    갈래: 'Branch',
+    예시: 'Example',
+    '사용자 주도권': 'User autonomy',
+    '현재 모드를 알고 전환하며 과업을 중단·재개한다.':
+      'Recognize and switch modes, and interrupt or resume tasks.',
+    '보기·편집 모드 표시, 작성 중 일정 확인 후 복귀':
+      'View/edit mode indicators; return to a draft after checking a calendar',
+    대체성: 'Substitutability',
+    '같은 명령이나 정보를 다른 입력·출력 수단으로 처리한다.':
+      'Use alternative input or output methods for the same command or information.',
+    '키보드와 터치로 같은 조작, 소리와 글로 같은 안내':
+      'The same action through keyboard or touch; the same message through sound or text',
+    다중성: 'Multiplicity',
+    '여러 과업을 동시에 수행하거나 상태를 유지하며 번갈아 수행한다.':
+      'Perform tasks concurrently or alternate while preserving their state.',
+    '회의하며 메모하기, 쿠폰 등록 뒤 결제 화면 복귀':
+      'Take notes during a meeting; return to checkout after adding a coupon',
+    '사용자가 직접 조정하거나 시스템이 사용 패턴에 적응한다.':
+      'Allow direct user customization or adaptation to usage patterns.',
+    '글자 크기 직접 설정, 청취 이력에 따른 추천':
+      'Set text size manually; receive recommendations based on listening history',
+    연결성: 'Connectivity',
+    '여러 장치·형식·서비스 사이에서 작업 경험을 이어 간다.':
+      'Maintain task continuity across devices, formats, and services.',
+    '기기 간 문서 동기화, 다른 서비스와 데이터 교환':
+      'Synchronize a document across devices; exchange data with another service',
+    '유연성의 다섯 갈래 · 원본 pp. 41–49': 'Five branches of flexibility · source pp. 41–49',
+    '유연성은 사용자가 원하는 작업을 자신의 조건과 선호에 맞는 방식으로 진행할 수 있는 정도입니다. 선택지를 무조건 늘리는 대신, 같은 목표에 도달할 적절한 대안과 통제권을 제공합니다.':
+      'Flexibility is the extent to which users can carry out tasks in ways suited to their conditions and preferences. It provides appropriate alternatives and control, rather than simply adding more choices.',
+    '동시에 하기와 번갈아 하기': 'Concurrent work and alternating work',
+    '동시적 유연성은 화상회의와 메모처럼 과업을 병행하는 것입니다. 교차적 유연성은 작성 중 다른 화면을 확인한 뒤 돌아와 이어 쓰는 것입니다. 교차적 유연성에서는 중단 전 입력과 작업 위치를 잃지 않는 것이 중요합니다.':
+      'Concurrent flexibility supports tasks such as a video meeting and note-taking at the same time. Interleaving supports leaving a draft to inspect another screen, then returning to continue. Preserving input and task position is important when alternating tasks.',
+    '사용자 조정과 시스템 적응': 'User customization and system adaptation',
+    '응용성(Customizability)은 사용자가 글자 크기나 위젯 위치를 직접 바꾸는 것입니다. 적응성(Adaptivity)은 시스템이 행동을 학습해 추천이나 표시를 바꾸는 것입니다. 자동으로 바뀐 결과도 사용자가 이해하고 조정할 수 있는지 함께 살펴봅니다.':
+      'Customizability lets users directly change settings such as text size or widget placement. Adaptivity lets the system learn from behavior and change recommendations or presentation. Also consider whether users can understand and adjust automatic changes.',
+    '연동성·호환성·상호운용성': 'Integration, compatibility, and interoperability',
+    '연동성: 계정·데이터·작업이 여러 장치에서 동기화되어 이어집니다.':
+      'Integration: accounts, data, and tasks are synchronized for continuity across devices.',
+    '호환성: 다른 플랫폼·형식·운영체제에서도 기능이나 자료를 사용할 수 있습니다.':
+      'Compatibility: functions or materials remain usable across platforms, formats, or operating systems.',
+    '상호운용성: 서로 다른 시스템이 데이터를 주고받고 협력해 사용자의 작업을 완성합니다.':
+      "Interoperability: different systems exchange data and cooperate to complete the user's task.",
+    'p. 41은 과업 전이성을 task switchability, p. 42는 task interleaving으로 씁니다. p. 45의 교차적 유연성은 Sequential Flexibility로 표기하지만 설명은 중단·복귀의 상태 보존에 초점을 둡니다. 영어 이름만 외우기보다 원문의 설명과 예시를 함께 구분합니다.':
+      'Page 41 uses task switchability and p. 42 uses task interleaving. Page 45 labels alternating work Sequential Flexibility, while its explanation emphasizes preserving state through interruption and return. Study the explanations and examples alongside the varying English labels.',
+    '유연성: 상황에 맞는 사용 방식': 'Flexibility: ways of working that fit the situation',
+    '사용자의 질문': "User's question",
+    '설계에서 볼 점': 'What to examine',
+    예측가능성: 'Predictability',
+    '누르면 어떤 결과가 나올까?': 'What will happen when I activate this?',
+    '일관된 명령 구조와 결과를 짐작하게 하는 단서':
+      'Consistent commands and clues about their outcomes',
+    친숙성: 'Familiarity',
+    '내가 아는 표현과 방식인가?': 'Does this use expressions and patterns I know?',
+    '사용자의 용어, 익숙한 형태·위치, 설명 가능한 아이콘':
+      'User terminology, familiar form and placement, and understandable icons',
+    일반화가능성: 'Generalizability',
+    '배운 규칙을 다른 기능에도 쓸 수 있을까?': 'Can I apply a learned rule to another function?',
+    '일관된 도움말 구조와 기존 흐름을 확장하는 새 기능':
+      'Consistent guidance and new functions that extend existing workflows',
+    '일관성의 세 하위 속성': 'Three subattributes of consistency',
+    '일관성은 시스템의 정보와 기능이 익힌 규칙에 맞게 작동하는 정도입니다. 같은 역할의 버튼이 화면마다 다른 이름·위치·결과를 가지면 사용자는 매번 다시 확인해야 합니다.':
+      'Consistency means that information and functions follow learned rules. If buttons with the same role have different names, positions, or outcomes across screens, users must repeatedly work out how they operate.',
+    '친숙한 대상은 사용자마다 다릅니다': 'Familiarity depends on the user',
+    '원본은 계좌 만들기 같은 일상적 표현, 익숙한 검색창 위치, ‘+’ 아이콘을 예로 듭니다. 이 사례의 핵심은 사용자가 이미 아는 단서를 활용한다는 점입니다. 특정 아이콘의 의미나 배치가 모든 문화와 사용자에게 저절로 통한다고 확대하지 않습니다.':
+      'The lecture illustrates familiarity with everyday wording, familiar search placement, and the plus icon. The point is to use clues users already know. These examples do not establish that every icon or layout is automatically understood across all cultures and users.',
+    '과업적합성이라는 같은 이름의 두 맥락': 'Two contexts for task fit',
+    '원본 위치': 'Source location',
+    '설명 관점': 'Perspective',
+    '예시 · 이해 보완': 'Learning example',
+    'p. 39 · 의미성의 학습성': 'p. 39 · learnability within meaningfulness',
+    '현재 목표·행동·피드백에 맞게 기능을 구성한다.':
+      'Organize functions around the current goal, action, and feedback.',
+    '과제를 확인하고 제출 결과를 살피는 흐름을 한곳에 둔다.':
+      'Bring assignment review and submission confirmation together.',
+    'p. 57 · 일관성의 일반화가능성': 'p. 57 · generalizability within consistency',
+    '새 기능이 기존 작업 흐름과 규칙을 이어받는다.':
+      'New functions preserve existing workflows and rules.',
+    '재제출 기능도 기존 파일 선택·확인·제출 순서를 따른다.':
+      'Resubmission follows the same selection, review, and submission sequence.',
+    '이름이 같아도 어느 상위 속성을 설명하는지 확인합니다.':
+      'Check the parent attribute even when the labels are similar.',
+    '유연성과 일관성은 반드시 충돌하지 않습니다. 키보드와 터치라는 여러 경로를 제공하되 같은 조작은 같은 결과로 이어지게 할 수 있습니다. p. 17의 일반화가능성 도식은 시스템 내부·시스템 사이를, pp. 56–57은 안내 구조·과업 흐름을 중심으로 설명합니다.':
+      'Flexibility and consistency need not conflict. Keyboard and touch can offer different routes to the same result. The p. 17 diagram describes generalization within and between systems; pp. 56–57 focus on guidance structure and task flow.',
+    '일관성: 배운 규칙을 다시 사용하기': 'Consistency: reusing learned rules',
+    '문제가 생긴 지점': 'Where the problem occurs',
+    '설계 대응 · 이해 보완': 'Design response · learning supplement',
+    '실수 · Slip': 'Slip',
+    '목표는 맞지만 실행을 잘못했다.': 'The goal is appropriate, but execution goes wrong.',
+    '저장하려다 옆의 삭제 버튼을 눌렀다.':
+      'The user presses Delete beside the intended Save button.',
+    '버튼을 구별하고 실행 취소를 제공한다.': 'Distinguish the controls and provide undo.',
+    '과실 · Lapse': 'Lapse',
+    '하려던 행동을 기억하지 못했다.': 'An intended action is forgotten.',
+    '제출할 파일을 첨부하지 않았다.': 'The user forgets to attach the file.',
+    '완료 조건을 보여 주고 누락을 점검한다.':
+      'Show completion requirements and check for omissions.',
+    '착오 · Mistake': 'Mistake',
+    '상황·규칙·목표를 잘못 이해했다.': 'The situation, rule, or goal is misunderstood.',
+    '임시 저장을 최종 제출로 이해했다.': 'The user mistakes saving a draft for final submission.',
+    '용어와 상태를 구별하고 결과를 설명한다.':
+      'Distinguish terms and states and explain the outcome.',
+    '비정상 사용 · Abnormal use': 'Abnormal use',
+    '원본은 의도적으로 규칙을 벗어나는 경우를 설명한다.':
+      'The source discusses deliberately departing from intended rules.',
+    '정해진 훈련을 하는 대신 수행한 것처럼 넘긴다.':
+      'The user skips training while representing it as completed.',
+    '오용 가능성을 살피고 필요한 경고·제약을 둔다.':
+      'Examine foreseeable misuse and provide appropriate warnings or constraints.',
+    '오류의 원인을 구분해야 개선 방법을 고를 수 있습니다.':
+      'Distinguishing error causes helps select a design response.',
+    '사용 오류는 제조사가 의도하거나 사용자가 기대한 것과 다른 결과로 이어지는 사용과 관련됩니다. 원본은 디지털 헬스 사례로 오류의 원인을 구분합니다. 여기서는 진단이나 치료 판단이 아니라 인터페이스 설계의 관점을 학습합니다.':
+      'Use error concerns use that leads to a result different from what the manufacturer intended or the user expected. The source distinguishes causes through digital-health examples. This section studies interface design, not diagnosis or treatment decisions.',
+    '착오의 세부 유형': 'Types of mistakes',
+    '규칙 기반 오류: 상황에 맞지 않는 규칙을 적용하거나 규칙을 잘못 적용합니다. 예를 들어 마감 이후에도 임시 저장이 제출로 인정된다고 판단하는 경우입니다.':
+      'Rule-based error: applying an unsuitable rule or misapplying a rule. One learning example is assuming a draft saved after the deadline counts as a submission.',
+    '지식 기반 오류: 상황이나 기능의 의미를 잘못 이해합니다. 예를 들어 제출 확인 화면을 단순 미리보기로 해석하는 경우입니다.':
+      'Knowledge-based error: misunderstanding the situation or the meaning of a function. One example is interpreting a submission confirmation as only a preview.',
+    '무지에 따른 오류: 원본은 사용법을 모르거나 관행 대신 즉흥적으로 행동하는 경우를 설명합니다. 학습 페이지에서는 필요한 지식이 무엇이었는지와 안내가 충분했는지를 함께 질문합니다.':
+      'Error attributed to lack of knowledge: the source discusses unfamiliarity with operation or improvised behavior. The learning task asks what knowledge was needed and whether sufficient guidance was available.',
+    '원본의 분류 차이를 읽는 방법': 'Reading the differing classifications in the source',
+    'pp. 63–65의 요약표는 실수·과실·착오를 ‘의도하지 않은 오류’에 묶습니다. 그러나 p. 62의 도식과 p. 69에는 ‘의도한 행위’ 아래에도 Mistake가 등장합니다. 행동을 의식적으로 했다는 것과 잘못된 결과를 의도했다는 것은 같은 뜻이 아닙니다.':
+      'The summary on pp. 63–65 groups slips, lapses, and mistakes as unintended errors. However, the diagram on p. 62 and the explanation on p. 69 also place a mistake under intended action. Deliberately performing an action is not the same as intending its incorrect outcome.',
+    'p. 65의 ‘의도한 오류 → 알면서 일부러’는 앞선 사례를 간단히 정리한 표현입니다. 이를 모든 의도한 행위의 정의로 확대하면 p. 69의 ‘규정을 따랐지만 규칙이 낡은 경우’를 설명하기 어렵습니다. 시험 전에는 원본의 표·도식 위치와 사례를 함께 구별합니다.':
+      'The phrase on p. 65 that summarizes intended error as knowingly doing it is a simplification of the preceding examples. Treating it as the definition of all intended action would obscure the outdated-rule example on p. 69. Keep the source table, diagram, and examples distinct when reviewing.',
+    '앵자이렉스 사례의 스마트폰 손상, 정해진 사용 시간 망각, 질문 의도 오해는 각각 실행·기억·이해의 차이를 보여 줍니다. FDA·IEC 관련 설명과 제품 사례는 제공 강의의 범위로 읽으며, 현재 규정이나 제품 허가·효능에 대한 안내로 사용하지 않습니다.':
+      "In the lecture's Anzeirex example, phone damage, a forgotten scheduled use, and misunderstanding a question illustrate execution, memory, and understanding. FDA, IEC, and product references are presented within the scope of the lecture, not as current regulatory or product-approval guidance.",
+    '사용 오류: 실수·과실·착오': 'Use errors: slips, lapses, and mistakes',
+    '아래 사례를 선택하면 문제가 생긴 지점과 개선 이유를 비교할 수 있습니다. 실제 서비스나 성능 측정이 아닌 이해 보완용 예시입니다.':
+      'Select a case to compare the problem and the reason for an improvement. These are learning examples, not a live service or a performance measurement.',
+    '사용성 사례 선택': 'Select a usability case',
+    반응성: 'Responsiveness',
+    회복성: 'Recovery',
+    '처리 상태를 알 수 없는 업로드': 'An upload with no visible status',
+    '제출을 눌러도 화면이 그대로라 다시 누르게 됩니다. 진행 상태와 완료 여부를 표시하면 기다리는 이유와 다음 행동을 알 수 있습니다.':
+      'The screen remains unchanged after submission, encouraging repeated clicks. Progress and completion feedback clarify the wait and the next action.',
+    '삭제와 저장이 붙어 있는 화면': 'Delete and Save placed together',
+    '목표는 저장이지만 옆의 삭제를 누를 수 있습니다. 위험한 조작을 구별하고 간격을 두면 실행 실수의 가능성을 줄입니다.':
+      'The user intends to save but may press the adjacent Delete control. Distinguishing and separating risky actions reduces execution slips.',
+    '연결이 끊겨 처음부터 다시 입력': 'Re-entering everything after disconnection',
+    '오류 메시지만 있어서는 작업을 이어 갈 수 없습니다. 작성 내용을 보존하고 재시도 경로를 제공하면 전방 회복을 돕습니다.':
+      'An error message alone does not let work continue. Preserving the draft and offering a retry path supports forward recovery.',
+    '같은 완료 버튼의 다른 결과': 'The same completion button gives different results',
+    '한 화면에서는 임시 저장, 다른 화면에서는 최종 제출이 되면 결과를 예상하기 어렵습니다. 서로 다른 결과는 다른 이름으로 구분하고 같은 기능은 같은 규칙을 사용합니다.':
+      'If one screen saves a draft and another submits it, users cannot predict the result. Different outcomes need distinct labels, while the same function should follow the same rule.',
+    '사례로 구분하는 사용성 속성': 'Distinguishing attributes through examples',
+    '이해 보완 · 직접 만든 학습 활동입니다. 학교의 예약·수강·과제 제출 서비스 중 하나를 골라 실제로 관찰할 수 있는 과업 하나를 분석합니다.':
+      'Learning supplement · an authored activity. Choose one observable task in a school booking, course registration, or assignment service.',
+    '사용자·목표·환경을 적습니다. 예: 처음 쓰는 학생이 이동 중 스마트폰으로 과제를 제출한다.':
+      'State the user, goal, and environment. Example: a first-time student submits an assignment from a phone while moving.',
+    '시작부터 완료 확인까지의 행동과 화면 상태를 순서대로 기록합니다. 추측과 실제 관찰을 구분합니다.':
+      'Record actions and interface states from the start through completion confirmation. Distinguish observations from assumptions.',
+    '막힌 지점을 하나 골라 사용성 속성과 연결합니다. 오류가 있었다면 실수·과실·착오 중 어느 설명에 가까운지도 적습니다.':
+      'Select one obstacle and relate it to a usability attribute. If an error occurred, explain whether it resembles a slip, lapse, or mistake.',
+    '개선안과 확인 방법을 함께 씁니다. 성공 여부, 소요 시간·재입력 수, 사용자가 설명한 불편을 같은 조건에서 비교할 수 있습니다.':
+      'Write an improvement and a way to evaluate it. Compare task success, time or re-entry counts, and reported difficulty under comparable conditions.',
+    '예시 답안과 완료 기준': 'Example answer and completion criteria',
+    '관찰: 파일을 선택한 뒤 완료 버튼을 눌렀지만 제출 여부가 표시되지 않았다. 문제: 반응성이 부족해 다시 누르려 했으며, 임시 저장과 제출의 차이도 알 수 없었다. 개선: 버튼을 ‘과제 제출’로 바꾸고 처리 중·완료·실패 상태를 문구로 구분한다. 확인: 같은 과업에서 중복 클릭과 제출 여부 확인 시간을 비교하고 학생에게 현재 상태를 설명해 보게 한다.':
+      'Observation: after selecting a file and pressing Done, no submission status appeared. Problem: weak responsiveness encouraged another click, and the difference between draft saving and submission was unclear. Improvement: label the button Submit assignment and display processing, completed, and failed states in text. Evaluation: compare repeat clicks and time needed to establish submission status, and ask the student to explain the current state.',
+    '완료 기준: 사용자·환경·목표, 관찰한 문제, 관련 속성과 이유, 개선안, 확인 방법을 모두 적었는지 점검합니다. ‘깔끔하게 바꾼다’처럼 관찰하기 어려운 표현은 구체적인 행동과 상태로 바꿉니다.':
+      'Completion criteria: include the user, environment, goal, observed problem, relevant attribute and reasoning, proposed improvement, and evaluation method. Replace vague aims such as making it cleaner with observable actions and states.',
+    '사용성 문제를 관찰하고 개선안 쓰기': 'Observe a usability problem and propose an improvement',
+    '이해 보완 · 개념 구분을 위한 자체 확인 문제입니다. 실제 시험 문제가 아닙니다.':
+      'Learning supplement · authored questions for distinguishing concepts, not actual exam questions.',
+    '시간만으로 사용성 전체를 판단할 수 없습니다. 목표 달성의 정확성과 완전성도 확인합니다. (pp. 7–9, 23)':
+      'Time alone cannot determine overall usability. Check the accuracy and completeness of goal achievement. (pp. 7–9, 23)',
+    '1. 처리 시간은 줄었지만 잘못된 파일이 제출됩니다. 가장 적절한 판단은?':
+      '1. Processing is faster, but the wrong file is submitted. Which judgment fits best?',
+    '빨라졌으므로 사용성 전체가 좋아졌다.': 'Overall usability improved because it is faster.',
+    '효율성과 함께 효과성·정확성을 확인해야 한다.':
+      'Effectiveness and accuracy must be checked alongside efficiency.',
+    '만족도만 확인하면 된다.': 'Only satisfaction needs checking.',
+    '상태 표시는 기다림을 이해하게 하지만 실제 지연을 없앴다는 뜻은 아닙니다. (pp. 19–22)':
+      'Status feedback explains the wait; it does not establish that actual delay was removed. (pp. 19–22)',
+    '2. 업로드 진행률을 표시했지만 실제 소요 시간은 같습니다. 무엇이 개선될 수 있나요?':
+      '2. Upload progress is displayed, but actual duration is unchanged. What may improve?',
+    '체감 반응성과 상태 이해': 'Perceived responsiveness and understanding of status',
+    '네트워크의 실제 전송 속도': 'Actual network transfer speed',
+    '모든 과업의 단축성': 'Minimal action for every task',
+    '이전 상태로 되돌리는 데서 끝나지 않고 작업을 계속하도록 돕는 전방 회복입니다. (pp. 28–29)':
+      'It supports continuing the task, rather than merely returning to an earlier state: forward recovery. (pp. 28–29)',
+    '3. 연결 오류 뒤 입력을 유지하고 다시 시도하게 하는 기능은?':
+      '3. Which concept fits preserving input and retrying after a connection error?',
+    '친숙성만 해당': 'Familiarity alone',
+    '변화제시성의 즉시적 제시는 다음 행동에 필요한 정보를 적절한 시점에 드러냅니다. (p. 34)':
+      'Just-in-time presentation reveals information at the appropriate moment for the next action. (p. 34)',
+    '4. 필요한 순간에 배송비를 보여 주는 것은 의미성의 어떤 요소인가요?':
+      '4. Which component of meaningfulness is illustrated by showing delivery cost at the needed moment?',
+    '즉시적 제시': 'Just-in-time presentation',
+    '출력 대체성': 'Output substitutability',
+    과실: 'Lapse',
+    '응용성은 사용자의 직접 조정, 적응성은 시스템의 자동 적응입니다. (pp. 45–46)':
+      'Customizability involves direct user adjustment; adaptivity involves automatic system adaptation. (pp. 45–46)',
+    '5. 사용자가 직접 글자 크기를 바꾸는 것은?':
+      '5. What is illustrated when users set text size themselves?',
+    적응성: 'Adaptivity',
+    응용성: 'Customizability',
+    '오류 감지성': 'Error detection',
+    '과업을 번갈아 수행하면서 중단 전 맥락을 보존하는 사례입니다. (pp. 42, 45)':
+      'This alternates tasks while preserving the context held before interruption. (pp. 42, 45)',
+    '6. 문서를 쓰다 일정을 확인한 뒤 입력을 유지한 채 돌아오는 것은?':
+      '6. What is illustrated by checking a calendar and returning to an unchanged draft?',
+    '교차적 유연성': 'Interleaving flexibility',
+    '동시 수행만 가능하다는 뜻': 'Only concurrent work is possible',
+    '일반화가능성의 정의': 'The definition of generalizability',
+    '학습한 규칙을 다른 기능과 맥락에 전이하는 일반화가능성입니다. (pp. 56–57)':
+      'Generalizability transfers learned rules to another function or context. (pp. 56–57)',
+    '7. 익힌 제출 규칙을 새 재제출 기능에도 적용할 수 있습니다. 관련 속성은?':
+      '7. A learned submission rule also works for a new resubmission function. Which attribute applies?',
+    '네트워크 지체': 'Network delay',
+    '후방 회복만 해당': 'Backward recovery alone',
+    '옳은 목표를 실행하는 과정에서 행동이 어긋난 실수입니다. 기억을 놓친 과실이나 기능을 오해한 착오와 구분합니다. (p. 67)':
+      'This is a slip during execution of an appropriate goal, distinct from forgetting an action or misunderstanding a function. (p. 67)',
+    '8. 저장하려다 옆의 삭제를 눌렀다면?':
+      '8. The user intends to save but presses the adjacent Delete button. What is this?',
+    실수: 'Slip',
+    '비정상 사용으로만 분류': 'Abnormal use only',
+    '기능의 의미를 잘못 이해한 착오에 가깝습니다. 상태 이름과 결과 안내를 살펴야 합니다. (p. 68)':
+      'This resembles a mistake arising from misunderstanding. Examine state labels and explanations of outcomes. (p. 68)',
+    '9. 임시 저장을 제출이라고 이해한 오류는 무엇부터 확인해야 하나요?':
+      '9. A user believes saving a draft submits it. What should be examined first?',
+    '사용자가 버튼을 누르는 속도': 'How quickly the user presses buttons',
+    '용어와 상태를 이해한 방식': 'How the user understood the terms and states',
+    '소리 크기만 확인': 'Only the sound volume',
+    '규칙을 따른 의식적 행동도 오래된 규칙 때문에 오류가 될 수 있습니다. 의도한 행위를 고의적 오용과 같게 보지 않습니다. (pp. 62, 65, 69–70)':
+      'A deliberate action following a rule can still fail when the rule is outdated. Intended action is not identical to deliberate misuse. (pp. 62, 65, 69–70)',
+    '10. 원본 p. 69의 ‘의도한 행위’는 무엇과 구분해야 하나요?':
+      '10. What must be distinguished from intended action on p. 69?',
+    '행동을 의식적으로 수행한 것': 'Deliberately performing an action',
+    '잘못된 결과까지 의도한 것': 'Intending the incorrect outcome itself',
+    '사용자가 선택한 행동': 'An action chosen by the user',
+    '확인 문제와 해설': 'Review questions and explanations',
+    '용어 검색': 'Search terms',
+    '예: 사용성, 오류, 일관성': 'e.g. usability, error, consistency',
+    '특정 사용자와 맥락에서 목표를 효과적·효율적·만족스럽게 달성하는 정도.':
+      'The extent of effective, efficient, and satisfactory goal achievement for specified users and context.',
+    '의도한 목표를 정확하고 완전하게 달성하는 정도.':
+      'Accuracy and completeness of intended goal achievement.',
+    '목표 달성에 드는 시간·노력·자원을 살피는 기준.':
+      'A criterion examining the time, effort, and resources used to achieve a goal.',
+    '사용 경험에서 느끼는 편안함과 수용 가능성.':
+      'Comfort and acceptability experienced during use.',
+    '반응성 · Responsiveness': 'Responsiveness',
+    '입력에 대한 시스템 반응의 속도와 명확성.': 'Speed and clarity of system responses to input.',
+    '단축성 · Minimal Action': 'Minimal action',
+    '과업에 필요한 불필요한 절차와 반복 입력을 줄이는 특성.':
+      'Reducing unnecessary steps and repeated input in a task.',
+    '정확성 · Accuracy': 'Accuracy',
+    '오류를 예방·감지·회복하여 의도한 결과를 돕는 특성.':
+      'Supporting intended outcomes through error prevention, detection, and recovery.',
+    '후방 회복 · Backward Recovery': 'Backward recovery',
+    '오류가 발생하기 전의 상태로 되돌리기.': 'Returning to a state before the error.',
+    '전방 회복 · Forward Recovery': 'Forward recovery',
+    '오류를 처리하고 작업을 이어 가도록 돕기.': 'Handling an error so the task can continue.',
+    '의미성 · Meaningfulness': 'Meaningfulness',
+    '사용자에게 필요한 정보와 기능이 상황에 맞게 제공되는 정도.':
+      'How appropriately relevant information and functions are provided in context.',
+    '변화제시성 · Change Presentation': 'Change presentation',
+    '사용자의 상태와 상황 변화에 맞춰 정보를 드러내는 특성.':
+      'Presenting information in response to changes in user state and context.',
+    '이해가능성 · Comprehensibility': 'Comprehensibility',
+    '정보를 읽고 올바른 의미와 다음 행동을 파악할 수 있는 정도.':
+      'How well users can read information, interpret it correctly, and identify the next action.',
+    '학습성 · Learnability': 'Learnability',
+    '처음 익히고 다시 사용할 때 과업을 수행하기 쉬운 정도.':
+      'Ease of learning to perform a task and returning to it later.',
+    '유연성 · Flexibility': 'Flexibility',
+    '사용자 조건과 선호에 맞는 다양한 사용 방식을 허용하는 정도.':
+      "The range of ways to work that suit users' conditions and preferences.",
+    '대체성 · Substitutability': 'Substitutability',
+    '동일한 명령이나 정보를 다른 입력·출력 수단으로 처리하기.':
+      'Using alternative input or output methods for the same command or information.',
+    '응용성 · Customizability': 'Customizability',
+    '사용자가 직접 시스템의 설정이나 화면을 조정하는 능력.':
+      "The user's ability to directly adjust settings or presentation.",
+    '시스템이 사용 패턴을 학습하여 자동으로 조정하는 능력.':
+      "The system's ability to learn usage patterns and adjust automatically.",
+    '연결성 · Connectivity': 'Connectivity',
+    '장치와 서비스의 경계를 넘어 작업 경험을 이어 가는 능력.':
+      'The ability to maintain task continuity across devices and services.',
+    '일관성 · Consistency': 'Consistency',
+    '익힌 규칙에 맞게 정보와 기능을 제공하는 특성.':
+      'Providing information and functions according to learned rules.',
+    '일반화가능성 · Generalizability': 'Generalizability',
+    '한번 익힌 규칙을 다른 기능과 맥락에 적용하는 정도.':
+      'The extent to which a learned rule transfers to another function or context.',
+    '정보의 향기 · Information Scent': 'Information scent',
+    '메뉴·링크·아이콘에서 다음 결과를 짐작하게 하는 단서.':
+      'Clues in menus, links, and icons that suggest the next outcome.',
+    '목표는 맞지만 실행 과정에서 행동이 어긋난 오류.':
+      'An execution error despite an appropriate goal.',
+    '하려던 행동을 잊거나 빠뜨린 기억 관련 오류.':
+      'A memory-related error in which an intended action is forgotten or omitted.',
+    '상황·지식·규칙을 잘못 이해하거나 적용한 판단 오류.':
+      'A judgment error involving misunderstanding or misapplication of a situation, knowledge, or rule.',
+    '검색 결과가 없습니다.': 'No matching terms.',
+    '핵심 용어 찾아보기': 'Key terms',
+    '본문은 원본 73쪽을 주제별로 재구성했습니다. 각 절의 페이지 표시는 실제 PDF의 1부터 시작하는 순서입니다.':
+      "The lecture reorganizes all 73 source pages by topic. Page references use the PDF's actual sequence starting at 1.",
+    '전체 강의의 사례 비교·활동·퀴즈는 이해를 돕는 설명입니다. 교수님의 실제 색상 강조는 별도 요약본에서 발췌 범위를 표시합니다.':
+      "Comparisons, activities, and quizzes support understanding. The separate summary identifies the actual ranges of the instructor's colored emphasis.",
+    'pp. 1–4는 표지·장 위치·도입, p. 72는 참고문헌, p. 73은 질문 안내입니다. 이미지로 된 도식과 표도 대조했으며 원본 이미지를 본문에 노출하지 않습니다.':
+      'Pages 1–4 provide the cover, chapter placement, and introduction; p. 72 lists references and p. 73 invites questions. Image-based diagrams and tables were also reviewed, without embedding source images in the learning pages.',
+    '명칭과 분류가 달라지는 부분은 사용 오류, 과업 전이성, 과업적합성 설명에서 구분했습니다. 원문의 의료·표준 사례를 현재 사실이나 규정으로 확장하지 않았습니다.':
+      'Differences in terminology and classification are discussed under use errors, task switching, and task fit. Medical and standards examples are not extended into claims about current facts or regulations.',
+    '원본 범위와 보완 설명': 'Source scope and learning supplements',
+    '사용성이란 무엇일까': 'What is usability?',
+    '사용자가 특정한 목적을 달성하기 위해 시스템이나 제품을 이용할 때, 그 과정이 얼마나 효과적':
+      'When users employ a system or product to achieve a particular goal, how effective the process is',
+    '쉽고 편리한 프로덕트라는 차원에서 시작한 사용성은 점점 더 대상은 물론 고려해야 할':
+      'Usability, which began with easy and convenient products, increasingly expands the objects and factors to consider',
+    '목표를 효과적, 효율적, 만족스럽게 달성할 수 있는 정도이다':
+      'The extent to which goals can be achieved effectively, efficiently, and satisfactorily',
+    '경험 중심적 가치(Experiential Value)로 진화': 'Evolving toward experiential value',
+    '발췌는 실제 파란 구절의 일부입니다. p. 7은 효과적·효율적·만족스러운 과정을 설명하고, p. 8은 관계자와 서비스까지 고려 범위가 확장됨을 설명합니다. 정의 전체와 세 평가 기준은 전체 강의에서 확인합니다.':
+      'These excerpts select portions of the actual blue text. Page 7 discusses an effective, efficient, and satisfactory process; p. 8 expands the scope to stakeholders and services. The full lecture explains the complete definition and three criteria.',
+    '사용성의 정의와 범위': 'Definition and scope of usability',
+    '사용자(User), 사용 환경(User Environment), 사용자 인터페이스':
+      'User, use environment, and user interface',
+    '효율성(Efficiency)과 정확성(Accuracy)': 'Efficiency and accuracy',
+    '사용자·환경·인터페이스의 관계를 함께 봅니다. 효율성과 정확성은 기본적 속성이며, 의미성·유연성·일관성은 부수적 속성입니다. 이 해설과 분류표 전체가 색상 강조라는 뜻은 아닙니다.':
+      'Consider the relationship among users, environments, and interfaces. Efficiency and accuracy are basic attributes; meaningfulness, flexibility, and consistency are secondary. This explanation and the entire classification table are not themselves colored source excerpts.',
+    '사용적합성과 기본적 속성': 'Use appropriateness and basic attributes',
+    '반응성과 단축성': 'Responsiveness and minimal action',
+    '단축성(Minimal Action)': 'Minimal action',
+    '‘시스템 지체(System Delay)’와 ‘네트워크의 지체': 'System delay and network delay',
+    '단축키와 단축 경로': 'Keyboard shortcuts and shorter routes',
+    '반응성은 입력에 대한 반응, 단축성은 과업의 절차를 봅니다. 시스템·네트워크의 실제 개선과 상태 표시로 체감 지연을 이해하게 하는 것은 구분합니다. 단축 경로는 전체 구조를 이해할 기본 경로와 함께 설계합니다.':
+      'Responsiveness examines responses to input; minimal action examines task steps. Distinguish actual system or network improvements from status feedback that helps explain a wait. Shortcuts should coexist with a standard route that helps users understand the structure.',
+    '효율성의 두 하위 속성': 'Two components of efficiency',
+    '비밀번호 조건 표시, 입력형식 자동 안내.':
+      'Displaying password requirements and automatically guiding input format.',
+    '사용자는 실수로 삭제를 누를': 'The user may accidentally press Delete',
+    '이메일 형식이 올바르지 않거나 카드번호 자릿수가 부족할 때':
+      'When an email format is invalid or a card number has too few digits',
+    '“입력한 비밀번호가 일치하지 않습니다”': 'The entered passwords do not match',
+    '‘행동 오류’를 청각적으로 감지시키는': 'Making an action error detectable through sound',
+    '후방 회복의 전형적인 사례이다.': 'A typical example of backward recovery.',
+    '임시 저장된 장바구니를 재불러오는 것은 전방 회복의 사례임.':
+      'Reloading a temporarily saved cart is an example of forward recovery.',
+    '‘오류를 허용하는 시스템’을 만드는 데 있음': 'Creating a system that tolerates errors',
+    '사례의 일부가 파랑이며 정의 전체를 파랑으로 표시하지 않았습니다. pp. 23–27은 예방·감지, p. 28은 메일 취소의 후방 회복, p. 29는 작업을 이어 가는 전방 회복 사례입니다. 오류의 원인과 수정 방법까지 알 수 있어야 합니다.':
+      'Only portions of these examples are blue, not their complete definitions. Pages 23–27 concern prevention and detection; p. 28 illustrates backward recovery through email cancellation, and p. 29 illustrates continuing work through forward recovery. Users should be able to understand the cause and remedy.',
+    '정확성: 강조된 오류 대응 사례': 'Accuracy: emphasized error-handling examples',
+    '의미성(Meaningfulness), 유연성(Flexibility), 일관성(Consistency)':
+      'Meaningfulness, flexibility, and consistency',
+    '사용자의 목적과 맥락(Context of Use)을 이해하고':
+      "Understanding the user's purpose and context of use",
+    '시점의 적합성을 통해 오류를 줄이는 사례임.':
+      'An example of reducing errors through appropriate timing.',
+    '결정을 돕는 부가 정보임.': 'Additional information that supports a decision.',
+    '읽기 경로를 단순화하여 이해 시간을 단축함.':
+      'Simplifying the reading path to reduce the time needed for understanding.',
+    '사용자는 의도와 결과를 정확히 연결함.':
+      'Users can accurately connect their intention with the outcome.',
+    '인라인 도우미(매개변수 설명, 예제, 오류 위치 표시)':
+      'Inline assistance: parameter descriptions, examples, and error location',
+    '핵심 목표(품질 판단)에 직접 부합함.': 'Directly fitting the core goal of judging quality.',
+    '의미성 통합 예시 : “모바일 뱅킹 송금”':
+      'Integrated meaningfulness example: mobile bank transfer',
+    '변화제시성은 즉시적·부가적 제시, 이해가능성은 가독성·논리성, 학습성은 매뉴얼·과업적합성으로 연결합니다. p. 36의 ‘논문 심사 시 많이 사용’도 파란 보충구지만 독립 개념으로 확장하지 않았습니다. p. 40은 제목만 파랑이고 여섯 적용 설명은 검정입니다.':
+      'Connect change presentation with just-in-time and added-value presentation, comprehensibility with readability and logic, and learnability with guidance and task fit. The blue aside about paper review on p. 36 is not treated as a separate concept. Only the title on p. 40 is blue; its six application explanations are black.',
+    '의미성의 분류와 사례': 'Meaningfulness: categories and examples',
+    '“유연성은 인간 중심 설계의 자유도이다”':
+      'Flexibility is the degree of freedom in human-centered design',
+    'MODE(모드)와 과업 전이성(task switchability)': 'Mode and task switchability',
+    '다시 작성화면으로 복귀할 때 입력 내용이 유지되는':
+      'Preserving input when returning to the composition screen',
+    '다양한 방법으로 실행 가능함.': 'Executable through a variety of methods.',
+    '화상회의를 하면서 실시간 메모를 작성하거나':
+      'Taking notes in real time while holding a video meeting',
+    '배치, 색상, 글자 크기를 변경할 수 있는': 'Being able to change layout, color, and text size',
+    '사용자의 청취 패턴을 학습하여 개인화 추천을 제공하거나':
+      'Learning listening patterns to provide personalized recommendations',
+    '하나의 음성 명령으로 동시에 제어되는 경우임.':
+      'Being controlled simultaneously through one voice command.',
+    '상황 인식적·맥락 적응형 사용자 경험(Context-Aware UX)의 핵심':
+      'A core aspect of context-aware user experience',
+    'p. 41의 빨간 문장과 파란 용어를 구분했습니다. pp. 42–47은 상태 보존, 입력·출력 대체, 병행 작업, 개인화, 연결의 사례입니다. p. 48의 표 색상은 그림의 제목과 서식으로 제외했습니다.':
+      'The red statement and blue terms on p. 41 are distinguished. Pages 42–47 illustrate state preservation, alternative inputs and outputs, parallel tasks, personalization, and connectivity. Colors in the table on p. 48 were excluded as image-title and formatting colors.',
+    '유연성: 사용자에게 주어지는 선택': 'Flexibility: choices available to the user',
+    '예측가능성(Predictability), 친숙성(Familiarity), 일반화가능성(Generalizability)':
+      'Predictability, familiarity, and generalizability',
+    '유사한 흐름을 예측할 수 있다.': 'Being able to predict a similar flow.',
+    '결과를 예측할 수 있음.': 'Being able to predict the result.',
+    '‘계좌 만들기’는 일상적이고 직관적이어서 친숙성이 높다.':
+      'Create an account uses everyday, intuitive wording and is therefore familiar.',
+    '사용자는 기능을 찾기 위해 인지적 노력을 추가로 들여야 한다.':
+      'The user must spend additional cognitive effort to locate the function.',
+    '‘+’ 아이콘을 누르면 ‘새로 만들기’가 실행되는':
+      'Activating a plus icon to create something new',
+    '다른 맥락이나 새로운 기능에 쉽게 전이할 수 있는 정도':
+      'The extent to which it can easily transfer to another context or a new function',
+    '다른 제품에서도 같은 순서를 그대로 적용할 수 있음.':
+      'Applying the same sequence in another product.',
+    '촬영 버튼의 위치나 사용 흐름은 동일하게 유지되어야 함.':
+      'The shutter position and usage flow should remain consistent.',
+    'p. 56은 정의 전체가 아니라 ‘다른 맥락이나 새로운 기능에 쉽게 전이할 수 있는 정도’만 빨강입니다. p. 55의 아이콘 설명은 강의의 예시로 읽고 모든 사용자에게 보편적으로 통한다는 주장으로 확대하지 않습니다.':
+      'Only the phrase about transfer to another context or function is red on p. 56, not the entire definition. The icon statement on p. 55 is treated as a lecture example rather than a universal claim about every user.',
+    '일관성과 학습 전이': 'Consistency and transfer of learning',
+    '사용 오류 측면에 초점을 맞추고 있음': 'Focusing on use errors',
+    '실수, 과실, 착오': 'Slips, lapses, and mistakes',
+    앵자이렉스: 'Anzeirex',
+    '저장 버튼 대신 삭제 버튼을 클릭': 'Clicking Delete instead of Save',
+    '‘공동 계좌’를 ‘개인 계좌’와 동일하게 취급하여 송금 실패.':
+      'A failed transfer caused by treating a joint account like an individual account.',
+    '오래된 매뉴얼대로 기기를 작동했지만': 'Operating a device according to an outdated manual',
+    '안전장치를 임의로 해제하여 작업 속도를 높이려는 경우.':
+      'Disabling a safety mechanism to increase work speed.',
+    '기본적 속성은 효율성과 정확성': 'The basic attributes are efficiency and accuracy',
+    '실수는 실행, 과실은 기억, 착오는 이해·판단을 중심으로 비교합니다. p. 64는 제품 이름만 파랑이고 설명 전체가 강조된 것은 아닙니다. p. 71은 용어와 일부 구절만 파랑입니다. 원본의 의도한 행위·착오 분류 차이는 전체 강의의 별도 해설을 보존합니다.':
+      'Compare slips by execution, lapses by memory, and mistakes by understanding and judgment. Only the product name is blue on p. 64, and only terms and selected phrases are blue on p. 71. The full lecture retains the explanation of differing classifications of intended action and mistakes.',
+    '사용 오류 사례와 장 전체 정리': 'Use-error examples and chapter recap',
+    '이해 보완 · 직접 만든 서술형 복습입니다. 답을 먼저 설명한 뒤 펼쳐서 근거를 확인하세요.':
+      'Learning supplement · authored recall questions. Explain your answer first, then open the answer to check the reasoning.',
+    '처리 시간은 줄었지만 잘못된 파일이 제출됩니다. 가장 적절한 판단은?':
+      'Processing is faster, but the wrong file is submitted. Which judgment fits best?',
+    '업로드 진행률을 표시했지만 실제 소요 시간은 같습니다. 무엇이 개선될 수 있나요?':
+      'Upload progress is displayed, but actual duration is unchanged. What may improve?',
+    '연결 오류 뒤 입력을 유지하고 다시 시도하게 하는 기능은?':
+      'Which concept fits preserving input and retrying after a connection error?',
+    '필요한 순간에 배송비를 보여 주는 것은 의미성의 어떤 요소인가요?':
+      'Which component of meaningfulness is illustrated by showing delivery cost at the needed moment?',
+    '사용자가 직접 글자 크기를 바꾸는 것은?':
+      'What is illustrated when users set text size themselves?',
+    '문서를 쓰다 일정을 확인한 뒤 입력을 유지한 채 돌아오는 것은?':
+      'What is illustrated by checking a calendar and returning to an unchanged draft?',
+    '익힌 제출 규칙을 새 재제출 기능에도 적용할 수 있습니다. 관련 속성은?':
+      'A learned submission rule also works for a new resubmission function. Which attribute applies?',
+    '저장하려다 옆의 삭제를 눌렀다면?':
+      'The user intends to save but presses the adjacent Delete button. What is this?',
+    '임시 저장을 제출이라고 이해한 오류는 무엇부터 확인해야 하나요?':
+      'A user believes saving a draft submits it. What should be examined first?',
+    '원본 p. 69의 ‘의도한 행위’는 무엇과 구분해야 하나요?':
+      'What must be distinguished from intended action on p. 69?',
+    '서술형 복습': 'Recall questions',
+    '원본 73쪽을 대조했습니다. 본문 빨강 2쪽, 파랑 53쪽이며, 두 색상을 중복 제외하면 53쪽입니다. 아래 발췌는 강조된 모든 문장을 복사한 것이 아니라 각 페이지의 대표 구절을 선정한 것입니다.':
+      'All 73 source pages were reviewed. Body emphasis appears in red on 2 pages and blue on 53 pages, covering 53 distinct pages. Excerpts select representative phrases from each page rather than reproducing every emphasized sentence.',
+    '포함: 실제 빨강·파랑 본문 글자와 개념을 지시하는 제목. p. 5의 질문과 p. 40의 사례 제목도 개념 안내로 포함했습니다.':
+      'Included: actual red and blue body text and concept-identifying headings, including the question on p. 5 and case title on p. 40.',
+    '제외: 표지·마지막 쪽의 이메일, 교재 구성과 장 위치 안내, 그림의 선·배경·라벨·표 서식 색상. 검정 굵은 글자나 밑줄을 색상 강조로 바꾸지 않았습니다.':
+      'Excluded: cover and final-page email links, book and chapter navigation, and colors used in diagram lines, backgrounds, labels, or table formatting. Black bold or underlined text was not reclassified as colored emphasis.',
+    '보완: 정의 풀이, 비교표, 추가 사례와 복습 문제는 자체 학습 설명입니다. 색상 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
+      'Supplements: explanatory definitions, comparison tables, additional examples, and recall questions are authored learning material. Color does not establish exam inclusion or a ranking of importance.',
+    '4장 전체 강의 ↗': 'Chapter 4 full lecture ↗',
+    '강조 선정과 제외 기준': 'Emphasis inclusion and exclusion criteria',
+    '사용성의 원리': 'Principles of usability',
+    '사용자의 목표와 맥락을 기준으로 효율성·정확성·의미성·유연성·일관성을 구분하고, 오류를 줄이는 설계를 설명합니다.':
+      "Distinguish efficiency, accuracy, meaningfulness, flexibility, and consistency through users' goals and contexts, and explain designs that reduce errors.",
+    '4장 교수님 강조 요약': 'Chapter 4 instructor-emphasis summary',
+    '실제 빨강·파랑 구절과 보완 설명을 구분해 사용성의 속성과 사용 오류를 복습합니다.':
+      'Review usability attributes and use errors while distinguishing actual red and blue excerpts from learning supplements.',
+    '누가, 어디서 사용하는가': 'Who uses it, and where?',
+    '무엇을 점검하는가': 'What should be examined?',
+    오류: 'Errors',
+    '어떻게 예방하고 회복하는가': 'How can errors be prevented and recovered from?',
+    '색상은 원본의 실제 강조를 뜻하며 시험 출제 확정을 뜻하지 않습니다.':
+      'Colors identify actual source emphasis, not confirmed exam content.',
+    '4장 전체 강의': 'Chapter 4 full lecture',
+    '4장 목차': 'Chapter 4 contents',
+    '강의자료 73쪽 기반': 'Based on 73 source pages',
+    'HCI 3.0 · 4장 사용성의 원리': 'HCI 3.0 · Chapter 4 Principles of Usability',
+    'HCI 3.0 · 4장 교수님 강조 요약': 'HCI 3.0 · Chapter 4 Instructor-Emphasis Summary',
+    'HCI. · 4장 사용성의 원리': 'HCI. · Chapter 4 Principles of Usability',
+    '학습 목표': 'Learning objectives',
+    'HCI 1.0에서 3.0까지': 'From HCI 1.0 to 3.0',
+    'AI의 지각·추론·실행': 'AI sensing, reasoning, and acting',
+    '디지털 헬스의 구성': 'Components of digital health',
+    '디지털 바이오마커의 역할': 'The role of digital biomarkers',
+    '디지털 치료기기의 역할': 'The role of digital therapeutics',
+    '사용자 경험과 세 가지 원리': 'User experience and three principles',
+    '분석·기획·설계·평가': 'Analysis, planning, design, and evaluation',
+    'HCI와 사회적 가치': 'HCI and social value',
+    '수면 기록 서비스에 개념 적용하기': 'Applying concepts to a sleep-tracking service',
+    'HCI 3.0의 정의': 'Definition of HCI 3.0',
+    '지각·추론·실행의 구분': 'Distinguishing sensing, reasoning, and acting',
+    '디지털 헬스: 측정과 치료': 'Digital health: measurement and treatment',
+    '개발 과정의 네 단계와 반복': 'Four development stages and iteration',
+    '사회적 가치와 ESG': 'Social value and ESG',
+    '파랑 강조 용어': 'Terms emphasized in blue',
+    '강조 위치와 선정 기준': 'Emphasis locations and selection criteria',
+    '사용자 경험의 범위': 'The scope of user experience',
+    '경험의 세 차원': 'Three dimensions of experience',
+    '감각적 경험과 실재감': 'Sensory experience and presence',
+    '판단적 경험과 기인점': 'Judgmental experience and attribution',
+    '구성적 경험과 관계': 'Compositional experience and relationships',
+    '세 차원의 통합 모형': 'An integrated model of three dimensions',
+    'SET: 사회·경제·기술 환경': 'SET: social, economic, and technological context',
+    '현재 경험과 목표 경험': 'Current and target experience',
+    '협업 서비스에 개념 적용하기': 'Applying concepts to a collaboration service',
+    '사용자 경험의 세 차원': 'Three dimensions of user experience',
+    '실재감의 유형과 조절 요인': 'Types of presence and moderating factors',
+    '기인점과 행동의 목적': 'Attribution and the purpose of behavior',
+    '관계의 종류와 복잡도': 'Types and complexity of relationships',
+    '경험의 세 축과 SET 비교': 'Comparing the experience axes with SET',
+    '목표 경험 설정의 네 단계': 'Four stages of setting a target experience',
+    '빨강 강조: 제공할 경험': 'Red emphasis: the experience to provide',
+    '유용성과 사용자 목적': 'Usefulness and user purposes',
+    '문제 공간과 네 요소': 'Problem space and its four elements',
+    '문제 공간과 솔루션 공간': 'Problem space and solution space',
+    '심성 모형과 사용자 기대': 'Mental models and user expectations',
+    '가치·기능·구조·표현 모형': 'Value, functional, structural, and presentation models',
+    '모형별 설계 도구와 평가': 'Design tools and evaluation for each model',
+    '수단적 가치와 경험적 가치': 'Utilitarian and experiential value',
+    '가치 우선순위 설정': 'Setting value priorities',
+    '디지털 헬스의 유효성 사례': 'Efficacy examples in digital health',
+    '과적합·과소적합과 상충 관계': 'Overfitting, underfitting, and trade-offs',
+    '사용자·과업·환경에 맞는 균형': 'Balance for users, tasks, and environments',
+    'LMS에 네 모형 적용하기': 'Applying four models to an LMS',
+    '사용자 목적과 문제 공간': 'User purposes and problem space',
+    '빨강 강조: 심성 모형과 가치': 'Red emphasis: mental models and value',
+    '네 모형과 LMS 적용 질문': 'Four models and LMS application questions',
+    '수단적·경험적 가치 비교': 'Comparing utilitarian and experiential value',
+    '주된 가치와 보완 가치': 'Primary and complementary value',
+    '유효성 사례와 평가 조건': 'Efficacy examples and evaluation conditions',
+    '실제 환경과 적합의 균형': 'Balancing fit with real-world conditions',
+    '개념·사례·복습': 'Concepts · Examples · Review',
+    '1장 교수님 강조 요약': 'Chapter 1 instructor-emphasis summary',
+    '2장 교수님 강조 요약': 'Chapter 2 instructor-emphasis summary',
+    '3장 교수님 강조 요약': 'Chapter 3 instructor-emphasis summary',
+    '1~4장 전체 강의와 교수님 강조 요약.':
+      'Full lectures and instructor-emphasis summaries for Chapters 1–4.',
+    'HCI 3.0의 개념, 사용자경험, 유용성과 사용성.':
+      'HCI 3.0 concepts, user experience, usefulness, and usability.',
+    '4장 학습하기 ↗': 'Study Chapter 4 ↗',
+    '원본 73쪽': '73 source pages',
+    조작: 'Action',
+    확인: 'Confirmation',
+    '효율성·정확성·의미성·유연성·일관성. 사용 맥락과 오류의 원인을 살펴보는 설계.':
+      'Efficiency, accuracy, meaningfulness, flexibility, and consistency. Design with attention to use contexts and error causes.',
+    '사용성 속성 · 오류 예방·감지·회복':
+      'Usability attributes · Error prevention, detection, and recovery',
+    '4장 · 사용성 관찰과 개선': 'Chapter 4 · Observe and improve usability',
+    '교수님 강의자료 기반 · 1–4장 학습 노트':
+      'Based on instructor materials · Chapters 1–4 study notes',
+    '4장 전체 강의 →': 'Chapter 4 full lecture →',
+    '4장 강조 요약 →': 'Chapter 4 emphasis summary →',
+    '← 3장 전체 강의': '← Chapter 3 full lecture',
+    '← 3장 강조 요약': '← Chapter 3 emphasis summary',
+    '가상 냉방 사례입니다. 왼쪽부터 사용자가 입력 내용을 확인하고, 시스템의 제안을 검토·조정한 뒤, 실행을 승인합니다. 사람의 참여 지점을 설명하며 모든 AI가 같은 절차를 따른다는 뜻은 아닙니다.':
+      'A fictional cooling scenario: from left to right, the user checks the input, reviews and adjusts the system’s suggestion, and then approves the action. These are examples of human participation, not a fixed procedure for every AI system.',
+    '같은 방의 세 장면에서 사용자가 태블릿에 말하고, 냉방 제안을 조정하고, 승인 후 에어컨이 작동한다.':
+      'In three views of the same room, a user speaks to a tablet, adjusts a cooling suggestion, and approves it before the air conditioner runs.',
+    '태블릿 속 방에 놓인 가상 의자, 화면 너머 동료와의 대화, 실제 오른손과 같은 자세의 가상 오른손을 나란히 보여준다.':
+      'Side-by-side scenes show a virtual chair in a tablet view of a room, a conversation with a remote colleague, and a virtual right hand matching the user’s real right hand.',
+    '가상 장면에서 왼쪽은 사물, 가운데는 다른 사람, 오른쪽은 디지털 공간 속 자신의 존재에 주목합니다. 각각 물리적·사회적·자아 실재감의 예이며, 한 서비스에서 여러 유형이 함께 나타날 수 있습니다.':
+      'In these fictional scenes, the focus is an object on the left, another person in the middle, and one’s own presence in digital space on the right. They illustrate physical, social, and self presence; several types can coexist in one service.',
+    '위에는 같은 네 학생의 제한된 교류와 여러 동료 간 교류, 아래에는 같은 두 학생의 짧은 확인과 지속적인 초안 피드백이 대비된다.':
+      'The upper panels contrast limited and wider exchanges among the same four students; the lower panels contrast a brief acknowledgement with sustained draft feedback between the same two students.',
+    '가상 스터디의 위쪽 두 장면은 같은 참여자 사이에서 실제로 연결된 관계의 차이를, 아래쪽은 같은 두 사람이 정보를 주고받는 빈도·지속성·깊이의 차이를 보여줍니다. 관계의 밀도와 강도를 구분하는 예시이며 많고 강한 관계가 언제나 더 좋다는 뜻은 아닙니다.':
+      'In this fictional study group, the upper pair compares actual connections among the same participants. The lower pair compares how frequently, continuously, and deeply the same two people exchange information. The scenes distinguish relationship density from strength without implying that more or stronger relationships are always better.',
+    '책이 필요한 학생이 검색·선택·결제를 거쳐 구매 확인을 받으며, 위에 예산·시간·연결 제약을 나타내는 기호가 있다.':
+      'A student who needs a book searches, selects and pays before receiving purchase confirmation, with symbols above for budget, time and connectivity constraints.',
+    '왼쪽은 원하는 책을 아직 구매하지 않은 시초 상태, 오른쪽은 구매와 결제를 마친 목표 상태입니다. 가운데의 검색·선택·결제는 상태를 바꾸는 조작자이고, 위쪽의 지갑·시계·연결 기호는 경로를 제한하는 조건입니다. 가능한 여러 경로 중 한 예이며 배송이나 독서 완료를 뜻하지 않습니다.':
+      'The left shows the initial state before buying the desired book; the right shows the goal state after purchase and payment. Searching, selecting and paying in the center are operators that change state, while the wallet, clock and connection symbols above represent constraints on possible paths. This is one of several possible paths, not completion of delivery or reading.',
+    '왼쪽은 같은 PC와 유선 연결에서 문서 제출을 관찰하고, 오른쪽은 복도의 휴대전화와 집의 노트북으로 같은 과제를 수행한다.':
+      'The left shows document submission observed on matching PCs with wired connections; the right shows the same task on a phone in a corridor and a laptop at home.',
+    '같은 과제 제출을 확인하는 가상 평가 장면입니다. 왼쪽은 기기와 연결 등 조건을 맞추어 평가하고, 오른쪽은 실제로 달라지는 기기·연결·사용 상황을 살핍니다. 장면의 차이는 평가 조건을 설명할 뿐, 유효성이나 환경 적합성이 입증됐다는 결과는 아닙니다.':
+      'These fictional scenes evaluate the same assignment-submission task. The left controls conditions such as devices and connectivity; the right examines variation in actual devices, connections and use situations. The contrast illustrates evaluation conditions, not proof of efficacy or suitability.',
+    '왼쪽은 삭제된 첨부 파일을 이전 상태로 복구하고, 오른쪽은 연결 오류에도 남아 있는 작성 내용으로 업로드를 다시 시도한다.':
+      'On the left, a removed attachment is restored to its earlier state; on the right, an upload is retried using draft content retained after a connection error.',
+    '각 열을 위에서 아래로 읽습니다. 왼쪽의 후방 회복은 첨부 파일 삭제를 취소해 오류 이전 상태로 돌아갑니다. 오른쪽의 전방 회복은 연결 오류 뒤 작성 내용과 첨부 파일을 유지하고 재시도하여 작업을 이어 갑니다. 마지막 체크 표시는 이 가상 사례에서의 완료이며, 모든 재시도의 성공이나 자동 저장을 보장한다는 뜻은 아닙니다.':
+      'Read each column from top to bottom. Backward recovery on the left reverses attachment removal and returns to the previous state. Forward recovery on the right retains the draft and attachment after a connection error and retries so work can continue. The final checkmark indicates completion in this hypothetical example; it does not guarantee that every retry succeeds or that content is always saved automatically.',
+    '저장 대신 삭제를 누른 손, 빠뜨린 첨부 파일, 임시 저장을 제출 완료로 생각하는 학생의 세 장면을 비교한다.':
+      'Three scenes compare selecting delete instead of save, omitting an attachment, and believing a saved draft has already been submitted.',
+    '왼쪽부터 저장하려다 삭제를 누른 실수, 첨부하려던 파일을 잊은 과실, 임시 저장을 최종 제출로 이해한 착오를 가정합니다. 가운데 화면 밖 파란 파일은 빠뜨린 첨부 파일을, 오른쪽 생각 풍선은 사용자가 제출을 마쳤다고 믿는 상태를 나타냅니다. 실제 원인은 관찰과 질문으로 확인해야 하며, 이 그림이 원문의 의도한 행위·의도하지 않은 행위 분류를 대신하지는 않습니다.':
+      'From left to right, the assumed causes are a slip that selects delete instead of save, a lapse that omits an intended attachment, and a mistake that treats a saved draft as a final submission. The blue file outside the middle screen represents the omitted attachment; the thought bubble on the right represents the belief that submission is complete. Real causes require observation and questions. This illustration does not replace the source’s intended-versus-unintended-action classification.',
   },
   patterns: [
     {

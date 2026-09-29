@@ -107,6 +107,32 @@
 .home-footer {
   font-size: 12px;
 }
+.chapter-card,
+.chapter-card-content {
+  display: flex;
+  flex-direction: column;
+}
+.chapter-card-content {
+  flex: 1;
+}
+.chapter-actions {
+  margin-top: auto;
+  padding-top: 24px;
+}
+.chapter-card-content > p,
+.study-path p {
+  font-size: 16px;
+}
+.chapter-card-head,
+.card-source {
+  font-size: 13px;
+}
+.home-header nav a,
+.material-list a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
 .home-header nav {
   flex-wrap: wrap;
   gap: 20px;
