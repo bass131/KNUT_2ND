@@ -1,17 +1,445 @@
 /* English learning text; Korean source and executable code remain unchanged. */
 window.KNUT_TRANSLATIONS = {
   text: {
-    'BigData — 나의 데이터 엔지니어링 노트': ' BigData — My Data Engineering Notes',
+    '근거: 1장 슬라이드 1–2, 5 (파일 순서 기준). 기본 용어 설명과 조별 과제 비유는 학습용 보충입니다.':
+      'Source: Chapter 1, slides 1–2 and 5 (numbered by their order in the file). The basic term explanations and group assignment analogy are supplementary learning material.',
+    '변환 · 목적에 맞게 데이터 정리하기': 'Transformation · Prepare data for its intended use',
+    '슬라이드 1–10. 슬라이드 번호는 파일의 실제 순서 기준입니다.':
+      'Slides 1–10. Slide numbers follow their order in the source file.',
+    '는 세 부분으로 구성됩니다.': ' consists of three parts.',
+    '합계 계산은 빠르게 끝날 수 있습니다. 120초 대기 시간에는 이미 완료된 작업과 앱 상태를 확인합니다.':
+      'The sum may finish quickly. Use the 120-second wait to inspect already completed tasks and the application status.',
+    '강의 사례의 학습용 관찰표이며 실제 측정값이 아닙니다. 자신의 실행 화면과 비교하세요.':
+      ' This learning table is based on the lecture example and does not show actual measurements. Compare it with your own execution screen.',
+    '위 단계는 단어 집계와 정렬의 학습용 모형입니다. 실제 Job·Stage 수는 실행 계획에 따라 달라지며, 코드 한 줄이 반드시 Stage 하나에 대응하지는 않습니다.':
+      ' These stages are a learning model of word counting and sorting. Actual Job and Stage counts depend on the execution plan; one line of code does not necessarily correspond to one Stage.',
+    '은 서로 다릅니다.': ' perform different functions.',
+    '정상 실행에서는 관찰 대기 후': ' On a successful run, after the observation wait, the',
+    '을 호출해 세션을 종료합니다. 오류가 나도 종료를 시도하며, 정상 경로에서만':
+      ' to stop the session. Shutdown is also attempted after an error; only on the normal path',
+    '는 같은 Compose 프로젝트에서 현재 설정에 없는 서비스의 컨테이너를 제거합니다. 이전 설정의 세 번째 Worker가 남아 있다면 함께 제거됩니다.':
+      ' removes containers for services absent from the current configuration within the same Compose project. A third Worker left over from an earlier configuration is removed as well.',
+    '로그 명령은 보충 진단용입니다. Master의 healthy는 웹 응답 확인이므로 Worker 등록도 따로 확인하세요.':
+      ' The log command is a supplementary diagnostic. Master’s healthy status confirms a web response; check Worker registration separately.',
+    '은 각 행의 어떤 열을 어떻게 계산할지 정의한 규칙입니다. Driver에서 이 표현식을 만들고, Executor가 각 행에 적용해 계산합니다.':
+      ' is a rule specifying which columns to use and how to compute them for each row. The Driver creates this expression, and the Executor applies it to each row to perform the computation.',
+    '01. 데이터 처리 흐름과 검증의 기초 · BigData':
+      '01. Data Processing and Verification Basics · BigData',
+    '주문표를 예로 데이터 처리 흐름, Spark의 역할, 결과 검증 방법을 배웁니다.':
+      'Learn about data processing, Spark roles, and result verification through an order table.',
+    '데이터 처리의 기본 용어 네 가지': 'Four basic data processing terms',
+    '실습에서는 내 PC 안에 실행 환경을 분리하는':
+      'In the lab, your PC runs multiple isolated environments called',
+    '를 여러 개 실행합니다. 컨테이너 간 통신을 관찰할 수 있지만, PC의 CPU·메모리 자체가 늘어나지는 않습니다.':
+      '. You can observe communication between the containers, but the PC does not gain CPU or memory resources.',
+    '이 남을 수 있습니다. 실습에서는 작업을 나누어 실행하고, 어느 구간에서 느려지는지 관찰합니다.':
+      '. In the lab, you split and run tasks, then observe where processing slows down.',
+    '아닙니다. 나눌 수 없는 작업, 데이터 전송 시간, 한쪽에 몰린 작업 때문에 기대만큼 빨라지지 않을 수 있습니다.':
+      'No. Tasks that cannot be split, data transfer time, and uneven workloads can limit the speedup.',
+    '수집 · 원천 데이터 가져오기': 'Collection · Retrieve source data',
+    '저장 · 원본과 처리 결과 보관하기': 'Storage · Keep source data and processed results',
+    '제공 · 매출표 전달하기': 'Serving · Deliver a sales report',
+    '다시 실행해도 같은 기준으로 계산하는가?': 'Does a rerun use the same calculation rules?',
+    '목적에 따른 저장소 선택': 'Choose storage for its purpose',
+    '이 절의 내용을': 'You can explore this section’s concepts in the',
+    '합성 주문 5행 정리 실습': 'lab for cleaning five synthetic order rows',
+    '에서 확인할 수 있습니다. 입력 CSV, Python 전체 코드, 예상 결과로 중복·충돌·재실행을 확인합니다. Python 표준 라이브러리만 사용합니다.':
+      '. The lab provides an input CSV, complete Python code, and expected results to check duplicates, conflicts, and reruns. It uses only the Python standard library.',
+    '근거: 1장 슬라이드 2–3. 주문표와 계산 결과는 학습용 예제이며 실제 실행 결과가 아닙니다.':
+      'Source: Chapter 1, slides 2–3. The order table and calculations are learning examples, not actual execution results.',
+    '무엇을 계산하는지, 어디에서 실행되는지, 데이터가 늘어도 처리할 수 있는지 확인합니다.':
+      'Check what is computed, where it runs, and whether it can handle more data.',
+    '계산이 어느 실행 자원에서 수행되는지 확인합니다.':
+      'Check which execution resources perform the computation.',
+    '주문이 100배 늘어도 처리할 수 있는지, 다시 실행해도 요구한 결과가 나오는지 확인합니다.':
+      'Check whether the system can handle 100 times as many orders and still produce the required results on a rerun.',
+    'Spark 실행의 기본 용어 네 가지': 'Four basic terms for Spark execution',
+    '관련 기술로 Hadoop·HDFS·MapReduce가 있습니다.':
+      'Related technologies include Hadoop, HDFS, and MapReduce.',
+    '이 절에서는 각 기술의 역할만 소개합니다.':
+      'This section introduces the role of each technology.',
+    '아닙니다. Partition은 데이터 조각입니다. 하나의 실행 자원이 여러 조각을 차례로 처리할 수 있으므로, 데이터 조각 수와 컴퓨터 수는 다를 수 있습니다.':
+      'No. A Partition is a piece of data. One execution resource can process several pieces in sequence, so the number of Partitions can differ from the number of computers.',
+    '근거: 1장 슬라이드 4–5, 10. 용어 설명과 비유는 학습용 보충입니다.':
+      'Source: Chapter 1, slides 4–5 and 10. The term explanations and analogies are supplementary learning material.',
+    '학기 학습 순서는': 'The semester follows this sequence:',
+    '입니다. 주차별 강의 범위는 아래 표와 같습니다.':
+      '. The table below lists the topics for each group of weeks.',
+    '가게에서 주문을 정리한 뒤 창고·배송을 연결하고, 주문이 제대로 전달되는지 확인하는 과정과 비슷합니다.':
+      'The sequence is like organizing orders in a shop, connecting warehouse and delivery operations, then checking that the orders arrive correctly.',
+    '주차별 강의 범위': 'Course topics by week',
+    '표의 후반 주차는 강의 계획이며, 상세 학습 페이지는 아직 없습니다.':
+      'The later weeks are part of the course plan; their detailed learning pages are not yet available.',
+    '용어 정리 · 파일 형식과 후반부 기술': 'Terms · File formats and later course technologies',
+    '강의 계획의': 'In the course plan,',
+    '은 학습 범위를 넓혀 가는 순서를 나타냅니다. CSV·Parquet은 파일 형식, Iceberg는 테이블 형식, Kafka는 이벤트 플랫폼입니다.':
+      ' shows how the course expands its scope. CSV and Parquet are file formats, Iceberg is a table format, and Kafka is an event platform.',
+    '근거: 1장 슬라이드 6–7.': 'Source: Chapter 1, slides 6–7.',
+    'Docker로 실습 환경 준비하기': 'Prepare the lab environment with Docker',
+    '수업에서는 Windows PC의 Docker Desktop과 WSL2로 실습 환경을 구성합니다.':
+      'The course uses Docker Desktop and WSL2 to set up the lab environment on a Windows PC.',
+    'Compose 명령의 역할': 'What Compose commands do',
+    '이미지와 서비스 상태를 확인한 뒤, 통신과 작은 계산이 정상적으로 수행되는지 확인합니다.':
+      'Check the image and service status, then verify communication and a small computation.',
+    '근거: 1장 슬라이드 7–8, 16. 이미지와 파일 연결은':
+      'Source: Chapter 1, slides 7–8 and 16. Images and file mounts follow the',
+    '설정을 따르며, 16번 슬라이드의 설치·실행 방법은 2장에서 다룹니다.':
+      'configuration. Installation and execution instructions from slide 16 are covered in Chapter 2.',
+    'Driver는 합계 한 행을 받습니다. 집계 단계와 데이터 이동은 실행계획에서 확인합니다.':
+      'The Driver receives one row containing the sum. Check the execution plan for aggregation steps and data movement.',
+    '입니다. 손계산한 예상값이며 실제 Spark 실행 결과가 아닙니다.':
+      '. This is an expected value calculated by hand, not an actual Spark execution result.',
+    'Spark 코드에서 연산을 정의하는 시점과 실제 계산이 실행되는 시점을 구분해야 합니다.':
+      'Distinguish between defining operations in Spark code and executing the computation.',
+    '근거: 1장 슬라이드 9–10, 14. 코드 비교는 학습용 보충 예제이며, 제공 실습의 1–100 합계 예제는':
+      'Source: Chapter 1, slides 9–10 and 14. The code comparison is a supplementary learning example; the supplied sum-of-1-to-100 example is in',
+    '파이프라인의 설계 이유와 결과를 확인한 방법을 설명할 수 있어야 합니다.':
+      'Be able to explain your pipeline design and how you checked its results.',
+    '강의의 채용 자료에는 Python·SQL, 대용량 처리, 저장 구조, 운영·협업 역량이 나옵니다. 수업에서는 파이프라인을 구현하고 오류의 원인을 찾아 설명하는 연습을 합니다.':
+      'The recruitment material lists Python and SQL, large-scale processing, storage design, operations, and collaboration skills. In this course, you practice building pipelines and identifying and explaining errors.',
+    '수리에는 고장 찾기 → 공구 선택 → 수리 → 작동 확인이 필요합니다. 데이터 처리 도구도 해결할 문제에 맞춰 선택하고 결과를 확인합니다.':
+      'Repair involves finding the fault, choosing tools, fixing it, and checking that it works. Likewise, choose data processing tools for the problem and check the results.',
+    '통계를 읽을 때는 조사 시점과 표본을 확인해야 합니다.':
+      'Check the survey date and sample when reading statistics.',
+    '확인 질문 · 2장에서는 무엇을 확인하나요?':
+      'Check your understanding · What do you check in Chapter 2?',
+    '2장에서는 PC → Docker 컨테이너 → Spark 역할의 관계를 배우고, 제공 실습을 실행해 상태·통신·계산 결과를 확인합니다.':
+      'Chapter 2 explains the relationship between the PC, Docker containers, and Spark roles. You run the supplied lab and check its status, communication, and computation results.',
+    '근거: 1장 슬라이드 11–15 및 슬라이드 2의 강의 목표.':
+      'Source: Chapter 1, slides 11–15 and the course objectives on slide 2.',
+    'Docker 환경을 구성하고 Spark로 1부터 100까지의 합계 5,050을 확인합니다.':
+      'Set up Docker and use Spark to verify that the sum of 1 through 100 is 5,050.',
+    '02. 내 PC에 Spark 실습 환경 만들기 · BigData':
+      '02. Setting Up a Spark Lab on Your PC · BigData',
+    'Spark 실습 환경 만들기': 'Set Up a Spark Lab',
+    '네 컨테이너의 역할을 배우고, Docker 설치부터 합계 5050 확인까지 실습합니다.':
+      'Learn the roles of four containers, install Docker, and verify the sum 5050.',
+    '아래 출력은 예상 예시입니다. 자신의 PC에서 Docker를 실행해 결과를 확인합니다.':
+      'The output below is an expected example. Run Docker on your PC to check the results.',
+    '프로세스·서버·클러스터': 'Processes, Servers, and Clusters',
+    '슬라이드 1–10.': 'Slides 1–10.',
+    '실습 경로 선택': 'Choosing a Lab Folder',
+    '두 실습은 폴더와 포트가 다릅니다. 선택한 실습의 안내에 따라 명령을 실행합니다.':
+      'The two labs use different folders and ports. Run the commands for the lab you choose.',
+    'Docker Desktop이 없다면': 'If Docker Desktop is not installed, use the',
+    '에서 설치 조건과 절차를 확인합니다. WSL이 없다면 아래 WSL 준비 절차부터 진행합니다.':
+      'to check the requirements and installation steps. If WSL is not installed, follow the WSL setup steps below first.',
+    'Docker Desktop 실행과 Engine 확인': 'Starting Docker Desktop and Checking the Engine',
+    'WSL 상태 확인': 'Checking WSL Status',
+    '실습 폴더로 이동': 'Opening the Lab Folder',
+    '강의의 “week02-lab 폴더”에 해당합니다. 다음 6개 파일이 있는지 확인합니다.':
+      'This is the “week02-lab folder” used in the lecture. Check that it contains the following six files.',
+    '지정된 이미지 다운로드': 'Downloading the Specified Image',
+    '이미지 다운로드 실패 시 대안': 'Alternative When the Image Download Fails',
+    'Compose 파일은 실행할 서비스와 설정을 정의합니다. 공통 설정을 한 번 정의하고, 서비스마다 실행 명령과 개별 설정을 추가합니다.':
+      'A Compose file defines the services and their settings. Define shared settings once, then add each service’s commands and settings.',
+    'Master: 상태 검사와 서비스 시작 조건': 'Master: Health Check and Service Start Conditions',
+    'Client: 실습 폴더 연결과 대기': 'Client: Mounting the Lab Folder and Waiting',
+    '. Master·Worker 1·Worker 2·Client 네 서비스가 정의돼 있습니다.':
+      '. It defines four services: Master, Worker 1, Worker 2, and Client.',
+    'Spark는 데이터를 나누어 여러 프로세스에서 처리하는 엔진입니다. 이번 실습에서는 Spark 자체의 클러스터 관리 방식인':
+      'Spark is an engine that divides data for processing across multiple processes. This lab uses Spark’s own cluster management mode,',
+    'Spark 구성요소의 역할': 'Roles of Spark Components',
+    '. 이 실습의 실행 옵션과 버전은 제공 파일에 따릅니다.':
+      '. This lab uses the execution options and versions in the supplied files.',
+    'localhost가 가리키는 대상': 'What localhost Refers To',
+    '컨테이너 간 연결 없이 작은 계산을 실행합니다. 이 단계에서 실패하면 이미지와 실행 환경을 먼저 점검합니다.':
+      'Run a small calculation without connecting containers. If it fails, check the image and runtime environment first.',
+    '예상 출력과 성공 기준': 'Expected Output and Success Criteria',
+    '.': '.',
+    '전원, 팀원의 출석, 전화 연결, 과제 완성을 따로 확인하듯, Up → ALIVE → NETWORK_CHECK → 계산 결과도 각각 확인합니다.':
+      'Check Up → ALIVE → NETWORK_CHECK → the calculation result separately, as you would check power, attendance, a phone connection, and a completed assignment.',
+    '네 서비스 실행': 'Starting the Four Services',
+    'Master UI에서 Worker 등록 확인': 'Checking Worker Registration in the Master UI',
+    'Client에서 네트워크 검사': 'Checking the Network from the Client',
+    '과 달리 새 컨테이너를 만들지 않습니다.':
+      ' creates a new container; exec uses an existing one.',
+    '. 종료 코드 0/1 확인은 보충 단계입니다.': '. Checking exit code 0/1 is a supplementary step.',
+    '계산과 검증 코드': 'Calculation and Validation Code',
+    '앱 제출': 'Submitting the App',
+    '증상별 점검 항목': 'Checks for Each Symptom',
+    '. 증상별 점검 표는 보충 안내입니다.': '. The troubleshooting table is supplementary guidance.',
+    '앱이 종료돼도 컨테이너는 남을 수 있습니다. 실습을 잠시 중단할 때는 컨테이너를 중지하고, 마칠 때는 제거합니다.':
+      'Containers may remain after the application exits. Stop them when pausing the lab and remove them when you finish.',
+    '학습 확인 항목': 'Learning Checklist',
+    '아래는 강의에서 제공한 실습 파일입니다. 같은 폴더 구조로 저장한 뒤 이 장의 준비·검사·제출 순서로 실행합니다.':
+      'These are the supplied lab files. Preserve their folder structure and follow the setup, checking, and submission steps in this chapter.',
+    '제공 README의 안내는 실제 실행 검증을 거치지 않았으므로, 자신의 PC에서 위 확인 항목을 점검합니다.':
+      'The supplied README’s instructions were not verified by running them. Check the items above on your own PC.',
+    '내 PC에서': 'On Your PC:',
+    '1부터 100까지의 합을 여러 계산 자원에 나누어 구합니다. 환경과 전체 코드를 확인하고, 데이터가 나뉘고 합쳐지는 과정을 배웁니다. Worker와 코어 수를 바꾸어 실행 구조와 처리 시간을 비교합니다.':
+      ' Compute the sum of 1 through 100 across multiple computing resources. Check the environment and full source, then learn how data is split and combined. Change the Worker and core counts to compare execution and processing time.',
+    '실행 환경과 파일을 준비하고 전체 코드의 흐름을 확인합니다. 각 줄의 역할은 이어지는 절에서 설명합니다.':
+      ' Prepare the environment and files, then follow the flow of the full source. The following sections explain what each line does.',
+    '합계 실습은 코드가 숫자를 생성하므로 별도 입력 파일이 필요하지 않습니다. 단어 집계의 세 줄 예시는 표의 변화를 설명하며, 실행용 입력 파일은 해당 절의 보충 실습에서 받습니다.':
+      ' The sum lab generates its numbers in code, so no input file is needed. The three sample lines in the word-count section illustrate changes to the table; download the input file from the supplementary lab in that section.',
+    '순서로 읽습니다. 각 파일의 역할은 이어지는 절에서 설명합니다.':
+      '. The following sections explain each file’s role.',
+    '제공 실습: 실행 관찰용 파일 5개와 성능 비교용 파일 3개. 환경 참고:':
+      ' Supplied labs: 5 files for observing execution and 3 for comparing performance. Environment references:',
+    '슬라이드 1–8 (파일 순서 기준).': ' Slides 1–8 (in file order).',
+    ', 집계, 데이터 정제, 반복 분석에 활용합니다. 짧은 응답 시간이 필요한 서비스나':
+      ', aggregation, data cleaning, and repeated analysis. It does not replace services that require short response times or',
+    '데이터베이스를 대신하는 도구는 아닙니다.': ' databases.',
+    '역할을 두 쌍으로 나누면 다음과 같습니다.': ' The roles fall into two pairs.',
+    '입니다. 준비부터 계산까지 다음 순서로 진행됩니다.':
+      '. The sequence runs from preparation to computation as follows.',
+    '슬라이드 18–22, 26, 28–29. 구조 보충:': ' Slides 18–22, 26, 28–29. Architecture supplement:',
+    '데이터가 여러 곳에 나뉘어 있어도 열 이름으로 계산을 지정할 수 있습니다.':
+      ' Even when data is spread across multiple locations, calculations can be specified by column name.',
+    '성적표를 여러 조교에게 나누어 주어도 “점수 열의 합계”라는 요청은 같습니다. 점수 열은 표의 구조이고, 조교에게 나눈 묶음은 데이터 조각입니다.':
+      ' The request to “sum the score column” stays the same even when grade sheets are divided among assistants. The score column describes the table structure; each assistant’s bundle represents a data partition.',
+    '이고 입력 Partition은 4개입니다. 위 표는 숫자 범위를 보여 주는 예시이며, DataFrame의 출력 순서는 명시적으로 정렬해야 보장됩니다.':
+      ' with 4 input partitions. The table illustrates the number range; DataFrame output order is guaranteed only when explicitly sorted.',
+    '합계를 구하는 코드는 다음 한 줄입니다.': ' This line computes the sum.',
+    '입니다. 실습 파일은 그대로 실행합니다.': '. Run the lab file as supplied.',
+    '로 붙인 열 이름입니다. 이름은 같아도 역할은 다릅니다.':
+      ' is the column name assigned by that expression. They share a name but have different roles.',
+    '도 실행을 요청하므로, 실습의 Job·Task 수를 관찰할 때는 파일에 코드를 추가하지 마세요.':
+      ' also triggers execution, so leave the lab file unchanged when observing its Job and Task counts.',
+    '슬라이드 23, 32–34 ·': ' Slides 23, 32–34 ·',
+    '. 표와 단계별 변수는 학습용 보충입니다. API 참고:':
+      '. The tables and step-by-step variables are learning supplements. API references:',
+    '주문서에 요리를 적는 것은 계획이고, 조리는 실행입니다. 변환은 계획을 만들고 실행 요청은 결과를 요구합니다. 주문서 줄 수가 실제 작업 수와 같지는 않습니다.':
+      ' Writing dishes on an order is planning; cooking is execution. Transformations build a plan, while actions request results. The number of lines on the order need not match the number of tasks.',
+    '단어별 등장 횟수를 구하려면 문장을 단어 행으로 나누고 같은 단어를 모아 셉니다. 문장 읽기 → 단어 분리 → 집계 → 저장 순서로 표가 바뀝니다.':
+      ' To count word occurrences, split sentences into word rows, group matching words, and count them. The table changes as the code reads sentences, splits words, aggregates counts, and saves the result.',
+    '슬라이드 23–25. 전체 코드는 슬라이드 24, 입력과 중간 표는 학습용 보충입니다. API 참고:':
+      ' Slides 23–25. The full source is on Slide 24; the input and intermediate tables are learning supplements. API references:',
+    '환경 설정·제출 스크립트·계산 코드를 연결해 실행 흐름을 확인합니다. 각 프로세스가 시작되고, 합계를 계산·검증한 뒤 종료되는 순서입니다.':
+      ' Follow the execution flow through the environment configuration, submission script, and computation code: processes start, the sum is computed and checked, and the application stops.',
+    '입니다. 실제 실행은 다음': '. For the actual run, complete the following',
+    '을 마친 뒤 진행합니다.': ' before running the command.',
+    '10. 같은 계산을 반복하고 시간 측정하기':
+      ' 10. Repeat the same calculation and measure its time',
+    '중 시간 측정 부분을 발췌한 코드입니다. SparkSession 생성과 인자 검사는 포함하지 않습니다.':
+      '. The excerpt below covers timing; SparkSession creation and argument checks are omitted.',
+    '슬라이드 28–37 · 「Spark Worker 확장과 성능 측정」 1–2쪽 · 실행 관찰·성능 측정 코드.':
+      ' Slides 28–37 · “Scaling Spark Workers and Measuring Performance,” pages 1–2 · Execution-observation and performance-measurement code.',
+    'Docker와 실습 파일을 확인하고 두 Worker를 시작한 뒤 통신을 검사합니다. 점검을 마치면 다음 절에서 1부터 100까지의 합계 프로그램을 제출합니다.':
+      ' Check Docker and the lab files, start two Workers, and test communication. After these checks, submit the program that sums 1 through 100 in the next section.',
+    '2장 실습 파일로 실행하기': ' Run with the Chapter 2 lab files',
+    '2장 실습 파일을 사용합니다.': ' Use the Chapter 2 lab files.',
+    '를 제출합니다.': '.',
+    '실험 전에 전원과 장비 연결을 따로 점검하듯, 이미지와 네트워크 연결도 각각 검사합니다.':
+      ' Just as power and equipment connections are checked separately before an experiment, test the image and network connection separately.',
+    '는 같은 Compose 프로젝트에서 현재 설정에 없는 서비스의 컨테이너를 제거합니다.':
+      ' removes containers for services absent from the current configuration within the same Compose project.',
+    'Master의 healthy는 웹 응답 확인이므로 Worker 등록도 따로 확인하세요.':
+      ' Master’s healthy status confirms a web response; check Worker registration separately.',
+    '를 확인한 뒤, Master UI를 열어 둔 채 Application을 제출합니다.':
+      '. Keep the Master UI open and submit the Application.',
+    '슬라이드 42–48의 실행 화면.': ' Execution screens on Slides 42–48.',
+    '전체 작업 수': ' total Task count',
+    '동시에 실행할 작업 수': ' number of Tasks that can run concurrently',
+    'ALIVE Worker 1개. 중지한 Worker의 DEAD 행 표시는 실행 이력에 따라 달라질 수 있습니다.':
+      ' 1 ALIVE Worker. Whether the stopped Worker appears as a DEAD row depends on execution history.',
+    '두 Worker와 한 Worker의 정답·Task 수·동시 실행 수를 비교하고,':
+      ' Compare the answers, Task counts, and concurrency with two Workers and one Worker. After',
+    '뒤 서비스 목록이 비었는지 확인합니다. 다음 실험에서는 3장 파일로 입력을 늘려 성능을 비교합니다.':
+      ', confirm that the service list is empty. In the next experiment, use the Chapter 3 files with a larger input to compare performance.',
+    '위 시간은 중앙값을 설명하는 가상 숫자입니다.':
+      ' These times are hypothetical values illustrating the median.',
+    '1–2쪽, 6쪽 · 3장 실습 파일. 측정 범위:':
+      ' Pages 1–2 and 6 · Chapter 3 lab files. Timing scope:',
+    '기준. 변수 표기 보충:': '. Variable-notation supplement:',
+    '3장 폴더에서 설정 검사를 통과하고 코어 조건과 입력·반복 조건을 구분한 뒤, 1 / 1 조건부터 측정합니다.':
+      ' After validating the configuration in the Chapter 3 folder and distinguishing core settings from input and repetition settings, begin measuring with the 1 / 1 condition.',
+    '표 A의 네 조건과 실제 2 / 2 Executor 수를 기록합니다. Worker는 8개를 유지하고, 마지막 실행의':
+      ' Record the four conditions in Table A and the actual Executor count for 2 / 2. Keep 8 Workers and, after the final run’s',
+    '2 / 2와 8 / 2의 중앙값·실제 Executor 수를 표 B에 기록합니다.':
+      ' Record the medians and actual Executor counts for 2 / 2 and 8 / 2 in Table B.',
+    '입력과 정답이 같은지 확인하고 실제 자원 사용을 기록해야 처리 시간을 비교할 수 있습니다. 여덟 Core 실행을 관찰해 표 A와 표 B의 결과를 해석합니다.':
+      ' Compare processing times only after confirming matching inputs and answers and recording actual resource use. Observe the eight-Core run to interpret Tables A and B.',
+    '학습용 비유 · 함께 쓰는 작업장': ' Learning analogy · A shared workspace',
+    '. 자원 관찰 보충.': '. Supplementary resource monitoring.',
+    '보충 예제는 이 장과 실행 폴더·포트·기본 입력이 다릅니다. 해당 예제의 파일과 명령을 함께 사용하세요.':
+      ' The supplementary example uses different folders, ports, and default input from this chapter. Use its files and commands together.',
+    '같은 데이터를 나누어 처리해도 정답은 같아야 합니다. 계산 결과를 확인한 뒤 실제 사용한 코어와 Task 수를 바탕으로 처리 시간을 비교합니다.':
+      ' Splitting the same data should still produce the same answer. Verify the result, then compare processing times using the actual core and Task counts.',
+    '는 다음과 같이 동작합니다.': '.',
+    블록에서: ' block calls',
+    '를 출력하고 프로그램이 끝납니다.': ' is printed and the program ends.',
+    'CSV의 열과 자료형을 정하고, 정상 주문을 골라 사용자별 구매금액을 구합니다. 각 연산이 무엇을 계산하고 어디서 실행되는지도 확인합니다.':
+      'Define the CSV columns and data types, select valid orders, and calculate purchases by user. Check what each operation computes and where it runs.',
+    '주문 한 건을 한 행으로 읽고, 잘못된 수량과 가격을 걸러 낸 뒤 사용자별 구매금액을 계산합니다. 3장의 숫자 한 열 합계와 달리, 여러 열을 가진 표에서 조건에 맞는 행을 골라 집계합니다.':
+      'Read each order as one row, filter out invalid quantities and prices, and calculate purchases by user. Chapter 3 summed a single column of numbers; here, you select and aggregate rows from a table with several columns.',
+    '예제 코드와 입력': 'Example code and input',
+    '별도 실습 가이드, 전체 프로그램, orders.csv는 제공되지 않아 이 장에서는 개념별 코드 발췌와 4행 예시를 사용합니다.':
+      'The separate lab guide, complete program, and orders.csv were not supplied. This chapter uses code excerpts for each concept and a four-row example.',
+    '실행 환경은': 'For the execution environment, see ',
+    '연산을 계획하고 실행을 요청하는 프로세스입니다.':
+      'The process that plans operations and requests their execution.',
+    '책임자가 계산 규칙을 정하고 여러 담당자가 나눠 맡은 장부를 계산합니다. 담당자가 많아도 나눠 맡을 장부가 부족하면 일부는 일을 기다립니다.':
+      'A coordinator sets the calculation rules, and several people work on their assigned ledgers. If there are too few ledgers to share, some people wait for work.',
+    '를 쓰면 Spark가 값을 읽어 자료형을 추론합니다. 처음 받은 파일을 살펴볼 때 편리하지만 데이터를 추가로 읽어야 합니다. 가격에':
+      ' lets Spark infer data types by reading the values. This is useful when inspecting an unfamiliar file, but requires an extra read. If a price contains ',
+    '가 섞이면 문자열로 판단할 수 있습니다. 반복해서 처리할 파일의 형식이 정해져 있다면 Schema를 직접 정의해 열 이름과 자료형을 명시합니다.':
+      ', Spark may infer a string type. If the format of files processed repeatedly is known, define the Schema explicitly to specify column names and data types.',
+    'Struct는 고객 정보처럼 이름이 있는 필드를 묶고, Array는 여러 상품을 담으며, Map은 추가 메모의 항목과 값을 연결합니다. 아래 전체 정의에서 세 구조를 조합하는 방법을 확인할 수 있습니다.':
+      'A Struct groups named fields such as customer details, an Array holds several products, and a Map links note entries to their values. The full definition below shows how to combine these structures.',
+    '는 Schema가 다르므로 각각의 입력 구조에 맞는 코드를 사용합니다.':
+      ' have different Schemas, so use code that matches each input structure.',
+    '정의한 Schema를 CSV 읽기 설정에 지정합니다. 다음 경로는':
+      'Specify the defined Schema in the CSV reader settings. The path below is ',
+    '이며, 해당 입력 파일은 제공되지 않았습니다.': '; the input file was not supplied.',
+    '입력 경로를 지정하고 DataFrame을 정의합니다. 데이터 계산은 Action이 결과를 요청할 때 수행되지만, 파일 확인이나 Schema 추론 같은 준비 작업은 그 전에 이루어질 수 있습니다.':
+      'Specifies the input path and defines a DataFrame. Data computation runs when an Action requests a result, but preparation such as file checks or Schema inference may happen earlier.',
+    'CSV를 읽은 결과에서는 nullable이 true로 표시될 수 있습니다. 실제 NULL·수량·가격 범위는 별도로 검사합니다. 열 이름은 맞는데 값이나 시각이 NULL로 바뀌었다면 입력 형식·자료형·시각 형식을 확인합니다.':
+      'The nullable flag may appear as true after reading a CSV. Check actual NULL values and quantity and price ranges separately. If column names are correct but values or timestamps become NULL, check the input format, data types, and timestamp format.',
+    '내장 연산의 실행 위치:': 'Where built-in operations run:',
+    'Python으로 처리 방법을 정의하고, 실제 주문 행의 계산은 Executor가 수행합니다.':
+      'Python defines the processing steps, and the Executor computes the order rows.',
+    '내장 DataFrame 연산과 달리, 사용자가 작성한 Python UDF(사용자 정의 함수)나 RDD의 Python 함수는 Executor의 Python Worker에서 실행될 수 있습니다.':
+      'Unlike built-in DataFrame operations, Python UDFs (user-defined functions) and Python functions used with RDDs may run in a Python Worker on the Executor.',
+    '집계할 주문의 조건을 먼저 정합니다. 이 예제에서는 수량·가격이 NULL이 아니고, 수량이 0보다 크며, 가격이 0 이상인 주문을 남깁니다.':
+      'First define which orders to aggregate. This example keeps orders with non-NULL quantities and prices, quantities greater than zero, and prices greater than or equal to zero.',
+    '는 같은 조건이면 같은 행을 선택합니다.':
+      ' select the same rows when given the same condition.',
+    'NULL 여부는': 'Check for NULL with ',
+    '으로 검사합니다. 아래는 Spark가 NULL 여부를 저장하는 방식에 대한 보충 설명입니다.':
+      '. The following supplementary explanation describes how Spark stores NULL flags.',
+    '는 나머지 경우의 값을 지정합니다. 이 예제의 분류 기준 금액은 100000입니다.':
+      ' specifies the value for all other cases. The threshold in this example is 100000.',
+    '개별 주문금액을 사용자별로 묶으면 주문 수·총액·평균을 알 수 있습니다. Group Key(그룹 기준)는 값이 같은 행끼리 묶는 기준 열이며, 여기서는':
+      'Grouping individual order amounts by user gives the order count, total, and average. A Group Key is the column used to group rows with matching values; here it is ',
+    '표는 데이터 이동을 설명하는 학습용 도식이며, 실제 실행에서는 부분 집계 등을 거쳐 전송할 데이터가 줄어들 수 있습니다.':
+      'This table is a teaching diagram of data movement; actual execution may reduce the data sent through partial aggregation or other steps.',
+    '입력으로 삼아 앞의 수량·가격 조건을 적용하면 정상 주문 3행이 남습니다. 아래는 이 4행에서 손으로 계산한 예상값입니다.':
+      ' as input leaves three valid orders after applying the quantity and price conditions. The values below are calculated by hand from these four rows.',
+    '로 결과를 확인합니다. 예상과 다르면 정제 전후 행 수, 빠진 사용자, 금액 계산, 그룹 키, 정렬 기준을 차례로 확인합니다.':
+      ' to view the result. If it differs from the expected values, check row counts before and after cleaning, missing users, amount calculations, group keys, and sort criteria in that order.',
+    '이라는 구체적 실행 방법을 정합니다. 실행은 Stage(단계)와 Task로 나뉩니다. Action 하나가 실행하는 Job 수는 처리 과정에 따라 달라질 수 있습니다.':
+      ' specifies how to execute the operations. Execution is divided into Stages and Tasks. The number of Jobs triggered by one Action can vary with the processing steps.',
+    '다음 코드는 간단한 수량 필터로 지연 평가의 실행 시점을 보여 줍니다. 앞 절의 전체 정제 조건을 적용한 코드는 아닙니다.':
+      'The following code uses a simple quantity filter to show when lazy evaluation runs. It does not apply all the cleaning conditions from the earlier section.',
+    '코드가 실행되어도 잘못된 행을 포함하거나 집계 기준을 다르게 적용할 수 있습니다. AI가 작성한 코드도 입력·정제 조건·집계 기준·실행 위치·예상 결과를 차례로 확인합니다.':
+      'Code that runs may still include the wrong rows or apply the wrong aggregation criteria. Check AI-generated code against the same input, cleaning conditions, group keys, execution locations, and expected results.',
+    '컨테이너 내부 경로와 실제 마운트 위치를 확인합니다.':
+      'Check the path inside the container and the actual mount location.',
+    '세션·작업 시작 시간과 Shuffle 시간이 처리 시간에 포함될 수 있습니다.':
+      'Session startup, task startup, and Shuffle time may contribute to the processing time.',
+    'Spark SQL로 같은 조건 표현하기': 'Expressing the same condition in Spark SQL',
+    '다음 주에는 같은 조건을 Spark SQL로 표현합니다.':
+      'Next week, the same condition is expressed in Spark SQL.',
+    '아래 두 표현은 모두 수량이 양수인 행을 선택합니다. SQL 예시는':
+      'Both expressions below select rows with positive quantities. The SQL example requires ',
+    '라는 임시 뷰가 있어야 실행할 수 있습니다.': ' as a temporary view to run.',
+    'Schema는 표의 구조를 정하고, Column 표현식은 처리할 연산을 정의합니다. Action이 결과를 요청하면 Spark가 이 연산들을 분산 실행합니다.':
+      'A Schema defines the table structure, and Column expressions define the operations. When an Action requests a result, Spark runs these operations across the cluster.',
+    '출처: 2026-bigdata-04, PDF 4–12쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 4–12 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 13–20쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 13–20 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 21–22, 39–43쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 21–22, 39–43 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 28–38쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 28–38 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 44–48쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 44–48 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 23–28, 49–53쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 23–28, 49–53 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 23–24, 54–58쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 23–24, 54–58 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 59–61쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 59–61 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 62–65쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 62–65 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 9–10, 66–67쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 9–10, 66–67 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 68–78쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 68–78 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 79–81쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 79–81 · Week 4 lecture notes.',
+    '출처: 2026-bigdata-04, PDF 82–90쪽 · 4주차 강의노트.':
+      'Source: 2026-bigdata-04, PDF pages 82–90 · Week 4 lecture notes.',
+    'BigData — 강의 정리와 실습': 'BigData — Lecture Notes and Labs',
+    '1~4장에서 데이터 수집·정리, 작업을 나누어 계산하는 분산 처리, 표 형태의 데이터 구조인 DataFrame을 배웁니다.':
+      'Chapters 1–4 cover data collection and cleaning, distributed processing that divides computation across tasks, and tabular data structures called DataFrames.',
+    '강의자료 126슬라이드 · 4주차 90쪽 · 제공 실습파일':
+      '126 lecture slides · 90 pages for Week 4 · Supplied lab files',
+    'Docker로 실행 환경을 준비하고, 분산 처리 도구인 Spark로 1부터 100까지의 합을 계산합니다.':
+      'Prepare the environment with Docker and calculate the sum of 1 through 100 using Spark, a distributed processing engine.',
+    '코드를 읽고 Spark의 실행 과정을 관찰합니다. 계산 자원을 제공하는 Worker 수와 코어 수를 바꾸어 성능을 비교합니다.':
+      'Read the code and observe Spark execution. Compare performance by changing the number of Workers that supply computing resources and the number of cores.',
+    '코드 예시로 주문 데이터를 표로 읽고 자료형과 비어 있는 값을 확인합니다. 주문 금액을 계산하고 사용자별로 합산합니다.':
+      'Use code examples to read order data as a table and check data types and missing values. Calculate order amounts and total them by user.',
+    '1장부터 순서대로 읽습니다. 제공 실습에 필요한 환경, 전체 코드와 실습 ZIP 두 개는 3장 앞부분에 있습니다.':
+      'Read the chapters in order, starting with Chapter 1. The environment requirements, full source code, and two supplied lab ZIP files are at the beginning of Chapter 3.',
+    '1~4장 강의와 제공 실습을 다룹니다. 4장은 개념과 코드 예시로 구성되며 별도 실행 파일은 없습니다.':
+      'These pages cover Chapters 1–4 and the supplied labs. Chapter 4 contains concepts and code examples, with no separate executable files.',
+    '보충 실습의 코드와 입력 파일은 강의 제공 실습과 별도로 작성한 학습용 예제입니다.':
+      'The supplementary lab code and input files are teaching examples written separately from the supplied course labs.',
+    'BigData · 강의 정리와 실습': 'BigData · Lecture notes and labs',
+    '2026학년도 강의 정리': '2026 lecture notes',
+    '주문 CSV를 정리하고 Spark로 합계와 단어 수를 구합니다. Worker 수를 바꾸며 실행 시간을 비교합니다. 코드·입력·예상 결과 파일은 아래에서 받습니다.':
+      'Clean an orders CSV and use Spark to calculate a sum and word counts. Compare execution times with different numbers of Workers. Download the code, inputs, and expected-result files below.',
+    '1~3장 개념을 연습하는 보충 예제로, 강의에서 제공한':
+      'These supplementary examples practice concepts from Chapters 1–3 and are separate from the supplied course files in ',
+    '와 별도로 작성했습니다. 주문과 문장은 개인정보가 없는 합성 데이터입니다.':
+      '. The orders and sentences are synthetic data with no personal information.',
+    '에 있습니다. 제공 실습과 서비스 이름·포트가 다르므로 아래 순서대로 실행합니다.':
+      '. Service names and ports differ from the supplied labs, so follow the steps below.',
+    '폴더를 만들고 아래 구조에 맞춰 파일을 저장합니다. 링크의':
+      ' folder and save the files in the structure below. Use ',
+    'GitHub 저장소를 내려받았다면': 'If you downloaded the GitHub repository, the files are in ',
+    '에 파일이 있습니다. 로컬 학습 폴더에서는': '. In the local learning folder, use ',
+    '에 있습니다. 명령은': '. Run commands from ',
+    '버전이 Python 3.10 이상인지 확인합니다. Windows의':
+      ' Check that the version is Python 3.10 or later. If the Windows ',
+    '보충 예제는 1~3장의 Spark 이미지와 자원 개념을 사용합니다. 서비스 시작 순서:':
+      'The supplementary examples use the Spark image and resource concepts from Chapters 1–3. Service startup order: ',
+    '같은 주문이 여러 번 수집될 수 있습니다. 모든 행의 금액을 더하면 중복 주문도 매출에 포함됩니다. 이 예제에서는 A002와 A003의 중복 행으로 중복 제거 규칙을 확인합니다.':
+      'The same order may be collected more than once. Summing every row would include duplicates in revenue. This example uses duplicate rows for A002 and A003 to check deduplication rules.',
+    '주문 ID순으로 정렬한 결과가 같아야 합니다.':
+      ' The results sorted by order ID should be identical.',
+    '입력이 100배가 되어도 이 코드로 처리할 수 있을까요? 고유 주문을 Python 사전에 모두 보관하므로 고유 주문 수가 늘면 메모리 사용량도 늘어납니다. 큰 입력을 분산 처리하려면 데이터 분할 방법과 중복 제거 비용을 고려해야 합니다.':
+      'Can this code handle an input 100 times larger? It keeps all unique orders in a Python dictionary, so memory use grows with the number of unique orders. Distributed processing of large inputs must account for data partitioning and deduplication costs.',
+    '이미지를 받은 뒤 한 컨테이너에서 계산하고, Worker 등록과 클러스터 계산을 차례로 확인합니다.':
+      'After downloading the image, run a calculation in one container, then check Worker registration and cluster computation in order.',
+    '이 보충 실습의 프로젝트 이름은': 'The project name for this supplementary lab is ',
+    '입니다. 2장 제공 실습의 Worker 1·2 이름과 8080/4040 포트는 사용하지 않습니다. 성능 측정 중에는 다른 학습 환경을 종료해 CPU·메모리 경합을 줄입니다.':
+      '. Do not use the Worker 1/2 names or 8080/4040 ports from the supplied Chapter 2 lab. Stop other learning environments during timing runs to reduce CPU and memory contention.',
+    '이 실습은': 'This lab uses ',
+    '이미지를 사용합니다. 태그는': '. The tag is listed in ',
+    '에 등록되어 있습니다.': '. If you see ',
+    '오류가 나면 태그·레지스트리 주소를 확인합니다. 다른 버전을 쓰면 버전을 기록하고 각 실행 단계를 다시 확인합니다.':
+      ', check the tag and registry address. If you use a different version, record it and check each execution step again.',
+    '같은 입력과 합계를 유지하면서 가용 자원을 줄입니다. 숫자 100개의 실행 시간만으로 성능 차이를 판단하기는 어렵습니다. 다음 절을 진행하거나':
+      'Reduce the available resources while keeping the input and sum the same. Timing only 100 numbers is insufficient to judge performance differences. Continue to the next section or follow ',
+    '를 따릅니다.': '.',
+    '3장에서 배운 단어 집계 연산을 보충 입력 파일로 실행합니다. 입력은 Client 컨테이너에만 연결하므로':
+      'Run the word-count operations from Chapter 3 using the supplementary input file. The input is mounted only in the Client container, so use ',
+    '로 실행합니다. 클러스터의 Worker에는 이 파일이 연결되어 있지 않습니다.':
+      '. The file is not mounted in the cluster Workers.',
+    '입력에서 출력까지의 연산': 'Operations from input to output',
+    '의 예상값도 직접 계산해 바꿉니다. 예를 들어':
+      ' should be updated with expected counts calculated by hand. For example, ',
+    '이 예제에서 collect로 결과를 검사할 수 있는 이유는 무엇일까요? 합성 입력의 단어는 3종뿐입니다. 코드도 최대 101행만 가져와 100종을 넘으면 중단하므로 Driver에 모으는 데이터가 제한됩니다. 큰 결과 전체를 검사할 때는 다른 방법이 필요합니다.':
+      'Why can this example check results with collect? The synthetic input has only three distinct words. The code retrieves at most 101 rows and stops if there are more than 100 distinct words, limiting the data brought to the Driver. Checking an entire large result requires another method.',
+    '입력·연산·정답 확인 규칙을 고정하고 성능을 비교합니다. 작은 입력으로 코드와 설정을 확인한 뒤 PC 자원에 맞춰 입력을 늘립니다. 숫자는':
+      'Keep the input, operations, and answer checks fixed when comparing performance. Check the code and settings with a small input, then increase it to suit your PC resources. The numbers are generated with ',
+    '로 생성하므로 큰 입력 파일을 따로 준비하지 않습니다.': ', so no large input file is needed.',
+    '실행 위치: 보충 실습 폴더의 PowerShell.':
+      'Run in: PowerShell in the supplementary lab folder.',
+    '로그를 확인한 뒤 실습 환경을 종료합니다.':
+      ' Check the logs, then shut down the lab environment.',
+    '예상값과 측정값': 'Expected values and measurements',
+    '합계·단어 수는 합성 입력의 예상값이며 Spark 실행·성능은 미검증 상태이므로, 빈 측정 CSV에는 자신의 환경에서 실행한 값을 기록합니다.':
+      'The sums and word counts are expected values for the synthetic inputs; Spark execution and performance have not been verified, so fill the blank measurement CSV with results from your own environment.',
+    '파일 이름을 누르면 다운로드 파일과 같은 전체 내용이 펼쳐집니다. 코드 블록의 복사 버튼으로 복사해 UTF-8로 저장할 수 있습니다.':
+      'Select a file name to expand its full contents, which match the download. Use the copy button on each code block and save the text as UTF-8.',
+    'Spark 실행 구조 복습': 'Review Spark execution',
+    '3장에서 입력 규칙, DataFrame 변화와 Driver·Executor·Task의 역할을 복습합니다.':
+      'Review input rules, DataFrame transformations, and the roles of the Driver, Executors, and Tasks in Chapter 3.',
+    '는 서로 다른 단어로 집계됩니다. 표기를 통일하려면 먼저 어떤 표기를 같은 단어로 볼지 정합니다.':
+      ' are counted as different words. Before normalizing the text, decide which spellings should count as the same word.',
     빅데이터: ' Big Data',
     '강의 정리 · Docker · Spark': ' Lecture notes · Docker · Spark',
-    '데이터를 모으고 정리하는 기초부터 여러 작업에 나누어 계산하는 분산 처리, 표 형태의 데이터인 DataFrame까지 1~4장 순서로 배웁니다.':
-      ' Chapters 1–4 introduce collecting and cleaning data, distributed computation across tasks, and tabular data structures called DataFrames.',
     '1장 열기': ' Open Chapter 1',
     '강의 목록': ' Chapters',
     '1~3장 보충 실습 · 코드와 실행 안내 →':
       ' Chapters 1–3 supplementary labs · Code and instructions →',
-    '교수님 강의자료 126슬라이드 + 4주차 90쪽 · 제공 실습파일 기반':
-      ' Based on 126 lecture slides, 90 pages for Week 4, and the supplied lab files',
     '학습 구성': ' Course structure',
     '개의 챕터': ' chapters',
     '쪽·슬라이드의 강의자료': ' pages and slides of course materials',
@@ -30,8 +458,6 @@ window.KNUT_TRANSLATIONS = {
     '학습을 시작해 보세요': ' Start learning',
     '02 · 환경 구성': ' 02 · Environment setup',
     'Docker와 Spark 첫 실습': ' Your First Docker and Spark Lab',
-    'Docker로 실행 환경을 준비하고, 분산 처리 도구인 Spark로 1부터 100까지의 합을 구해 확인합니다.':
-      ' Prepare an environment with Docker and verify the sum of 1 through 100 with Spark, a distributed processing engine.',
     '구조 · 단계별 실습 · 결과 확인': ' Architecture · Step-by-step lab · Result checks',
     '56 슬라이드': ' 56 slides',
     개념: ' Concepts',
@@ -39,21 +465,15 @@ window.KNUT_TRANSLATIONS = {
     측정: ' Measurement',
     '03 · 분산 처리': ' 03 · Distributed processing',
     '분산 처리와 Spark 실행 원리': ' Distributed Processing and Spark Execution',
-    '전체 코드와 원리를 살펴보고 실행 과정을 관찰합니다. 계산 자원을 제공하는 Worker와 코어 수를 바꾸어 성능을 비교합니다.':
-      ' Read the full source and underlying concepts, then observe execution. Compare performance by changing the Workers that supply computing resources and the number of cores.',
     '환경·코드 → 실행 → 자원·성능': ' Environment and code → Execution → Resources and performance',
     '54 슬라이드 · 실습 안내': ' 54 slides · Lab instructions',
     읽기: ' Read',
     정제: ' Clean',
     집계: ' Aggregate',
     'Spark DataFrame 프로그래밍': ' Programming with Spark DataFrames',
-    '주문 데이터를 표로 읽고, 자료형과 비어 있는 값을 확인합니다. 금액을 계산해 사용자별로 합치는 과정을 코드 예시로 배웁니다.':
-      ' Read orders as a table and inspect types and missing values. Code examples explain calculating amounts and aggregating them by user.',
     '자료 구조 · 정제 · 집계 · 실행계획':
       ' Data structures · Cleaning · Aggregation · Execution plans',
     '90쪽': ' 90 pages',
-    '처음이라면 1장부터 순서대로 읽으세요. 제공 실습을 다시 실행하려면 3장 앞부분에서 필요한 환경과 전체 코드, 실습 ZIP 두 개를 확인할 수 있습니다.':
-      ' If you are new to the topic, begin with Chapter 1. To rerun the supplied labs, find the environment requirements, full source code, and two lab ZIP downloads at the beginning of Chapter 3.',
     '학습 자료 구성': ' Learning materials',
     '개념 해설': ' Concept explanations',
     '주요 용어의 정의, 예시와 처리 과정 설명.':
@@ -65,21 +485,12 @@ window.KNUT_TRANSLATIONS = {
     '실행 명령, 예상 출력과 결과 확인 문제.':
       ' Commands, expected output, and questions for checking results.',
     '실습 파일과 출처': ' Lab files and sources',
-    '1~4장 강의와 제공 실습 안내를 바탕으로 정리했습니다. 4장은 개념과 코드 예시를 다루며, 별도 실행 파일은 제공되지 않았습니다.':
-      ' Based on Chapters 1–4 and the supplied lab instructions. Chapter 4 covers concepts and code examples; no separate executable files were supplied.',
-    '보충 실습은 학습용으로 따로 작성한 코드와 입력 파일입니다. 강의 제공 실습과 구분해 이용하세요.':
-      ' The supplementary labs contain code and input files written separately for learning. Distinguish them from the instructor-provided labs.',
     '보충 실습 코드와 실행 순서': ' Supplementary lab code and execution steps',
     '1–3장 →': ' Chapters 1–3 →',
     '제공 실습 전체 코드와 ZIP': ' Full source and ZIP downloads for supplied labs',
     '실행 관찰·성능 비교 →': ' Observe execution and compare performance →',
-    'BigData · 나의 데이터 엔지니어링 노트': ' BigData · My Data Engineering Notes',
-    '2026학년도 강의자료 기반 학습 가이드': ' Study guide based on 2026 course materials',
-    '01. 데이터가 흐르는 길 만들기 · BigData': ' 01. Building a Data Pipeline · BigData',
     '데이터 처리 흐름과': ' Data processing and',
     '검증의 기초': ' verification basics',
-    '작은 주문표에서 시작해 데이터 처리의 흐름, Spark의 역할, 결과를 검증하는 방법을 익힙니다.':
-      " Start with a small order table to learn data flow, Spark's role, and how to verify results.",
     '입문 · 개념과 학습 준비': ' Introduction · Concepts and preparation',
     '7개 학습 섹션': ' 7 learning sections',
     '강의 1장 · 16슬라이드 기반': ' Based on Chapter 1 · 16 slides',
@@ -101,7 +512,6 @@ window.KNUT_TRANSLATIONS = {
     '학습용 비유 · 조별 과제': ' Learning analogy · Group assignment',
     '책 1,000권의 오탈자를 조원에게 나눠 찾으면 빨라질 수 있지만, 배분과 연락에도 시간이 듭니다. 분산 처리에도 통신과 작업 조정 비용이 있습니다.':
       ' Dividing proofreading of 1,000 books among group members may speed up the work, but assignment and communication also take time. Distributed processing has communication and coordination costs too.',
-    '앞으로 자주 만날 네 가지 기본 단어': ' Four basic terms used throughout the course',
     단어: ' Term',
     '처음 읽는 설명': ' Plain-language definition',
     '이 수업에서의 예': ' Example in this course',
@@ -123,22 +533,12 @@ window.KNUT_TRANSLATIONS = {
     '주문표를 나누어 부분 합계를 계산한 뒤 합치기':
       ' Splitting an order table, computing partial sums, and combining them',
     '한 대에서도 구조를 배울 수 있습니다.': ' You can learn the architecture on one computer.',
-    '실습에서는 내 PC 안에 실행 환경을 나누는 단위인':
-      ' In the lab, you run several isolated environments called',
     컨테이너: ' containers',
-    '를 여러 개 띄웁니다. 역할 간 통신을 관찰할 수 있지만, PC의 CPU·메모리 자체가 늘어나지는 않습니다.':
-      " on your PC. You can observe communication between roles, but this does not increase the PC's physical CPU or memory.",
     '컴퓨터를 늘려도 전체 속도를 제한하는 구간인':
       ' Even with more computers, overall speed may be limited by a',
     병목: ' bottleneck',
-    '이 남을 수 있습니다. 이번 학기에는 “왜 나누는가?”에서 나아가 실제 시스템을 만들고 병목을 관찰합니다.':
-      '. This semester, you go beyond asking why work is divided: you build a system and observe its bottlenecks.',
     '확인 질문 · 컴퓨터가 2대면 언제나 2배 빨라질까요?':
       ' Check · Are two computers always twice as fast?',
-    '아닙니다. 나눌 수 없는 작업, 데이터를 주고받는 시간, 한쪽에 몰린 작업이 있으면 기대만큼 빨라지지 않습니다. 이 수업에서는 결과뿐 아니라 실제 실행 구조도 살펴봅니다.':
-      ' No. Work that cannot be divided, data transfer time, or uneven workload can limit the improvement. We examine execution structure as well as results.',
-    '근거: 1장 실제 슬라이드 1–2, 5. 기본 용어와 조별 과제 비유는 이해를 돕기 위한 학습용 해설입니다.':
-      ' Source: Chapter 1, actual slides 1–2 and 5. The basic definitions and group-assignment analogy are supplementary explanations for learning.',
     '이 내용을 이해했어요': ' I understand this section',
     '데이터의 네 단계': ' Four stages of data processing',
     '주문 기록이 매출표가 되기까지': ' From order records to a sales report',
@@ -171,14 +571,12 @@ window.KNUT_TRANSLATIONS = {
     정상: ' Valid',
     '20,000원': ' KRW 20,000',
     '같은 주문의 재전송': ' Retransmission of the same order',
-    '수집 · 원천에서 가져옵니다.': ' Collection · Retrieve records from the source.',
     '쇼핑몰의 주문 기록 3행을 받습니다.':
       ' Receive three rows of order records from an online store.',
     '행:': ' Row:',
     '기록 하나.': ' One record.',
     '열:': ' Column:',
     '주문 번호·금액 같은 항목.': ' A field such as order ID or amount.',
-    '변환 · 의미와 규칙을 맞춥니다.': ' Transformation · Apply consistent meanings and rules.',
     '규칙:': ' Rule:',
     '주문 번호는 고유하며, 같은 번호의 재전송은 한 번만 계산.':
       ' Order IDs are unique; count a retransmission with the same ID only once.',
@@ -187,20 +585,16 @@ window.KNUT_TRANSLATIONS = {
       ' Excluding duplicate A002 leaves two orders totaling KRW 30,000.',
     '실제 업무에서도 중복 판단 기준을 먼저 정해야 합니다.':
       ' In real projects, define the duplicate-detection rule first.',
-    '저장 · 다음에도 쓸 수 있게 남깁니다.': ' Storage · Keep data for reuse.',
     '원본과 정리한 결과를 구분해 보관합니다. 오류가 생기면 원본으로 다시 계산할 수 있습니다.':
       ' Store the original records separately from the cleaned results. If an error occurs, you can recalculate from the originals.',
-    '제공 · 사용하는 사람에게 전달합니다.': ' Serving · Deliver data to its users.',
     '날짜별 매출표를 분석가나 서비스에 전달합니다. 어떤 주문을 포함했는지도 설명할 수 있어야 합니다.':
       ' Provide daily sales tables to analysts or services. Be able to explain which orders were included.',
     '계산 뒤 확인할 세 가지': ' Three checks after calculation',
     '누락:': ' Omissions:',
     '빠진 주문이 없는가?': ' Are any orders missing?',
     '재실행:': ' Reruns:',
-    '다시 실행해도 같은 기준인가?': ' Does a rerun use the same criteria?',
     '복구:': ' Recovery:',
     '중단 후 처리를 재개할 수 있는가?': ' Can processing resume after interruption?',
-    '저장소도 목적에 따라 다릅니다.': ' Storage systems also differ by purpose.',
     '데이터 레이크:': ' Data lake:',
     '다양한 데이터를 폭넓게 보관하는 저장소입니다.': ' A repository for a wide variety of data.',
     '데이터 웨어하우스:': ' Data warehouse:',
@@ -214,16 +608,8 @@ window.KNUT_TRANSLATIONS = {
     '2건 · 30,000원': ' 2 orders · KRW 30,000',
     '파일을 읽었으므로 검증 완료': ' Reading the file completes verification',
     '직접 실행 · 주문 CSV 파이프라인': ' Try it · Order CSV pipeline',
-    '이 절을 읽은 뒤': ' After this section, try',
-    '합성 주문 5행을 정리하는 공개 실습': ' the public lab that cleans five synthetic order rows',
-    '을 실행해 보세요. 입력 CSV, Python 전체 코드, 예상 결과를 제공하며 중복·충돌·재실행을 확인합니다. Python 표준 라이브러리만 사용합니다.':
-      '. It includes the input CSV, full Python code, and expected results, with checks for duplicates, conflicts, and reruns. It uses only the Python standard library.',
-    '근거: 1장 실제 슬라이드 2–3. 주문표와 계산 결과는 강의 목표를 설명하는 학습용 예제이며 실습 실행 결과가 아닙니다.':
-      ' Source: Chapter 1, actual slides 2–3. The order table and calculated results illustrate the learning objectives; they are not recorded lab results.',
     '네 가지 역량과 Spark 용어': ' Four skills and Spark terminology',
     '데이터 시스템을 만드는 네 가지 역량': ' Four skills for building data systems',
-    '“실행됐다”에서 멈추지 않고, 무엇을 계산했고 어디서 실행됐으며 커져도 괜찮은지 설명합니다.':
-      ' Go beyond “it ran”: explain what was calculated, where it ran, and whether it can handle more data.',
     '학습용 비유 · 공동 요리의 책임': ' Learning analogy · Responsibilities in a shared kitchen',
     '함께 요리할 때는 조리뿐 아니라 역할 배분·품질 유지·완성품 확인도 필요합니다. 데이터 시스템에서도 아래 네 역량을 함께 익힙니다.':
       ' Cooking together requires assigning roles, maintaining quality, and checking the finished dish. Data systems require the four skills below.',
@@ -239,7 +625,6 @@ window.KNUT_TRANSLATIONS = {
     '스트리밍(Streaming):': ' Streaming:',
     '계속 들어오는 데이터를 지속적으로 처리하는 방식.': ' Continuously processing incoming data.',
     '02 · 분산 실행 이해': ' 02 · Understanding distributed execution',
-    '“이 계산은 어디에서 이루어질까?”를 봅니다.': ' Ask “Where does this computation happen?”',
     '여러 실행 자원으로 데이터 처리를 수행하는 엔진입니다.':
       ' An engine that processes data across multiple execution resources.',
     'Python으로 Spark를 사용하는 인터페이스입니다.': ' The Python interface to Spark.',
@@ -252,8 +637,6 @@ window.KNUT_TRANSLATIONS = {
     '확장성:': ' Scalability:',
     '데이터·작업 증가에 자원과 처리 방식을 조정해 대응하는 성질.':
       ' Adapting resources and processing methods as data and work increase.',
-    '주문이 100배 늘거나 작업을 다시 실행해도 괜찮은지 확인합니다.':
-      ' Check whether the system still works with 100 times as many orders or after a rerun.',
     '04 · AI 협업과 검증': ' 04 · AI collaboration and verification',
     'AI가 만든 코드도 개발자가 검증하고 채택 이유를 설명해야 합니다.':
       ' Developers must verify AI-generated code and explain why they adopt it.',
@@ -263,7 +646,6 @@ window.KNUT_TRANSLATIONS = {
     '열 이름·자료형 등 데이터 구조의 정의. 금액이 숫자인지 문자열인지도 여기에 해당합니다.':
       ' The definition of a data structure, including column names and types. Whether an amount is numeric or text is part of its schema.',
     'Spark에서 역할과 데이터 조각 구분하기': ' Distinguish Spark roles from data partitions',
-    'Spark 실행을 읽는 네 단어': ' Four terms for understanding Spark execution',
     '실제 역할': ' Actual role',
     '조별 계산에 빗대면': ' Group-calculation analogy',
     '애플리케이션의 실행을 조정하는 프로세스':
@@ -293,35 +675,20 @@ window.KNUT_TRANSLATIONS = {
     '으로 계획을 살펴볼 수 있습니다.': '.',
     '공통 키를 기준으로 표를 연결하는 연산입니다. 예를 들어 주문표와 상품표를 상품 번호로 연결합니다.':
       ' An operation joining tables on a shared key. For example, join orders with products using a product ID.',
-    '이전 수업의 관련 용어도 함께 연결해 보세요.':
-      ' Connect these ideas to related terms from earlier courses.',
     '분산 데이터 저장·처리 기술군입니다.':
       ' A family of distributed data storage and processing technologies.',
     '파일을 여러 컴퓨터에 나누어 저장하는 시스템입니다.':
       ' A system that stores files across several computers.',
     '나누어 계산하고 결과를 모으는 처리 모델입니다.':
       ' A processing model that divides computation and combines results.',
-    '여기서는 배경 이름만 연결하고, 별도 강의자료가 없는 세부 구현은 다루지 않습니다.':
-      ' These names provide background here; detailed implementations without supplied course materials are outside the scope.',
     '확인 질문 · Partition은 컴퓨터 한 대를 뜻하나요?':
       ' Check · Does a Partition mean one computer?',
-    '아닙니다. Partition은 데이터 조각입니다. 하나의 실행 자원이 여러 조각을 차례로 처리할 수 있습니다. 데이터 조각 수와 컴퓨터 수를 같은 것으로 생각하지 마세요.':
-      ' No. A Partition is a piece of data. One execution resource can process several pieces in sequence. The number of partitions and computers are different quantities.',
-    '근거: 1장 실제 슬라이드 4–5, 10. 용어의 쉬운 정의와 비유는 학습용 보충입니다.':
-      ' Source: Chapter 1, actual slides 4–5 and 10. Plain-language definitions and analogies are supplementary learning material.',
     '한 학기의 학습 지도': ' Semester learning roadmap',
     'Spark 기초부터 전체 파이프라인까지': ' From Spark basics to a complete pipeline',
-    '학기 흐름은': ' The semester follows this progression:',
     'Spark 실행 이해 → 저장·실시간 처리 연결 → 전체 파이프라인 검증':
       ' Understand Spark execution → Connect storage and real-time processing → Verify the entire pipeline',
-    '입니다. 아래 표에서는 주차별 큰 흐름을 확인하세요.':
-      '. The table below shows the weekly outline.',
     '학습용 비유 · 작은 가게에서 물류 체계로':
       ' Learning analogy · From a small shop to a logistics system',
-    '가게의 주문 정리부터 익힌 뒤 창고·배송을 연결하고, 전체 주문이 잘 도착하는지 확인하는 학습 순서에 빗댈 수 있습니다.':
-      ' First learn to organize shop orders, then connect warehousing and delivery, and finally verify that every order arrives correctly.',
-    '교수님 자료의 주차 구간 그대로 보는 로드맵':
-      " Roadmap using the instructor's original week ranges",
     주차: ' Weeks',
     '강의 범위': ' Course topics',
     '처음 배우는 학생의 질문': " A beginner's question",
@@ -348,10 +715,6 @@ window.KNUT_TRANSLATIONS = {
     '설계·구현·검증의 선택을 설명할 수 있을까?':
       ' Can I explain my design, implementation, and verification choices?',
     '현재 학습 페이지는 1–4장입니다.': ' The current learning pages cover Chapters 1–4.',
-    '표의 후반 주차는 교수님이 제시한 학기 계획이며, 해당 주차의 상세 본문은 아직 제공되지 않습니다.':
-      " The later weeks are the instructor's semester plan; detailed learning pages for those weeks are not yet available.",
-    '낯선 이름 빠르게 보기 · 데이터 포맷과 후반 기술':
-      ' Quick glossary · Data formats and later technologies',
     이름: ' Name',
     '우선 알아둘 뜻': ' Initial definition',
     '쉼표 등 구분자로 열을 나눈 텍스트 파일 형식':
@@ -373,22 +736,15 @@ window.KNUT_TRANSLATIONS = {
     '예를 들어 “5분 동안”처럼 기록을 묶어 계산하는 구간':
       ' A range of records grouped for calculation, such as a five-minute interval',
     슬라이드의: ' On the slides,',
-    '은 학습 범위의 확장입니다. CSV·Parquet은 파일 형식, Iceberg는 테이블 형식, Kafka는 이벤트 플랫폼입니다.':
-      ' indicates an expanding scope of study. CSV and Parquet are file formats, Iceberg is a table format, and Kafka is an event platform.',
     '확인 질문 · 지금 Kafka까지 설치해야 하나요?': ' Check · Do I need to install Kafka now?',
     '아닙니다. 학기 전반은 Compose로 Spark Master·Worker·Client를 구성합니다. Kafka와 Iceberg 관련 서비스는 강의 계획에서 학기 후반에 추가하는 범위입니다.':
       ' No. The first half uses Compose to configure a Spark Master, Workers, and a Client. Kafka and Iceberg services are scheduled for the second half.',
-    '근거: 1장 실제 슬라이드 6–7. 주차별 세부 일정을 임의로 쪼개지 않고 원본의 주차 구간을 유지했습니다.':
-      ' Source: Chapter 1, actual slides 6–7. The original week ranges are preserved without inventing a more detailed schedule.',
     '같은 환경에서 시작하기': ' Starting with the same environment',
-    'Docker는 실습을 위한 준비 도구입니다.': ' Docker prepares the environment for the labs.',
     '친구의 PC에서는 되는데 내 PC에서는 안 된다면, 코드를 보기 전에 실행 환경이 같은지 확인해야 합니다.':
       " If code works on a friend's PC but not yours, first check whether the execution environments match.",
     '재현 가능한 환경': ' A reproducible environment',
     '은 같은 설정으로 다시 실행할 수 있게 구성한 환경입니다.':
       ' is configured so you can run it again with the same settings.',
-    '수업에서는 Windows PC의 Docker Desktop과 WSL2를 사용합니다. 아래에서 두 도구의 역할과 환경 구성에 필요한 용어를 먼저 살펴봅니다.':
-      ' The course uses Docker Desktop and WSL2 on Windows. First review their roles and the terminology needed to configure the environment.',
     '학습용 비유 · 실험 키트': ' Learning analogy · Experiment kit',
     '실험 재료와 조립 설명서를 맞추듯, 이미지와 설정 파일로 시작 조건을 맞춥니다. PC 자원·네트워크는 다를 수 있어 실행 결과는 별도로 확인해야 합니다.':
       ' An image and configuration file align starting conditions, like matching the materials and instructions in an experiment kit. PC resources and networks can still differ, so verify results separately.',
@@ -433,7 +789,6 @@ window.KNUT_TRANSLATIONS = {
     '이며, 실습 때 이 값을 기준으로 맞춥니다.': '; use this value for the lab.',
     '2장 명령 미리 보기 · 시작·상태 확인·정리':
       ' Preview of Chapter 2 commands · Start, inspect, and clean up',
-    '실행을 관리하는 동사': ' Verbs for managing execution',
     '구성에 따라 컨테이너를 생성하고 시작합니다.':
       ' Create and start containers from the configuration.',
     '상태를 확인합니다.': ' Inspect status.',
@@ -447,8 +802,6 @@ window.KNUT_TRANSLATIONS = {
     '실제 명령 순서와 실행 위치는 2장에서 안내합니다.':
       ' Chapter 2 explains the command order and working directories.',
     '준비 → 상태 → 계산 검증': ' Preparation → Status → Calculation verification',
-    '설치 확인만으로 실습이 끝나지 않습니다. 다음 순서로 증거를 모읍니다.':
-      ' Installation alone does not complete the lab. Gather evidence in this order.',
     '이미지 확인': ' Check the image',
     '서비스 시작': ' Start services',
     'Worker 등록 확인': ' Check Worker registration',
@@ -463,11 +816,7 @@ window.KNUT_TRANSLATIONS = {
     '실행 환경을 맞추는 출발점이 마련됐다':
       ' A starting point for matching the execution environment',
     '내 PC의 메모리가 자동으로 늘었다': ' My PC automatically has more memory',
-    '근거: 1장 실제 슬라이드 7–8, 16. 구체적인 이미지와 파일 연결은':
-      ' Source: Chapter 1, actual slides 7–8 and 16. Image and mount details follow the',
     '배포 compose.yaml': ' supplied compose.yaml',
-    '기준. 16번 슬라이드의 설치 안내는 2장 실습으로 연결합니다.':
-      '. Installation on slide 16 leads to the Chapter 2 lab.',
     'AI 코드도 직접 검증': ' Verify AI-generated code yourself',
     '계산 결과와 실행 구조를 함께 검증하기': ' Verify both results and execution structure',
     'AI는 코드·테스트 초안과 오류 분석을 돕습니다.':
@@ -519,12 +868,8 @@ window.KNUT_TRANSLATIONS = {
     '결과 열 이름을 total로 붙입니다.': ' Name the result column total.',
     '결과의 첫 행을 Driver로 가져옵니다. 이 예제는 그룹 없이 전체 합계를 계산하므로 결과가 한 행입니다.':
       ' Retrieve the first result row on the Driver. This example computes a global sum without grouping, so the result has one row.',
-    '이 예제는 합계 한 행을 받습니다. 실제 집계 단계·데이터 이동은 실행계획에서 확인해야 합니다.':
-      ' This example retrieves one row containing the sum. Inspect the execution plan for the actual aggregation stages and data movement.',
     '예상 결과: 5,050': ' Expected result: 5,050',
     '두 코드의 예상값은': ' The expected value for both examples is',
-    '입니다. 손계산으로 확인한 값이며, 실제 Spark 실행 기록은 아닙니다.':
-      '. This is a hand-calculated value, not a recorded Spark run.',
     '코드를 적는 시점과 계산하는 시점': ' When code is written versus when computation runs',
     '데이터를 어떻게 바꿀지 표현하는 연산입니다. 위 B의':
       ' An operation expressing how data should change. In example B,',
@@ -533,8 +878,6 @@ window.KNUT_TRANSLATIONS = {
       ' An operation triggering computation, for example to retrieve or save results. In B,',
     '는 결과를 요청하며, A의': ' requests the result; in A,',
     '도 Action입니다.': ' is also an Action.',
-    'Spark에서는 코드를 적는 순서와 실제 데이터 계산 시점을 구분하는 습관이 필요합니다.':
-      ' In Spark, distinguish the order in which you write code from the moment the actual data calculation runs.',
     '더 알아보기 · collect()는 항상 잘못된 코드인가요?': ' Learn more · Is collect() always wrong?',
     '작은 결과를 의도적으로 가져올 때는 사용할 수 있습니다. 기준은 “몇 행, 몇 바이트가 Driver에 모이는가?”입니다.':
       ' It can be appropriate when deliberately retrieving a small result. Ask how many rows and bytes will accumulate on the Driver.',
@@ -559,19 +902,11 @@ window.KNUT_TRANSLATIONS = {
       ' They agree on small input, but data movement and execution structure still need checking',
     'collect()가 있는 코드는 어떤 경우에도 실행하면 안 된다':
       ' Code containing collect() must never run',
-    '근거: 1장 실제 슬라이드 9–10, 14. 코드 비교는 검증 질문을 구체화한 학습용 예제입니다. 배포 실습의 1–100 합계 예제는':
-      ' Source: Chapter 1, actual slides 9–10 and 14. The code comparison is a learning example illustrating verification questions. The supplied 1–100 sum example is in',
     '에서 확인할 수 있습니다.': '.',
     '진로와 첫 장 마무리': ' Careers and Chapter 1 review',
     '데이터 엔지니어의 역량과 학습 점검': ' Data engineering skills and learning checks',
-    '작은 파이프라인 하나라도 “왜 이렇게 만들었고 어떻게 확인했는지” 말할 수 있는 경험을 쌓아 갑니다.':
-      ' Build experience explaining why you designed even a small pipeline that way and how you verified it.',
-    '강의의 채용 자료는 Python·SQL부터 대용량 처리, 저장 구조, 운영·협업까지 다룹니다. 이번 수업에서는 작은 데이터 흐름을 구현하고 오류를 찾아 설명하는 경험을 쌓습니다.':
-      " The lecture's hiring material spans Python and SQL, large-scale processing, storage, operations, and collaboration. This course develops experience implementing small data flows, finding errors, and explaining them.",
     '학습용 비유 · 공구보다 수리 과정':
       ' Learning analogy · The repair process matters more than tool names',
-    '수리에는 고장 찾기 → 공구 선택 → 수리 → 작동 확인이 필요합니다. 기술 이름도 이런 문제 해결 과정에 연결해 익혀 보세요.':
-      ' Repair involves finding the fault, choosing tools, fixing it, and checking operation. Learn technology names as part of this problem-solving process.',
     '만드는 역량': ' Building skills',
     '처리 구현:': ' Processing implementation:',
     'Python·SQL·Spark로 데이터 계산.': ' Calculate data with Python, SQL, and Spark.',
@@ -625,8 +960,6 @@ window.KNUT_TRANSLATIONS = {
     '2026년 9월 기준': ' September 2026',
     '채용공고 분석, 12–13은 수요·임금 참고 자료, 14는 AI 생산성 조사입니다. 강의 당시의 참고 자료이며, 국내 임금은 추정값으로 표시되어 있습니다.':
       ' job-posting analysis; slides 12–13 give demand and salary references, and slide 14 discusses AI productivity research. These are references from the lecture period; Korean salaries are marked as estimates.',
-    '이 절에서는 데이터 수집·정리·분석·검증을 연결하는 직무 역량을 살펴봅니다. 통계는 조사 시점과 표본에 따라 달라지므로 현재 취업 시장의 수치로 일반화하지 않습니다.':
-      ' This section examines professional skills linking collection, cleaning, analysis, and verification. Statistics vary by date and sample and should not be generalized to the current job market.',
     '다음 장으로 가기 전, 내 말로 확인하기': ' Before the next chapter, explain in your own words',
     'DE를 “수집 → 변환 → 저장 → 제공”의 흐름으로 설명할 수 있다.':
       ' I can explain DE as collection → transformation → storage → serving.',
@@ -636,35 +969,21 @@ window.KNUT_TRANSLATIONS = {
       ' I know Docker prepares the execution environment and successful calculation requires separate verification.',
     '작은 입력의 정답 일치와 큰 입력의 실행 가능성이 다른 질문임을 설명할 수 있다.':
       ' I can explain why correctness on small input and feasibility on large input are different questions.',
-    '확인 질문 · 지금 당장 해야 할 한 가지는 무엇인가요?': ' Check · What is the next thing to do?',
-    '2장에서 PC → Docker 컨테이너 → Spark 역할의 관계를 읽고, 배포 파일 위치에서 실행하며 상태·통신·결과를 확인하세요.':
-      ' In Chapter 2, read the relationship between the PC, Docker containers, and Spark roles. Run commands from the supplied-file directory and check status, communication, and results.',
-    '근거: 1장 실제 슬라이드 11–15 및 슬라이드 2의 강의 목표. 진로 통계의 현재 유효성을 별도로 주장하지 않습니다.':
-      ' Source: Chapter 1, actual slides 11–15 and the objectives on slide 2. No claim is made that the career statistics remain current.',
     'Docker와 Spark 실습 환경 만들기': ' Build the Docker and Spark lab environment',
-    'Docker의 구조부터 첫 분산 계산 5,050까지 단계별로 따라갑니다.':
-      ' Follow the steps from Docker architecture to the first distributed sum, 5,050.',
     '2장 실습 시작 →': ' Start the Chapter 2 lab →',
     '학습 홈': ' Learning home',
-    '02. 내 PC에 Spark 실험실 만들기 · BigData': ' 02. Build a Spark Lab on Your PC · BigData',
     'CHAPTER 02 · 실습환경 구축': ' CHAPTER 02 · Lab environment setup',
     '내 PC에': ' Build a Spark lab',
-    'Spark 실험실 만들기.': ' on your PC.',
-    '네 컨테이너의 역할을 이해하고, 설치부터 합계 5050 검증까지 단계별로 확인합니다.':
-      ' Understand four container roles, then verify each step from installation to a sum of 5050.',
     '강의 56슬라이드': ' 56 lecture slides',
     '실습 원본 6파일': ' 6 original lab files',
     '개념 → 준비 → 검증 → 정리': ' Concepts → Preparation → Verification → Cleanup',
     '이번 장의 확인 순서': ' Verification order for this chapter',
     '이미지 검사 → Worker 2개 등록 → 네트워크 연결 → 합계 5050 → 정상 종료':
       ' Check image → Register two Workers → Check networking → Sum to 5050 → Exit normally',
-    '출력 예시는 직접 실행할 때 대조할 예상 표시입니다. Docker는 자신의 PC에서 실행합니다.':
-      ' Sample output shows what to compare against when you run the lab. Run Docker on your own PC.',
     'Docker 용어부터': ' Docker terminology first',
     '같은 실습 환경이 필요한 이유': ' Why a consistent lab environment matters',
     '코드가 같아도 Java나 Python 버전이 다르면 결과가 달라지거나 실행에 실패할 수 있습니다. Docker는 프로그램과 필요한 실행 환경을 묶어 이런 차이를 줄입니다.':
       ' Even identical code can behave differently or fail with different Java or Python versions. Docker packages programs with their runtime environment to reduce these differences.',
-    '먼저 알아둘 세 용어': ' Three initial terms',
     '프로세스:': ' Process:',
     '지금 실행 중인 프로그램입니다.': ' A program currently running.',
     '서버:': ' Server:',
@@ -733,11 +1052,8 @@ window.KNUT_TRANSLATIONS = {
       ' Yes. The same template creates separate containers.',
     '출처:': ' Source:',
     '2장 강의자료': ' Chapter 2 lecture materials',
-    '슬라이드 1–10. 다음 각 절의 슬라이드 번호도 실제 파일 순서 기준입니다.':
-      ' slides 1–10. All subsequent slide numbers also follow the actual file order.',
     'Windows와 이미지 준비': ' Prepare Windows and the image',
     'Windows와 Spark 이미지 준비하기': ' Prepare Windows and the Spark image',
-    '실습 경로를 먼저 확인하세요': ' Check the lab path first',
     '이 장의 제공 실습:': ' Supplied lab for this chapter:',
     아래에서: ' Check the files under',
     '의 파일을 확인하고 진행합니다.': ' before proceeding.',
@@ -748,8 +1064,6 @@ window.KNUT_TRANSLATIONS = {
     '공개용 첫 계산': ' The public first-calculation lab',
     '은 별도 practice 폴더와 Master 28080·Driver 24041 포트를 사용합니다.':
       ' uses a separate practice folder and ports 28080 for Master and 24041 for Driver.',
-    '두 실습은 폴더와 포트가 다릅니다. 한 경로를 선택해 해당 안내의 명령을 따라가세요.':
-      ' The two labs use different folders and ports. Choose one path and follow its commands.',
     'Linux용 Spark 환경을 Windows에서 실행하려고':
       ' To run the Linux Spark environment on Windows, use',
     '(Windows Subsystem for Linux 2)를 사용합니다. Docker Desktop이 이 환경을 이용해 Linux 컨테이너를 실행합니다.':
@@ -757,11 +1071,7 @@ window.KNUT_TRANSLATIONS = {
     '학습용 비유 · 실험실의 전원 확인': " Learning analogy · Checking the lab's power supply",
     '실험 전 전원을 확인하듯, 먼저 WSL과 Docker Engine의 준비 상태를 확인합니다. 그다음 실습 이미지를 받습니다.':
       ' Like checking power before an experiment, first verify WSL and Docker Engine readiness. Then download the lab image.',
-    'Docker Desktop이 아직 없다면': ' If Docker Desktop is not installed',
     '공식 Windows 설치 안내': ' The official Windows installation guide',
-    '에서 설치 조건을 확인하고 설치한 뒤 돌아오세요. WSL도 없다면 아래 WSL 준비 절차를 먼저 확인합니다.':
-      ' lists requirements and installation steps. Return after installation. If WSL is also missing, first read the WSL setup below.',
-    'Docker Desktop을 열고 Engine을 확인하세요': ' Open Docker Desktop and check the Engine',
     '실행 위치: Windows PowerShell, 어느 폴더에서나.':
       ' Run in Windows PowerShell, from any folder.',
     'Desktop에서 Engine running을 기다린 뒤 아래를 실행합니다.':
@@ -774,7 +1084,6 @@ window.KNUT_TRANSLATIONS = {
     '은 종료 후 그 컨테이너를 제거합니다.': ' removes that container after it exits.',
     'Server 연결 오류라면 Desktop 실행 상태부터 확인하세요.':
       ' For a Server connection error, first check that Desktop is running.',
-    'WSL이 준비되지 않았다면 확인하세요': ' Check WSL if it is not ready',
     '실행 위치: 일반 PowerShell에서 상태 확인.': ' Check status in a regular PowerShell window.',
     'WSL 설치가 필요한 경우만 펼치기': ' Expand only if WSL installation is needed',
     '실행 위치: 관리자 권한 PowerShell.': ' Run in PowerShell as administrator.',
@@ -785,26 +1094,20 @@ window.KNUT_TRANSLATIONS = {
     'Docker Desktop Windows 설치 안내': " Docker Desktop's Windows installation guide",
     '에서 자신의 환경에 맞는 설치 조건을 확인할 수 있습니다.':
       ' list requirements for your environment.',
-    '실습 파일이 있는 폴더로 이동하세요': ' Move to the folder containing the lab files',
     '실행 위치: 이 프로젝트의 BigData 최상단에서 Windows PowerShell.':
       " Run in Windows PowerShell from this project's BigData root.",
     이후: ' Subsequent',
     '명령은 이동한 실습 폴더에서 실행합니다.': ' commands run from this lab folder.',
-    '강의의 “week02-lab 폴더”에 해당하는 곳입니다. 다음 6개 파일을 확인하세요.':
-      " This corresponds to the lecture's “week02-lab folder”. Check these six files.",
     '서비스 구성 파일입니다.': ' The service configuration file.',
     '배포 절차를 안내합니다.': ' Instructions for the supplied lab.',
     '이미지의 PySpark 실행을 검사합니다.': ' Checks PySpark execution in the image.',
     '컨테이너 간 네트워크를 검사합니다.': ' Checks networking between containers.',
     '앱 제출 명령을 담습니다.': ' Contains the app submission command.',
     '계산과 정답 검증을 수행합니다.': ' Performs the calculation and verifies the answer.',
-    '지정된 이미지를 내려받으세요': ' Download the specified image',
     '실행 위치: 실습 폴더의 Windows PowerShell.': ' Run in Windows PowerShell from the lab folder.',
     '확인:': ' Check:',
     '목록의 이름·태그가 위 값과 일치해야 합니다. 다운로드에 실패하면 네트워크를 확인하고 오류 메시지를 교수님께 전달하세요.':
       ' The listed name and tag must match the values above. If downloading fails, check networking and send the error message to your instructor.',
-    '다운로드가 막힐 때의 Plan B와 원본 자료 범위':
-      ' Plan B for blocked downloads and the supplied-material scope',
     '교수자가 별도 TAR 파일을 제공한 경우에만':
       ' Only if the instructor supplies a separate TAR file,',
     '아래 명령으로 불러온 뒤 이미지 검사를 수행합니다. 이 프로젝트에는 이미지 TAR와 README가 참조하는 강의노트 v5·부록 A가 없습니다.':
@@ -823,8 +1126,6 @@ window.KNUT_TRANSLATIONS = {
     '는 파일 확인을 돕는 보충 명령입니다.': ' is a supplementary command for checking files.',
     'Compose 설정 읽기': ' Read the Compose configuration',
     'Compose로 컨테이너 설정 읽기': ' Read container settings in Compose',
-    'Compose 파일은 “무엇을 어떤 설정으로 실행할지” 선언합니다. 먼저 공통 설정을 한 번 쓰고, 서비스마다 필요한 역할을 덧붙입니다.':
-      " A Compose file declares what to run and with which settings. Define common settings once, then add each service's role.",
     '학습용 비유 · 공통 준비물과 개인 역할표':
       ' Learning analogy · Shared supplies and individual roles',
     '팀의 공통 준비물을 한 번 적고 개인 역할을 덧붙이는 방식입니다. YAML의 공통 묶음도 설정을 재사용하며, 별도 컨테이너를 만들지는 않습니다.':
@@ -852,8 +1153,6 @@ window.KNUT_TRANSLATIONS = {
       ' Starts a small management process first to forward shutdown signals and reap child processes.',
     '중지 시 정상 종료를 위해 최대 30초를 기다립니다.':
       ' Waits up to 30 seconds for graceful shutdown when stopping.',
-    'Master: 상태 확인을 통과하면 다음 서비스 시작':
-      ' Master: start dependent services after the health check passes',
     '처음 실행할 프로그램입니다.': ' The program to start first.',
     '그 프로그램에 전달할 실행 내용입니다. 여기서는 Spark의 Master 프로그램을 실행합니다.':
       ' The execution instructions passed to that program; here, they run the Spark Master.',
@@ -880,7 +1179,6 @@ window.KNUT_TRANSLATIONS = {
       ' Resource declarations offered to Spark. They are not a total container memory limit; actual resources also depend on PC and Docker settings.',
     '시작 조건입니다. 이후 Master 장애를 자동 복구하지는 않습니다.':
       ' A startup condition; it does not automatically recover a later Master failure.',
-    'Client: 코드를 읽을 수 있게 연결하고 대기': ' Client: mount the code and wait',
     'Bash의 시작 옵션 더 보기': ' More about Bash startup options',
     '은 명령을 해석하는 프로그램입니다. 여기서는 Bash를 사용합니다.':
       ' is a program interpreting commands. Here we use Bash.',
@@ -891,7 +1189,6 @@ window.KNUT_TRANSLATIONS = {
     '실습 폴더 연결: bind mount': ' Mounting the lab folder: bind mount',
     '는 호스트 폴더를 컨테이너에서 보이게 연결하는 방식입니다.':
       ' makes a host folder visible inside a container.',
-    '의 세 부분을 읽어 보세요.': ' Read its three parts.',
     '호스트에 있는 실습 코드 폴더입니다.': ' The lab-code folder on the host.',
     'Client 안에서 그 폴더를 읽을 경로입니다.': ' The path through which Client reads that folder.',
     'read-only, 즉 컨테이너에서 읽기 전용이라는 뜻입니다.':
@@ -906,18 +1203,13 @@ window.KNUT_TRANSLATIONS = {
       ' No. Only the four specified services create containers.',
     '네. 설정 묶음도 실행됩니다.': ' Yes. The configuration group also runs.',
     '출처: 강의 슬라이드 17–29 ·': ' Source: lecture slides 17–29 ·',
-    '. 현재 파일은 Master·Worker 1·Worker 2·Client 네 서비스로 구성됩니다.':
-      '. The current file defines four services: Master, Worker 1, Worker 2, and Client.',
     'Spark 역할과 실행 흐름': ' Spark roles and execution flow',
     'Spark 구성요소의 역할과 실행 순서': ' Spark components and execution order',
-    'Spark는 데이터를 나누어 여러 실행 주체가 처리하게 하는 엔진입니다. 이번에는 Spark 자체의 클러스터 관리 방식인':
-      " Spark is an engine that divides data among execution units. This lab uses Spark's own cluster management mode,",
     '을 사용합니다.': '.',
     '학습용 비유 · 팀 실험의 자리와 작업':
       ' Learning analogy · Workplaces and work in a team experiment',
     'Master는 자리를 배정하고, Worker는 계산 담당자를 준비하며, Driver는 실험 순서를 조정하는 역할에 비유할 수 있습니다. 실제로는 프로세스끼리 통신합니다.':
       ' Master assigns places, Workers prepare the people doing calculations, and Driver coordinates the experiment. In the actual system, these are communicating processes.',
-    '비슷해 보이지만 다른 Spark 역할': ' Spark roles that look similar but differ',
     역할: ' Role',
     '언제, 어디에서': ' When and where',
     '하는 일': ' Responsibility',
@@ -962,8 +1254,6 @@ window.KNUT_TRANSLATIONS = {
     '출처: 강의 슬라이드 18, 23–25, 37, 39–40, 45–48 · 역할 정의 보충:':
       ' Source: lecture slides 18, 23–25, 37, 39–40, and 45–48 · Supplementary role definitions:',
     'Apache Spark 공식 클러스터 개요': ' Apache Spark official cluster overview',
-    '. 실행 옵션과 버전은 이 수업의 배포 파일을 기준으로 합니다.':
-      ". Execution options and versions follow this course's supplied files.",
     '주소·포트·DNS 이해': ' Addresses, ports, and DNS',
     '접속 위치에 맞는 주소와 포트 고르기':
       " Choose addresses and ports for the connection's starting point",
@@ -1005,7 +1295,6 @@ window.KNUT_TRANSLATIONS = {
     'Worker 2 내부의 UI가 사용하는 번호입니다.': ' The port used by the UI inside Worker 2.',
     '두 Worker는 서로 다른 컨테이너이므로 내부에서 각각 8081을 쓸 수 있습니다. Windows에서는 같은 IP의 같은 포트를 두 곳에 연결할 수 없어 8081과 8082로 나눕니다.':
       ' The Workers are separate containers, so each can use internal port 8081. Windows cannot map the same IP and port to both, so it uses 8081 and 8082.',
-    'localhost는 “지금 실행 중인 곳 자신”': ' localhost means “where this program is running”',
     'Windows 브라우저에서:': ' In the Windows browser:',
     'localhost는 Windows PC입니다.': ' localhost is the Windows PC.',
     'Worker 안에서:': ' Inside a Worker:',
@@ -1036,8 +1325,6 @@ window.KNUT_TRANSLATIONS = {
     'Docker 공식 Compose 네트워크 설명': " Docker's official Compose networking guide",
     '1단계 · 이미지 검사': ' Step 1 · Check the image',
     '이미지에서 PySpark 실행 확인하기': ' Verify PySpark execution in the image',
-    '아직 네트워크가 필요 없는 작은 계산부터 실행합니다. 여기서 실패하면 클러스터 연결 전에 이미지와 실행 환경부터 살펴볼 수 있습니다.':
-      ' Start with a small calculation requiring no network. If it fails, inspect the image and environment before connecting the cluster.',
     '학습용 비유 · 합주 전 악기 조율': ' Learning analogy · Tuning before an ensemble performance',
     '합주 전 악기 하나를 조율하듯, 이미지 안에서 작은 계산부터 확인합니다. 컨테이너 간 협력은 다음 단계에서 검사합니다.':
       ' Like tuning one instrument before playing together, first check a small calculation in the image. The next step checks cooperation between containers.',
@@ -1067,7 +1354,6 @@ window.KNUT_TRANSLATIONS = {
     '는 직전 외부 프로그램의 종료 코드이며,': ' is the exit code of the previous external program;',
     '이면 정상 종료입니다. 다른 명령으로 값이 바뀌기 전에 바로 확인하세요.':
       ' means normal termination. Check immediately before another command changes it.',
-    '실행 후 찾아야 할 표시 · 예상': ' Expected indicators to find after execution',
     '성공 기준:': ' Success criteria:',
     '위 두 표시와 종료 코드 0. 추가 Spark 로그가 섞여 나올 수 있습니다.':
       ' Both indicators above and exit code 0. Additional Spark logs may appear among them.',
@@ -1093,16 +1379,11 @@ window.KNUT_TRANSLATIONS = {
     '때문에 아직 Worker를 사용하지 않았습니다.': ' means this check has not used any Worker yet.',
     '출처: 강의 슬라이드 32–35 ·': ' Source: lecture slides 32–35 ·',
     'README의 이미지 실행 검사': ' Image execution check in the README',
-    '. 한 줄 명령은 README 원문을 사용했습니다.':
-      '. The one-line command comes from the original README.',
     '2단계 · 클러스터 연결': ' Step 2 · Connect the cluster',
     '컨테이너 실행과 Worker 등록 확인하기': ' Start containers and verify Worker registration',
     '컨테이너 상태, Spark 등록, 네트워크는 서로 다른 확인 항목입니다. 셋을 나누어 보면 어디에서 문제가 생겼는지 찾기 쉽습니다.':
       ' Container status, Spark registration, and networking are separate checks. Distinguishing them helps locate failures.',
     '학습용 비유 · 출석과 전화 확인': ' Learning analogy · Attendance and phone checks',
-    '전원 켜기, 팀 출석, 전화 연결, 과제 완성은 각각 다른 확인입니다. Up → ALIVE → NETWORK_CHECK → 계산 결과도 따로 확인합니다.':
-      ' Power, team attendance, phone connectivity, and completed work are different checks. Similarly, verify Up, ALIVE, NETWORK_CHECK, and calculation results separately.',
-    '네 서비스를 실행하세요': ' Start the four services',
     '는 백그라운드 실행입니다. 첫 줄은 이번 실습에 쓸 네 서비스를 지정합니다.':
       ' runs in the background. The first line names the four services used in this lab.',
     '는 같은 Compose 프로젝트에서 현재 파일에 정의되지 않은 서비스의 컨테이너를 제거합니다. 이전 설정으로 만든 세 번째 Worker가 남아 있다면 함께 정리됩니다.':
@@ -1111,20 +1392,16 @@ window.KNUT_TRANSLATIONS = {
       ' Wait for startup, then inspect the four containers. For option details, see',
     'Docker Compose up 공식 문서': ' the official Docker Compose up documentation',
     'Worker 2개·Client:': ' Two Workers and Client:',
-    'Master UI에서 Worker 등록을 확인하세요': ' Verify Worker registration in Master UI',
     'Windows 브라우저에서': ' In the Windows browser,',
     'Master UI 열기': ' open Master UI',
     'ALIVE 2개': ' 2 ALIVE',
     '각 Worker 자원:': ' Resources per Worker:',
     '1 core, 약 1024 MiB': ' 1 core, approximately 1024 MiB',
     '앱 제출 전에는 없어도 정상': ' May be absent before app submission',
-    'Client 안에서 네트워크를 검사하세요': ' Check networking inside Client',
     '입력 위치: 실습 폴더의 Windows PowerShell. 실제 검사 위치: Client 컨테이너 안.':
       ' Enter in Windows PowerShell from the lab folder. The check itself runs inside Client.',
     '는 이미 실행 중인 컨테이너 안에서 명령을 수행합니다.':
       ' executes a command inside an already running container.',
-    '처럼 새 일회용 컨테이너를 만드는 것과 구분하세요.':
-      ' instead creates a new disposable container; distinguish the two.',
     'check_network.py가 확인하는 범위': ' What check_network.py checks',
     검사: ' Check',
     대상: ' Target',
@@ -1150,8 +1427,6 @@ window.KNUT_TRANSLATIONS = {
     '네. 연결 성공은 계산 성공입니다.': ' Yes. Connection success means calculation success.',
     '아니요. 앱을 제출해 결과까지 확인해야 합니다.': ' No. Submit the app and verify its result.',
     '출처: 강의 슬라이드 36–43 ·': ' Source: lecture slides 36–43 ·',
-    '. 마지막 종료 코드 확인은 이 검사가 반환하는 0/1을 확인하는 보충 단계입니다.':
-      ". Checking the final exit code is an additional step verifying the check's return value of 0 or 1.",
     '3단계 · 첫 분산 계산': ' Step 3 · First distributed calculation',
     '1부터 100까지 더하고 5050 확인하기': ' Add 1 through 100 and verify 5050',
     '1부터 100까지 더하면 5050입니다. 정답을 미리 아는 문제로 Spark가 올바른 클러스터에서 실행됐는지 확인합니다.':
@@ -1160,7 +1435,6 @@ window.KNUT_TRANSLATIONS = {
       ' Learning analogy · Divide worksheets and combine answers',
     '숫자를 네 묶음으로 나눠 부분 합을 구하고 합치는 방식입니다. 아래는 학습용 모형이며, 실제 Spark의 Task와 집계 단계는 실행 계획에 따라 달라집니다.':
       " Divide numbers into four groups, calculate partial sums, and combine them. The illustration is a learning model; actual Tasks and aggregation stages depend on Spark's execution plan.",
-    '코드 세 줄을 읽어 보세요': ' Read three lines of code',
     '입력: 1~100을 네 조각으로': ' Input: split 1–100 into four pieces',
     '시작 · 1:': ' Start · 1:',
     '첫 숫자는 1입니다.': ' The first number is 1.',
@@ -1228,7 +1502,6 @@ window.KNUT_TRANSLATIONS = {
       ' The section attempting cleanup after normal progress or a Python exception.',
     '기본 120초 동안 UI를 볼 시간을 남깁니다.': ' Allow 120 seconds by default to inspect the UI.',
     'SparkSession을 종료합니다.': ' Stop the SparkSession.',
-    '이제 실제 앱을 제출하세요': ' Submit the actual app',
     '입력 위치:': ' Enter in:',
     '실습 폴더의 Windows PowerShell. 앱은 Client 컨테이너에서 실행됩니다.':
       ' Windows PowerShell in the lab folder. The app runs in Client.',
@@ -1236,7 +1509,6 @@ window.KNUT_TRANSLATIONS = {
       " Submit using the first line, then observe the next section's UI for 120 seconds.",
     '프롬프트가 돌아오면 즉시 두 번째 줄로 종료 코드를 확인합니다.':
       ' When the prompt returns, immediately use the second line to check the exit code.',
-    '직접 실행할 때 확인할 표시 · 예상': ' Expected indicators to check in your own run',
     '도 출력되며 값은 실행마다 달라질 수 있습니다. 성공 여부는 아래 네 표시를 함께 확인하세요.':
       ' is also printed and may vary between runs. Check all four indicators below to judge success.',
     '합계가 정답과 일치합니다.': ' The sum matches the known answer.',
@@ -1278,8 +1550,6 @@ window.KNUT_TRANSLATIONS = {
     '작업을 나눈 처리 단계를 확인합니다.':
       ' Inspect the processing stages into which work is divided.',
     'Driver와 Executor 정보를 확인합니다.': ' Inspect Driver and Executor information.',
-    '합계 계산은 빠르게 끝날 수 있습니다. 120초 대기는 이미 완료된 작업과 앱 상태를 관찰할 시간입니다.':
-      " The sum may finish quickly. The 120-second wait lets you inspect completed work and the app's status.",
     '앱 종료 후 달라지는 상태': ' What changes after the app ends',
     '관찰 대기가 끝나고 앱이 종료되면 함께 사라집니다.':
       ' Disappears when the observation wait ends and the app stops.',
@@ -1297,7 +1567,6 @@ window.KNUT_TRANSLATIONS = {
       ' Master startup, Worker and app registration, Executor startup, and errors.',
     '실시간 추적은 아래 명령을 사용합니다.': ' Use the command below to follow logs live.',
     '로 로그 추적을 끝냅니다.': ' ends log following.',
-    '증상에서 다음 확인으로': ' From symptom to the next check',
     증상: ' Symptom',
     '먼저 확인할 점': ' First check',
     'Docker Server 연결 실패': ' Docker Server connection failed',
@@ -1330,12 +1599,8 @@ window.KNUT_TRANSLATIONS = {
       ' and exit code 0, after the observation period, indicate normal termination.',
     '출처: 강의 슬라이드 51–52 ·': ' Source: lecture slides 51–52 ·',
     'README의 관찰·종료 확인': ' Observation and shutdown checks in the README',
-    '. 증상별 표는 배포 설정을 기반으로 구성한 학습용 점검 안내입니다.':
-      '. The symptom table is a learning checklist based on the supplied configuration.',
     '종료·재시작과 총정리': ' Shutdown, restart, and review',
     '컨테이너 중지·재시작·정리하기': ' Stop, restart, and remove containers',
-    '앱을 종료해도 컨테이너는 남을 수 있습니다. 잠깐 쉬는지, 수업을 마치는지에 맞춰 환경의 수명을 관리합니다.':
-      ' Containers may remain after an app ends. Manage the environment according to whether you are taking a break or finishing the lab.',
     '학습용 비유 · 일시 정지와 자리 정리':
       ' Learning analogy · Pause versus clearing the workspace',
     'stop은 자리를 남긴 채 멈추기, start는 다시 시작하기, down은 자리 정리에 비유할 수 있습니다. 이미지와 호스트의 실습 파일은 남습니다.':
@@ -1367,7 +1632,6 @@ window.KNUT_TRANSLATIONS = {
     '클러스터 실행 단계': ' the cluster startup step',
     '로 돌아가 네 서비스를 지정한 명령을 사용하세요.':
       ' and use its command naming the four services.',
-    '스스로 설명할 수 있으면 완료': ' Finish when you can explain these points',
     '이미지 하나로 역할이 다른 컨테이너 네 개를 만들 수 있다.':
       ' One image can create four containers with different roles.',
     'Master는 자원을 배정하고, Worker는 Executor를 관리하며, Driver는 Task를 조정한다.':
@@ -1387,16 +1651,12 @@ window.KNUT_TRANSLATIONS = {
     '후 다음 수업에 다시 구성하려면?':
       ' After this, how do you recreate the environment for the next class?',
     '강의 제공 코드와 실행 조건 확인': ' Check supplied code and execution conditions',
-    '2장 강의 56슬라이드를 바탕으로 실행 순서를 정리했습니다. 아래 파일은 강의에서 제공한 실습 코드입니다. 파일을 같은 폴더 구조로 저장한 뒤 이 장의 준비·검사·제출 절차를 따라 실행하세요.':
-      ' These steps are based on the 56 Chapter 2 lecture slides. The files below are the instructor-provided lab code. Save them with the same folder structure, then follow preparation, checks, and submission in this chapter.',
     'README.md · 배포 절차와 Plan B': ' README.md · Supplied instructions and Plan B',
     'compose.yaml · 서비스 구성 전체': ' compose.yaml · Complete service configuration',
     'check_pyspark.py · 이미지 검사': ' check_pyspark.py · Image check',
     'check_network.py · 네트워크 검사': ' check_network.py · Network check',
     'run.sh · 앱 제출 설정': ' run.sh · App submission settings',
     'first_app.py · 계산과 정답 검증': ' first_app.py · Calculation and answer verification',
-    '배포 README에는 제작 당시 Docker 데몬 미실행으로 실제 실행을 검증하지 못했다는 기록이 있습니다. 이 페이지는 원본 코드와 강의자료를 대조한 학습 안내이며, 위 체크리스트는 학생 PC에서 직접 확인해야 할 항목입니다.':
-      " The supplied README records that execution was not verified at authoring time because the Docker daemon was not running. This page compares the original code with lecture materials; the checklist above must be verified on the student's PC.",
     '출처: 강의 슬라이드 53–56 ·': ' Source: lecture slides 53–56 ·',
     'README의 종료 절차': ' Shutdown instructions in the README',
     '챕터 이동': ' Chapter navigation',
@@ -1407,8 +1667,6 @@ window.KNUT_TRANSLATIONS = {
       ' CHAPTER 03 · Distributed processing and Spark execution',
     'Spark는 어떻게': ' How does Spark',
     '나누어 계산할까?': ' divide computation?',
-    '1부터 100까지의 합을 여러 계산 자원에 나누어 맡겨 봅니다. 필요한 환경과 전체 코드를 먼저 확인하고, 데이터가 나뉘고 합쳐지는 과정을 배웁니다. 같은 계산에 참여하는 자원을 바꾸어 실행 구조와 처리 시간을 비교합니다.':
-      ' Distribute the sum of 1 through 100 across computing resources. First inspect the environment and full code, then learn how data is divided and combined. Change the resources participating in the same calculation to compare execution structure and processing time.',
     '환경·전체 코드': ' Environment and full code',
     '분산 처리·DataFrame': ' Distributed processing and DataFrames',
     '실행 관찰·성능 비교': ' Execution observation and performance comparison',
@@ -1430,8 +1688,6 @@ window.KNUT_TRANSLATIONS = {
     '코드와 개념 해설': ' Code and concepts',
     '환경과 전체 코드를 먼저 확인한 뒤, 분산 처리 원리와 코드의 역할을 차례로 읽습니다.':
       ' First inspect the environment and full source, then read the distributed processing concepts and the role of each part of the code.',
-    '실행에 필요한 환경과 파일을 먼저 모았습니다. 코드를 모두 이해한 뒤 시작할 필요는 없습니다. 파일을 준비하고 전체 흐름을 훑은 다음, 이어지는 설명에서 각 줄의 역할을 확인하세요.':
-      ' The required environment and files are collected here. You do not need to understand every line before starting. Prepare the files, scan the overall flow, then use the explanations that follow to understand each line.',
     '실습 자료 한 번에 받기': ' Download the lab materials together',
     '실행 관찰 실습': ' Execution observation lab',
     'B에서 사용할 환경 설정, 합계 프로그램, 제출·검사 코드 5개입니다.':
@@ -1482,8 +1738,6 @@ window.KNUT_TRANSLATIONS = {
       ' in the structure above. Open this folder in File Explorer, type',
     '을 입력하고 Enter를 누르면 해당 위치에서 시작할 수 있습니다.':
       ' in the address bar, and press Enter to start there.',
-    '합계 실습은 코드가 숫자를 생성하므로 별도 입력 파일이 필요하지 않습니다. 단어 집계 절의 문장 세 줄은 표의 변화를 설명하기 위한 예시이며, 직접 실행할 입력 파일은 그 절의 보충 실습에 따로 연결했습니다.':
-      ' The sum lab generates numbers in code, so it needs no separate input file. The three sentences in the word-count section illustrate table transformations; runnable input files are linked separately in its supplementary lab.',
     '두 실습의 폴더와 화면 주소': ' Folders and browser addresses for the two labs',
     목적: ' Purpose',
     '실행 폴더': ' Working directory',
@@ -1523,8 +1777,6 @@ window.KNUT_TRANSLATIONS = {
       ' The following is the complete content of the downloadable files. For both labs, read',
     '환경 설정 → 제출 스크립트 → 계산 코드':
       ' environment configuration → submission script → calculation code',
-    '순서로 읽습니다. 파일명과 코드의 프로그램 이름은 그대로 사용하며, 이후 절에서는 필요한 부분만 다시 짚습니다.':
-      ' in order. Preserve file names and program names; later sections revisit the relevant parts.',
     '실행 관찰 ·': ' Execution observation ·',
     'Spark를 실행할 컨테이너와 연결 주소를 정합니다. 두 Worker로 시작하는 명령은 뒤의 실행 준비에서 안내합니다.':
       ' Defines Spark containers and connection addresses. Commands for starting two Workers appear in the execution preparation section.',
@@ -1545,8 +1797,6 @@ window.KNUT_TRANSLATIONS = {
       " Reads the application's total core limit from an environment variable and passes it along.",
     '같은 합계를 반복 계산해 정답을 검사하고, 각 실행 시간과 중앙값을 출력합니다.':
       ' Repeats the same sum, verifies correctness, and prints each elapsed time and the median.',
-    '파일 근거: 강의 제공 실행 관찰용 파일 5개와 성능 비교용 파일 3개. 환경 참고:':
-      ' File sources: five supplied execution-observation files and three performance-comparison files. Environment references:',
     'Docker Desktop Windows 설치': ' Docker Desktop installation on Windows',
     'Spark 프로그램 제출': ' Submitting Spark applications',
     '분산 처리 원리부터 읽기': ' Start with distributed processing concepts',
@@ -1621,8 +1871,6 @@ window.KNUT_TRANSLATIONS = {
     '항상 4개': ' Always four',
     '최대 2개': ' At most two',
     '3장 「분산처리와 Spark 실행 원리」': ' Chapter 3: Distributed Processing and Spark Execution',
-    '실제 슬라이드 1–8. 슬라이드 번호는 파일 순서 기준입니다.':
-      ' Actual slides 1–8. Slide numbers follow file order.',
     'Spark의 역할과 범위': " Spark's role and scope",
     '계산을 맡는 엔진, Spark': ' Spark, the computation engine',
     '는 작업 배정과 데이터 이동을 관리하며 분산 계산을 실행하는 처리 엔진입니다. 수업에서는 Python으로 Spark를 사용하는':
@@ -1673,10 +1921,7 @@ window.KNUT_TRANSLATIONS = {
     '어떤 일에 쓰일까': ' Typical uses',
     '큰 표를 합치는': ' Used for large-table',
     'Join(조인)': ' joins',
-    ', 집계, 데이터 정제, 반복 분석에 활용합니다. 짧은 응답이 중요한 서비스나':
-      ', aggregation, cleaning, and iterative analysis. Do not generalize it as a replacement for low-latency services or',
     'OLTP(온라인 거래 처리)': ' OLTP (online transaction processing)',
-    '데이터베이스를 대신하는 용도로 일반화하지 않습니다.': ' databases.',
     '강의에 소개된 기업 사례와 관리형 서비스':
       ' Company examples and managed services in the lecture',
     아래는: ' The following are',
@@ -1706,8 +1951,6 @@ window.KNUT_TRANSLATIONS = {
     '자원을 준비하는 역할': ' Roles that prepare resources',
     과: ' and',
     '제출한 프로그램을 계산하는 역할': ' roles that execute the submitted program',
-    '을 구분해 봅시다.': ' should be distinguished.',
-    '먼저 두 쌍으로 나누어 읽으세요.': ' First read them as two pairs.',
     'Master와 Worker': ' Master and Workers',
     '는 쓸 수 있는 계산 자원을 준비합니다. 프로그램을 제출하면':
       ' prepare available resources. When a program is submitted,',
@@ -1745,7 +1988,6 @@ window.KNUT_TRANSLATIONS = {
       ' Starts for an Application, calculates Tasks, and manages intermediate data. Cleaned up when the Application ends.',
     '위 그림은': ' The figure above is a',
     '학습용 구조 모형': ' structural model for learning',
-    '입니다. 다음 순서로 역할을 확인하세요.': '. Review the roles in this order.',
     'Master와 Worker가 켜지고 Client는 대기합니다.': ' Master and Workers start; Client waits.',
     '이 Driver를 시작합니다.': ' starts Driver.',
     '자원 할당:': ' Resource allocation:',
@@ -1765,19 +2007,13 @@ window.KNUT_TRANSLATIONS = {
       ' Can Workers remain running after the sum program ends?',
     '네. 다음 Application을 기다릴 수 있습니다.': ' Yes. They can wait for the next Application.',
     '아니요. 반드시 함께 종료되어야 합니다.': ' No. They must stop together.',
-    '슬라이드 18–22, 26, 28–29. 구조 보충 확인:':
-      ' Slides 18–22, 26, and 28–29. Supplementary architecture reference:',
     'Apache Spark 4.1.3 공식 실행 구조': ' Apache Spark 4.1.3 official cluster overview',
     'DataFrame · 표에서 숫자까지': ' DataFrame · From a table to a number',
     'DataFrame · 표가 합계 숫자가 되는 과정': ' DataFrame · How a table becomes a sum',
-    '여러 곳에 나뉜 데이터를 다루더라도, 코드에서는 열 이름으로 원하는 계산을 표현할 수 있어야 합니다.':
-      ' Even when data is spread across locations, code should express the desired computation using column names.',
     'DataFrame(데이터프레임)': ' A DataFrame',
     '은 이름이 있는 열로 구성된 표 형태의 분산 데이터입니다.':
       ' is distributed tabular data organized into named columns.',
     '학습용 비유 · 나누어 보관한 성적표': ' Learning analogy · Distributed grade sheets',
-    '성적표를 여러 조교에게 나누어 주어도 “점수 열의 합계”라는 요청은 같습니다. 표의 열과 실제 보관 묶음을 구분해서 생각해 보세요.':
-      ' Even if grade sheets are split among assistants, “sum the score column” is the same request. Distinguish logical columns from physical storage pieces.',
     '1. 행·열·스키마와 Partition 구분하기': ' 1. Rows, columns, schema, and Partitions',
     'Row(행):': ' Row:',
     '데이터 한 건입니다. 숫자 예제에서는 숫자 하나가 한 행입니다.':
@@ -1821,14 +2057,9 @@ window.KNUT_TRANSLATIONS = {
     '마지막 값': ' Final value',
     표는: ' The table has',
     '100행 × 1열': ' 100 rows × 1 column',
-    '이고 입력 Partition은 4개입니다. 위 표는 숫자의 범위를 보여 주기 위한 배열입니다. 일반적인 DataFrame의 출력 순서는 명시적으로 정렬해야 보장할 수 있습니다.':
-      " and four input Partitions. This display illustrates the numeric range. A general DataFrame's output order requires explicit sorting to be guaranteed.",
     '3. 한 줄의 합계 코드를 네 단계로 풀기': ' 3. Expand one sum expression into four steps',
-    '배포 파일에는 다음 한 줄이 있습니다.': ' The supplied file contains this single line.',
     '같은 계산을 설명용 변수로 나눈 코드':
       ' code examples splitting the same calculation into explanatory variables',
-    '입니다. 원본 파일을 이렇게 수정할 필요는 없습니다.':
-      '. You do not need to modify the original file this way.',
     'SQL(표의 데이터를 조회·처리하는 언어) 식을 문자열로 받아 새 DataFrame을 정의합니다. 여기서는 전체':
       ' Takes a SQL expression as a string and defines a new DataFrame. SQL is a language for querying and processing tables. Here, the plan sums every',
     '값을 더하는 계획입니다.': ' value.',
@@ -1856,13 +2087,9 @@ window.KNUT_TRANSLATIONS = {
     'Python 변수 이름과 Spark 열 이름': ' Python variable names and Spark column names',
     '에서 왼쪽': ': the left-hand',
     '은 Python 변수 이름이고, 따옴표 안의': ' is a Python variable. For the quoted column name',
-    '로 붙인 열 이름입니다. 우연히 이름이 같지만 역할은 다릅니다.':
-      ' assigns that name. The names match, but serve different roles.',
     '4. 표의 구조와 실행 결과를 확인하는 도구': ' 4. Tools for inspecting structure and results',
     '아래는 코드 이해를 위한': ' The following are',
     '선택적 확인 예시': ' optional checks for understanding the code',
-    '도 실행을 요청하므로, 원본 실습의 Job·Task 수를 관찰할 때는 코드를 추가하지 않고 배포 파일 그대로 실행하세요.':
-      " also requests execution. When observing the original lab's Job and Task counts, run the supplied file without adding code.",
     '이 합계 예제에서': ' In this sum example,',
     '은 구조와 계획을 보여 주고,': ' show structure and plans, while',
     '는 실제 결과를 계산해 출력합니다.': ' calculates and prints actual results.',
@@ -1879,10 +2106,7 @@ window.KNUT_TRANSLATIONS = {
       ' What does first() retrieve in the sum code?',
     '입력 표의 숫자 1': " The input table's number 1",
     '합계 표의 Row(total=5050)': ' Row(total=5050) from the sum table',
-    '실제 슬라이드 23, 32–34 ·': ' Actual slides 23 and 32–34 ·',
     '배포 코드': ' Supplied code',
-    '. 표와 단계별 변수는 학습용 보충입니다. 공식 확인:':
-      '. The tables and step-by-step variables are learning supplements. Official reference:',
     'DataFrame·스키마': ' DataFrames and schemas',
     '지연 실행과 작업 단위': ' Lazy execution and work units',
     '계획을 만들고, 결과가 필요할 때 계산하기':
@@ -1890,8 +2114,6 @@ window.KNUT_TRANSLATIONS = {
     'Spark는 변환 계획을 모아 두었다가 결과가 필요할 때 계산합니다. 여러 처리 단계를 함께 보고 실행 방법을 정하기 위해서입니다.':
       ' Spark accumulates transformation plans and computes when results are needed, allowing it to consider multiple steps together when choosing an execution strategy.',
     '학습용 비유 · 주문서를 모은 뒤 조리하기': ' Learning analogy · Collect orders before cooking',
-    '주문서에 요리를 적는 단계와 실제로 조리하는 단계를 나누어 생각해 보세요. 변환은 계획을 만들고 실행 요청은 결과를 요구합니다. 주문서 줄 수가 실제 작업 수와 같지는 않습니다.':
-      ' Distinguish writing dishes on an order from cooking them. Transformations build plans, while execution requests demand results. Order-line count is not the same as actual task count.',
     '계획과 실행 요청': ' Plans and execution requests',
     'Transformation · 변환:': ' Transformation:',
     '표에 어떤 계산을 할지 정합니다.': ' Specifies calculations on a table.',
@@ -1939,8 +2161,6 @@ window.KNUT_TRANSLATIONS = {
     '슬라이드 23–27, 45–48.': ' Slides 23–27 and 45–48.',
     'DataFrame · 단어 세기 코드 해설': ' DataFrame · Word-count code walkthrough',
     '단어 세기 · 코드마다 표가 어떻게 바뀔까': ' Word count · How each operation changes the table',
-    '문장별 텍스트에서 단어별 등장 횟수를 구하려면, 한 문장을 여러 단어 행으로 바꾸고 같은 단어를 모아야 합니다. 문장을 읽고, 단어를 나누고, 같은 단어를 세어 저장하는 순서로 표의 변화를 살펴봅니다.':
-      ' To count words in sentences, expand each sentence into word rows and group identical words. Follow the table as sentences are read, words split, counts calculated, and results saved.',
     '학습용 비유 · 문장 카드를 잘라 단어별로 모으기':
       ' Learning analogy · Cut sentence cards and group words',
     '문장 카드를 단어마다 잘라 같은 단어끼리 쌓고, 더 두꺼운 묶음부터 놓는 과정입니다. 실제 Spark에서는 문자열을 나누고, 행을 늘리고, 그룹별로 집계한 뒤 정렬합니다.':
@@ -2045,16 +2265,12 @@ window.KNUT_TRANSLATIONS = {
     '횟수 기준 전체 정렬에 맞게 데이터를 재배치합니다.':
       ' Redistribute data for global frequency ordering.',
     '에서 정렬하고 저장합니다.': ' sorts and saves it.',
-    '이는 단어 집계와 정렬을 단계로 나누어 설명한 구조입니다. 실제 Job·Stage 수는 Spark가 선택한 실행 계획에 따라 확인해야 합니다. 코드 한 줄이 반드시 Stage 하나에 대응하지는 않습니다.':
-      " This structure explains word aggregation and sorting in stages. Verify actual Job and Stage counts from Spark's chosen plan. One code line does not necessarily correspond to one Stage.",
     'groupBy 뒤의 count()는 그룹별 집계 DataFrame을 정의합니다. 이 코드에서는 parquet 저장이 결과를 요구하여 계산을 실행합니다.':
       ' count() after groupBy defines a grouped-aggregation DataFrame. In this code, saving Parquet requests results and triggers computation.',
     '위 단어 집계 코드에서 결과 계산을 요구하는 부분은?':
       ' Which part of this word-count code requests the result calculation?',
     '만 호출할 때': ' Calling only',
     '로 저장할 때': ' Saving with',
-    '실제 슬라이드 23–25. 전체 코드는 슬라이드 24, 입력과 중간 표는 학습용 보충입니다. 공식 확인:':
-      ' Actual slides 23–25. Full code is on slide 24; the input and intermediate tables are learning supplements. Official references:',
     '그룹별 count': ' Grouped count',
     '전체 count': ' Overall count',
     '파일을 받아 같은 연산 실행하기': ' Download files and run the same operations',
@@ -2063,8 +2279,6 @@ window.KNUT_TRANSLATIONS = {
       ' provides input text, complete Python code, and expected CSV. It checks input, intermediate tables, Parquet writing, and rereading in local[2] without HDFS. Worker comparisons use a separate distributed lab.',
     '실제 코드 · 제출부터 종료까지': ' Actual code · From submission to shutdown',
     '실제 코드 · 명령이 5050을 출력하기까지': ' Actual code · From a command to 5050',
-    '합계와 단어 집계를 통해 데이터가 바뀌는 과정을 살펴보았습니다. 이제 처음에 본 환경 설정·제출 스크립트·계산 코드를 연결합니다. 어떤 프로세스가 계산을 시작하고 결과를 확인한 뒤 종료하는지 읽어 봅시다.':
-      ' The sum and word-count examples showed how data changes. Now connect the configuration, submission script, and calculation code introduced earlier. Read which processes start computation, verify results, and stop.',
     '학습용 비유 · 실험실 배치도와 실험 지시서':
       ' Learning analogy · Lab layout and experiment instructions',
     '배치도는 사용할 장비를 준비하고, 지시서는 실험을 시작하며, 실험식은 계산을 정합니다. 설정 파일과 제출 스크립트, Python 코드도 역할이 나뉩니다.':
@@ -2094,9 +2308,7 @@ window.KNUT_TRANSLATIONS = {
     '2. PowerShell 명령 · Client 안의 run.sh 호출':
       ' 2. PowerShell command · Call run.sh inside Client',
     '실행 흐름을 읽는 예시': ' An example for reading the execution flow',
-    '입니다. 실제 입력은 다음': '. Actually enter it once after completing the following',
     '환경 점검': ' environment checks',
-    '에서 준비를 마친 후 한 번 수행합니다.': '.',
     '이미 실행 중인 Client 컨테이너 안에서 명령을 실행합니다.':
       ' Run a command inside the already running Client container.',
     '컨테이너 안의 Bash 셸로 제출 스크립트를 읽습니다. 호스트의':
@@ -2107,7 +2319,6 @@ window.KNUT_TRANSLATIONS = {
     '3. run.sh · spark-submit으로 Driver 시작': ' 3. run.sh · Start Driver with spark-submit',
     앞의: ' Refer to the earlier',
     'run.sh 전체 코드': ' complete run.sh code',
-    '를 기준으로 읽습니다.': '.',
     '은 계산 프로그램을 Spark에 제출하는 명령입니다. 계산 자원의 위치와 사용량을 옵션으로 전달합니다.':
       ' submits a computation program to Spark. Options specify resource locations and amounts.',
     '명령 실패나 미정의 변수 같은 오류를 놓치지 않도록 셸 동작을 설정합니다.':
@@ -2211,10 +2422,7 @@ window.KNUT_TRANSLATIONS = {
     '명령 뒤의': ' After the command,',
     '인자를 Python 파일로 그대로 전달합니다. 코어 수는 제출 옵션이고 입력 범위·반복 수는 Python 프로그램의 인자입니다.':
       ' arguments pass unchanged to Python. Cores are a submission option; input range and repetition count are Python arguments.',
-    '10. 같은 계산을 반복하고 시간을 재는 과정': ' 10. Repeat and time the same calculation',
     'performance_app.py 전체 코드': ' Complete performance_app.py code',
-    '중 시간을 재는 부분을 다시 보겠습니다. 아래 발췌에서는 SparkSession 생성과 인자 검사를 생략했습니다.':
-      ' contains the timing section revisited below. This excerpt omits SparkSession creation and argument validation.',
     '명령행 인자를 읽어 보관한 값입니다.': ' The stored command-line argument values.',
     '앞에서 생성한 SparkSession입니다.': ' The previously created SparkSession.',
     '1. 입력 DataFrame:': ' 1. Input DataFrame:',
@@ -2246,7 +2454,6 @@ window.KNUT_TRANSLATIONS = {
     부터: ' through',
     ', 합계, 중앙값, PASS를 출력한 뒤 UI 관찰 시간만큼 기다립니다. 관찰 대기는 위 타이머 밖이므로 중앙값에 더해지지 않습니다.':
       ', the sum, median, and PASS are printed, then the app waits for UI observation. The wait is outside this timer and is not added to the median.',
-    '원본은 이후': ' The original then uses',
     에서: ' to',
     '을 호출하고': ' call shutdown and',
     '를 출력합니다.': ' print the indicator.',
@@ -2266,8 +2473,6 @@ window.KNUT_TRANSLATIONS = {
     '제공 가능한 1개 코어 안에서 계산합니다.': ' The calculation uses the one available core.',
     '제출 옵션의 상한이 실제 자원을 새로 만들지는 않습니다.':
       ' A submission limit does not create additional resources.',
-    '슬라이드 28–37 · 「Spark Worker 확장과 성능 측정」 1–2쪽 · 실행 관찰·성능 측정 코드. 현재 실행 관찰용 Compose의 Worker 1·2 구성을 기준으로 합니다.':
-      ' Slides 28–37 · “Spark Worker Scaling and Performance Measurement”, pages 1–2 · Execution-observation and performance code. Based on the current observation Compose configuration with Workers 1 and 2.',
     '실제 실행 따라가기': ' Follow actual execution',
     '환경을 점검하고 작은 합계 계산을 실행한 뒤, 화면에서 데이터와 자원의 관계를 확인합니다.':
       ' Check the environment, run a small sum, then inspect the relationship between data and resources in the UI.',
@@ -2276,17 +2481,9 @@ window.KNUT_TRANSLATIONS = {
     '실행 관찰 자료 ZIP 받기': ' Download execution observation ZIP',
     '· 압축을 푼': ' · Start in the extracted',
     '폴더에서 시작합니다.': ' folder.',
-    '앞에서 읽은 코드로 1부터 100까지의 합을 계산합니다. 먼저 Docker와 파일을 확인하고, 두 Worker를 시작한 뒤 통신을 검사합니다. 이 절의 점검을 마치면 다음 절에서 계산을 제출합니다.':
-      ' Use the code just read to sum 1 through 100. First check Docker and files, start two Workers, and test communication. Submit the calculation in the next section after completing these checks.',
-    '앞의 코드가 실제 실행으로 이어집니다': ' Connect the code to actual execution',
-    '2장 실습 파일을 재사용합니다.': ' Reuse the Chapter 2 lab files.',
     '로 계산 자원을 준비하고, 다음 절에서': ' prepares computing resources; the next section uses',
     '를 통해 앞에서 읽은': ' to submit the previously examined',
-    '를 제출합니다. 현재 절은 아직 5050을 계산하는 단계가 아닙니다.':
-      '. This section does not calculate 5050 yet.',
     '학습용 비유 · 실험 전 장비 점검': ' Learning analogy · Equipment checks before an experiment',
-    '실험 전에 전원, 장비 연결, 측정기를 각각 점검하듯 확인합니다. 이미지가 정상이어도 네트워크 연결은 별도로 검사해야 합니다.':
-      ' Check power, connections, and instruments separately before an experiment. Likewise, a valid image does not remove the need for a separate network check.',
     '준비 1 · Docker와 폴더 확인': ' Preparation 1 · Check Docker and the folder',
     'Docker Desktop에서': ' In Docker Desktop, wait for',
     '을 기다린 뒤 실행하세요.': ' before running commands.',
@@ -2313,8 +2510,6 @@ window.KNUT_TRANSLATIONS = {
     현재: ' The current',
     '은 Master·Worker 1·Worker 2·Client 네 서비스를 정의합니다.':
       ' defines four services: Master, Worker 1, Worker 2, and Client.',
-    '는 같은 Compose 프로젝트에서 현재 파일에 없는 서비스의 컨테이너를 제거합니다. 이전 설정으로 만든 세 번째 Worker가 남아 있다면 이 단계에서 정리됩니다.':
-      ' removes containers in the same Compose project whose services are absent from the current file. This cleans up a third Worker left from an earlier configuration.',
     '에서 옵션을 확인할 수 있습니다.': ' documents this option.',
     '현재 설정의 네 컨테이너가 실행 중인지 확인합니다.':
       ' Verify that all four containers in the current configuration are running.',
@@ -2333,8 +2528,6 @@ window.KNUT_TRANSLATIONS = {
     '자원을 제공할 Worker 수': ' Workers available to supply resources',
     '준비된 코어는 2개, 현재 사용은 0개': ' 2 cores ready, 0 currently allocated',
     '아직 계산을 제출하지 않은 상태': ' No calculation submitted yet',
-    '강의 사례를 바탕으로 직접 작성한 관찰표입니다. 실제 실행 화면이나 이번 환경의 측정 결과가 아닙니다. 실행 후 자신의 UI 값과 비교하세요.':
-      ' This table was written from the lecture example. It is not a screenshot or a measurement from this environment. Compare it with your own UI after running the lab.',
     '이전에 중지한 Worker의 DEAD 행이 남아 있어도 현재 ALIVE 수가 기준입니다.':
       ' Even if DEAD rows from stopped Workers remain, use the current ALIVE count.',
     '준비 5 · 컨테이너 통신 확인하기': ' Preparation 5 · Check communication between containers',
@@ -2354,8 +2547,6 @@ window.KNUT_TRANSLATIONS = {
     '이미지 태그와 로그 확인.': ' Inspect the image tag and logs.',
     'Worker가 없음:': ' No Workers:',
     '로 진단.': ' for diagnosis.',
-    '로그 명령은 보충 진단용입니다. Master의 healthy는 웹 응답 확인이므로 Worker 등록도 따로 확인하세요.':
-      " The log command is supplementary diagnostics. Master's healthy status checks a web response; verify Worker registration separately.",
     '컨테이너가 네 개 Up인데 Used Cores가 0이면 고장일까요?':
       ' Four containers are Up but Used Cores is 0. Is something broken?',
     'Application 제출 전이라면 정상입니다.': ' This is normal before Application submission.',
@@ -2368,8 +2559,6 @@ window.KNUT_TRANSLATIONS = {
     '네트워크 검사 원본': ' Original network-check code',
     '다음 절로 이동할 조건:': ' Ready for the next section when:',
     'ALIVE Worker 2개, Used Cores 0,': ' You have verified 2 ALIVE Workers, Used Cores 0, and',
-    '를 확인했습니다. Master UI를 열어 둔 채 Application을 제출합니다.':
-      '. Keep Master UI open and submit the Application.',
     '두 Worker에서 실행 관찰': ' Observe execution on two Workers',
     '두 Worker가 같은 계산에 참여하는 과정': ' How two Workers participate in one calculation',
     '정답 5050은 계산의 정확성을 보여 줍니다. 그 계산에 어떤 자원이 참여했는지는 Master UI와 Driver UI를 함께 봐야 알 수 있습니다.':
@@ -2493,8 +2682,6 @@ window.KNUT_TRANSLATIONS = {
     '3개': ' 3',
     '2개': ' 2',
     '3쪽, 단계 9–10 ·': ' Page 3, steps 9–10 ·',
-    '슬라이드 42–48의 실행 화면. 이 페이지 제작 과정의 Docker 실행 결과와 구분합니다.':
-      " Execution screens on slides 42–48. These are separate from Docker results produced during this page's authoring.",
     '5050 / PASS, Executor 2개, 완료 Task 합계 5개를 기록한 뒤':
       ' Record 5050 / PASS, 2 Executors, and 5 total completed Tasks, then wait for',
     '까지 기다립니다. 그다음 Worker 수만 바꿉니다.': '. After that, change only the Worker count.',
@@ -2502,8 +2689,6 @@ window.KNUT_TRANSLATIONS = {
     'Worker를 하나로 줄이면 무엇이 달라질까': ' What changes when there is only one Worker?',
     '입력 데이터와 분할은 그대로 두고 Worker만 줄입니다.':
       ' Keep input and partitioning unchanged; reduce only Workers.',
-    '해야 할 일의 수': ' The amount of work',
-    '동시에 처리할 수': ' and the amount that can run concurrently',
     '가 어떻게 다른지 확인합니다.': ' are different quantities to inspect.',
     '학습용 비유 · 채점 담당자 한 명이 자리를 비우면': ' Learning analogy · One grader leaves',
     '조교 한 명이 자리를 비워도 남은 조교가 같은 시험지 묶음을 차례로 채점할 수 있습니다. 실습도 계산이 끝난 뒤 Worker를 줄여 비교하므로, 계산 도중 장애 복구 실험은 아닙니다.':
@@ -2520,8 +2705,6 @@ window.KNUT_TRANSLATIONS = {
     '가 나오면 Master와 Driver 화면을 새로 고칩니다.':
       ' appears; refresh the Master and Driver screens.',
     '는 Exited.': ' is Exited.',
-    'ALIVE Worker 1개. 중지한 Worker의 DEAD 행은 이전 실행 기록 때문에 실행 이력에 따라 달라질 수 있습니다.':
-      ' One ALIVE Worker. A DEAD row for the stopped Worker may depend on previous execution history.',
     '계산 결과:': ' Calculation result:',
     'Driver의 Executors 화면:': " Driver's Executors screen:",
     'Driver를 제외한 Executor 1개, 완료 Task 5개.':
@@ -2571,10 +2754,6 @@ window.KNUT_TRANSLATIONS = {
     '3–5쪽, 단계 11–14와 결과표 ·': ' Pages 3–5, steps 11–14 and results table ·',
     '슬라이드 49–54.': ' Slides 49–54.',
     '다음 실험으로 이동할 조건:': ' Ready for the next experiment when:',
-    '두 Worker와 한 Worker의 정답·Task 수·동시 실행 수를 설명했고,':
-      ' You can explain the answer, Task count, and concurrency with two and one Workers, and',
-    '뒤 서비스 목록이 비었습니다. 이제 3장 파일로 입력을 크게 늘려 성능을 비교합니다.':
-      ' leaves the service list empty. Now use the Chapter 3 files with much larger input to compare performance.',
     '자원 사용과 성능': ' Resource usage and performance',
     '구조를 확인한 뒤 같은 계산의 자원 조건과 시간을 비교합니다.':
       ' After checking the structure, compare resource conditions and timing for the same calculation.',
@@ -2671,15 +2850,8 @@ window.KNUT_TRANSLATIONS = {
     '반복 시간이 9초, 4초, 5초라면 중앙값은?':
       ' If times are 9, 4, and 5 seconds, what is the median?',
     '5초입니다.': ' 5 seconds.',
-    '이는 중앙값 설명을 위한 가상 숫자이며 이번 실험의 측정값이 아닙니다.':
-      ' These are hypothetical values explaining the median, not measurements from this experiment.',
     'Spark Worker 확장과 성능 측정': ' Spark Worker Scaling and Performance Measurement',
-    '1–2쪽, 6쪽 · 위에 연결한 3장 배포 파일. 시간 측정 범위는':
-      ' Pages 1–2 and 6 · The Chapter 3 files linked above. Timing boundaries follow',
-    '를 기준으로 설명합니다. 변수 표기 보충:': '. Supplementary variable syntax reference:',
     'Docker 공식 문서의 $$ 처리': " Docker's official explanation of $$",
-    '3장 폴더에서 설정 검사를 통과했고, 코어 조건과 입력·반복 조건의 차이를 설명할 수 있습니다. 기록표 A에 쓸 결과를 만들기 위해 1 / 1 조건부터 실행합니다.':
-      ' Configuration validation in the Chapter 3 folder passed, and you can distinguish core settings from input and repetition settings. Begin with 1 / 1 to collect results for Table A.',
     'Worker와 코어 늘리기': ' Increase Workers and cores',
     'Worker와 코어를 1개에서 8개까지 늘리기': ' Increase Workers and cores from 1 to 8',
     'Worker를 늘리는 명령과 Application이 사용할 코어를 늘리는 명령은 별개입니다. 두 값을 함께 바꾸고 실제 할당 상태를 확인합니다.':
@@ -2769,8 +2941,6 @@ window.KNUT_TRANSLATIONS = {
       " Check both Worker capacity and the Application's core limit.",
     '2–4쪽, 단계 2–6과 결과표 A ·': ' Pages 2–4, steps 2–6 and Table A ·',
     'Docker 공식 문서의 --scale 옵션': " Docker's official --scale option documentation",
-    '표 A의 네 조건과 실제 2 / 2 Executor 수를 기록했습니다. Worker는 8개를 유지하고, 마지막 실행의':
-      " Record all four Table A conditions and the actual 2 / 2 Executor count. Keep eight Workers and, after the final run's",
     '이후 전체 코어 상한만 2로 바꿉니다.': ', change only the total core limit to 2.',
     '전체 코어 2개로 고정': ' Fix total cores at 2',
     'Worker 8개에서 전체 코어를 2개로 제한하기': ' Limit eight Workers to two total cores',
@@ -2828,16 +2998,10 @@ window.KNUT_TRANSLATIONS = {
     '4쪽의 단계 7과 결과표 B, 6쪽 풀이 기준 ·':
       ' Page 4, step 7 and Table B; page 6 interpretation criteria ·',
     '제출 스크립트': ' Submission script',
-    '2 / 2와 8 / 2의 중앙값·실제 Executor 수를 표 B에 기록했습니다.':
-      ' Record the medians and actual Executor counts for 2 / 2 and 8 / 2 in Table B.',
     '뒤 Worker 8개를 유지한 채 이번에는 8 Core를 요청해 전체 자원 사용을 관찰합니다.':
       ' After shutdown, keep eight Workers, request eight cores, and observe full allocation.',
     '실행 화면과 성능 해석': ' Execution screens and performance interpretation',
     '측정 결과를 실행 구조와 연결하기': ' Connect measurements to execution structure',
-    '시간이 줄었다는 결론에는 같은 정답, 같은 입력, 실제 자원 사용이라는 근거가 필요합니다. 마지막으로 여덟 Core 실행을 관찰하고 비교 결과를 설명합니다.':
-      ' A claim of reduced time needs evidence of identical answers, identical input, and actual resource usage. Finally, observe eight-core execution and explain the comparisons.',
-    '학습용 비유 · 사람이 늘어도 좁은 작업장은 같다':
-      ' Learning analogy · More people, the same small workspace',
     '사람이 늘어도 통로와 작업대를 공유하면 기다림이 생깁니다. 이 실습도 한 PC의 CPU·메모리를 공유하므로 Worker 수만큼 빨라진다고 보장할 수 없습니다.':
       " More people still share aisles and desks, creating waits. This lab shares one PC's CPU and memory, so speedup proportional to Worker count is not guaranteed.",
     '관찰 실행 · 8 / 8 조건에 UI 대기 추가':
@@ -2875,8 +3039,6 @@ window.KNUT_TRANSLATIONS = {
     '관찰 방법:': ' Observation references:',
     'Docker 컨테이너 통계': ' Docker container statistics',
     'Spark 실행 모니터링': ' Spark execution monitoring',
-    '. 이 명령은 자원 관찰을 위한 보충 절차입니다.':
-      '. This command is a supplementary resource-observation procedure.',
     '결과 해석 · 표 A와 표 B로 답하기': ' Interpretation · Answer using Tables A and B',
     '정확성:': ' Correctness:',
     '모든 조건에서 같은': ' First confirm the same',
@@ -2929,25 +3091,15 @@ window.KNUT_TRANSLATIONS = {
     '공개 Worker 성능 비교': ' Public Worker performance comparison',
     '에 전체 측정 코드, 제출 스크립트, Compose 설정과 빈 CSV 기록표가 있습니다. 작은 입력 확인부터 1·2·4·8 Worker와 Core 상한 비교까지 안내합니다.':
       ' provides full measurement code, submission script, Compose settings, and a blank CSV record sheet. It covers small-input checks and comparisons of 1, 2, 4, and 8 Workers and core limits.',
-    '직접 작성한 보충 예제이므로 이 장과 실행 폴더·포트·기본 입력이 다릅니다. 한 실습 안에서는 그 실습의 파일과 명령을 함께 사용하세요.':
-      " This separately authored supplementary example uses different folders, ports, and default input. Within each lab, use that lab's files and commands together.",
-    '같은 데이터를 나누어 처리해도 정답은 같아야 합니다. 계산 결과를 먼저 확인하고, 실제로 사용한 코어와 작업 수를 근거로 처리 시간의 차이를 설명해 보세요.':
-      ' Partitioning the same data must preserve the answer. Check correctness first, then explain processing-time differences using the cores and Tasks actually used.',
     '이전 · 2장': ' Previous · Chapter 2',
     '다음 · 4장': ' Next · Chapter 4',
     '04. Spark DataFrame 프로그래밍 · BigData': ' 04. Programming with Spark DataFrames · BigData',
     '주문 데이터로 배우는': ' Learn with order data:',
     'DataFrame 프로그래밍': ' DataFrame programming',
-    'CSV의 열과 자료형을 정하고, 정상 주문을 골라 사용자별 구매금액을 구합니다. 코드가 정의하는 연산과 실제 계산이 수행되는 위치를 함께 읽습니다.':
-      ' Define CSV columns and types, select valid orders, and calculate purchases by user. Read both the operations defined by code and where computation actually runs.',
     '4주차 · 주문 데이터': ' Week 4 · Order data',
     'Schema·정제·집계': ' Schema, cleaning, and aggregation',
     '지연 평가·Shuffle': ' Lazy evaluation and Shuffle',
     '주문 데이터와 처리 순서': ' Order data and processing order',
-    '출처: 2026-bigdata-04, PDF 실제 4–12쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 4–12 · Corresponding concepts in the Week 4 lecture notes.',
-    '이번 장에서는 주문 한 건을 한 행으로 읽고, 잘못된 수량과 가격을 걸러 낸 뒤 사용자별 구매금액을 계산합니다. 3장에서 계산한 숫자 한 열의 합을 실제 업무 형태의 표로 확장하는 과정입니다.':
-      " Read each order as one row, filter invalid quantities and prices, then calculate purchases by user. This extends Chapter 3's single numeric-column sum to a business-style table.",
     'CSV(Comma-Separated Values)는 쉼표로 열을 구분한 텍스트 파일입니다. 첫 줄에는 열 이름을, 이후 줄에는 주문 값을 둡니다. 아래는 강의노트가 제시한':
       " CSV (Comma-Separated Values) is a text format separating columns with commas. The first line contains column names; later lines contain orders. Below is the lecture notes'",
     '4행 예시': ' four-row example',
@@ -2972,11 +3124,6 @@ window.KNUT_TRANSLATIONS = {
       ' Calculate order counts and amounts by user, then order the results.',
     '결과를 요구하는 Action을 호출하고 작은 입력의 예상값과 비교합니다.':
       ' Call an Action requesting results and compare with expected values for small input.',
-    '현재 자료 범위': ' Current material scope',
-    '4주차 PDF 90쪽과 개념 강의노트를 바탕으로 작성했습니다. 노트가 언급하는 별도 실습 가이드, 전체 프로그램, orders.csv는 현재 제공되지 않았습니다.':
-      ' Based on the 90-page Week 4 PDF and conceptual lecture notes. The separate lab guide, complete program, and orders.csv mentioned in the notes have not been supplied.',
-    '따라서 이 장의 코드는 개념별 발췌이며, 미제공 파일의 실행 명령이나 전체 실습 결과를 가정하지 않습니다. 앞선 실행 환경은':
-      ' Code here is therefore excerpted by concept; no commands or full results are assumed for missing files. For the earlier runtime environment, see',
     '3장 환경과 전체 코드': ' Chapter 3 environment and full code',
     'Schema는 값의 형태를 정하며 quantity > 0 같은 업무 규칙은 별도로 검사합니다.':
       ' Schema defines value types; business rules such as quantity > 0 require separate validation.',
@@ -2986,17 +3133,11 @@ window.KNUT_TRANSLATIONS = {
     '자료형과 별도로 수량 조건을 검사해야 합니다.':
       ' The quantity rule must be checked separately from its type.',
     'DataFrame과 실행 위치': ' DataFrames and execution locations',
-    '출처: 2026-bigdata-04, PDF 실제 13–20쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 13–20 · Corresponding concepts in the Week 4 lecture notes.',
     'DataFrame은 이름과 자료형이 있는 열(Column)과 행(Row)으로 구성된 데이터 구조입니다. 큰 표를 나누어 처리할 때는 데이터 조각과 계산 역할을 구분합니다.':
       ' A DataFrame has rows and columns with names and types. When dividing a large table for processing, distinguish data pieces from computation roles.',
     '나누어 처리하는 데이터 조각입니다.': ' A piece of data divided for processing.',
     '각 조각을 실제로 계산하는 프로세스입니다.': ' A process actually computing each piece.',
-    '애플리케이션을 이끄는 프로세스입니다. 연산을 계획하고 실행을 요청합니다.':
-      ' The process leading the application, planning operations and requesting execution.',
     '보조 비유 · 여러 담당자의 장부': ' Supplementary analogy · Ledgers held by several clerks',
-    '한 사람이 모든 장부를 받아 계산하는 대신, 책임자가 계산 규칙을 정해 여러 담당자에게 보냅니다. 담당자의 수가 늘어도 나눠 줄 장부가 하나뿐이면 모두 동시에 일하지 못할 수 있습니다.':
-      ' Instead of one person collecting every ledger, a coordinator sends calculation rules to several clerks. More clerks cannot all work at once if there is only one ledger to assign.',
     구조: ' Structure',
     '기본 계산 위치': ' Typical execution location',
     '큰 입력을 처리할 때': ' For large input',
@@ -3028,8 +3169,6 @@ window.KNUT_TRANSLATIONS = {
     '파일의 수·크기·형식과 설정에 따라 다릅니다.':
       ' It depends on file count, size, format, and settings.',
     'Schema와 자료형': ' Schemas and data types',
-    '출처: 2026-bigdata-04, PDF 실제 21–22, 39–43쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 21–22 and 39–43 · Corresponding concepts in the Week 4 lecture notes.',
     'CSV에는 값이 문자열로 기록되어 있습니다.': ' CSV stores values as text.',
     'Schema(스키마)': ' A Schema',
     '는 각 열의 이름·자료형·NULL 허용 여부를 정해 같은 파일을 일관되게 해석하도록 합니다. NULL은 값이 없거나 알 수 없다는 뜻입니다.':
@@ -3051,10 +3190,6 @@ window.KNUT_TRANSLATIONS = {
     '같은 계산이 십진수와 정확히 일치하지 않을 수 있습니다. 이 예제는 단가를 소수 둘째 자리까지 표현하기 위해 Decimal을 씁니다.':
       '. This example uses Decimal to represent unit prices with two decimal places.',
     '추론과 명시적 정의': ' Inference versus explicit definition',
-    '를 쓰면 Spark가 값을 읽어 자료형을 추론합니다. 처음 받은 파일을 탐색할 때 편리하지만 값을 추가로 읽는 비용이 있습니다. 가격에':
-      ' makes Spark read values to infer types. It is convenient for exploring unfamiliar files but requires an extra read. If prices include',
-    '가 섞이면 문자열로 판단할 수 있습니다. 반복 처리할 입력 형식이 정해졌다면 명시적 Schema로 계약을 드러내는 편이 적합합니다.':
-      ', Spark may infer strings. For repeated processing with a known format, an explicit Schema states the input contract.',
     '보충 근거:': ' Supplementary source:',
     'Apache Spark CSV 옵션 문서': ' Apache Spark CSV options documentation',
     '의 inferSchema 추가 읽기 설명.': ' explains the additional pass required by inferSchema.',
@@ -3065,8 +3200,6 @@ window.KNUT_TRANSLATIONS = {
     '소수점 앞뒤를 합친 유효 숫자 최대 12자리입니다.':
       ' At most twelve significant digits across both sides of the decimal point.',
     '중첩된 데이터 구조': ' Nested data structures',
-    '출처: 2026-bigdata-04, PDF 실제 28–38쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 28–38 · Corresponding concepts in the Week 4 lecture notes.',
     '한 주문 안에 고객 정보나 여러 상품이 들어 있다면 평평한 열만으로 구조를 설명하기 어렵습니다. 중첩 Schema는 한 열 안의 하위 필드와 배열·키/값 관계를 표현합니다.':
       ' Flat columns alone may not express orders containing customer information and multiple products. Nested Schemas describe subfields, arrays, and key/value relationships within a column.',
     '이번 주문 CSV는 평면 구조이고, 아래는 강의노트의 별도 JSON 구조 예시입니다.':
@@ -3081,8 +3214,6 @@ window.KNUT_TRANSLATIONS = {
     '의 상품 목록': ' contains the product list',
     '키와 값의 대응': ' A mapping from keys to values',
     '중첩 Schema 정의 읽기': ' Read a nested Schema definition',
-    '처음에는 고객의 이름 있는 칸은 Struct, 상품 여러 개는 Array, 추가 메모의 항목과 값은 Map이라는 차이만 잡으면 됩니다. 아래 전체 정의는 각 구조를 코드로 어떻게 조합하는지 확인할 때 펼쳐 보세요.':
-      ' First distinguish Struct for named customer fields, Array for products, and Map for extra note keys and values. Expand the complete definition when reviewing how these structures combine in code.',
     '고객과 상품의 하위 구조를 먼저 정의한 뒤 전체 주문 Schema에 넣습니다. 배열 자체의 NULL 허용 여부와 배열 안 원소의 NULL 허용 여부는 별개입니다.':
       ' Define customer and product substructures before including them in the order Schema. Nullability of an array and of its elements are separate rules.',
     '중첩 Schema 전체 정의와 주석 보기': ' Show the complete nested Schema and comments',
@@ -3100,8 +3231,6 @@ window.KNUT_TRANSLATIONS = {
     값은: ' value is',
     '중첩 예제의': " The nested example's",
     '와 평면 CSV의': " and the flat CSV's",
-    '는 Schema가 다르므로 코드를 그대로 섞지 않습니다.':
-      ' have different Schemas, so do not mix their code unchanged.',
     'explode는 배열 원소 하나마다 결과 행 하나를 만듭니다.':
       ' explode creates one result row per array element.',
     'items 배열에 상품 2개가 들어 있는 행을 explode하면 몇 행이 되나요?':
@@ -3109,14 +3238,8 @@ window.KNUT_TRANSLATIONS = {
     '항상 원래의 1행입니다.': ' Always the original one row.',
     '상품별 2행이 됩니다.': ' Two rows, one per product.',
     'CSV 읽기와 입력 확인': ' Read CSV and inspect input',
-    '출처: 2026-bigdata-04, PDF 실제 44–48쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 44–48 · Corresponding concepts in the Week 4 lecture notes.',
-    'Schema를 선언한 뒤 읽기 설정에 연결해야 실제 CSV 값에 적용됩니다. 다음 경로는':
-      ' Connect the declared Schema to reader settings to apply it to CSV values. The following is',
     '강의노트의 컨테이너 내부 예시 경로':
       ' an example container-internal path from the lecture notes',
-    '입니다. 현재 미제공된 파일을 가리키므로 그대로 실행할 준비가 된 다운로드 경로로 해석하지 않습니다.':
-      '. It points to a file not supplied here, not a ready-to-run download location.',
     '보조 비유 · 양식과 장부 연결': ' Supplementary analogy · Connect a form to a ledger',
     '양식을 정했더라도 어느 장부를 읽을지 지정해야 합니다. 파일 경로가 장부의 위치라면 Schema는 그 장부를 해석하는 규칙입니다.':
       ' Defining a form does not specify which ledger to read. The path locates the ledger; the Schema defines how to interpret it.',
@@ -3125,8 +3248,6 @@ window.KNUT_TRANSLATIONS = {
     '시각 문자열의 해석 형식을 지정합니다.': ' Specify the timestamp parsing format.',
     '앞에서 만든': ' Apply the previously defined',
     '를 읽기에 적용합니다.': ' to the reader.',
-    '입력 경로를 지정하고 DataFrame을 정의합니다. 결과를 요구하는 Action에서 본문의 데이터 계산이 수행됩니다. 파일 확인이나 Schema 추론 등 준비 작업까지 모두 지연된다는 뜻은 아닙니다.':
-      ' Specify an input path and define a DataFrame. Data computation runs when an Action requests results. This does not mean all preparation, such as file checks or schema inference, is deferred.',
     '확인할 것': ' What to inspect',
     코드: ' Code',
     '열 이름·자료형·nullable을 출력합니다. 전체 주문 결과를 요구하는 Action과 구분합니다.':
@@ -3142,8 +3263,6 @@ window.KNUT_TRANSLATIONS = {
       ' Inspect the current Partition count. Continue subsequent processing with the DataFrame API.',
     'nullable=False만으로 입력이 검증되지는 않습니다.':
       ' nullable=False alone does not validate input.',
-    'CSV를 읽은 결과에서는 nullable 표시가 완화되어 true로 보일 수 있습니다. 실제 NULL·수량·가격 범위는 별도로 검사합니다. 열 이름만 맞고 값이나 시각이 NULL로 바뀌었다면 입력 형식·자료형·시각 형식을 함께 살펴보세요.':
-      ' CSV readers may relax nullability so the resulting schema shows true. Check actual NULL values and quantity/price ranges separately. If names match but values or timestamps become NULL, inspect input format, types, and timestamp format together.',
     '정수 0과 음수도 정수 자료형에는 맞을 수 있습니다.':
       ' Zero and negative values can still be valid integers.',
     'Schema 출력만 확인하면 잘못된 수량까지 모두 찾을 수 있나요?':
@@ -3151,13 +3270,9 @@ window.KNUT_TRANSLATIONS = {
     '자료형을 확인했으므로 충분합니다.': ' Checking types is sufficient.',
     '샘플 값과 NULL·값 범위도 확인해야 합니다.': ' Also inspect sample values, NULLs, and ranges.',
     'Column 표현식과 열 선택': ' Column expressions and selection',
-    '출처: 2026-bigdata-04, PDF 실제 23–28, 49–53쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 23–28 and 49–53 · Corresponding concepts in the Week 4 lecture notes.',
     'Python 숫자끼리 곱하면 즉시 값이 나옵니다. Spark의':
       ' Multiplying Python numbers immediately gives a value. A Spark',
     'Column 표현식': ' Column expression',
-    '은 각 행의 어떤 열을 어떻게 계산할지 정한 연산 정보입니다. 큰 입력을 Driver의 반복문으로 처리하지 않고 Executor에 계산을 맡기려면 이 차이를 이해해야 합니다.':
-      ' describes which columns to calculate for each row and how. This distinction lets Executors compute large input instead of a Driver loop.',
     '보조 비유 · 계산 규칙 전달': ' Supplementary analogy · Send a calculation rule',
     '“2 × 12000”을 지금 계산하는 것과 “각 주문의 수량 × 단가를 계산하라”는 지시를 적는 것은 다릅니다. Column은 후자의 규칙에 해당합니다.':
       ' Calculating “2 × 12000” now differs from writing “multiply quantity by unit price for every order”. A Column represents the latter rule.',
@@ -3186,11 +3301,6 @@ window.KNUT_TRANSLATIONS = {
       ' Execute filters, multiplication, and aggregation on assigned Partitions.',
     'collect 결과 받기': ' Receive collect results',
     '결과를 Python Row와 값으로 변환합니다.': ' Convert results into Python Rows and values.',
-    '지금 기억할 것:': ' Remember for now:',
-    'Python으로 처리 방법을 적고, 실제 주문 행의 계산은 Executor에 맡깁니다. 프로세스 사이의 연결 이름은 아래 표와 함께 필요할 때 다시 확인하면 됩니다.':
-      ' Describe processing in Python and let Executors calculate actual order rows. Refer back to the connection names and table when needed.',
-    '여기서 설명하는 것은 내장 DataFrame 연산입니다. 사용자가 작성한 Python UDF나 RDD의 Python 함수는 Executor의 Python Worker에서 실행될 수 있으므로 “PySpark의 모든 계산은 JVM에서만 한다”라고 일반화하지 않습니다.':
-      ' This describes built-in DataFrame operations. User-written Python UDFs or RDD functions may run in Executor Python Workers; do not generalize that all PySpark computation runs only in the JVM.',
     '표현식은 계획에 포함되며 실제 행에 대한 계산은 실행 시 수행됩니다.':
       ' Expressions become part of a plan; computation on actual rows occurs during execution.',
     'F.col("quantity") * F.col("price")의 반환값은 무엇인가요?':
@@ -3199,12 +3309,6 @@ window.KNUT_TRANSLATIONS = {
     '각 행의 두 열을 곱하라는 Column 표현식입니다.':
       ' A Column expression multiplying two columns for each row.',
     '조건과 NULL 처리': ' Conditions and NULL handling',
-    '출처: 2026-bigdata-04, PDF 실제 23–24, 54–58쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 23–24 and 54–58 · Corresponding concepts in the Week 4 lecture notes.',
-    '집계 전에 어떤 주문을 포함할지 정해야 결과의 의미가 분명해집니다. 이 장은 수량·가격이 NULL이 아니고, 수량이 0보다 크며, 가격이 0 이상인 주문을 남깁니다.':
-      ' Define included orders before aggregation to make results meaningful. This chapter keeps orders with non-NULL quantity and price, quantity greater than zero, and nonnegative price.',
-    '는 같은 조건에 대해 같은 행 선택을 수행합니다.':
-      ' select the same rows for the same condition.',
     '보조 비유 · 접수 조건 확인': ' Supplementary analogy · Check admission rules',
     '수량 칸이 비어 있는 주문과 수량 0으로 적힌 주문은 다릅니다. 둘 다 이번 접수 조건에서는 제외되지만 제외 이유는 구분해서 읽습니다.':
       ' A blank quantity differs from quantity zero. Both are excluded here, but understand their different reasons.',
@@ -3227,9 +3331,6 @@ window.KNUT_TRANSLATIONS = {
     '는 NULL을 0으로 대체하므로 단순 검사와 의미가 다릅니다. 대체해도 되는지 업무 규칙을 먼저 정합니다.':
       ' replaces NULL with zero, unlike a simple check. Define whether substitution is allowed by the business rules first.',
     'Schema의 NULL 허용과 실제 행의 NULL': ' Schema nullability versus NULL in actual rows',
-    'NULL을 다루는 데 필요한 것은 먼저': ' Start NULL handling by distinguishing',
-    '의 구분입니다. 아래 내부 저장 방식은 이 두 검사가 가능한 이유를 설명하는 보충 내용입니다.':
-      '. The internal representation below is supplementary background explaining how these checks are supported.',
     '는 열이 NULL을 가질 수 있다는 선언입니다. 모든 행이 NULL이라는 뜻은 아닙니다.':
       ' declares that a column may contain NULL; it does not mean every row is NULL.',
     'Spark SQL의 대표적 내부 행 형식인 UnsafeRow는 NULL 여부를 별도 비트 영역으로 관리합니다. 필드의 비트가 1이면 그 행의 필드가 NULL입니다. 애플리케이션에서는 이 내부 비트를 직접 고치지 않고 위 공개 API를 사용합니다.':
@@ -3242,8 +3343,6 @@ window.KNUT_TRANSLATIONS = {
     '비교 결과가 NULL이며 True가 아니므로 제외됩니다.':
       ' The comparison produces NULL, so the row is excluded because it is not True.',
     '금액 계산과 새 DataFrame': ' Calculate amounts and create a new DataFrame',
-    '출처: 2026-bigdata-04, PDF 실제 59–61쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 59–61 · Corresponding concepts in the Week 4 lecture notes.',
     '집계에 필요한 주문금액을 만들기 위해 정상 주문의 수량과 단가를 곱합니다.':
       " Multiply valid orders' quantities by prices to create amounts for aggregation.",
     '은 열을 추가하거나 같은 이름의 열을 바꾸는 연산이 포함된 새 DataFrame을 반환합니다.':
@@ -3262,8 +3361,6 @@ window.KNUT_TRANSLATIONS = {
       ' Reassigning the same Python variable does not modify the old object in place. The variable now refers to a new DataFrame.',
     '조건에 따른 값 만들기': ' Create conditional values',
     '은 조건을 만족할 때의 값을,': ' specifies the value when the condition is met;',
-    '는 나머지 경우의 값을 지정합니다. 위 분류 기준은 강의 예시인 100000이며 주문금액 합계나 측정 결과가 아닙니다.':
-      ' specifies the alternative. The threshold 100000 is a lecture example, not an order total or measurement.',
     '원래 DataFrame은 보존되고 연산이 추가된 새 DataFrame을 반환합니다.':
       ' The original DataFrame is preserved; a new one with an added operation is returned.',
     'withColumn 호출 뒤 원래 valid_orders에도 amount 열이 생기나요?':
@@ -3272,10 +3369,6 @@ window.KNUT_TRANSLATIONS = {
       ' Yes, because it modifies the existing object directly.',
     '반환된 enriched_orders에 정의됩니다.': ' It is defined in the returned enriched_orders.',
     '사용자별 집계와 Shuffle': ' Per-user aggregation and Shuffle',
-    '출처: 2026-bigdata-04, PDF 실제 62–65쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 62–65 · Corresponding concepts in the Week 4 lecture notes.',
-    '개별 주문금액을 사용자별로 묶으면 주문 수·총액·평균을 알 수 있습니다. Group Key(그룹 기준)는 어떤 값이 같은 행을 함께 계산할지 정하는 열이며, 여기서는':
-      ' Grouping order amounts by user gives order counts, totals, and averages. The group key determines which matching rows are calculated together; here it is',
     '보조 비유 · 고객별 영수증 모으기': ' Supplementary analogy · Collect receipts by customer',
     '여러 담당자가 가진 영수증을 고객별로 합쳐야 전체 구매액을 알 수 있습니다. 자기 책상 위 영수증만 더하면 다른 담당자가 가진 같은 고객의 주문을 빠뜨립니다.':
       " Combine a customer's receipts across clerks to obtain total purchases. Adding only receipts on one desk omits that customer's orders held elsewhere.",
@@ -3300,8 +3393,6 @@ window.KNUT_TRANSLATIONS = {
     '이처럼 연산에 필요한 기준으로 Partition 사이 데이터를 다시 배치하는 과정을':
       " Redistributing data between Partitions according to an operation's requirements is called",
     '이라고 합니다.': '.',
-    '표는 데이터 이동 이유를 설명하는 도식이며 실제 입력 Partition 수나 실행 화면을 재현한 것은 아닙니다. 실행 엔진은 부분 집계 등을 사용할 수 있으므로 항상 원본 행 전체를 그대로 전송한다고 단정하지 않습니다.':
-      ' This diagram explains why data moves; it does not reproduce actual input Partition counts or an execution screen. The engine may use partial aggregation, so do not assume every original row is always transferred unchanged.',
     '를 쓸 때는 계획을 정의합니다. 실제 계산과 필요한 데이터 이동은 Action이 결과를 요구할 때 이루어집니다.':
       ' defines the plan. Actual computation and necessary data movement occur when an Action requests results.',
     '한 조각의 값만으로는 전체 사용자 구매금액을 완성할 수 없습니다.':
@@ -3312,8 +3403,6 @@ window.KNUT_TRANSLATIONS = {
     '그 사용자에 대한 전체 집계에 필요한 값을 모으기 위해서입니다.':
       " To gather the values needed for that user's complete aggregation.",
     '정렬과 예상 결과 확인': ' Sort and check expected results',
-    '출처: 2026-bigdata-04, PDF 실제 9–10, 66–67쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 9–10 and 66–67 · Corresponding concepts in the Week 4 lecture notes.',
     '집계 결과를 비교하려면 출력 순서를 정해야 합니다. 총 구매금액 내림차순으로 정렬하되, 금액이 같으면 사용자 식별자 오름차순으로 정렬하면 동점의 순서도 명확해집니다.':
       ' Specify output order to compare results. Sort by total purchase amount descending, then user ID ascending to define tie ordering.',
     '보조 비유 · 순위표 정리': ' Supplementary analogy · Arrange a ranking',
@@ -3328,15 +3417,11 @@ window.KNUT_TRANSLATIONS = {
     '강의의 4행 예시를 손으로 확인하기': " Hand-check the lecture's four-row example",
     '첫 절의': ' Using',
     '4행만': " only the first section's four rows",
-    '입력으로 삼아 앞의 수량·가격 조건을 적용하면 정상 주문 3행이 남습니다. 아래는 손으로 계산한 예상값이며 Spark를 실행해 얻은 결과가 아닙니다. 전체 실습 데이터의 정답으로 사용하지 않습니다.':
-      ' and the quantity/price filters leaves three valid orders. These are hand-calculated expectations, not Spark output, and are not answers for the complete lab dataset.',
     'U001은 24000원짜리 주문 두 건을 합쳐 48000원입니다. U003의 수량 0 주문은 제외되므로 결과에 나타나지 않습니다.':
       " U001 has two KRW 24,000 orders totaling KRW 48,000. U003's quantity-zero order is excluded and does not appear.",
     'Decimal 연산의 출력 소수 자릿수는 위 표와 다를 수 있으므로 표시 폭보다 숫자 값·행 수·열 이름·정렬 기준을 비교합니다.':
       ' Decimal output scale may differ from this table. Compare numeric values, row counts, column names, and ordering instead of display width.',
     '실제로 실행할 입력이 준비되면': ' Once runnable input is available,',
-    '로 결과를 요청합니다. 예상과 다르면 정제 전후 행 수, 빠진 사용자, 금액 계산, 그룹 키, 정렬 기준의 순서로 확인합니다.':
-      ' requests the result. If it differs, check row counts before and after cleaning, missing users, amount calculation, group keys, and sorting in that order.',
     '수량 2 × 12000과 수량 3 × 8000을 합하면 48000입니다.':
       ' 2 × 12000 plus 3 × 8000 equals 48000.',
     '4행 예시의 정상 주문에서 U001의 총액은 얼마인가요?':
@@ -3344,8 +3429,6 @@ window.KNUT_TRANSLATIONS = {
     '24000.00입니다.': ' 24000.00.',
     '48000.00입니다.': ' 48000.00.',
     '실행계획과 Action': ' Execution plans and Actions',
-    '출처: 2026-bigdata-04, PDF 실제 68–78쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 68–78 · Corresponding concepts in the Week 4 lecture notes.',
     '연산을 적을 때마다 전체 데이터를 읽으면 중간 결과를 반복해서 만들 수 있습니다. Spark는 Transformation으로 무엇을 할지 모아 두고 Action이 결과를 요구할 때 실행합니다. 이를':
       ' Reading all data for every operation could repeatedly materialize intermediate results. Spark accumulates Transformations and executes when an Action requests results. This is',
     'Lazy Evaluation(지연 평가)': ' lazy evaluation',
@@ -3375,11 +3458,7 @@ window.KNUT_TRANSLATIONS = {
     'Action 요청에 따라 Spark는 계획을 분석·최적화하고':
       ' In response to an Action, Spark analyzes and optimizes the plan and chooses a',
     'Physical Plan(물리 계획)': ' physical plan',
-    '이라는 구체적 실행 방법을 정합니다. 실행은 Stage(단계)와 Task로 나뉩니다. 한 Action이 항상 정확히 하나의 Job과 대응한다고 외우지 않습니다.':
-      ' defining concrete execution. Work is divided into Stages and Tasks. Do not memorize a one-Action-to-exactly-one-Job rule.',
     '출력 사이의 실행 시점 읽기': ' Read execution timing between printed markers',
-    '다음은 강의의 지연 평가 관찰 코드입니다. 실행 시점을 보여 주기 위한 간단한 필터이므로 앞 절의 전체 데이터 품질 조건과 같지는 않습니다.':
-      " This is the lecture's lazy-evaluation observation code. Its simple filter illustrates timing and does not reproduce the full quality rules above.",
     '제시된 Transformation으로 계획을 구성합니다. 이 연산의 결과 계산을 아직 요청하지 않습니다.':
       ' Build a plan using the shown Transformation; calculation of its result has not yet been requested.',
     '가 결과를 요구하고 계산·출력이 끝난 뒤 STEP_C로 넘어갑니다.':
@@ -3396,8 +3475,6 @@ window.KNUT_TRANSLATIONS = {
     '결과 계산은 Action이 요청할 때 수행됩니다.':
       ' Result computation runs when requested by an Action.',
     'collect와 Driver 메모리': ' collect and Driver memory',
-    '출처: 2026-bigdata-04, PDF 실제 79–81쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 79–81 · Corresponding concepts in the Week 4 lecture notes.',
     '결과를 Python에서 다루려면 어디로 얼마나 가져오는지 먼저 판단해야 합니다.':
       ' Before handling results in Python, determine where and how much data will be retrieved.',
     '는 모든 결과 행을 Driver 메모리로 가져옵니다. Worker가 많아도 Driver 한곳에 모을 수 있는 크기에는 한계가 있습니다.':
@@ -3431,10 +3508,6 @@ window.KNUT_TRANSLATIONS = {
     '집계 결과는 항상 작습니다.': ' Aggregated results are always small.',
     '그룹 수와 결과 크기를 먼저 확인해야 합니다.': ' Check group count and result size first.',
     '코드 검토와 복습': ' Code review and recap',
-    '출처: 2026-bigdata-04, PDF 실제 82–90쪽 · 4주차 강의노트의 해당 개념.':
-      ' Source: 2026-bigdata-04, actual PDF pages 82–90 · Corresponding concepts in the Week 4 lecture notes.',
-    '코드가 실행된다는 사실만으로 요구한 처리가 맞다고 판단할 수는 없습니다. 입력·정제 조건·집계 기준·실행 위치·예상 결과를 차례로 확인하면 AI가 작성한 코드도 같은 기준으로 검토할 수 있습니다.':
-      ' Successful execution alone does not establish correct processing. Review input, cleaning rules, aggregation keys, execution location, and expected results; apply the same criteria to AI-generated code.',
     '보조 비유 · 계산서 검산': ' Supplementary analogy · Audit an invoice',
     '합계 숫자만 보는 대신 어떤 영수증을 넣고 뺐는지, 누구의 주문을 묶었는지까지 살펴보는 검산입니다. 작은 예시의 정답과 큰 입력을 처리하는 구조를 함께 봅니다.':
       ' Check which receipts were included or excluded and whose orders were grouped, not just the total. Examine both small-input correctness and the structure for large input.',
@@ -3457,8 +3530,6 @@ window.KNUT_TRANSLATIONS = {
     '열을 찾지 못함:': ' Column not found:',
     '에서 실제 이름·오타를 확인합니다.': ' Check actual names and typos here.',
     'CSV 경로를 찾지 못함:': ' CSV path not found:',
-    '컨테이너 내부 경로와 실제 마운트 위치를 확인합니다. 이 장의 4주차 전체 실습 파일은 아직 제공되지 않았습니다.':
-      ' Check the container-internal path and actual mount. The complete Week 4 lab files have not been supplied.',
     '예상보다 결과가 적음:': ' Fewer results than expected:',
     'NULL과 0·음수의 정제 조건을 확인합니다. 배열을 펼쳤다면 빈 배열·NULL 배열도 살펴봅니다.':
       ' Check NULL, zero, and negative-value filters. After array expansion, also inspect empty and NULL arrays.',
@@ -3466,17 +3537,6 @@ window.KNUT_TRANSLATIONS = {
     '입력 Partition과 Task 수를 먼저 확인합니다. Worker 수만으로 병렬성이 결정되지는 않습니다.':
       ' First check input Partitions and Task count. Worker count alone does not determine parallelism.',
     '작은 CSV가 느림:': ' Small CSV is slow:',
-    '세션·작업 시작 비용과 Shuffle 비용도 포함될 수 있습니다. 이 장은 측정 수치나 성능 향상을 보장하지 않습니다.':
-      ' Session/job startup and Shuffle overhead may contribute. This chapter promises no measured performance or speedup.',
-    '다음 내용과 연결': ' Connection to the next topic',
-    '강의노트는 다음 주에 같은 조건을 Spark SQL로 표현한다고 예고합니다.':
-      ' The lecture notes preview expressing the same conditions in Spark SQL next week.',
-    '아래 두 표현은 수량이 양수인 행을 선택한다는 뜻입니다. SQL 예시는':
-      ' Both expressions below select positive-quantity rows. The SQL example assumes a temporary view named',
-    '라는 임시 뷰가 준비되어 있을 때의 표현이며, 새 주차 실행 과정을 추가한 것은 아닙니다.':
-      " already exists; it does not add a new week's execution procedure.",
-    '이 장에서 배운 핵심은 표의 구조를 명시하고, Column 표현식으로 처리 과정을 정의하며, 결과를 요구할 때 분산 실행된다는 점입니다. Join·Window·Parquet·실행계획 상세 분석은 이번 장의 범위에 넣지 않습니다.':
-      " This chapter's essentials are explicit table structure, processing through Column expressions, and distributed execution when results are requested. Join, Window, Parquet, and detailed plan analysis are outside its scope.",
     '작은 입력에서 맞는 것과 큰 입력을 분산 처리할 수 있는 것은 별도 검증 항목입니다.':
       ' Correctness on small input and the ability to distribute large input require separate verification.',
     '작은 입력의 정답은 맞지만 원본 10억 행을 collect하는 코드라면 어떻게 검토하나요?':
@@ -3490,21 +3550,13 @@ window.KNUT_TRANSLATIONS = {
     '1~3장 실습 파일과 실행 안내 · BigData': ' Chapters 1–3 Lab Files and Instructions · BigData',
     'BIGDATA · 1~3장 보충 실습': ' BIGDATA · Chapters 1–3 supplementary labs',
     '보충 실습 파일과 실행 안내': ' Supplementary lab files and instructions',
-    '주문 CSV를 정리하고, Spark에서 합계와 단어 수를 구한 뒤, Worker 수에 따른 실행 시간을 비교합니다. 필요한 코드·입력·확인 파일을 이 페이지에서 받을 수 있습니다.':
-      ' Clean an order CSV, calculate sums and word counts in Spark, and compare execution time across Worker counts. Download the required code, input, and verification files here.',
     '빅데이터 홈': ' BigData home',
     '1장': ' Chapter 1',
     '2장': ' Chapter 2',
     '3장': ' Chapter 3',
     '준비와 파일 받기': ' Preparation and downloads',
     '실행할 폴더부터 준비하기': ' Prepare the working folder first',
-    '이곳의 프로그램과 데이터는 1~3장 개념을 연습하도록 별도로 작성한 보충 예제입니다. 교수님이 제공한':
-      " These programs and datasets are separately written supplementary examples for Chapters 1–3. Distinguish them from the instructor's files in",
-    '의 파일과는 구분합니다. 주문과 문장은 합성 데이터이며 개인정보가 없습니다.':
-      '. Orders and sentences are synthetic and contain no personal information.',
     '이 페이지의 파일은': " This page's files are in",
-    '에 있습니다. 제공 실습과 서비스 이름·포트가 다르므로 파일 준비부터 종료까지 이 페이지의 순서로 진행하세요.':
-      '. Service names and ports differ from the supplied labs, so follow this page from preparation through shutdown.',
     '파일·환경 준비': ' Files and environment',
     '전체 코드 확인': ' Inspect full code',
     '주문 CSV': ' Order CSV',
@@ -3532,18 +3584,12 @@ window.KNUT_TRANSLATIONS = {
       ' Same answer, time per condition, and actual Executors recorded',
     '1. 파일을 폴더 구조대로 저장하기': ' 1. Save files in the folder structure',
     PC에: ' On your PC, create a',
-    '폴더를 만들고 아래 파일을 같은 구조로 저장합니다. 링크의':
-      ' folder and save the following files in the same structure. Use',
     '파일 받기': ' Download file',
     '로 내려받거나': ' or copy the',
     '전체 코드': ' full source',
     '를 복사하여 UTF-8로 저장하세요. 파일 이름 뒤에':
       ' and save as UTF-8. Ensure the filename has no extra',
     '가 추가되지 않았는지 확인합니다.': ' suffix.',
-    'GitHub 저장소 전체를 내려받았다면': ' If you downloaded the entire GitHub repository,',
-    '에 이미 파일이 있습니다. 로컬 제작본은':
-      ' already contains the files. The local authoring copy is',
-    '입니다. 어느 경우든': '. In either case, run commands from',
     'compose.yaml이 있는 폴더': ' the folder containing compose.yaml',
     '에서 명령을 실행합니다.': '.',
     'compose.yaml 파일 받기': ' Download compose.yaml',
@@ -3572,8 +3618,6 @@ window.KNUT_TRANSLATIONS = {
     '· 비어 있는 성능 기록표.': ' · Blank performance record sheet.',
     '2. Python 확인 · 1장에 사용': ' 2. Check Python · Used in Chapter 1',
     '실행 위치: 위 폴더의 Windows PowerShell.': ' Run in Windows PowerShell from the folder above.',
-    '아래가 Python 3.10 이상을 출력하면 준비됐습니다. Windows의':
-      " You are ready if the following prints Python 3.10 or later. If Windows'",
     '명령이 Store를 열면 설치된 Python 실행 경로를 확인하거나':
       ' command opens the Store, check your installed Python path or install from',
     'Python 공식 배포': ' the official Python distribution',
@@ -3599,14 +3643,10 @@ window.KNUT_TRANSLATIONS = {
     '연결:': ' Connectivity:',
     '학습 페이지·파일은 내려받은 뒤 오프라인으로 볼 수 있습니다. Docker 설치와 최초 이미지 받기에는 인터넷이 필요합니다.':
       ' Downloaded learning pages and files work offline. Docker installation and the initial image download need internet access.',
-    '구성 근거: 기존 1~3장 실습에서 사용하는 Spark 이미지와 자원 개념. 공개 예제는 별도로 작성했습니다. 설치·서비스 순서는':
-      ' Configuration basis: the existing Chapters 1–3 Spark image and resource concepts. The public examples were written separately. Installation and service order were checked against',
     'Docker 공식 문서': " Docker's official documentation",
     '를 확인했습니다.': '.',
     '1장 · CSV 파이프라인': ' Chapter 1 · CSV pipeline',
     '같은 주문은 한 번만 계산하기': ' Count each order only once',
-    '수집된 파일에 같은 주문이 다시 들어올 수 있습니다. 읽은 행을 모두 더하면 재전송까지 매출로 계산합니다. 1장 주문 예제에 A003을 추가하여 중복 판단 규칙을 직접 실행해 봅니다.':
-      ' A collected file may contain retransmitted orders. Adding every row counts retransmissions as sales. Add A003 to the Chapter 1 example and execute the duplicate rule yourself.',
     '학습용 비유 · 영수증 번호 대조': ' Learning analogy · Compare receipt numbers',
     '같은 영수증이 두 장 있어도 판매는 한 번입니다. 번호는 같은데 금액이 다르면 한 장을 임의로 버리지 않고 확인해야 합니다.':
       ' Two copies of one receipt still represent one sale. If the number matches but amounts differ, investigate instead of arbitrarily discarding one.',
@@ -3664,16 +3704,10 @@ window.KNUT_TRANSLATIONS = {
     '변환·범위 오류. 입력 규칙 위반을 조용히 건너뛰지 않습니다.':
       ' A conversion or range error. Input-rule violations are not silently skipped.',
     '동일 명령 재실행:': ' Rerun the same command:',
-    '내용이 같아야 합니다. 원본 보존과 결정적인 정렬이 재현에 도움이 됩니다.':
-      ' Content must remain identical. Preserved input and deterministic sorting support reproducibility.',
-    '이 코드는 입력 100배에도 항상 적절할까요? 고유 주문을 Python 사전에 모두 보관하므로 메모리도 늘어납니다. 이 작은 예제로 정확성 규칙을 먼저 정하고, 큰 입력의 분산 처리에서는 데이터 분할과 중복 제거 비용을 다시 설계해야 합니다.':
-      ' Is this code always appropriate for 100 times the input? Memory grows because every unique order is retained in a Python dictionary. Define correctness with this small example first; redesign partitioning and deduplication costs for large distributed input.',
     'order_pipeline.py 전체 코드': ' Complete order_pipeline.py',
     '1장 개념으로 돌아가기': ' Return to Chapter 1 concepts',
     '2장 · Spark 첫 계산': ' Chapter 2 · First Spark calculation',
     '이미지 → 등록 → 계산 순서로 확인하기': ' Check image → registration → calculation',
-    '이미지를 받았다는 사실과 분산 계산이 성공했다는 사실은 다릅니다. 먼저 한 컨테이너에서 계산한 뒤 Worker 등록과 클러스터 계산을 각각 확인합니다.':
-      ' Downloading an image and succeeding at distributed calculation are different facts. First calculate in one container, then separately verify Worker registration and cluster computation.',
     '보충 실습의 서비스·포트 확인하기': ' Check supplementary lab services and ports',
     '이번 compose.yaml의 역할과 경로': ' Roles and paths in this compose.yaml',
     'spark-master · 내부 7077': ' spark-master · Internal port 7077',
@@ -3689,10 +3723,6 @@ window.KNUT_TRANSLATIONS = {
     출력: ' Output',
     'Client에서 쓰면 PC의 output에 보존':
       " Writes from Client are retained in the PC's output folder",
-    '2장 실습의 Worker 1·2 이름과 8080/4040 포트를 이 명령에 섞지 않습니다. 공개 실습의 프로젝트 이름은':
-      " Do not mix the Chapter 2 lab's Worker 1/2 names or ports 8080/4040 into these commands. This public lab's project name is",
-    '입니다. 여러 학습 환경을 동시에 켜면 CPU·메모리가 공유되므로 성능 측정은 한 환경만 켜고 진행합니다.':
-      '. Several active environments share CPU and memory; run only one during performance measurement.',
     '1. 이미지와 local[2] 계산': ' 1. Image and local[2] calculation',
     '실행 위치: compose.yaml이 있는 폴더의 PowerShell.':
       ' Run in PowerShell from the folder containing compose.yaml.',
@@ -3700,12 +3730,7 @@ window.KNUT_TRANSLATIONS = {
     ', 종료 코드 0입니다.': ' and exit code 0.',
     '는 하나의 Java 실행 환경(JVM) 안에서 작업 스레드 두 개를 쓰는 모드입니다. 클러스터 Worker 두 개의 등록 여부는 다음 단계에서 검사합니다.':
       ' uses two worker threads inside one JVM. Registration of two cluster Workers is checked next.',
-    '이미지 태그는 기존 강의 파일의': " The image tag follows the existing lecture files'",
-    '를 따르며': ' and is also listed in',
     'Docker 공식 이미지 목록': " Docker's official image list",
-    '에도 등록되어 있습니다.': '.',
-    '이면 태그·레지스트리 주소를 확인하세요. 다른 버전을 사용한다면 버전을 기록한 뒤 처음부터 다시 검증합니다.':
-      ' indicates that you should check the tag and registry address. If using another version, record it and repeat verification from the beginning.',
     '2. Worker 두 개 시작·등록 확인': ' 2. Start two Workers and check registration',
     '를 확인합니다. 검사기는 Master의 상태 JSON을 읽어 등록을 기다립니다.':
       " must appear. The checker reads Master's status JSON and waits for registration.",
@@ -3730,8 +3755,6 @@ window.KNUT_TRANSLATIONS = {
     '입력 Partition이 4개인데 Core가 2개라면 네 작업을 모두 동시에 실행할까요? 동시에 실행할 수 있는 작업 수는 배정된 Core에 제한됩니다. 입력 분할 수와 동시에 사용할 자원을 구분해 기록하세요.':
       ' With four input Partitions and two cores, do all four tasks run simultaneously? Concurrency is limited by allocated cores. Record input partitioning separately from concurrent resources.',
     '4. Worker 하나로 같은 답 확인': ' 4. Verify the same answer with one Worker',
-    '합계와 입력은 같고 가용 자원이 달라집니다. 100개 숫자는 너무 작아 실행 시간을 성능 결론으로 쓰기 어렵습니다. 계속 학습하면 다음 절로, 오늘 끝내면':
-      ' Input and sum stay the same; available resources change. One hundred numbers are too small for a performance conclusion from elapsed time. Continue to the next section, or finish using',
     '종료 절차': ' the shutdown procedure',
     'Compose 전체 설정': ' Complete Compose configuration',
     '계산 앱 전체 코드': ' Complete calculation app',
@@ -3743,10 +3766,6 @@ window.KNUT_TRANSLATIONS = {
     'Spark 4.1.3 Standalone 문서': ' Spark 4.1.3 Standalone documentation',
     '3장 · 단어 수와 Parquet': ' Chapter 3 · Word counts and Parquet',
     '입력 문장이 집계 표로 바뀌는 과정': ' From input sentences to an aggregated table',
-    '3장 HDFS 코드의 연산을 제공된 파일로 실행합니다. 이번 입력은 Client 컨테이너에만 연결하므로':
-      " Run the Chapter 3 HDFS example's operations on supplied files. Input is mounted only in Client, so use",
-    '로 실행합니다. 앞 절 클러스터의 Worker에 로컬 파일이 자동으로 공유되는 것은 아닙니다.':
-      ". Local files are not automatically shared with the preceding cluster's Workers.",
     '학습용 비유 · 문장 카드를 단어별로 모으기': ' Learning analogy · Group sentence cards by word',
     '문장을 단어 카드로 자르고 같은 단어끼리 모아 셉니다. 실제 코드는 문자열 열을 배열로 나눈 뒤, 배열 원소를 여러 행으로 펼치고 집계합니다.':
       ' Cut sentences into word cards and count matching words together. The code splits a string column into arrays, expands elements into rows, and aggregates them.',
@@ -3760,7 +3779,6 @@ window.KNUT_TRANSLATIONS = {
     'Parquet는 같은 열의 값을 모아 저장하는 파일 형식입니다. Spark는 지정 경로에 데이터를 나누어 담은 part 파일과 성공 표시를 만듭니다.':
       ' Parquet stores values by column. Spark creates part files containing divided data and a success marker at the specified path.',
     '으로 이 출력 폴더의 파일 목록을 확인합니다.': " lists this output folder's files.",
-    '입력에서 출력까지 연산 읽기': ' Read the operations from input to output',
     '한 줄을 문자열': ' Read each line as one row in the string column',
     '한 행으로 읽습니다. 빈 줄도 살펴봅니다.': '. Inspect blank lines too.',
     '하나 이상의 공백을 기준으로 단어 배열을 만듭니다.':
@@ -3781,21 +3799,12 @@ window.KNUT_TRANSLATIONS = {
     '입니다. 같은 실습을 다시 실행하려면 새 출력 경로를 지정합니다.':
       '. Choose a new output path to rerun the same lab.',
     '입력을 바꾸면': ' If input changes,',
-    '의 기대값도 사람이 계산하여 바꿔야 합니다. 예를 들어':
-      ' must also have its expected values recalculated manually. For example,',
-    '와 별도 단어입니다. 자동 정규화를 넣기 전에 어떤 표기를 같은 단어로 볼지 규칙을 정하세요.':
-      ' is a different word. Define equivalent spellings before adding automatic normalization.',
-    '왜 결과 검사에서 collect를 쓸 수 있을까요? 이 합성 입력은 서로 다른 단어가 3개뿐이며 코드도 최대 101행만 가져와 100종을 넘으면 중단합니다. 대규모 결과 전체를 Driver에 모으는 일반 해법은 아닙니다.':
-      ' Why can verification use collect here? The synthetic input has only three distinct words, and the code retrieves at most 101 rows and stops above 100 distinct words. This is not a general solution for gathering large results on Driver.',
     '단어 집계 전체 코드': ' Complete word-count code',
     '3장 연산별 표 해설': ' Chapter 3 table-by-table walkthrough',
     '텍스트의 한 줄·value 열·UTF-8 읽기:': ' Text lines, the value column, and UTF-8 reading:',
     'DataFrameReader.text 공식 API': ' Official DataFrameReader.text API',
     '3장 · Worker 성능 비교': ' Chapter 3 · Worker performance comparison',
     '정답을 고정하고 자원을 바꾸기': ' Keep the answer fixed and vary resources',
-    '성능 비교는 같은 입력·연산·검증 규칙에서 시작합니다. 먼저 작은 입력으로 코드와 설정을 확인한 뒤 충분한 자원이 있을 때 큰 입력을 선택합니다. 숫자는':
-      ' Begin with identical input, operations, and verification rules. Check code and configuration with small input, then choose larger input when resources allow. Numbers are generated with',
-    '로 생성하므로 별도 거대 입력 파일은 없습니다.': ', so no huge input file is required.',
     '1. 작은 입력으로 실행 경로 확인': ' 1. Check execution with small input',
     '앞 앱의': " After the previous app's",
     '1부터 1,000,000까지의 예상 합은': ' The expected sum from 1 through 1,000,000 is',
@@ -3892,21 +3901,13 @@ window.KNUT_TRANSLATIONS = {
     '출력 Permission denied': ' Output Permission denied',
     '호스트 output의 쓰기 권한과 공유 설정. 컨테이너 사용자와 Linux 파일 소유자가 다를 수 있습니다.':
       ' Check host output permissions and sharing. Container users and Linux file owners may differ.',
-    '실행 위치: 공개 실습 폴더의 PowerShell.': ' Run in PowerShell from the public lab folder.',
-    '로그부터 확인하고 완료 후 환경을 내립니다.':
-      ' Inspect logs first, then bring the environment down after completion.',
     '이 프로젝트의 컨테이너와 기본 네트워크가 제거됩니다. 바인드 마운트한 PC의':
       " This removes the project's containers and default network. The bind-mounted PC",
     '과 원본 입력은 남습니다. 다음에는 같은 폴더에서':
       ' and original input remain. Next time, from the same folder, start with',
     '으로 시작한 뒤 등록부터 다시 확인합니다.': ' and recheck registration.',
-    '이 자료의 실행 확인 범위': ' Execution verification scope for these materials',
-    '합계·단어 수는 코드와 합성 입력으로 정한 예상값입니다. 검증 PC에 Docker·Java·PySpark가 없어 Spark 계산·Worker 등록·Parquet·성능 시간은 실행하지 못했습니다. 측정 CSV에는 시간을 채우지 않았으며, 자신의 환경에서 실행한 값으로 기록해야 합니다.':
-      ' Sums and word counts are expected values derived from code and synthetic input. The verification PC lacked Docker, Java, and PySpark, so Spark calculation, Worker registration, Parquet, and performance timing were not executed. The measurement CSV remains blank for values from your own environment.',
     '전체 코드와 입력': ' Full source and input',
     '파일별 전체 내용': ' Complete contents by file',
-    '아래에서 파일 이름을 누르면 전체 내용이 펼쳐집니다. 다운로드 파일과 같은 UTF-8 텍스트이며, 각 코드 블록의 복사 버튼으로 가져올 수 있습니다.':
-      " Click a filename to expand its complete contents. This is the same UTF-8 text as the download; use each code block's copy button.",
     'Python 코드:': ' Python code:',
     지정된: ' Save in the specified',
     '파일로 저장하고 앞 절의 실행 명령을 사용합니다. PowerShell에 코드 한 줄씩 붙여 넣지 않습니다.':
@@ -3930,9 +3931,6 @@ window.KNUT_TRANSLATIONS = {
       ' expected/orders-clean.csv · Expected order results',
     'expected/wordcounts.csv · 단어 예상 결과': ' expected/wordcounts.csv · Expected word counts',
     'results-template.csv · 미측정 기록표': ' results-template.csv · Unmeasured record sheet',
-    '강의에서 실행 구조 다시 읽기': ' Revisit execution structure in the lectures',
-    '입력 규칙, DataFrame 변화, Driver·Executor·Task를 실행 결과와 연결하세요.':
-      ' Connect input rules, DataFrame changes, Driver, Executor, and Tasks with execution results.',
     '3장 열기': ' Open Chapter 3',
     '분산 데이터 프로세스 서버 클러스터 병목':
       ' distributed data process server cluster bottleneck',

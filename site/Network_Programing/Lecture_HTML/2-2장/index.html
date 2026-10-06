@@ -9,7 +9,7 @@
 <section class="hero" id="overview" aria-labelledby="title">
 <div class="eyebrow">CHAPTER 02-2 · 3주차</div>
 <h1 id="title">소켓 시작하기<br><span>개념부터 빌드와 실행까지</span></h1>
-<p class="lead">소켓이 무엇인지 이해하고, 생성과 정리를 담당하는 코드를 읽습니다. Windows와 Linux의 차이를 확인한 뒤 직접 빌드하고 실행합니다.</p>
+<p class="lead">Windows와 Linux에서 소켓을 만들고 닫는 코드를 읽습니다. 각 환경의 초기화와 오류 처리 방식을 확인한 뒤 빌드하고 실행합니다.</p>
 <div class="hero-actions"><a class="pill" href="#concepts">개념부터 읽기 →</a><a class="pill secondary" href="#practice">전체 코드</a><a class="pill secondary" href="#build">빌드·실행 안내</a></div>
 <div class="meta"><span>원본 PDF 29쪽</span><span>오류 처리 · Winsock · 소켓 생성과 닫기</span></div>
 <nav class="reading-map" aria-label="학습 순서">
@@ -18,13 +18,13 @@
 <a href="#practice"><span>03</span><b>전체 소스</b><small>헤더·보조 함수·main의 구성</small></a>
 <a href="#build"><span>04</span><b>빌드와 실행</b><small>C 파일에서 실행 결과까지</small></a>
 </nav>
-<p class="note">이번 실습은 <strong>소켓을 만들고 닫는 프로그램</strong>입니다. 서버 접속이나 데이터 송수신은 다음 단계에서 다룹니다. C의 포인터·구조체가 낯설다면 <a href="../2장/index.html">2-1 · C 기초</a>를 먼저 확인하세요.</p>
+<p class="note">이번 실습은 <strong>소켓을 만들고 닫는 프로그램</strong>입니다. 서버 접속과 송수신은 이후에 다룹니다. 포인터·구조체가 낯설다면 <a href="../2장/index.html">2-1 · C 기초</a>를 먼저 읽습니다.</p>
 </section>
 <section class="section" id="concepts">
 <div class="section-top"><span class="kicker">01 / 개념</span><span class="source-ref">원본 PDF 3, 21–22쪽</span></div>
 <h2>소켓은 프로그램이 사용하는 통신 끝점입니다</h2>
 
-<p class="intro">프로그램은 운영체제에 요청해 데이터를 보내고 받습니다. 이때 통신의 끝점으로 사용하는 자원이 <strong>소켓(socket)</strong>입니다. 소켓을 만들고 사용하는 작업을 요청하는 함수들을 <strong>소켓 API</strong>라고 부릅니다.</p>
+<p class="intro">프로그램은 운영체제에 요청해 데이터를 보내고 받습니다. 이때 통신의 끝점으로 사용하는 자원이 <strong>소켓(socket)</strong>입니다. 소켓을 만들고 사용하는 작업을 요청하는 함수들을 <strong>소켓 API</strong>라고 합니다.</p>
 <figure class="concept-figure">
 <div class="endpoint-map">
 <div class="endpoint-box"><span class="diagram-tag">프로그램 안</span><b>내 C 프로그램</b><span class="code-label">sock 또는 fd</span><p>운영체제가 돌려준 식별자를 변수에 보관합니다.</p></div>
@@ -33,7 +33,7 @@
 </div>
 <figcaption>개념 도식 · 변수에는 소켓 자원 자체가 아니라, 이후 함수에 전달할 식별자가 들어갑니다.</figcaption>
 </figure>
-<p><code>socket()</code>은 소켓을 만들고 식별자를 반환합니다. Windows에서는 이를 <code>SOCKET sock</code>에, Linux에서는 <code>int fd</code>에 저장합니다. 이 식별자는 IP 주소나 포트 번호, 메모리 주소와 구분해야 합니다.</p>
+<p><code>socket()</code>은 소켓을 만들고 식별자를 반환합니다. Windows에서는 이를 <code>SOCKET sock</code>에, Linux에서는 <code>int fd</code>에 저장합니다. 이 식별자는 IP 주소, 포트 번호, 메모리 주소와는 다른 값입니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">구분</th><th scope="col">역할</th><th scope="col">예</th></tr></thead><tbody><tr><td>소켓 식별자</td><td>프로그램 안에서 특정 소켓을 지정</td><td>Windows의 <code>sock</code>, Linux의 <code>fd</code></td></tr><tr><td>IP 주소</td><td>통신할 네트워크 인터페이스의 주소를 지정</td><td>루프백 주소 <code>127.0.0.1</code></td></tr><tr><td>포트 번호</td><td>TCP/UDP에서 통신 끝점을 구분하는 데 사용</td><td>예: TCP 포트 <code>9000</code></td></tr></tbody></table></div>
 <p>TCP 통신에서는 소켓 생성 뒤에 주소 설정, 연결 또는 연결 수락, 송수신이 이어집니다. 이번 프로그램은 이 중 <strong>생성과 정리</strong>만 실행하므로 상대 주소와 포트, 별도의 서버가 필요하지 않습니다.</p>
 <div class="scope-strip" aria-label="이번 실습과 이후 학습 범위"><span class="in-scope">소켓 생성<small>이번 실습</small></span><span>주소 설정·연결<small>이후 학습</small></span><span>송수신<small>이후 학습</small></span><span class="in-scope">소켓 닫기<small>이번 실습</small></span></div>
@@ -42,7 +42,7 @@
 
 <section class="section" id="program-flow">
 <div class="section-top"><span class="kicker">02 / 프로그램 구조</span><span class="source-ref">원본 PDF 3, 13, 21, 26–28쪽</span></div>
-<h2>정상 흐름을 먼저 읽고, 실패하는 지점을 찾습니다</h2>
+<h2>소켓 생성과 정리의 실행 순서</h2>
 
 <p class="intro">두 운영체제 모두 소켓을 생성하고 사용이 끝나면 닫습니다. Windows에서는 그 앞뒤에 Winsock 사용을 시작하고 끝내는 단계가 추가됩니다. 아래는 모든 호출이 성공했을 때의 실행 순서입니다.</p>
 <figure class="concept-figure">
@@ -50,8 +50,8 @@
 <div class="platform-lane linux-lane"><b>Linux</b><ol><li><code>socket()</code><span>소켓 생성</span></li><li><code>close()</code><span>소켓 닫기</span></li></ol></div>
 <figcaption>실행 순서 · 실제 송수신 코드는 소켓 생성과 닫기 사이에 들어갑니다. 이번 예제는 생성 직후 소켓을 닫습니다.</figcaption>
 </figure>
-<p>오류 처리는 이 흐름의 각 호출 직후에 들어갑니다. 초기화가 실패하면 소켓을 만들 수 없고, 생성이 실패하면 닫을 소켓이 없습니다. 따라서 <strong>반환값을 확인한 뒤 다음 단계로 이동</strong>해야 합니다.</p>
-<div class="grid two"><div class="card"><h3>프로그램의 실행 순서</h3><p><code>main()</code>에서 준비 → 생성 → 정리를 수행합니다. 실패한 경우에는 오류를 출력하고, 확보한 자원을 정리한 뒤 종료합니다.</p></div><div class="card"><h3>소스 파일의 작성 순서</h3><p>헤더 포함 → 보조 함수 정의 → <code>main()</code> 순서로 배치합니다. 파일에서 먼저 보이는 보조 함수가 자동으로 먼저 실행되는 것은 아닙니다.</p></div></div>
+<p>초기화가 실패하면 소켓 생성으로 넘어가지 않고, 생성이 실패하면 소켓 닫기를 건너뜁니다. 따라서 <strong>반환값을 확인한 뒤 다음 단계로 이동</strong>해야 합니다.</p>
+<div class="grid two"><div class="card"><h3>프로그램의 실행 순서</h3><p><code>main()</code>에서 준비 → 생성 → 정리를 수행합니다. 실패한 경우에는 오류를 출력하고, 확보한 자원을 정리한 뒤 종료합니다.</p></div><div class="card"><h3>소스 파일의 작성 순서</h3><p>소스는 헤더 포함 → 보조 함수 정의 → <code>main()</code> 순서입니다. 보조 함수는 호출될 때 실행됩니다.</p></div></div>
 
 </section>
 
@@ -67,8 +67,8 @@ if (result != 0) {
     return 1;
 }</code></pre></div>
 <figure class="concept-figure"><div class="call-map"><div><span class="diagram-tag">입력</span><code>MAKEWORD(2, 2)</code><p>Winsock 2.2 사용 요청</p></div><div class="call-center"><code>WSAStartup</code><span>호출</span></div><div><span class="diagram-tag">두 가지 결과</span><code>result</code><p>반환값: 성공 0 / 실패 시 오류 코드</p><code>wsa</code><p><code>&amp;wsa</code>로 전달한 공간에 초기화 정보 기록</p></div></div><figcaption>값의 전달 · 반환값은 성공 여부를, 구조체는 사용하기로 한 버전 등의 정보를 전달합니다.</figcaption></figure>
-<p><code>wsa</code>의 자료형은 <code>WSADATA</code>이며, 구조체 변수입니다. <code>&amp;wsa</code>는 그 변수의 주소이므로, 함수가 호출한 쪽의 구조체에 결과를 쓸 수 있습니다. <code>MAKEWORD(2, 2)</code>는 하위 바이트에 주 버전, 상위 바이트에 부 버전을 넣습니다.</p>
-<p>초기화 성공 후 <code>LOBYTE(wsa.wVersion)</code>과 <code>HIBYTE(wsa.wVersion)</code>으로 합의된 버전의 두 부분을 읽습니다. 아래 전체 코드는 두 값이 2인지 확인한 뒤 소켓을 만듭니다. 버전이 맞지 않아 중단하더라도 성공한 초기화는 정리해야 합니다.</p>
+<p><code>wsa</code>의 자료형은 <code>WSADATA</code>이며, 구조체 변수입니다. <code>&amp;wsa</code>는 그 변수의 주소입니다. 이 주소를 받은 함수가 구조체에 초기화 결과를 기록합니다. <code>MAKEWORD(2, 2)</code>는 하위 바이트에 주 버전, 상위 바이트에 부 버전을 넣습니다.</p>
+<p>초기화 성공 후 <code>LOBYTE(wsa.wVersion)</code>과 <code>HIBYTE(wsa.wVersion)</code>으로 합의된 버전의 두 부분을 읽습니다. 아래 전체 코드는 두 값이 2인지 확인한 뒤 소켓을 만듭니다. 버전이 맞지 않아 종료할 때도 초기화에 성공했다면 Winsock 사용을 정리합니다.</p>
 <p class="note"><code>WSAStartup()</code> 실패의 원인은 <strong>반환값 자체</strong>에 있습니다. 이 경우 <code>WSAGetLastError()</code>로 다시 조회하지 않습니다. 성공한 초기화 한 번에는 <code>WSACleanup()</code> 한 번을 대응시킵니다.</p>
 <label class="complete"><input type="checkbox" id="done-startup"> 초기화의 반환값과 WSADATA 구조체의 역할을 구분할 수 있습니다.</label>
 </section>
@@ -82,7 +82,7 @@ if (result != 0) {
 <figure class="concept-figure"><div class="argument-map"><div><span>첫 번째 · 주소 체계</span><code>AF_INET</code><p>IPv4 주소를 사용</p></div><div><span>두 번째 · 소켓 타입</span><code>SOCK_STREAM</code><p>연속된 바이트 흐름을 전달</p></div><div><span>세 번째 · 프로토콜</span><code>0</code><p>앞의 조합에 맞는 기본값 선택</p></div></div><figcaption>인자 해석 · 이 조합은 IPv4 TCP 소켓을 생성합니다. 0은 “프로토콜 없음”을 뜻하지 않습니다.</figcaption></figure>
 <div class="table-wrap"><table><thead><tr><th scope="col">만들 소켓</th><th scope="col">주소 체계</th><th scope="col">소켓 타입</th><th scope="col">프로토콜</th></tr></thead><tbody><tr><td>IPv4 TCP</td><td><code>AF_INET</code></td><td><code>SOCK_STREAM</code></td><td><code>0</code> 또는 <code>IPPROTO_TCP</code></td></tr><tr><td>IPv6 TCP</td><td><code>AF_INET6</code></td><td><code>SOCK_STREAM</code></td><td><code>0</code> 또는 <code>IPPROTO_TCP</code></td></tr><tr><td>IPv4 UDP</td><td><code>AF_INET</code></td><td><code>SOCK_DGRAM</code></td><td><code>0</code> 또는 <code>IPPROTO_UDP</code></td></tr><tr><td>IPv6 UDP</td><td><code>AF_INET6</code></td><td><code>SOCK_DGRAM</code></td><td><code>0</code> 또는 <code>IPPROTO_UDP</code></td></tr></tbody></table></div>
 <p>TCP는 연결을 맺은 뒤 순서 있는 바이트 스트림을 전달합니다. UDP는 데이터그램 단위를 유지하지만 도착·순서·중복 방지를 보장하지 않습니다. IPv4와 IPv6는 주소 체계이고, TCP와 UDP는 전송 프로토콜이므로 서로 다른 선택입니다.</p>
-<div class="card socket-picker" id="socket-picker" hidden=""><h3>소켓 호출 조합해 보기</h3><p>보충 체험 · 선택에 맞는 코드 표현만 만듭니다.</p><div class="picker-fields"><label>환경 <select id="socket-os"><option value="windows">Windows</option><option value="linux">Linux</option></select></label><label>주소 <select id="socket-family"><option value="AF_INET">IPv4</option><option value="AF_INET6">IPv6</option></select></label><label>통신 <select id="socket-type"><option value="tcp">TCP</option><option value="udp">UDP</option></select></label></div><output id="socket-result" aria-live="polite">SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);</output></div>
+<div class="card socket-picker" id="socket-picker" hidden=""><h3>소켓 호출 조합해 보기</h3><p>보충 체험 · 선택한 조합의 코드를 표시합니다. 실제 소켓은 생성하지 않습니다.</p><div class="picker-fields"><label>환경 <select id="socket-os"><option value="windows">Windows</option><option value="linux">Linux</option></select></label><label>주소 <select id="socket-family"><option value="AF_INET">IPv4</option><option value="AF_INET6">IPv6</option></select></label><label>통신 <select id="socket-type"><option value="tcp">TCP</option><option value="udp">UDP</option></select></label></div><output id="socket-result" aria-live="polite">SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);</output></div>
 <h3>반환값은 운영체제에 맞는 타입에 저장합니다</h3>
 <div class="table-wrap"><table><thead><tr><th scope="col">환경</th><th scope="col">저장할 변수</th><th scope="col">성공</th><th scope="col">실패</th></tr></thead><tbody><tr><td>Windows</td><td><code>SOCKET sock</code></td><td>유효한 소켓 핸들</td><td><code>INVALID_SOCKET</code></td></tr><tr><td>Linux</td><td><code>int fd</code></td><td>0 이상의 파일 디스크립터</td><td><code>-1</code></td></tr></tbody></table></div>
 <p>Windows의 <code>SOCKET</code>을 임의로 <code>int</code>에 넣으면 값이 잘릴 수 있습니다. Linux에서는 0도 유효한 fd이므로 <code>if (!fd)</code> 대신 <code>if (fd == -1)</code>로 실패를 검사합니다.</p>
@@ -91,12 +91,12 @@ if (result != 0) {
 
 <section class="section" id="errors">
 <div class="section-top"><span class="kicker">05 / 오류 처리</span><span class="source-ref">원본 PDF 4–12쪽</span></div>
-<h2>실패 확인, 원인 확인, 정리를 나누어 작성합니다</h2>
+<h2>반환값 확인과 오류 처리 순서</h2>
 
-<p class="intro">오류 처리는 메시지를 출력하는 데서 끝나지 않습니다. <strong>함수가 실패했는지 판단하고, 원인을 보관한 뒤, 다음 동작을 결정</strong>하는 과정입니다. 실패한 함수의 결과를 그대로 다음 단계에 넘기지 않아야 합니다.</p>
+<p class="intro">오류 처리는 <strong>함수가 실패했는지 판단하고, 원인을 보관한 뒤, 다음 동작을 결정</strong>하는 과정입니다. 실패했을 때는 다음 작업 대신 종료나 복구 경로로 진행합니다.</p>
 <figure class="concept-figure"><div class="decision-start"><span class="code-label">함수 호출 → 반환값 저장</span></div><div class="decision-branches"><div><b>성공</b><p>유효한 결과를 사용해<br>다음 작업을 수행합니다.</p></div><div><b>실패</b><p>오류 코드 저장 → 메시지 출력<br>→ 확보한 자원 정리 → 종료 또는 복구</p></div></div><figcaption>오류 처리의 분기 · 성공 여부는 반환값으로 먼저 판단합니다. 오류 코드는 실패 원인을 찾는 데 사용합니다.</figcaption></figure>
 <div class="table-wrap"><table><thead><tr><th scope="col">함수</th><th scope="col">성공</th><th scope="col">실패</th><th scope="col">실패 원인을 읽는 곳</th></tr></thead><tbody><tr><td>Windows <code>WSAStartup()</code></td><td>0</td><td>0이 아닌 값</td><td>반환값 자체</td></tr><tr><td>Windows <code>socket()</code></td><td>유효한 SOCKET</td><td>INVALID_SOCKET</td><td>WSAGetLastError()</td></tr><tr><td>Windows <code>closesocket()</code> / <code>WSACleanup()</code></td><td>0</td><td>SOCKET_ERROR</td><td>WSAGetLastError()</td></tr><tr><td>Linux <code>socket()</code></td><td>0 이상의 fd</td><td>-1</td><td>errno</td></tr><tr><td>Linux <code>close()</code></td><td>0</td><td>-1</td><td>errno</td></tr></tbody></table></div>
-<p>함수마다 실패를 알리는 규약이 다릅니다. 원본은 이를 오류 확인이 필요 없는 함수, 반환값 자체가 오류 코드인 함수, 반환값과 별도 오류 코드를 함께 확인하는 함수로 분류합니다. 이 장에서는 위 표에 나온 함수들의 규약을 기준으로 작성합니다.</p>
+<p>원본은 오류 확인 방식에 따라 함수를 세 가지로 분류합니다: 오류 확인이 필요 없는 함수, 반환값 자체가 오류 코드인 함수, 반환값과 별도 오류 코드를 함께 확인하는 함수. 위 표는 이 장에서 사용하는 함수의 확인 방법입니다.</p>
 <label class="complete"><input type="checkbox" id="done-errors"> 함수별 실패값과 오류 코드를 읽는 위치를 구분할 수 있습니다.</label>
 <div class="subsection" id="win-errors"><h3>Windows: 오류 코드를 저장한 뒤 메시지로 바꿉니다</h3>
 <p><code>socket()</code>이 <code>INVALID_SOCKET</code>을 반환하면 <code>WSAGetLastError()</code>로 현재 스레드의 Winsock 오류 코드를 읽습니다. 다른 API가 오류 상태를 바꿀 수 있으므로 실패를 확인한 직후 변수에 저장합니다.</p>
@@ -106,12 +106,12 @@ if (sock == INVALID_SOCKET) {
     report_error("socket", error);
     /* 호출한 쪽에서 Winsock 정리와 종료를 이어서 처리한다. */
 }</code></pre></div>
-<p>여기서 <code>report_error()</code>는 아래 전체 코드에서 정의하는 보조 함수입니다. <code>"socket"</code>은 실패한 작업의 이름, <code>error</code>는 원인을 나타내는 숫자입니다. 이 함수는 <code>FormatMessageA()</code>로 숫자에 해당하는 시스템 메시지를 찾아 출력합니다.</p>
+<p>여기서 <code>report_error()</code>는 아래 전체 코드의 오류 출력 보조 함수입니다. <code>"socket"</code>은 실패한 작업의 이름, <code>error</code>는 원인을 나타내는 숫자입니다. 이 함수는 <code>FormatMessageA()</code>로 숫자에 해당하는 시스템 메시지를 찾아 출력합니다.</p>
 <ol class="flow-steps" aria-label="Windows 오류 메시지 처리 순서"><li><b>코드 보관</b><span>error = WSAGetLastError()</span></li><li><b>문자열 요청</b><span>FormatMessageA()</span></li><li><b>오류 출력</b><span>fprintf(stderr, …)</span></li><li><b>메시지 해제</b><span>LocalFree(message)</span></li></ol>
 <p><code>stderr</code>는 오류 출력 스트림입니다. 일반 결과와 구분해 오류를 기록할 때 사용합니다. 메시지 변환에 실패하더라도 저장한 숫자 코드는 출력할 수 있습니다.</p>
-<p>원본의 <code>err_quit()</code>과 <code>err_display()</code> 역시 직접 정의한 보조 함수입니다. 출력과 종료를 어느 함수에서 맡는지 구분해 읽습니다.</p><div class="table-wrap"><table><thead><tr><th scope="col">오류 출력 함수</th><th scope="col">하는 일</th><th scope="col">호출 후 흐름</th></tr></thead><tbody><tr><td>원본 err_quit()</td><td>오류 메시지 출력</td><td>exit(1)로 프로세스 종료</td></tr><tr><td>원본 err_display()</td><td>오류 메시지 출력</td><td>호출한 곳으로 복귀</td></tr><tr><td>보충 report_error()</td><td>전달받은 오류 코드와 설명 출력</td><td>호출한 곳에서 자원 정리와 종료 결정</td></tr></tbody></table></div><details class="history"><summary>FormatMessageA의 인자와 포인터 읽기</summary>
+<p>원본의 <code>err_quit()</code>과 <code>err_display()</code>도 보조 함수입니다. 두 함수는 오류를 출력한 뒤의 동작이 다릅니다.</p><div class="table-wrap"><table><thead><tr><th scope="col">오류 출력 함수</th><th scope="col">하는 일</th><th scope="col">호출 후 흐름</th></tr></thead><tbody><tr><td>원본 err_quit()</td><td>오류 메시지 출력</td><td>exit(1)로 프로세스 종료</td></tr><tr><td>원본 err_display()</td><td>오류 메시지 출력</td><td>호출한 곳으로 복귀</td></tr><tr><td>보충 report_error()</td><td>전달받은 오류 코드와 설명 출력</td><td>호출한 곳에서 자원 정리와 종료 결정</td></tr></tbody></table></div><details class="history"><summary>FormatMessageA의 인자와 포인터 읽기</summary>
 <div class="table-wrap"><table><thead><tr><th scope="col">설정 또는 값</th><th scope="col">이 코드에서의 역할</th></tr></thead><tbody><tr><td>FORMAT_MESSAGE_FROM_SYSTEM</td><td>Windows가 제공하는 메시지에서 오류 설명을 찾습니다.</td></tr><tr><td>FORMAT_MESSAGE_ALLOCATE_BUFFER</td><td>문자열을 담을 공간을 API가 할당하게 합니다.</td></tr><tr><td>FORMAT_MESSAGE_IGNORE_INSERTS</td><td>별도 삽입 인자 없이 메시지를 읽습니다.</td></tr><tr><td><code>(LPSTR)&amp;message</code></td><td>새 문자열의 주소를 받을 포인터 변수의 주소입니다. ALLOCATE_BUFFER 모드에서 요구하는 전달 방식입니다.</td></tr><tr><td>반환값 <code>length</code></td><td>0이면 메시지 변환 실패입니다. 이때는 숫자 오류 코드를 출력합니다.</td></tr><tr><td><code>LocalFree(message)</code></td><td>이 옵션으로 할당받은 문자열을 사용 후 해제합니다.</td></tr></tbody></table></div>
-<p><code>char *message = NULL;</code>은 메시지가 놓일 주소를 저장할 변수를 만든 것입니다. 아직 메시지용 메모리를 확보한 것은 아닙니다.</p>
+<p><code>char *message = NULL;</code>은 문자열의 주소를 저장할 포인터 변수를 선언합니다. 이 선언만으로 문자열을 담을 메모리가 할당되지는 않습니다.</p>
 <p><code>&amp;message</code>를 전달하면 API가 <code>message</code> 변수에 새 공간의 주소를 기록할 수 있습니다. 이 공간은 <code>malloc()</code>으로 만들지 않았으므로 <code>free()</code> 대신 <code>LocalFree()</code>로 해제합니다.</p></details>
 <label class="complete"><input type="checkbox" id="done-win-errors"> 오류 코드 저장, 메시지 변환, 문자열 해제 순서를 설명할 수 있습니다.</label></div>
 <div class="subsection" id="linux-errors"><h3>Linux: errno를 저장하고 strerror()로 설명을 읽습니다</h3>
@@ -122,8 +122,8 @@ if (fd == -1) {
     fprintf(stderr, "socket: %d (%s)\n", error, strerror(error));
     return 1;
 }</code></pre></div>
-<p>성공한 호출이 이전 오류 상태를 지워 준다고 가정하지 않습니다. <code>errno</code>만 보고 실패를 판단하지 말고, 먼저 <code>fd == -1</code>인지 확인합니다.</p>
-<div class="grid two"><div class="card"><h4>Windows의 메시지</h4><p><code>FormatMessageA()</code>에 버퍼 할당을 요청했으므로 출력 후 <code>LocalFree()</code>로 돌려줍니다.</p></div><div class="card"><h4>Linux의 메시지</h4><p><code>strerror()</code>가 돌려준 문자열은 직접 할당한 공간이 아닙니다. 내용을 수정하거나 <code>free()</code>하지 않습니다.</p></div></div>
+<p>함수 호출이 성공해도 이전 오류 값이 남아 있을 수 있습니다. <code>errno</code>만 보고 실패를 판단하지 말고, 먼저 <code>fd == -1</code>인지 확인합니다.</p>
+<div class="grid two"><div class="card"><h4>Windows의 메시지</h4><p><code>FormatMessageA()</code>에 버퍼 할당을 요청했으므로 출력 후 <code>LocalFree()</code>로 해제합니다.</p></div><div class="card"><h4>Linux의 메시지</h4><p><code>strerror()</code>가 돌려준 문자열은 직접 할당한 공간이 아닙니다. 내용을 수정하거나 <code>free()</code>하지 않습니다.</p></div></div>
 <label class="complete"><input type="checkbox" id="done-linux-errors"> errno를 읽는 시점과 strerror 문자열의 소유권을 설명할 수 있습니다.</label></div>
 </section>
 
@@ -135,8 +135,8 @@ if (fd == -1) {
 <div class="table-wrap"><table><thead><tr><th scope="col">어디까지 진행했나요?</th><th scope="col">확보한 자원</th><th scope="col">정리 순서</th></tr></thead><tbody><tr><td>WSAStartup 실패</td><td>이 호출로 시작된 Winsock 사용 없음</td><td>오류를 알리고 종료</td></tr><tr><td>WSAStartup 성공 → socket 실패</td><td>Winsock 사용만 시작됨</td><td>WSACleanup()</td></tr><tr><td>WSAStartup 성공 → socket 성공</td><td>Winsock 사용과 소켓</td><td>closesocket(sock) → WSACleanup()</td></tr><tr><td>Linux socket 성공</td><td>소켓</td><td>close(fd)</td></tr></tbody></table></div>
 <p><code>closesocket()</code>은 <strong>소켓 하나</strong>를 닫습니다. <code>WSACleanup()</code>은 <strong>Winsock 사용</strong>을 종료합니다.</p>
 <p>예를 들어 초기화에 한 번 성공한 뒤 소켓을 세 개 만들었다면, 세 소켓을 각각 닫고 그 초기화에 대응하는 <code>WSACleanup()</code>을 한 번 호출합니다.</p>
-<div class="card" id="lifecycle-demo" hidden=""><h3>실패 위치에 따른 흐름</h3><p>보충 체험 · 아래 버튼은 실제 API 호출 없이 제어 흐름을 보여 줍니다.</p><div class="scenario-buttons" role="group" aria-label="실패 시나리오"><button type="button" class="text-btn" data-scenario="success" aria-pressed="true">모두 성공</button><button type="button" class="text-btn" data-scenario="startup" aria-pressed="false">초기화 실패</button><button type="button" class="text-btn" data-scenario="socket" aria-pressed="false">소켓 생성 실패</button></div><ol id="lifecycle-steps"></ol><p id="lifecycle-result" role="status"></p></div>
-<p>아래 Windows 전체 코드에서는 <code>status</code>에 프로그램의 최종 성공·실패를 기록합니다. 초기화가 성공한 뒤 오류가 생기면 <code>status = 1</code>로 바꾸고 공통 정리 지점까지 진행합니다. 이렇게 하면 중간에서 바로 종료해 정리를 빠뜨리는 일을 줄일 수 있습니다.</p>
+<div class="card" id="lifecycle-demo" hidden=""><h3>실패 위치에 따른 흐름</h3><p>보충 체험 · 버튼을 누르면 선택한 상황의 실행 순서가 표시됩니다. 실제 API는 호출하지 않습니다.</p><div class="scenario-buttons" role="group" aria-label="실패 시나리오"><button type="button" class="text-btn" data-scenario="success" aria-pressed="true">모두 성공</button><button type="button" class="text-btn" data-scenario="startup" aria-pressed="false">초기화 실패</button><button type="button" class="text-btn" data-scenario="socket" aria-pressed="false">소켓 생성 실패</button></div><ol id="lifecycle-steps"></ol><p id="lifecycle-result" role="status"></p></div>
+<p>아래 Windows 전체 코드에서는 <code>status</code>에 프로그램의 최종 성공·실패를 기록합니다. 초기화가 성공한 뒤 오류가 생기면 <code>status = 1</code>로 바꾸고 공통 정리 지점까지 진행합니다. 오류가 생겨도 정리 코드를 거친 뒤 종료하는 구조입니다.</p>
 <p class="note">이번 예제는 기본 블로킹 소켓을 생성한 뒤 바로 닫습니다. 연결된 소켓의 남은 데이터, 논블로킹 동작, linger 설정은 이후 통신 단계에서 다룹니다. 닫은 식별자는 이전 소켓을 가리키는 값으로 다시 사용하지 않습니다.</p>
 <label class="complete"><input type="checkbox" id="done-cleanup"> 실패 위치에 따라 닫을 자원을 구분할 수 있습니다.</label>
 </section>
@@ -145,10 +145,10 @@ if (fd == -1) {
 <div class="section-top"><span class="kicker">07 / 전체 소스</span><span class="source-ref">원본 PDF 18–20, 26–28쪽 · 보충 예제</span></div>
 <h2>소스 파일을 구성 단위로 나누어 읽습니다</h2>
 
-<p class="intro">다음 두 파일은 같은 작업을 각 운영체제에 맞게 작성한 독립 실행 예제입니다. 자신의 환경에 맞는 <strong>파일 하나</strong>를 선택합니다. 원본의 초기화·생성·닫기 순서에 오류 메시지 처리와 정리 결과 확인을 보충했습니다.</p>
+<p class="intro">두 파일은 각각 Windows와 Linux에서 실행할 수 있는 예제입니다. 사용할 운영체제에 맞는 <strong>파일 하나</strong>를 선택합니다. 오류 메시지 처리와 정리 결과 확인을 포함한 보충 예제입니다.</p>
 <div class="download-row"><a href="examples/winsock_lifecycle.c" download="">Windows 소스 받기 ↓</a><a href="examples/posix_lifecycle.c" download="">Linux 소스 받기 ↓</a></div>
 <h3>Windows 파일: 헤더 → 보조 함수 → main</h3>
-<figure class="concept-figure"><ol class="source-map"><li><span>1</span><div><b>헤더와 링크 지시</b><code>#include … / #ifdef _MSC_VER …</code><p>사용할 타입·함수 선언을 읽습니다. MSVC일 때만 pragma 링크 지시를 적용합니다.</p></div></li><li><span>2</span><div><b>오류 출력 보조 함수</b><code>static void report_error(…)</code><p>저장된 오류를 출력하고 문자열을 해제합니다. 소켓 정리나 프로그램 종료는 호출한 쪽이 결정합니다.</p></div></li><li><span>3</span><div><b>실행 흐름</b><code>int main(void)</code><p>Winsock 초기화 → 버전 확인 → 소켓 생성 → 닫기 → Winsock 종료를 수행합니다.</p></div></li></ol><figcaption>소스 구성 · 실행은 런타임의 시작 처리 후 main으로 들어옵니다. report_error는 main에서 호출할 때 동작합니다.</figcaption></figure>
+<figure class="concept-figure"><ol class="source-map"><li><span>1</span><div><b>헤더와 링크 지시</b><code>#include … / #ifdef _MSC_VER …</code><p>사용할 타입·함수 선언을 읽습니다. MSVC일 때만 pragma 링크 지시를 적용합니다.</p></div></li><li><span>2</span><div><b>오류 출력 보조 함수</b><code>static void report_error(…)</code><p>저장된 오류를 출력하고 문자열을 해제합니다. 소켓 정리나 프로그램 종료는 호출한 쪽이 결정합니다.</p></div></li><li><span>3</span><div><b>실행 흐름</b><code>int main(void)</code><p>Winsock 초기화 → 버전 확인 → 소켓 생성 → 닫기 → Winsock 종료를 수행합니다.</p></div></li></ol><figcaption>소스 구성 · 런타임의 시작 처리가 끝나면 main이 실행됩니다. report_error는 main에서 호출할 때 실행됩니다.</figcaption></figure>
 <div class="table-wrap"><table><thead><tr><th scope="col">구성 요소</th><th scope="col">왜 필요한가요?</th></tr></thead><tbody><tr><td><code>winsock2.h</code></td><td>SOCKET, WSADATA, 소켓 API 선언을 제공합니다. 이 파일에서는 windows.h보다 먼저 포함합니다.</td></tr><tr><td><code>windows.h</code></td><td>FormatMessageA, LocalFree 등 Windows API를 사용합니다.</td></tr><tr><td><code>stdio.h</code></td><td>printf, puts, fprintf와 stderr를 사용합니다.</td></tr><tr><td><code>static void report_error</code></td><td>이 파일 안에서만 사용하는 보조 함수입니다. 출력 후 호출한 곳으로 돌아갑니다.</td></tr><tr><td><code>result</code>와 <code>status</code></td><td>result는 초기화 함수의 반환값이고, status는 프로그램이 마지막에 반환할 종료 코드입니다.</td></tr></tbody></table></div>
 <p><code>main()</code>의 초기화 실패는 즉시 <code>return 1;</code>로 끝납니다. 초기화 성공 뒤의 버전 불일치나 소켓 오류는 <code>status = 1;</code>로 기록하고 마지막 <code>WSACleanup()</code>을 거칩니다. 정상 경로에서는 0을 반환합니다.</p>
 <details class="code-details"><summary>Windows 전체 코드 · winsock_lifecycle.c</summary><div class="codebox"><div class="codehead"><span>Windows · C / 전체 코드</span><button type="button" class="copy-btn">복사</button></div><pre><code data-language="c" id="windows-full-code" data-source="examples/winsock_lifecycle.c">#include &lt;winsock2.h&gt;
@@ -233,7 +233,7 @@ int main(void)
 }
 </code></pre></div></details>
 <h3>Linux 파일: 헤더 → 생성과 닫기를 수행하는 main</h3>
-<p>Linux 파일에서는 Winsock 초기화·버전 확인·종료 부분이 빠집니다. 오류 출력이 짧아 <code>main()</code> 안에 직접 작성했습니다. 운영체제의 차이를 드러내기 위해 <code>SOCKET</code> 별칭 대신 <code>int fd</code>를 사용합니다.</p>
+<p>Linux 예제에는 Winsock 초기화·버전 확인·종료 단계가 없습니다. 오류 출력은 <code>main()</code> 안에 있습니다. 소켓 식별자는 <code>SOCKET</code> 별칭 대신 <code>int fd</code>를 사용합니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">헤더</th><th scope="col">사용하는 기능</th></tr></thead><tbody><tr><td><code>sys/types.h</code>, <code>sys/socket.h</code></td><td>소켓 관련 타입, socket과 주소 체계·타입 상수</td></tr><tr><td><code>unistd.h</code></td><td>close</td></tr><tr><td><code>errno.h</code>, <code>string.h</code></td><td>errno와 strerror</td></tr><tr><td><code>stdio.h</code></td><td>printf, puts, fprintf</td></tr></tbody></table></div><details class="code-details"><summary>Linux 전체 코드 · posix_lifecycle.c</summary><div class="codebox"><div class="codehead"><span>Ubuntu · C17 / 전체 코드</span><button type="button" class="copy-btn">복사</button></div><pre><code data-language="c" id="linux-full-code" data-source="examples/posix_lifecycle.c">#include &lt;sys/types.h&gt;
 #include &lt;sys/socket.h&gt;
 #include &lt;unistd.h&gt;
@@ -264,7 +264,7 @@ int main(void)
     return 0;
 }
 </code></pre></div></details>
-<p>두 파일 모두 별도의 <code>common.h</code> 없이 빌드됩니다. 원본처럼 여러 파일로 나눌 경우에는 헤더에 선언을 두고 함수 구현을 <code>.c</code>에 둡니다. 실행 프로그램 하나에는 <code>main()</code>도 하나만 포함해야 합니다.</p>
+<p>두 파일 모두 별도의 <code>common.h</code> 없이 빌드됩니다. 여러 파일로 나누려면 헤더에 선언을, 함수 구현은 <code>.c</code>에 둡니다. 실행 프로그램 하나에는 <code>main()</code>도 하나만 포함해야 합니다.</p>
 <label class="complete"><input type="checkbox" id="done-practice"> 헤더, 보조 함수, main의 역할과 실행 순서를 설명할 수 있습니다.</label>
 </section>
 
@@ -272,7 +272,7 @@ int main(void)
 <div class="section-top"><span class="kicker">08 / 컴파일·빌드·실행</span><span class="source-ref">원본 PDF 14, 29쪽 · 빌드 과정 보충</span></div>
 <h2>실행 파일을 만든 뒤, 프로그램을 실행합니다</h2>
 
-<p class="intro">소스를 저장하는 것과 실행하는 것은 별개의 작업입니다. C 코드를 번역하고 필요한 라이브러리와 연결해 실행 파일을 만드는 과정을 <strong>빌드</strong>라고 합니다. 그 파일을 운영체제에서 시작하는 것이 <strong>실행</strong>입니다.</p>
+<p class="intro">C 소스를 컴파일하고 필요한 라이브러리와 링크해 실행 파일을 만드는 과정을 <strong>빌드</strong>라고 합니다. 그 파일을 운영체제에서 시작하는 것이 <strong>실행</strong>입니다.</p>
 <figure class="concept-figure">
 <ol class="flow-steps" aria-label="소스에서 실행까지"><li><b>소스 .c</b><span>사람이 작성한 C 코드</span></li><li><b>오브젝트 .o</b><span>컴파일 결과, 실행 파일은 아님</span></li><li><b>실행 파일</b><span>링크로 외부 함수 참조 연결</span></li><li><b>프로그램 실행</b><span>main의 흐름과 결과 확인</span></li></ol>
 <figcaption>빌드 과정의 요약 · GCC의 <code>-c</code>는 전처리·컴파일·어셈블을 거쳐 오브젝트를 만들고 링크 전에 멈춥니다. 다음 링크 명령에서 실행 파일을 만듭니다.</figcaption></figure>
@@ -289,7 +289,7 @@ int main(void)
 <li>빌드가 성공하면 <strong>실행(F10)</strong>을 선택합니다. Dev-C++ 5.11의 기본 단축키 기준으로 <strong>F11</strong>은 컴파일 후 실행입니다. 결과를 아래 예상 출력과 비교합니다.</li>
 </ol>
 <div class="table-wrap"><table><thead><tr><th scope="col">설정 위치</th><th scope="col">입력할 값</th></tr></thead><tbody><tr><td>C 컴파일러</td><td><code>-std=c11 -Wall -Wextra -Wpedantic -g -O0</code></td></tr><tr><td>링커</td><td><code>-lws2_32</code></td></tr></tbody></table></div>
-<p class="note">내려받은 학습 예제는 기존 사용자 실습 프로젝트와 별개입니다. 새 프로젝트에는 Windows 파일 하나를 넣습니다. Linux 예제를 같은 실행 파일에 함께 링크하지 않습니다.</p>
+<p class="note">이 예제는 새 프로젝트에서 실행합니다. Windows 파일 하나만 추가하고 Linux 예제는 함께 링크하지 않습니다.</p>
 <h3>Windows PowerShell: 컴파일과 링크를 나누어 확인하기</h3>
 <p>MinGW GCC가 설치돼 있고 <code>gcc --version</code>이 동작하는 터미널을 사용합니다. <strong>winsock_lifecycle.c가 있는 폴더</strong>에서 아래 명령을 한 줄씩 실행합니다. 각 단계의 오류를 확인한 뒤 다음 단계로 넘어갑니다.</p>
 <div class="codebox"><div class="codehead"><span>Windows PowerShell · 1. 컴파일 → 오브젝트</span><button type="button" class="copy-btn">복사</button></div><pre><code>gcc -std=c11 -Wall -Wextra -Wpedantic -g -O0 -c winsock_lifecycle.c -o winsock_lifecycle.o</code></pre></div>
@@ -321,12 +321,12 @@ gcc posix_lifecycle.o -o posix_lifecycle</code></pre></div>
 echo $?</code></pre></div><div class="codebox output"><div class="codehead"><span>Ubuntu · 정상 실행 시 예상 출력과 종료 코드</span></div><pre><code>TCP socket created: fd=3 (not connected)
 Socket closed
 0</code></pre></div>
-<p><code>fd=3</code>은 가능한 결과의 예입니다. 실제 fd 값은 실행 환경에 따라 달라질 수 있습니다. 마지막 0은 <code>echo $?</code>로 확인한 종료 코드입니다. 실행 파일 이름 앞의 <code>./</code>는 현재 폴더를 뜻합니다.</p>
+<p><code>fd=3</code>은 예상 출력의 예이며 실제 fd 값은 실행 환경에 따라 다를 수 있습니다. 마지막 0은 <code>echo $?</code>로 확인한 종료 코드입니다. 실행 파일 이름 앞의 <code>./</code>는 현재 폴더를 뜻합니다.</p>
 <details class="history"><summary>Ubuntu에서 컴파일·링크를 한 명령으로 실행하기</summary>
 <div class="codebox"><div class="codehead"><span>Ubuntu · Bash / 한 번에 빌드</span><button type="button" class="copy-btn">복사</button></div><pre><code data-language="bash">gcc -std=c17 -Wall -Wextra -Wpedantic -g -O0 posix_lifecycle.c -o posix_lifecycle</code></pre></div></details></div>
 <h3>명령 옵션과 결과 확인</h3>
 <div class="table-wrap"><table><thead><tr><th scope="col">옵션 또는 결과</th><th scope="col">의미</th></tr></thead><tbody><tr><td><code>-std=c11</code> / <code>-std=c17</code></td><td>각 환경에서 사용할 C 언어 표준</td></tr><tr><td><code>-Wall -Wextra -Wpedantic</code></td><td>코드의 의심스러운 부분과 표준 관련 경고 확인</td></tr><tr><td><code>-g -O0</code></td><td>디버그 정보 포함, 최적화를 끄고 코드 흐름 관찰</td></tr><tr><td><code>-c</code> / <span class="code-label">-o 이름</span></td><td>링크 전에 멈춤 / 출력 파일 이름 지정</td></tr><tr><td>빌드 성공</td><td>소스의 컴파일과 링크가 끝나 실행 파일이 생성됨</td></tr><tr><td>실행 종료 코드 0 / 1</td><td>이 예제에서 정상 완료 / 오류 경로로 종료</td></tr></tbody></table></div>
-<p>빌드에 성공해도 실행 중 초기화나 소켓 생성은 실패할 수 있습니다. 반대로 “소켓 생성 성공” 메시지가 출력돼도 TCP 연결이나 송수신이 이루어진 것은 아닙니다. <strong>빌드 결과, 실행 출력, 종료 코드</strong>를 각각 확인합니다.</p>
+<p>빌드에 성공한 프로그램도 실행 중 초기화나 소켓 생성에 실패할 수 있습니다. 소켓 생성 성공은 TCP 연결이나 송수신 성공을 뜻하지 않습니다. <strong>빌드 결과, 실행 출력, 종료 코드</strong>를 각각 확인합니다.</p>
 
 </section>
 
@@ -337,7 +337,7 @@ Socket closed
 <p class="intro">실행 파일이 만들어지지 않는 문제와 실행 중 소켓 함수가 실패하는 문제는 원인이 다릅니다. 메시지가 나온 단계를 먼저 찾고 그 단계의 입력과 설정을 확인합니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">단계</th><th scope="col">증상</th><th scope="col">확인할 내용</th></tr></thead><tbody><tr><td>명령 실행 전</td><td>gcc를 찾을 수 없음</td><td>GCC가 설치돼 있고 현재 터미널에서 찾을 수 있는지 확인합니다. Dev-C++ 설치와 PowerShell의 PATH 등록은 별개입니다.</td></tr><tr><td>컴파일</td><td>winsock2.h를 찾을 수 없음</td><td>Windows 소스를 Linux용 GCC로 빌드하고 있지 않은지 확인합니다. Windows에서는 MinGW 또는 MSVC 환경을 사용합니다.</td></tr><tr><td>컴파일</td><td>socket 또는 close의 선언을 찾을 수 없음</td><td>Linux 소스에 sys/socket.h와 unistd.h가 포함됐는지 확인합니다.</td></tr><tr><td>링크</td><td>undefined reference to WSAStartup / __imp_socket</td><td>MinGW 링커에 -lws2_32를 넣었는지, 오브젝트 뒤에 배치했는지 확인합니다.</td></tr><tr><td>링크</td><td>multiple definition of main</td><td>한 프로젝트에 main이 있는 C 파일 여러 개를 넣었는지 확인합니다.</td></tr><tr><td>실행</td><td>오류 코드 10093</td><td>WSAStartup을 먼저 호출했고 그 호출이 성공했는지 확인합니다.</td></tr><tr><td>실행 후</td><td>코드를 바꿨는데 출력이 그대로임</td><td>다시 빌드해 성공했는지, 현재 폴더의 새 실행 파일을 실행했는지 확인합니다.</td></tr><tr><td>실행 후</td><td>소켓 생성 성공만 나오고 종료됨</td><td>이번 예제의 정상 동작입니다. 생성·닫기만 수행하고 스스로 종료합니다.</td></tr></tbody></table></div>
 <h3>Linux에서 실패 경로 관찰하기</h3>
-<p>다운로드한 원본을 보존하고, 별도 사본 <code>posix_failure.c</code>를 만듭니다. </p>
+<p>내려받은 파일을 복사해 실험용 사본 <code>posix_failure.c</code>를 만듭니다. </p>
 <p>사본에서 <code>socket(AF_INET, SOCK_STREAM, 0)</code>을 <code>socket(-1, SOCK_STREAM, 0)</code>으로 바꿉니다. 지원하지 않는 주소 체계를 주어 소켓 생성 실패를 관찰하는 실험입니다.</p>
 <div class="codebox"><div class="codehead"><span>Ubuntu · Bash / 오류 실험용 사본을 수정한 뒤</span><button type="button" class="copy-btn">복사</button></div><pre><code data-language="bash">gcc -std=c17 -Wall -Wextra -Wpedantic -g -O0 posix_failure.c -o posix_failure
 ./posix_failure
@@ -346,27 +346,27 @@ echo $?</code></pre></div>
 <label class="complete"><input type="checkbox" id="done-troubleshooting"> 컴파일, 링크, 실행 오류를 구분해 원인을 확인할 수 있습니다.</label>
 </section>
 
-<section class="section" id="review"><div class="kicker">10 / 이해도 확인</div><h2>개념과 실행 흐름 확인</h2><details class="quiz-item"><summary>WSAStartup이 0이 아닌 값을 반환하면 무엇을 출력해야 하나요?</summary><p>그 반환값 자체가 오류 코드입니다. 다른 Winsock 함수처럼 WSAGetLastError로 다시 조회하지 않습니다.</p></details><details class="quiz-item"><summary>Windows socket()이 실패했을 때 첫 번째로 할 일은?</summary><p>INVALID_SOCKET인지 확인한 뒤 WSAGetLastError()를 호출해 코드부터 저장합니다. 이후 출력과 정리를 수행합니다.</p></details><details class="quiz-item"><summary>err_display()를 호출하면 오류가 해결되나요?</summary><p>아닙니다. 메시지를 출력하고 돌아올 뿐입니다. 계속 실행할지, 재시도할지, 자원을 정리하고 끝낼지는 호출한 코드가 결정합니다.</p></details><details class="quiz-item"><summary>FormatMessage가 할당한 문자열과 strerror의 문자열을 같은 방법으로 해제하나요?</summary><p>아닙니다. ALLOCATE_BUFFER로 받은 문자열은 LocalFree로 해제합니다. strerror가 돌려준 문자열은 직접 해제하지 않습니다.</p></details><details class="quiz-item"><summary>초기화에는 성공했지만 socket()에 실패하면 무엇을 닫나요?</summary><p>소켓은 생성되지 않았으므로 closesocket을 호출하지 않습니다. 성공한 초기화에 대응해 WSACleanup을 호출합니다.</p></details><details class="quiz-item"><summary>SOCKET sock을 int에 저장해도 되나요?</summary><p>Windows에서는 SOCKET 타입을 유지합니다. Linux의 파일 디스크립터 int와 같은 크기라고 가정하지 않습니다.</p></details><details class="quiz-item"><summary>socket(AF_INET6, SOCK_DGRAM, 0)은 무엇을 만들까요?</summary><p>IPv6 주소 체계의 기본 UDP 소켓을 만듭니다. protocol의 0은 기본 프로토콜 선택입니다.</p></details><details class="quiz-item"><summary>Linux socket()이 0을 반환하면 실패인가요?</summary><p>성공입니다. 0도 유효한 파일 디스크립터일 수 있습니다. 실패값은 -1입니다.</p></details><details class="quiz-item"><summary>TCP 소켓을 만들면 상대와 연결된 건가요?</summary><p>아닙니다. 통신에 쓸 자원을 만든 상태이며 주소 지정·연결 등의 후속 단계가 필요합니다.</p></details><details class="quiz-item"><summary>-lws2_32는 소스 코드 어디에 쓰나요?</summary><p>C 코드가 아니라 MinGW의 링크 옵션에 넣습니다. MSVC의 pragma comment와 도구를 혼동하지 않습니다.</p></details><details class="quiz-item"><summary>.o 파일이 생겼다면 빌드와 실행이 모두 끝난 건가요?</summary><p>아직입니다. 오브젝트를 라이브러리와 링크해 실행 파일을 만들어야 합니다. 만들어진 실행 파일을 시작하는 것이 실행입니다.</p></details><details class="quiz-item"><summary>헤더에 함수 선언이 있는데도 링크 오류가 나는 이유는 무엇인가요?</summary><p>헤더는 컴파일에 필요한 선언을 제공합니다. 호출할 함수의 구현과 연결하려면 링크 설정도 필요합니다. MinGW의 Winsock 예제에서는 -lws2_32를 지정합니다.</p></details></section>
+<section class="section" id="review"><div class="kicker">10 / 이해도 확인</div><h2>개념과 실행 흐름 확인</h2><details class="quiz-item"><summary>WSAStartup이 0이 아닌 값을 반환하면 무엇을 출력해야 하나요?</summary><p>그 반환값 자체가 오류 코드입니다. 다른 Winsock 함수처럼 WSAGetLastError로 다시 조회하지 않습니다.</p></details><details class="quiz-item"><summary>Windows socket()이 실패했을 때 첫 번째로 할 일은?</summary><p>INVALID_SOCKET인지 확인한 뒤 WSAGetLastError()를 호출해 코드부터 저장합니다. 이후 출력과 정리를 수행합니다.</p></details><details class="quiz-item"><summary>err_display()를 호출하면 오류가 해결되나요?</summary><p>아닙니다. 메시지를 출력하고 돌아올 뿐입니다. 계속 실행할지, 재시도할지, 자원을 정리하고 끝낼지는 호출한 코드가 결정합니다.</p></details><details class="quiz-item"><summary>FormatMessage가 할당한 문자열과 strerror의 문자열을 같은 방법으로 해제하나요?</summary><p>아닙니다. ALLOCATE_BUFFER로 받은 문자열은 LocalFree로 해제합니다. strerror가 돌려준 문자열은 직접 해제하지 않습니다.</p></details><details class="quiz-item"><summary>초기화에는 성공했지만 socket()에 실패하면 무엇을 닫나요?</summary><p>소켓은 생성되지 않았으므로 closesocket을 호출하지 않습니다. 성공한 초기화에 대응해 WSACleanup을 호출합니다.</p></details><details class="quiz-item"><summary>SOCKET sock을 int에 저장해도 되나요?</summary><p>Windows에서는 SOCKET 타입을 유지합니다. Linux의 파일 디스크립터 int와 같은 크기라고 가정하지 않습니다.</p></details><details class="quiz-item"><summary>socket(AF_INET6, SOCK_DGRAM, 0)은 무엇을 만들까요?</summary><p>IPv6 주소 체계의 기본 UDP 소켓을 만듭니다. protocol의 0은 기본 프로토콜 선택입니다.</p></details><details class="quiz-item"><summary>Linux socket()이 0을 반환하면 실패인가요?</summary><p>성공입니다. 0도 유효한 파일 디스크립터일 수 있습니다. 실패값은 -1입니다.</p></details><details class="quiz-item"><summary>TCP 소켓을 만들면 상대와 연결된 건가요?</summary><p>아닙니다. 통신에 쓸 자원을 만든 상태이며 주소 지정·연결 등의 후속 단계가 필요합니다.</p></details><details class="quiz-item"><summary>-lws2_32는 소스 코드 어디에 쓰나요?</summary><p>C 코드가 아니라 MinGW의 링크 옵션에 넣습니다. MSVC의 pragma comment와 도구를 혼동하지 않습니다.</p></details><details class="quiz-item"><summary>.o 파일이 생겼다면 빌드와 실행이 모두 끝난 건가요?</summary><p>아직입니다. 오브젝트를 라이브러리와 링크해 실행 파일을 만들어야 합니다. 그 실행 파일을 시작하면 프로그램이 실행됩니다.</p></details><details class="quiz-item"><summary>헤더에 함수 선언이 있는데도 링크 오류가 나는 이유는 무엇인가요?</summary><p>헤더는 컴파일에 필요한 선언을 제공합니다. 호출할 함수의 구현과 연결하려면 링크 설정도 필요합니다. MinGW의 Winsock 예제에서는 -lws2_32를 지정합니다.</p></details></section>
 <section class="section" id="sources">
 <div class="section-top"><span class="kicker">11 / 실습 파일</span><span class="source-ref">독립 실행형 C 예제</span></div>
 <h2>운영체제에 맞는 소스를 선택합니다</h2>
 
-<p>페이지에 표시한 전체 코드와 같은 내용의 파일입니다. Windows에서는 Winsock 예제를, Ubuntu에서는 POSIX 예제를 내려받습니다. 두 파일 모두 UTF-8이며 추가로 작성해야 할 헤더 파일은 없습니다.</p>
+<p>Windows에서는 Winsock 예제를, Ubuntu에서는 POSIX 예제를 내려받습니다. 페이지의 전체 코드와 같은 파일이며, 두 파일 모두 UTF-8입니다. 별도로 작성할 헤더 파일은 없습니다.</p>
 <div class="download-row"><a href="examples/winsock_lifecycle.c" download="">Windows · winsock_lifecycle.c ↓</a><a href="examples/posix_lifecycle.c" download="">Ubuntu · posix_lifecycle.c ↓</a></div>
 <p>먼저 <a href="#practice">전체 소스의 구성</a>을 읽고, <a href="#build">컴파일·빌드·실행</a>의 해당 환경 안내를 따릅니다. 출력은 그 절의 예상 결과와 비교합니다. 실패가 발생하면 <a href="#troubleshooting">문제 해결</a>에서 단계를 구분해 확인합니다.</p>
 
 </section>
 
-<section class="section" id="references"><div class="kicker">12 / 출처와 원본 보완</div><h2>원본 반영 범위와 공식 문서</h2><p>3주차에 추가된 <code>ch02_TCP_소켓시작하기_2.pdf</code> 29쪽을 기준으로 작성했습니다. 한 PDF 쪽에 슬라이드 두 장이 들어 있어, 아래의 <strong>PDF 쪽 번호</strong>와 슬라이드에 인쇄된 번호는 다릅니다. </p>
+<section class="section" id="references"><div class="kicker">12 / 출처와 원본 보완</div><h2>원본 범위와 참고 문서</h2><p>3주차 강의 자료: <code>ch02_TCP_소켓시작하기_2.pdf</code> 29쪽. 한 PDF 쪽에 슬라이드 두 장이 있어 <strong>PDF 쪽 번호</strong>와 인쇄된 슬라이드 번호는 다릅니다. </p>
 <p>원본의 “실습 2-1”은 교재 실습 번호이며 이 사이트의 강의 구분 “2-1”과 별개입니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">원본 PDF 쪽</th><th scope="col">반영 내용</th><th scope="col">본문</th></tr></thead><tbody><tr><td>1–3</td><td>학습 목표·범위·통신 구조</td><td><a href="#overview">학습 지도</a></td></tr><tr><td>4–12</td><td>오류 유형, Windows/Linux 메시지와 보조 함수</td><td><a href="#errors">오류 처리</a></td></tr><tr><td>13–20</td><td>Winsock 준비, 초기화·종료, common.h 실습</td><td><a href="#startup">초기화·종료</a></td></tr><tr><td>21–25</td><td>소켓, 주소 체계·타입·프로토콜, 실패 확인</td><td><a href="#socket">소켓 생성</a></td></tr><tr><td>26–28</td><td>닫기, Windows/Linux 전체 코드</td><td><a href="#practice">전체 실습</a></td></tr><tr><td>29</td><td>Dev-C++ 링크 설정</td><td><a href="#build">빌드·실행</a></td></tr></tbody></table></div>
-<p>원본의 학습 범위를 개념 → 실행 흐름 → 단계별 API → 전체 코드 → 빌드·실행 순서로 재구성했습니다.  오류 코드 보관·실패 경로 도식·체험·정리 검사를 포함한 전체 코드는 보충 자료입니다.</p><details class="history"><summary>원본의 표기와 코드에서 보완한 부분</summary>
+<p>전체 코드, 오류 코드 보관, 실패 경로 도식·체험, 정리 결과 확인은 보충 자료입니다.</p><details class="history"><summary>원본의 표기와 코드에서 보완한 부분</summary>
 <ul class="source-list">
-<li>PDF 10쪽: 비교표와 달리 실제 err_display 구현은 MessageBox가 아닌 printf를 사용합니다. 오류를 출력하고 돌아온다는 것이 오류 복구를 뜻하지는 않습니다.</li>
+<li>PDF 10쪽: 비교표에는 MessageBox로 표시되어 있지만 err_display의 구현은 printf를 사용합니다. 오류 출력 후 복귀해도 오류가 복구된 것은 아닙니다.</li>
 <li>PDF 19쪽: 제목의 commom.h와 include의 common.h가 다릅니다. 파일을 나눌 때는 실제 파일 이름과 include의 철자를 맞춥니다.</li>
 <li>PDF 22–24쪽: TCP와 UDP 모두 IPv4 또는 IPv6를 쓸 수 있습니다. AF_INET6의 숫자는 운영체제에 따라 달라질 수 있으므로 상수 이름을 사용합니다. AF_BTH는 Windows Bluetooth 주소 체계이며 이번 실습에서는 사용하지 않습니다.</li>
 <li>PDF 24쪽: TCP 예제의 SOCK_????? 빈칸은 SOCK_STREAM입니다.</li>
-<li>PDF 27–28쪽: Linux에서 typedef int SOCKET은 타입의 별칭을 만드는 코드입니다. Winsock API가 추가되는 것은 아닙니다. 전체 예제에는 socket과 close에 필요한 헤더를 명시했습니다.</li>
+<li>PDF 27–28쪽: Linux의 typedef int SOCKET은 타입 별칭이며 Winsock API를 제공하지 않습니다. 보충 예제에는 socket과 close에 필요한 헤더가 포함되어 있습니다.</li>
 </ul></details><ul class="source-list"><li><a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-wsastartup">Microsoft · WSAStartup</a> — 반환값, 버전 협상, 성공한 초기화와 종료의 대응.</li><li><a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-wsagetlasterror">Microsoft · WSAGetLastError</a> — 스레드별 오류 상태.</li><li><a href="https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-formatmessagea">Microsoft · FormatMessageA</a> — 버퍼 할당·반환값·메모리 해제.</li><li><a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock2/nf-winsock2-socket">Microsoft · socket</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-closesocket">closesocket</a>, <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-wsacleanup">WSACleanup</a> — 생성과 정리.</li><li><a href="https://man7.org/linux/man-pages/man2/socket.2.html">Linux man-pages · socket(2)</a>, <a href="https://man7.org/linux/man-pages/man2/close.2.html">close(2)</a>, <a href="https://man7.org/linux/man-pages/man3/errno.3.html">errno(3)</a>, <a href="https://man7.org/linux/man-pages/man3/strerror.3.html">strerror(3)</a> — Linux의 반환값·오류·문자열.</li><li><a href="https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html">GCC · 전체 처리 단계와 -c/-o</a>, <a href="https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html">링크 옵션</a> — 오브젝트 생성과 라이브러리 지정.</li></ul></section><footer class="footer"><span>Network Notes · Chapter 02-2 · 3주차</span><a href="../2장/index.html">← 2-1 · C 기초</a><a href="../index.html">전체 강의</a></footer></div></main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

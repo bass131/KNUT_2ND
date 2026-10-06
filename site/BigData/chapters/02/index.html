@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Docker와 Spark를 처음 배우는 학생을 위한 실습 안내. 네 컨테이너의 역할부터 1~100 합계 검증까지 단계별로 따라갑니다.">
-  <title>02. 내 PC에 Spark 실험실 만들기 · BigData</title>
+  <title>02. 내 PC에 Spark 실습 환경 만들기 · BigData</title>
   <link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
   <script src="../../shared/theme.js"></script>
   <link rel="stylesheet" href="../../shared/styles.css">
@@ -24,17 +24,17 @@
 <main id="main-content" class="main-content">
   <header class="chapter-hero">
     <p class="eyebrow">CHAPTER 02 · 실습환경 구축</p>
-    <h1>내 PC에<br><span class="title-purple">Spark 실험실 만들기.</span></h1>
-    <p class="hero-description">네 컨테이너의 역할을 이해하고, 설치부터 합계 5050 검증까지 단계별로 확인합니다.</p>
+    <h1>내 PC에서<br><span class="title-purple">Spark 실습 환경 만들기</span></h1>
+    <p class="hero-description">네 컨테이너의 역할을 배우고, Docker 설치부터 합계 5050 확인까지 실습합니다.</p>
     <div class="hero-meta"><span>강의 56슬라이드</span><span>실습 원본 6파일</span><span>개념 → 준비 → 검증 → 정리</span></div>
   </header>
 
-  <div class="callout tip"><strong>이번 장의 확인 순서</strong><p>이미지 검사 → Worker 2개 등록 → 네트워크 연결 → 합계 5050 → 정상 종료</p><p class="muted">출력 예시는 직접 실행할 때 대조할 예상 표시입니다. Docker는 자신의 PC에서 실행합니다.</p></div>
+  <div class="callout tip"><strong>이번 장의 확인 순서</strong><p>이미지 검사 → Worker 2개 등록 → 네트워크 연결 → 합계 5050 → 정상 종료</p><p class="muted">아래 출력은 예상 예시입니다. 자신의 PC에서 Docker를 실행해 결과를 확인합니다.</p></div>
 
   <section class="lesson-section" id="docker" data-title="Docker 용어부터">
     <div class="section-heading"><span class="section-number">01</span><h2>같은 실습 환경이 필요한 이유</h2></div>
     <p class="lead">코드가 같아도 Java나 Python 버전이 다르면 결과가 달라지거나 실행에 실패할 수 있습니다. Docker는 프로그램과 필요한 실행 환경을 묶어 이런 차이를 줄입니다.</p>
-    <h3>먼저 알아둘 세 용어</h3>
+    <h3>프로세스·서버·클러스터</h3>
     <ul class="explanation-list">
       <li><strong>프로세스:</strong> 지금 실행 중인 프로그램입니다.</li>
       <li><strong>서버:</strong> 다른 프로그램의 요청에 응답하는 프로그램 또는 그 컴퓨터입니다.</li>
@@ -64,18 +64,18 @@
       <li><strong>실제 컨테이너 이름:</strong> <code>bigdata-week02-spark-master-1</code>처럼 프로젝트명과 번호를 포함할 수 있습니다.</li>
     </ul>
     <div class="quiz" data-answer="1" data-explanation="이미지는 실행 환경의 틀입니다. 같은 이미지에서 역할이 다른 여러 컨테이너를 만들 수 있으며 이 실습은 네 개를 만듭니다."><h3>같은 Spark 이미지로 Master와 Worker를 함께 만들 수 있을까요?</h3><div class="quiz-options"><button type="button">아니요. 이미지 하나는 컨테이너 하나입니다.</button><button type="button">네. 같은 틀로 서로 다른 컨테이너를 만듭니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-    <p class="source-note">출처: <span class="source-reference">2장 강의자료</span> 슬라이드 1–10. 다음 각 절의 슬라이드 번호도 실제 파일 순서 기준입니다.</p>
+    <p class="source-note">출처: <span class="source-reference">2장 강의자료</span> 슬라이드 1–10. 슬라이드 번호는 파일의 실제 순서 기준입니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-docker"> 이 내용을 이해했어요</label>
   </section>
 
   <section class="lesson-section" id="prepare" data-title="Windows와 이미지 준비">
     <div class="section-heading"><span class="section-number">02</span><h2>Windows와 Spark 이미지 준비하기</h2></div>
-    <div class="callout tip"><strong>실습 경로를 먼저 확인하세요</strong><ul class="explanation-list"><li><strong>이 장의 제공 실습:</strong> 아래에서 <code>실습자료/2장_실습자료</code>의 파일을 확인하고 진행합니다.</li><li><strong>별도 공개 실습:</strong> <a href="../../practice/index.html#start">공개 실습 파일과 준비 안내</a>에서 Compose·Python·Bash 전체 파일을 받을 수 있습니다. <a href="../../practice/index.html#spark">공개용 첫 계산</a>은 별도 practice 폴더와 Master 28080·Driver 24041 포트를 사용합니다.</li></ul><p>두 실습은 폴더와 포트가 다릅니다. 한 경로를 선택해 해당 안내의 명령을 따라가세요.</p></div>
+    <div class="callout tip"><strong>실습 경로 선택</strong><ul class="explanation-list"><li><strong>이 장의 제공 실습:</strong> 아래에서 <code>실습자료/2장_실습자료</code>의 파일을 확인하고 진행합니다.</li><li><strong>별도 공개 실습:</strong> <a href="../../practice/index.html#start">공개 실습 파일과 준비 안내</a>에서 Compose·Python·Bash 전체 파일을 받을 수 있습니다. <a href="../../practice/index.html#spark">공개용 첫 계산</a>은 별도 practice 폴더와 Master 28080·Driver 24041 포트를 사용합니다.</li></ul><p>두 실습은 폴더와 포트가 다릅니다. 선택한 실습의 안내에 따라 명령을 실행합니다.</p></div>
     <p>Linux용 Spark 환경을 Windows에서 실행하려고 <strong>WSL 2</strong>(Windows Subsystem for Linux 2)를 사용합니다. Docker Desktop이 이 환경을 이용해 Linux 컨테이너를 실행합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 실험실의 전원 확인</strong><p>실험 전 전원을 확인하듯, 먼저 WSL과 Docker Engine의 준비 상태를 확인합니다. 그다음 실습 이미지를 받습니다.</p></div>
-    <p>Docker Desktop이 아직 없다면 <a href="https://docs.docker.com/desktop/setup/install/windows-install/">공식 Windows 설치 안내</a>에서 설치 조건을 확인하고 설치한 뒤 돌아오세요. WSL도 없다면 아래 WSL 준비 절차를 먼저 확인합니다.</p>
+    <p>Docker Desktop이 없다면 <a href="https://docs.docker.com/desktop/setup/install/windows-install/">공식 Windows 설치 안내</a>에서 설치 조건과 절차를 확인합니다. WSL이 없다면 아래 WSL 준비 절차부터 진행합니다.</p>
     <ol class="steps">
-      <li class="step"><h3>Docker Desktop을 열고 Engine을 확인하세요</h3><p><strong>실행 위치: Windows PowerShell, 어느 폴더에서나.</strong> Desktop에서 Engine running을 기다린 뒤 아래를 실행합니다.</p><pre><code>docker --version
+      <li class="step"><h3>Docker Desktop 실행과 Engine 확인</h3><p><strong>실행 위치: Windows PowerShell, 어느 폴더에서나.</strong> Desktop에서 Engine running을 기다린 뒤 아래를 실행합니다.</p><pre><code>docker --version
 docker compose version
 docker version
 docker run --rm hello-world</code></pre><ul class="explanation-list">
@@ -84,12 +84,12 @@ docker run --rm hello-world</code></pre><ul class="explanation-list">
         <li><strong><code>docker version</code>:</strong> Client와 Server(Engine)의 연결을 함께 확인합니다.</li>
         <li><strong><code>docker run --rm hello-world</code>:</strong> 작은 시험 컨테이너를 실행합니다. <code>--rm</code>은 종료 후 그 컨테이너를 제거합니다.</li>
       </ul><p>Server 연결 오류라면 Desktop 실행 상태부터 확인하세요.</p></li>
-      <li class="step"><h3>WSL이 준비되지 않았다면 확인하세요</h3><p><strong>실행 위치: 일반 PowerShell에서 상태 확인.</strong></p><pre><code>wsl --status
+      <li class="step"><h3>WSL 상태 확인</h3><p><strong>실행 위치: 일반 PowerShell에서 상태 확인.</strong></p><pre><code>wsl --status
 wsl --version</code></pre><details><summary>WSL 설치가 필요한 경우만 펼치기</summary><p><strong>실행 위치: 관리자 권한 PowerShell.</strong> 설치가 안 된 경우 아래 설치 명령을 실행하고 Windows를 재시작합니다. 업데이트가 필요한 경우 업데이트 명령을 사용합니다. Docker Desktop 설치 후 WSL 2 기반 Engine 설정을 확인하세요.</p><pre><code>wsl --install
 wsl --update</code></pre><p><a href="https://learn.microsoft.com/en-us/windows/wsl/install">Microsoft 공식 WSL 설치 안내</a>와 <a href="https://docs.docker.com/desktop/setup/install/windows-install/">Docker Desktop Windows 설치 안내</a>에서 자신의 환경에 맞는 설치 조건을 확인할 수 있습니다.</p></details></li>
-      <li class="step"><h3>실습 파일이 있는 폴더로 이동하세요</h3><p><strong>실행 위치: 이 프로젝트의 BigData 최상단에서 Windows PowerShell.</strong> 이후 <code>docker compose</code> 명령은 이동한 실습 폴더에서 실행합니다.</p><pre><code>cd ".\실습자료\2장_실습자료"
+      <li class="step"><h3>실습 폴더로 이동</h3><p><strong>실행 위치: 이 프로젝트의 BigData 최상단에서 Windows PowerShell.</strong> 이후 <code>docker compose</code> 명령은 이동한 실습 폴더에서 실행합니다.</p><pre><code>cd ".\실습자료\2장_실습자료"
 Get-ChildItem
-Get-ChildItem .\apps</code></pre><p>강의의 “week02-lab 폴더”에 해당하는 곳입니다. 다음 6개 파일을 확인하세요.</p><ul class="explanation-list">
+Get-ChildItem .\apps</code></pre><p>강의의 “week02-lab 폴더”에 해당합니다. 다음 6개 파일이 있는지 확인합니다.</p><ul class="explanation-list">
         <li><strong><code>compose.yaml</code>:</strong> 서비스 구성 파일입니다.</li>
         <li><strong><code>README.md</code>:</strong> 배포 절차를 안내합니다.</li>
         <li><strong><code>apps/check_pyspark.py</code>:</strong> 이미지의 PySpark 실행을 검사합니다.</li>
@@ -97,11 +97,11 @@ Get-ChildItem .\apps</code></pre><p>강의의 “week02-lab 폴더”에 해당�
         <li><strong><code>apps/run.sh</code>:</strong> 앱 제출 명령을 담습니다.</li>
         <li><strong><code>apps/first_app.py</code>:</strong> 계산과 정답 검증을 수행합니다.</li>
       </ul></li>
-      <li class="step"><h3>지정된 이미지를 내려받으세요</h3><p><strong>실행 위치: 실습 폴더의 Windows PowerShell.</strong></p><pre><code>$sparkImage = "spark:4.1.3-scala2.13-java21-python3-ubuntu"
+      <li class="step"><h3>지정된 이미지 다운로드</h3><p><strong>실행 위치: 실습 폴더의 Windows PowerShell.</strong></p><pre><code>$sparkImage = "spark:4.1.3-scala2.13-java21-python3-ubuntu"
 docker pull $sparkImage
 docker image ls $sparkImage</code></pre><p><strong>확인:</strong> 목록의 이름·태그가 위 값과 일치해야 합니다. 다운로드에 실패하면 네트워크를 확인하고 오류 메시지를 교수님께 전달하세요.</p></li>
     </ol>
-    <details><summary>다운로드가 막힐 때의 Plan B와 원본 자료 범위</summary><p><strong>교수자가 별도 TAR 파일을 제공한 경우에만</strong> 아래 명령으로 불러온 뒤 이미지 검사를 수행합니다. 이 프로젝트에는 이미지 TAR와 README가 참조하는 강의노트 v5·부록 A가 없습니다.</p><pre><code>docker image load -i &lt;파일경로&gt;</code></pre><p>위 <code>&lt;파일경로&gt;</code>는 그대로 실행하는 값이 아닙니다. 교수자가 제공한 TAR의 실제 경로로 바꿉니다.</p></details>
+    <details><summary>이미지 다운로드 실패 시 대안</summary><p><strong>교수자가 별도 TAR 파일을 제공한 경우에만</strong> 아래 명령으로 불러온 뒤 이미지 검사를 수행합니다. 이 프로젝트에는 이미지 TAR와 README가 참조하는 강의노트 v5·부록 A가 없습니다.</p><pre><code>docker image load -i &lt;파일경로&gt;</code></pre><p>위 <code>&lt;파일경로&gt;</code>는 그대로 실행하는 값이 아닙니다. 교수자가 제공한 TAR의 실제 경로로 바꿉니다.</p></details>
     <div class="callout"><strong>확인 질문</strong><p><code>docker --version</code>만 성공했다면 Engine까지 실행 중이라고 말할 수 있을까요? <strong>아직 아닙니다.</strong> <code>docker version</code>의 Server 응답과 시험 컨테이너 실행을 확인해야 합니다.</p></div>
     <p class="source-note">출처: 강의 슬라이드 11–16 · <a href="../../실습자료/2장_실습자료/README.md">배포 README의 이미지 확보·Plan B</a>. <code>Get-ChildItem .\apps</code>는 파일 확인을 돕는 보충 명령입니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-prepare"> 이 내용을 이해했어요</label>
@@ -109,7 +109,7 @@ docker image ls $sparkImage</code></pre><p><strong>확인:</strong> 목록의 �
 
   <section class="lesson-section" id="compose" data-title="Compose 설정 읽기">
     <div class="section-heading"><span class="section-number">03</span><h2>Compose로 컨테이너 설정 읽기</h2></div>
-    <p class="lead">Compose 파일은 “무엇을 어떤 설정으로 실행할지” 선언합니다. 먼저 공통 설정을 한 번 쓰고, 서비스마다 필요한 역할을 덧붙입니다.</p>
+    <p class="lead">Compose 파일은 실행할 서비스와 설정을 정의합니다. 공통 설정을 한 번 정의하고, 서비스마다 실행 명령과 개별 설정을 추가합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 공통 준비물과 개인 역할표</strong><p>팀의 공통 준비물을 한 번 적고 개인 역할을 덧붙이는 방식입니다. YAML의 공통 묶음도 설정을 재사용하며, 별도 컨테이너를 만들지는 않습니다.</p></div>
     <h3>공통 설정: 한 번 쓰고 재사용</h3>
     <p><strong>YAML</strong>은 들여쓰기로 포함 관계를 표현하는 설정 형식입니다. 아래는 <a href="../../실습자료/2장_실습자료/compose.yaml">compose.yaml 전체 원본</a>에서 발췌한 공통 설정입니다.</p>
@@ -131,7 +131,7 @@ services:</code></pre>
       <tr><th scope="row"><code>init: true</code></th><td>작은 관리 프로세스를 맨 먼저 실행해 종료 신호 전달과 자식 프로세스 종료 정리를 돕습니다.</td></tr>
       <tr><th scope="row"><code>stop_grace_period: 30s</code></th><td>중지 시 정상 종료를 위해 최대 30초를 기다립니다.</td></tr>
     </tbody></table></div>
-    <h3>Master: 상태 확인을 통과하면 다음 서비스 시작</h3>
+    <h3>Master: 상태 검사와 서비스 시작 조건</h3>
     <pre><code>  spark-master:
     &lt;&lt;: *spark
     hostname: spark-master
@@ -178,7 +178,7 @@ services:</code></pre>
     </ul>
     <p>Worker 2는 같은 역할이며 이름은 <code>spark-worker-2</code>, 호스트 UI 포트는 <code>8082</code>입니다.</p>
     <div class="callout warning"><strong>설정의 적용 범위</strong><ul class="explanation-list"><li><strong><code>--memory 1g</code>:</strong> Spark에 제공할 자원 선언입니다. 컨테이너 전체의 메모리 상한은 아니며, 실제 자원은 PC·Docker 설정에도 좌우됩니다.</li><li><strong><code>depends_on: service_healthy</code>:</strong> 시작 조건입니다. 이후 Master 장애를 자동 복구하지는 않습니다.</li></ul></div>
-    <h3>Client: 코드를 읽을 수 있게 연결하고 대기</h3>
+    <h3>Client: 실습 폴더 연결과 대기</h3>
     <pre><code>  spark-client:
     &lt;&lt;: *spark
     hostname: spark-client
@@ -198,7 +198,7 @@ services:</code></pre>
     </ul></details>
     <p><code>exec sleep infinity</code>는 shell을 계속 대기하는 프로그램으로 바꿔 Client가 종료되지 않게 합니다. 이 시점에는 Driver가 없습니다.</p>
     <h3>실습 폴더 연결: bind mount</h3>
-    <p><strong>bind mount</strong>는 호스트 폴더를 컨테이너에서 보이게 연결하는 방식입니다. <code>./apps:/opt/spark/apps:ro</code>의 세 부분을 읽어 보세요.</p>
+    <p><strong>bind mount</strong>는 호스트 폴더를 컨테이너에서 보이게 연결하는 방식입니다. <code>./apps:/opt/spark/apps:ro</code>는 세 부분으로 구성됩니다.</p>
     <ul class="explanation-list">
       <li><strong><code>./apps</code>:</strong> 호스트에 있는 실습 코드 폴더입니다.</li>
       <li><strong><code>/opt/spark/apps</code>:</strong> Client 안에서 그 폴더를 읽을 경로입니다.</li>
@@ -206,16 +206,16 @@ services:</code></pre>
     </ul>
     <p>파일을 따로 복사하지 않아도 Client에서 Windows의 실습 코드를 읽어 실행할 수 있습니다.</p>
     <div class="quiz" data-answer="0" data-explanation="x-spark는 공통 설정 묶음이므로 컨테이너를 만들지 않습니다. 이번 실습에서는 Master 1개, Worker 2개, Client 1개를 지정해 실행합니다."><h3>네 서비스를 지정해 실행해도 <code>x-spark</code> 때문에 컨테이너가 하나 더 생길까요?</h3><div class="quiz-options"><button type="button">아니요. 지정한 네 서비스의 컨테이너만 생깁니다.</button><button type="button">네. 설정 묶음도 실행됩니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-    <p class="source-note">출처: 강의 슬라이드 17–29 · <a href="../../실습자료/2장_실습자료/compose.yaml">compose.yaml</a>. 현재 파일은 Master·Worker 1·Worker 2·Client 네 서비스로 구성됩니다.</p>
+    <p class="source-note">출처: 강의 슬라이드 17–29 · <a href="../../실습자료/2장_실습자료/compose.yaml">compose.yaml</a>. Master·Worker 1·Worker 2·Client 네 서비스가 정의돼 있습니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-compose"> 이 내용을 이해했어요</label>
   </section>
 
   <section class="lesson-section" id="roles" data-title="Spark 역할과 실행 흐름">
     <div class="section-heading"><span class="section-number">04</span><h2>Spark 구성요소의 역할과 실행 순서</h2></div>
-    <p class="lead">Spark는 데이터를 나누어 여러 실행 주체가 처리하게 하는 엔진입니다. 이번에는 Spark 자체의 클러스터 관리 방식인 <strong>Standalone</strong>을 사용합니다.</p>
+    <p class="lead">Spark는 데이터를 나누어 여러 프로세스에서 처리하는 엔진입니다. 이번 실습에서는 Spark 자체의 클러스터 관리 방식인 <strong>Standalone</strong>을 사용합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 팀 실험의 자리와 작업</strong><p>Master는 자리를 배정하고, Worker는 계산 담당자를 준비하며, Driver는 실험 순서를 조정하는 역할에 비유할 수 있습니다. 실제로는 프로세스끼리 통신합니다.</p></div>
     <div data-visual="cluster"></div>
-    <div class="table-wrap"><table><caption>비슷해 보이지만 다른 Spark 역할</caption><thead><tr><th scope="col">역할</th><th scope="col">언제, 어디에서</th><th scope="col">하는 일</th></tr></thead><tbody>
+    <div class="table-wrap"><table><caption>Spark 구성요소의 역할</caption><thead><tr><th scope="col">역할</th><th scope="col">언제, 어디에서</th><th scope="col">하는 일</th></tr></thead><tbody>
       <tr><th scope="row">Master</th><td>Master 컨테이너에서 계속 실행</td><td>Worker와 가용 자원을 관리하고 Executor를 어느 Worker에서 시작할지 배정합니다.</td></tr>
       <tr><th scope="row">Worker</th><td>두 Worker 컨테이너에서 계속 실행</td><td>Master에 등록하고, 지시에 따라 자기 쪽에서 Executor를 시작·관리합니다.</td></tr>
       <tr><th scope="row">Client</th><td>Client 컨테이너는 처음에는 대기</td><td>실습 코드를 제출하는 실행 장소입니다.</td></tr>
@@ -226,7 +226,7 @@ services:</code></pre>
     <ol class="steps"><li class="step"><strong>준비:</strong> Compose가 네 컨테이너 실행을 요청하고 Worker가 Master에 등록합니다. 별도 SSH 로그인이나 키 복사는 필요 없습니다.</li><li class="step"><strong>제출:</strong> Client에서 <code>spark-submit</code>을 실행하면 Driver가 앱을 등록하고 자원을 요청합니다. Master는 Worker에 Executor 시작을 지시합니다.</li><li class="step"><strong>계산:</strong> Executor가 Driver에 연결합니다. Driver와 Executor가 Task 지시·상태·결과를 직접 주고받습니다. Master가 모든 계산 메시지를 중계하지 않습니다.</li></ol>
     <ul class="explanation-list"><li><strong>Task:</strong> Executor가 수행하는 작은 작업 단위입니다.</li><li><strong>Worker와 Executor:</strong> Worker는 Executor를 관리하고, Executor가 Task를 실행합니다.</li><li><strong>이번 실습의 자원:</strong> 네 컨테이너 모두 한 PC의 자원을 사용합니다.</li></ul>
     <div class="quiz" data-answer="1" data-explanation="앱 제출 전에는 Worker가 등록된 상태입니다. Executor는 제출 후 Worker에서 시작되고 실제 Task는 Driver가 조정합니다."><h3>앱을 제출하기 전, Worker 2개가 ALIVE라면?</h3><div class="quiz-options"><button type="button">이미 Executor가 계산 중입니다.</button><button type="button">자원은 준비됐지만 이 앱의 Executor는 아직 없습니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-    <p class="source-note">출처: 강의 슬라이드 18, 23–25, 37, 39–40, 45–48 · 역할 정의 보충: <a href="https://spark.apache.org/docs/latest/cluster-overview.html">Apache Spark 공식 클러스터 개요</a>. 실행 옵션과 버전은 이 수업의 배포 파일을 기준으로 합니다.</p>
+    <p class="source-note">출처: 강의 슬라이드 18, 23–25, 37, 39–40, 45–48 · 역할 정의 보충: <a href="https://spark.apache.org/docs/latest/cluster-overview.html">Apache Spark 공식 클러스터 개요</a>. 이 실습의 실행 옵션과 버전은 제공 파일에 따릅니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-roles"> 이 내용을 이해했어요</label>
   </section>
 
@@ -250,7 +250,7 @@ services:</code></pre>
       <li><strong>컨테이너 포트 · 8081:</strong> Worker 2 내부의 UI가 사용하는 번호입니다.</li>
     </ul>
     <p>두 Worker는 서로 다른 컨테이너이므로 내부에서 각각 8081을 쓸 수 있습니다. Windows에서는 같은 IP의 같은 포트를 두 곳에 연결할 수 없어 8081과 8082로 나눕니다.</p>
-    <div class="callout warning"><strong>localhost는 “지금 실행 중인 곳 자신”</strong><ul class="explanation-list">
+    <div class="callout warning"><strong>localhost가 가리키는 대상</strong><ul class="explanation-list">
       <li><strong>Windows 브라우저에서:</strong> localhost는 Windows PC입니다.</li>
       <li><strong>Worker 안에서:</strong> localhost는 그 Worker 컨테이너입니다.</li>
     </ul><p>그래서 Worker가 Master를 찾을 때는 <code>localhost:7077</code> 대신 <code>spark-master:7077</code>을 씁니다.</p></div>
@@ -263,7 +263,7 @@ services:</code></pre>
 
   <section class="lesson-section" id="image-check" data-title="1단계 · 이미지 검사">
     <div class="section-heading"><span class="section-number">06</span><h2>이미지에서 PySpark 실행 확인하기</h2></div>
-    <p class="lead">아직 네트워크가 필요 없는 작은 계산부터 실행합니다. 여기서 실패하면 클러스터 연결 전에 이미지와 실행 환경부터 살펴볼 수 있습니다.</p>
+    <p class="lead">컨테이너 간 연결 없이 작은 계산을 실행합니다. 이 단계에서 실패하면 이미지와 실행 환경을 먼저 점검합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 합주 전 악기 조율</strong><p>합주 전 악기 하나를 조율하듯, 이미지 안에서 작은 계산부터 확인합니다. 컨테이너 간 협력은 다음 단계에서 검사합니다.</p></div>
     <h3>① Compose 구성 확인</h3>
     <p><strong>실행 위치: <code>실습자료/2장_실습자료</code> 폴더의 Windows PowerShell.</strong></p>
@@ -286,24 +286,24 @@ $LASTEXITCODE</code></pre>
       <li><strong><code>local[1]</code>:</strong> 이 컨테이너 안의 로컬 실행 스레드 하나를 쓰는 모드입니다.</li>
     </ul>
     <p><strong>로컬 검사입니다.</strong> <code>$LASTEXITCODE</code>는 직전 외부 프로그램의 종료 코드이며, <strong>0</strong>이면 정상 종료입니다. 다른 명령으로 값이 바뀌기 전에 바로 확인하세요.</p>
-    <div class="card"><h3>실행 후 찾아야 할 표시 · 예상</h3><pre><code>PYSPARK_VERSION=4.1.3
+    <div class="card"><h3>예상 출력과 성공 기준</h3><pre><code>PYSPARK_VERSION=4.1.3
 PYSPARK_IMAGE_CHECK=PASS</code></pre><p><strong>성공 기준:</strong> 위 두 표시와 종료 코드 0. 추가 Spark 로그가 섞여 나올 수 있습니다.</p><details><summary>검사 코드가 하는 일</summary><p><a href="../../실습자료/2장_실습자료/apps/check_pyspark.py">검사 코드</a>는 버전 확인 → SparkSession 생성 → 행 수 확인 → 종료 순입니다.</p><ul class="explanation-list"><li><strong>SparkSession:</strong> Python에서 Spark 기능을 사용하는 시작점입니다.</li><li><strong><code>spark.range(1).count() == 1</code>:</strong> 값 0 한 개를 만들고 행 수가 1인지 확인합니다.</li></ul></details></div>
     <div class="callout"><strong>실패 원인별 확인</strong><ul class="explanation-list"><li><strong>파일 없음:</strong> 작업 폴더와 apps 연결을 확인합니다.</li><li><strong>버전 불일치:</strong> 지정 태그의 이미지를 받은 뒤 재검사합니다.</li></ul><p>통과하면 이미지에서 PySpark를 실행할 준비가 된 것입니다.</p></div>
     <p><strong>확인 질문:</strong> 이 검사에 PASS가 나오면 Worker 등록도 완료된 걸까요? 아닙니다. <code>--no-deps</code>와 <code>local[1]</code> 때문에 아직 Worker를 사용하지 않았습니다.</p>
-    <p class="source-note">출처: 강의 슬라이드 32–35 · <a href="../../실습자료/2장_실습자료/apps/check_pyspark.py">check_pyspark.py</a> · <a href="../../실습자료/2장_실습자료/README.md">README의 이미지 실행 검사</a>. 한 줄 명령은 README 원문을 사용했습니다.</p>
+    <p class="source-note">출처: 강의 슬라이드 32–35 · <a href="../../실습자료/2장_실습자료/apps/check_pyspark.py">check_pyspark.py</a> · <a href="../../실습자료/2장_실습자료/README.md">README의 이미지 실행 검사</a>.</p>
     <label class="completion"><input type="checkbox" data-complete="02-image-check"> 이 내용을 이해했어요</label>
   </section>
 
   <section class="lesson-section" id="cluster-check" data-title="2단계 · 클러스터 연결">
     <div class="section-heading"><span class="section-number">07</span><h2>컨테이너 실행과 Worker 등록 확인하기</h2></div>
     <p>컨테이너 상태, Spark 등록, 네트워크는 서로 다른 확인 항목입니다. 셋을 나누어 보면 어디에서 문제가 생겼는지 찾기 쉽습니다.</p>
-    <div class="analogy" data-labelled=""><strong>학습용 비유 · 출석과 전화 확인</strong><p>전원 켜기, 팀 출석, 전화 연결, 과제 완성은 각각 다른 확인입니다. Up → ALIVE → NETWORK_CHECK → 계산 결과도 따로 확인합니다.</p></div>
+    <div class="analogy" data-labelled=""><strong>학습용 비유 · 출석과 전화 확인</strong><p>전원, 팀원의 출석, 전화 연결, 과제 완성을 따로 확인하듯, Up → ALIVE → NETWORK_CHECK → 계산 결과도 각각 확인합니다.</p></div>
     <ol class="steps">
-      <li class="step"><h3>네 서비스를 실행하세요</h3><p><strong>실행 위치: 실습 폴더의 Windows PowerShell.</strong></p><pre><code>docker compose up -d --remove-orphans spark-master spark-worker-1 spark-worker-2 spark-client
+      <li class="step"><h3>네 서비스 실행</h3><p><strong>실행 위치: 실습 폴더의 Windows PowerShell.</strong></p><pre><code>docker compose up -d --remove-orphans spark-master spark-worker-1 spark-worker-2 spark-client
 docker compose ps -a</code></pre><p><code>-d</code>는 백그라운드 실행입니다. 첫 줄은 이번 실습에 쓸 네 서비스를 지정합니다. <code>--remove-orphans</code>는 같은 Compose 프로젝트에서 현재 파일에 정의되지 않은 서비스의 컨테이너를 제거합니다. 이전 설정으로 만든 세 번째 Worker가 남아 있다면 함께 정리됩니다.</p><p>준비가 끝날 때까지 기다린 뒤 네 컨테이너의 상태를 확인하세요. 옵션의 의미는 <a href="https://docs.docker.com/reference/cli/docker/compose/up/">Docker Compose up 공식 문서</a>에서 확인할 수 있습니다.</p><ul class="explanation-list"><li><strong>Master:</strong> healthy</li><li><strong>Worker 2개·Client:</strong> Up</li></ul></li>
-      <li class="step"><h3>Master UI에서 Worker 등록을 확인하세요</h3><p><strong>실행 위치:</strong> Windows 브라우저에서 <a href="http://localhost:8080">Master UI 열기</a>.</p><ul class="explanation-list"><li><strong>Worker:</strong> ALIVE 2개</li><li><strong>각 Worker 자원:</strong> 1 core, 약 1024 MiB</li><li><strong>Executor:</strong> 앱 제출 전에는 없어도 정상</li></ul></li>
-      <li class="step"><h3>Client 안에서 네트워크를 검사하세요</h3><p><strong>입력 위치: 실습 폴더의 Windows PowerShell. 실제 검사 위치: Client 컨테이너 안.</strong></p><pre><code>docker compose exec spark-client python3 /opt/spark/apps/check_network.py
-$LASTEXITCODE</code></pre><p><code>exec</code>는 이미 실행 중인 컨테이너 안에서 명령을 수행합니다. <code>run</code>처럼 새 일회용 컨테이너를 만드는 것과 구분하세요.</p></li>
+      <li class="step"><h3>Master UI에서 Worker 등록 확인</h3><p><strong>실행 위치:</strong> Windows 브라우저에서 <a href="http://localhost:8080">Master UI 열기</a>.</p><ul class="explanation-list"><li><strong>Worker:</strong> ALIVE 2개</li><li><strong>각 Worker 자원:</strong> 1 core, 약 1024 MiB</li><li><strong>Executor:</strong> 앱 제출 전에는 없어도 정상</li></ul></li>
+      <li class="step"><h3>Client에서 네트워크 검사</h3><p><strong>입력 위치: 실습 폴더의 Windows PowerShell. 실제 검사 위치: Client 컨테이너 안.</strong></p><pre><code>docker compose exec spark-client python3 /opt/spark/apps/check_network.py
+$LASTEXITCODE</code></pre><p><code>exec</code>는 이미 실행 중인 컨테이너 안에서 명령을 수행합니다. <code>run</code>과 달리 새 컨테이너를 만들지 않습니다.</p></li>
     </ol>
     <div class="table-wrap"><table><caption>check_network.py가 확인하는 범위</caption><thead><tr><th scope="col">검사</th><th scope="col">대상</th><th scope="col">읽는 방법</th></tr></thead><tbody>
       <tr><th scope="row">DNS</th><td>Master, Worker 1, Worker 2, Client 이름 4개</td><td><code>DNS spark-master -&gt; …</code> 뒤의 IP가 조회됐는지 봅니다. 숫자는 실행 환경에 따라 달라집니다.</td></tr>
@@ -317,7 +317,7 @@ $LASTEXITCODE</code></pre><p><code>exec</code>는 이미 실행 중인 컨테이
     </ul>
     <p>서비스 이름·실행 상태·로그를 순서대로 확인하세요.</p>
     <div class="quiz" data-answer="1" data-explanation="네트워크 검사는 이름과 포트 연결을 확인합니다. Worker 등록은 Master UI에서, 계산의 정확성은 첫 앱의 결과와 종료 코드로 확인합니다."><h3><code>NETWORK_CHECK=PASS</code>라면 합계 5050도 보장될까요?</h3><div class="quiz-options"><button type="button">네. 연결 성공은 계산 성공입니다.</button><button type="button">아니요. 앱을 제출해 결과까지 확인해야 합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-    <p class="source-note">출처: 강의 슬라이드 36–43 · <a href="../../실습자료/2장_실습자료/apps/check_network.py">check_network.py</a>. 마지막 종료 코드 확인은 이 검사가 반환하는 0/1을 확인하는 보충 단계입니다.</p>
+    <p class="source-note">출처: 강의 슬라이드 36–43 · <a href="../../실습자료/2장_실습자료/apps/check_network.py">check_network.py</a>. 종료 코드 0/1 확인은 보충 단계입니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-cluster-check"> 이 내용을 이해했어요</label>
   </section>
 
@@ -326,7 +326,7 @@ $LASTEXITCODE</code></pre><p><code>exec</code>는 이미 실행 중인 컨테이
     <p class="lead">1부터 100까지 더하면 5050입니다. 정답을 미리 아는 문제로 Spark가 올바른 클러스터에서 실행됐는지 확인합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 문제지를 나눠 풀고 합치기</strong><p>숫자를 네 묶음으로 나눠 부분 합을 구하고 합치는 방식입니다. 아래는 학습용 모형이며, 실제 Spark의 Task와 집계 단계는 실행 계획에 따라 달라집니다.</p></div>
     <div data-visual="partitions"></div>
-    <h3>코드 세 줄을 읽어 보세요</h3>
+    <h3>계산과 검증 코드</h3>
     <pre><code>numbers = spark.range(1, 101, 1, 4)
 total = numbers.selectExpr("sum(id) AS total").first()["total"]
 assert total == 5050, f"Unexpected result: {total}"</code></pre>
@@ -413,11 +413,11 @@ print("APP_STOPPED", flush=True)</code></pre><ul class="explanation-list">
       <li><strong><code>time.sleep</code>:</strong> 기본 120초 동안 UI를 볼 시간을 남깁니다.</li>
       <li><strong><code>spark.stop()</code>:</strong> SparkSession을 종료합니다.</li>
     </ul></details>
-    <h3>이제 실제 앱을 제출하세요</h3>
+    <h3>앱 제출</h3>
     <p><strong>입력 위치:</strong> 실습 폴더의 Windows PowerShell. 앱은 Client 컨테이너에서 실행됩니다.</p><ol><li>첫 줄로 앱을 제출하고 다음 절의 UI를 120초 동안 관찰합니다.</li><li>프롬프트가 돌아오면 즉시 두 번째 줄로 종료 코드를 확인합니다.</li></ol>
     <pre><code>docker compose exec spark-client bash /opt/spark/apps/run.sh
 $LASTEXITCODE</code></pre>
-    <div class="card"><h3>직접 실행할 때 확인할 표시 · 예상</h3><pre><code>MASTER=spark://spark-master:7077
+    <div class="card"><h3>예상 출력</h3><pre><code>MASTER=spark://spark-master:7077
 SUM_1_TO_100=5050
 CHECK=PASS
 UI observation: 120 seconds
@@ -440,14 +440,14 @@ APP_STOPPED</code></pre><p><code>APP_ID=…</code>도 출력되며 값은 실행
       <li><strong>UI(User Interface):</strong> 상태를 화면으로 보여주는 인터페이스입니다.</li>
     </ul>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 답안과 풀이 과정 함께 보기</strong><p>정답과 풀이 과정을 함께 보듯, 코드의 검증 결과와 UI·로그를 함께 확인합니다.</p></div>
-    <div class="card-grid"><article class="card"><h3>Master UI · 자원과 앱</h3><p><a href="http://localhost:8080">localhost:8080 열기</a></p><ul><li>ALIVE Worker가 두 개 있는지</li><li>관찰 대기 중 Running Applications에 앱이 있는지</li><li>각 Worker에 Executor가 배정됐는지</li></ul></article><article class="card"><h3>Driver UI · 작업의 진행</h3><p><a href="http://localhost:4040">localhost:4040 열기</a></p><ul class="explanation-list"><li><strong>Jobs:</strong> 실행 요청과 완료 상태를 확인합니다.</li><li><strong>Stages:</strong> 작업을 나눈 처리 단계를 확인합니다.</li><li><strong>Executors:</strong> Driver와 Executor 정보를 확인합니다.</li></ul><p>합계 계산은 빠르게 끝날 수 있습니다. 120초 대기는 이미 완료된 작업과 앱 상태를 관찰할 시간입니다.</p></article></div>
+    <div class="card-grid"><article class="card"><h3>Master UI · 자원과 앱</h3><p><a href="http://localhost:8080">localhost:8080 열기</a></p><ul><li>ALIVE Worker가 두 개 있는지</li><li>관찰 대기 중 Running Applications에 앱이 있는지</li><li>각 Worker에 Executor가 배정됐는지</li></ul></article><article class="card"><h3>Driver UI · 작업의 진행</h3><p><a href="http://localhost:4040">localhost:4040 열기</a></p><ul class="explanation-list"><li><strong>Jobs:</strong> 실행 요청과 완료 상태를 확인합니다.</li><li><strong>Stages:</strong> 작업을 나눈 처리 단계를 확인합니다.</li><li><strong>Executors:</strong> Driver와 Executor 정보를 확인합니다.</li></ul><p>합계 계산은 빠르게 끝날 수 있습니다. 120초 대기 시간에는 이미 완료된 작업과 앱 상태를 확인합니다.</p></article></div>
     <div class="callout"><strong>앱 종료 후 달라지는 상태</strong><ul class="explanation-list"><li><strong>Driver·4040 UI:</strong> 관찰 대기가 끝나고 앱이 종료되면 함께 사라집니다.</li><li><strong>Client 컨테이너:</strong> 앱 종료 후에도 계속 대기할 수 있습니다.</li></ul></div>
     <h3>화면이 기대와 다르면 최근 로그부터</h3>
     <p><strong>실행 위치: 같은 실습 폴더의 Windows PowerShell.</strong> 앱을 관찰 중이라면 두 번째 PowerShell을 열어 같은 폴더로 이동한 뒤 실행합니다.</p>
     <pre><code>docker compose logs --tail 80 spark-master spark-worker-1 spark-worker-2</code></pre>
     <ul class="explanation-list"><li><strong><code>--tail 80</code>:</strong> 최근 로그 80줄을 확인합니다.</li><li><strong>찾을 내용:</strong> Master 시작, Worker·앱 등록, Executor 시작과 오류 메시지.</li></ul><p>실시간 추적은 아래 명령을 사용합니다. <kbd>Ctrl</kbd>+<kbd>C</kbd>로 로그 추적을 끝냅니다.</p>
     <pre><code>docker compose logs -f spark-worker-1</code></pre>
-    <div class="table-wrap"><table><caption>증상에서 다음 확인으로</caption><thead><tr><th scope="col">증상</th><th scope="col">먼저 확인할 점</th></tr></thead><tbody>
+    <div class="table-wrap"><table><caption>증상별 점검 항목</caption><thead><tr><th scope="col">증상</th><th scope="col">먼저 확인할 점</th></tr></thead><tbody>
       <tr><th scope="row">Docker Server 연결 실패</th><td>Desktop이 실행 중인지, Engine running인지, WSL 상태가 정상인지 확인합니다.</td></tr>
       <tr><th scope="row">Compose 파일을 못 찾음</th><td>현재 폴더에 compose.yaml이 있는지 <code>Get-ChildItem</code>으로 봅니다.</td></tr>
       <tr><th scope="row">포트 사용 중 오류</th><td>오류에 나온 8080·8081·8082·4040을 다른 프로그램이나 이전 컨테이너가 사용 중인지 확인합니다. 실습 구성의 주소를 임의로 바꾸기 전에 충돌 원인을 찾습니다.</td></tr>
@@ -458,13 +458,13 @@ APP_STOPPED</code></pre><p><code>APP_ID=…</code>도 출력되며 값은 실행
       <tr><th scope="row">CHECK=PASS가 없거나 종료 코드가 0이 아님</th><td>오류가 난 첫 지점과 Master 주소·이미지 태그·Executor 상태를 확인합니다. 성공으로 기록하지 말고 로그를 근거로 원인을 좁힙니다.</td></tr>
     </tbody></table></div>
     <p><strong>확인 질문:</strong> 합계가 보인 후 4040이 닫혔습니다. 무조건 장애일까요? <code>APP_STOPPED</code>와 종료 코드 0이 확인되고 관찰 시간이 끝났다면 정상적인 종료입니다.</p>
-    <p class="source-note">출처: 강의 슬라이드 51–52 · <a href="../../실습자료/2장_실습자료/README.md">README의 관찰·종료 확인</a>. 증상별 표는 배포 설정을 기반으로 구성한 학습용 점검 안내입니다.</p>
+    <p class="source-note">출처: 강의 슬라이드 51–52 · <a href="../../실습자료/2장_실습자료/README.md">README의 관찰·종료 확인</a>. 증상별 점검 표는 보충 안내입니다.</p>
     <label class="completion"><input type="checkbox" data-complete="02-observe"> 이 내용을 이해했어요</label>
   </section>
 
   <section class="lesson-section" id="lifecycle" data-title="종료·재시작과 총정리">
     <div class="section-heading"><span class="section-number">10</span><h2>컨테이너 중지·재시작·정리하기</h2></div>
-    <p>앱을 종료해도 컨테이너는 남을 수 있습니다. 잠깐 쉬는지, 수업을 마치는지에 맞춰 환경의 수명을 관리합니다.</p>
+    <p>앱이 종료돼도 컨테이너는 남을 수 있습니다. 실습을 잠시 중단할 때는 컨테이너를 중지하고, 마칠 때는 제거합니다.</p>
     <div class="analogy" data-labelled=""><strong>학습용 비유 · 일시 정지와 자리 정리</strong><p>stop은 자리를 남긴 채 멈추기, start는 다시 시작하기, down은 자리 정리에 비유할 수 있습니다. 이미지와 호스트의 실습 파일은 남습니다.</p></div>
     <div class="table-wrap"><table><caption>종료 명령이 남기는 상태</caption><thead><tr><th scope="col">명령</th><th scope="col">컨테이너</th><th scope="col">다음 행동</th></tr></thead><tbody><tr><th scope="row"><code>stop</code></th><td>중지된 상태로 남음</td><td><code>start</code>로 같은 컨테이너 재시작</td></tr><tr><th scope="row"><code>start</code></th><td>기존의 중지된 컨테이너 실행</td><td>Master 상태와 Worker 재등록 확인</td></tr><tr><th scope="row"><code>down</code></th><td>이 Compose 프로젝트의 컨테이너와 기본 네트워크 제거</td><td>다음에는 사용할 네 서비스를 지정해 <code>up -d</code>로 다시 구성</td></tr></tbody></table></div>
     <h3>잠깐 중지하고 다시 시작할 때</h3>
@@ -478,10 +478,10 @@ docker compose ps -a</code></pre>
     <pre><code>docker compose down
 docker compose ps -a</code></pre>
     <p><strong>확인:</strong> 이 프로젝트의 컨테이너 목록이 비어야 합니다. Spark 이미지와 Windows의 apps 파일은 다음 실습에서 재사용합니다.</p><p>다시 시작할 때는 <a href="#cluster-check">클러스터 실행 단계</a>로 돌아가 네 서비스를 지정한 명령을 사용하세요.</p>
-    <h3>스스로 설명할 수 있으면 완료</h3>
+    <h3>학습 확인 항목</h3>
     <ul class="checklist"><li>이미지 하나로 역할이 다른 컨테이너 네 개를 만들 수 있다.</li><li>Master는 자원을 배정하고, Worker는 Executor를 관리하며, Driver는 Task를 조정한다.</li><li>Windows의 localhost:8082는 Worker 2 내부 8081로 연결된다.</li><li>로컬 이미지 검사, Worker 등록, 네트워크 검사, 계산 검증은 각각 다른 증거다.</li><li>입력 partition 4개와 전체 Executor core 2개는 다른 개념이다.</li><li>합계 5050, CHECK=PASS, APP_STOPPED와 종료 코드 0을 함께 확인한다.</li><li>stop과 down이 남기는 상태를 구분하고 다시 시작할 수 있다.</li></ul>
     <div class="quiz" data-answer="0" data-explanation="down으로 컨테이너와 기본 네트워크를 제거했으므로 up -d로 다시 만듭니다. 위 클러스터 실행 단계처럼 사용할 네 서비스를 지정하세요. start는 이미 존재하는 중지된 컨테이너를 시작합니다."><h3><code>docker compose down</code> 후 다음 수업에 다시 구성하려면?</h3><div class="quiz-options"><button type="button">docker compose up -d</button><button type="button">docker compose start</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
-    <details><summary>강의 제공 코드와 실행 조건 확인</summary><p>2장 강의 56슬라이드를 바탕으로 실행 순서를 정리했습니다. 아래 파일은 강의에서 제공한 실습 코드입니다. 파일을 같은 폴더 구조로 저장한 뒤 이 장의 준비·검사·제출 절차를 따라 실행하세요.</p><ul><li><a href="../../실습자료/2장_실습자료/README.md">README.md · 배포 절차와 Plan B</a></li><li><a href="../../실습자료/2장_실습자료/compose.yaml">compose.yaml · 서비스 구성 전체</a></li><li><a href="../../실습자료/2장_실습자료/apps/check_pyspark.py">check_pyspark.py · 이미지 검사</a></li><li><a href="../../실습자료/2장_실습자료/apps/check_network.py">check_network.py · 네트워크 검사</a></li><li><a href="../../실습자료/2장_실습자료/apps/run.sh">run.sh · 앱 제출 설정</a></li><li><a href="../../실습자료/2장_실습자료/apps/first_app.py">first_app.py · 계산과 정답 검증</a></li></ul><p>배포 README에는 제작 당시 Docker 데몬 미실행으로 실제 실행을 검증하지 못했다는 기록이 있습니다. 이 페이지는 원본 코드와 강의자료를 대조한 학습 안내이며, 위 체크리스트는 학생 PC에서 직접 확인해야 할 항목입니다.</p></details>
+    <details><summary>강의 제공 코드와 실행 조건 확인</summary><p>아래는 강의에서 제공한 실습 파일입니다. 같은 폴더 구조로 저장한 뒤 이 장의 준비·검사·제출 순서로 실행합니다.</p><ul><li><a href="../../실습자료/2장_실습자료/README.md">README.md · 배포 절차와 Plan B</a></li><li><a href="../../실습자료/2장_실습자료/compose.yaml">compose.yaml · 서비스 구성 전체</a></li><li><a href="../../실습자료/2장_실습자료/apps/check_pyspark.py">check_pyspark.py · 이미지 검사</a></li><li><a href="../../실습자료/2장_실습자료/apps/check_network.py">check_network.py · 네트워크 검사</a></li><li><a href="../../실습자료/2장_실습자료/apps/run.sh">run.sh · 앱 제출 설정</a></li><li><a href="../../실습자료/2장_실습자료/apps/first_app.py">first_app.py · 계산과 정답 검증</a></li></ul><p>제공 README의 안내는 실제 실행 검증을 거치지 않았으므로, 자신의 PC에서 위 확인 항목을 점검합니다.</p></details>
     <p class="source-note">출처: 강의 슬라이드 53–56 · <a href="../../실습자료/2장_실습자료/README.md">README의 종료 절차</a>.</p>
     <label class="completion"><input type="checkbox" data-complete="02-lifecycle"> 이 내용을 이해했어요</label>
   </section>

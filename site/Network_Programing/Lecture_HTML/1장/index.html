@@ -2,7 +2,7 @@
 <html lang="ko"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="1장 네트워크와 소켓 프로그래밍. TCP/IP부터 첫 소켓 통신까지, 원본 강의 도표와 함께 읽는 학부생용 해설.">
+  <meta name="description" content="1장 네트워크와 소켓 프로그래밍. TCP/IP 계층, 주소와 포트, 소켓 개념과 Ubuntu TCP 에코 실습.">
   <title>1장. 네트워크와 소켓 프로그래밍 · Network Notes</title>
   <link rel="stylesheet" href="../shared/styles.css">
   <script src="../shared/syntax-highlight.js" defer=""></script>
@@ -18,7 +18,7 @@
   <nav class="toplinks" aria-label="상단 메뉴"><a href="../index.html">전체 강의</a><a href="#practice">소켓 실습</a><a href="#sources">원본 자료</a><button class="print-btn" id="print-btn">인쇄 / PDF ↗</button></nav>
 </header>
 <aside class="sidebar" id="sidebar" aria-label="강의 목차">
-  <div class="sidebar-title">CONTENTS</div><div class="chapter-label">네트워크의 첫걸음.</div>
+  <div class="sidebar-title">CONTENTS</div><div class="chapter-label">네트워크 기초</div>
   <nav class="toc" aria-label="주제별 목차">
     <a href="#overview" aria-current="location"><span>00</span> 학습 범위·참고 자료</a>
     <a href="#internet"><span>01</span> 인터넷과 프로토콜</a>
@@ -33,7 +33,7 @@
     <a href="#practice"><span>09</span> 첫 번째 소켓 프로그램</a>
     <div class="toc-divider" role="presentation"></div>
     <a href="#review"><span>10</span> 이해도 체크</a>
-    <a href="#sources"><span>11</span> 원본 슬라이드와 참고 자료</a>
+    <a href="#sources"><span>11</span> 강의 출처와 참고 자료</a>
   </nav>
   <div class="progress-card"><div class="progress-label"><span>나의 학습 진도</span><span id="progress-text">0 / 9</span></div><progress id="progress" value="0" max="9" aria-label="학습 완료 주제 수"></progress><p id="storage-note">완료 체크는 이 브라우저의 현재 주소에 저장됩니다. 파일 이동·주소 변경 시 이어지지 않을 수 있습니다.</p></div>
 </aside>
@@ -44,9 +44,9 @@
 <section class="hero" id="overview" aria-labelledby="title">
   <div class="eyebrow">COMPUTER NETWORKS · CHAPTER 01</div>
   <h1 id="title">네트워크와<br><span>소켓 프로그래밍.</span></h1>
-  <p class="lead">하나의 메시지가 다른 컴퓨터에 도착하기까지.<br>인터넷의 구조부터 첫 소켓 통신까지, 연결의 원리를 차근차근 이해합니다.</p>
+  <p class="lead">인터넷의 구조와 데이터 전달 과정을 배웁니다.<br>소켓의 역할을 익힌 뒤 TCP 에코 프로그램을 실행합니다.</p>
   <div class="hero-actions"><a class="pill" href="#internet">첫 개념부터 시작하기 <span aria-hidden="true">→</span></a><a class="pill secondary" href="#practice">바로 실습하기</a></div>
-  <div class="meta"><span>학부생을 위한 개념 해설</span><span>원본 PDF 25쪽 반영</span><span>Ubuntu · C17 실습</span></div>
+  <div class="meta"><span>학부생을 위한 개념 해설</span><span>강의 자료 · PDF 25쪽</span><span>Ubuntu · C17 실습</span></div>
   <figure class="network-hero">
     <div class="diagram-label">A MESSAGE, ACROSS THE NETWORK</div>
     <div class="network-route" role="img" aria-label="송신 호스트의 데이터가 라우터와 인터넷, 다른 라우터를 거쳐 수신 호스트로 전달됩니다.">
@@ -60,7 +60,7 @@
     </div>
     <figcaption class="network-caption">응용프로그램 → 소켓 → 운영체제의 TCP/IP → 네트워크 → 상대 응용프로그램</figcaption>
   </figure>
-  <h2 style="font-size:22px;margin:37px 0 19px">이 장에서 연결할 네 가지 개념.</h2>
+  <h2 style="font-size:22px;margin:37px 0 19px">이 장의 네 가지 주제</h2>
   <div class="grid two">
     <a class="card card-link" href="#layers"><span class="big-num">01 / PROTOCOL</span><h3>통신의 약속</h3><p>네 계층의 역할과 데이터가 포장되는 과정을 설명합니다.</p><span class="go" aria-hidden="true">↗</span></a>
     <a class="card card-link" href="#sockets"><span class="big-num">02 / SOCKET</span><h3>프로그램의 연결점</h3><p>소켓을 데이터 타입, 통신 종단점, API로 이해합니다.</p><span class="go" aria-hidden="true">↗</span></a>
@@ -69,17 +69,17 @@
   </div>
   <aside class="note">
 <p><strong>읽는 방법</strong></p>
-<p>원본 강의의 네 주제를 학습 순서에 맞춰 나누었습니다. 본문에 적힌 PDF 쪽 번호는 설명의 근거 위치이며, 슬라이드에 인쇄된 번호와 다릅니다.</p>
-<p>“보충”은 이해와 실습을 위해 추가한 설명입니다. 원본 파일은 로컬에 보관하며, 이 페이지에서는 설명과 도식으로 내용을 확인합니다.</p>
+<p>PDF 쪽 번호는 강의 자료의 근거 위치이며, 슬라이드에 인쇄된 번호와 다릅니다.</p>
+<p>“보충”은 강의 자료에 덧붙인 설명이나 실습입니다.</p>
 </aside>
 </section>
 
 <section class="section" id="internet">
   <div class="section-top"><span class="kicker">01 / THE INTERNET</span><span class="source-ref">원본 PDF 3–4쪽 · 슬라이드 5–8</span></div>
-  <h2>인터넷은 네트워크들의 연결.</h2>
-  <p class="intro">내 프로그램이 만든 데이터는 여러 장비를 거쳐 상대 프로그램에 도착합니다. 이때 역할을 나누는 세 가지 단어가 호스트, 라우터, 프로토콜입니다.</p>
+  <h2>인터넷은 여러 네트워크의 연결</h2>
+  <p class="intro">프로그램이 만든 데이터는 여러 장비를 거쳐 상대 프로그램에 도착합니다. 데이터를 주고받는 장치는 호스트, 네트워크를 잇는 장치는 라우터이며, 통신 규칙을 프로토콜이라고 합니다.</p>
   <div class="grid three">
-    <article class="card"><span class="big-num">HOST</span><h3>호스트</h3><p>사용자의 응용프로그램이 실행되는 컴퓨터입니다. 노트북, 스마트폰, 서버처럼 데이터를 만들거나 최종적으로 소비하는 장치가 해당합니다.</p></article>
+    <article class="card"><span class="big-num">HOST</span><h3>호스트</h3><p>사용자의 응용프로그램이 실행되는 컴퓨터입니다. 노트북, 스마트폰, 서버처럼 데이터를 만들거나 최종적으로 사용하는 장치가 해당합니다.</p></article>
     <article class="card"><span class="big-num">ROUTER</span><h3>라우터</h3><p>서로 다른 네트워크를 잇고, 목적지 IP와 라우팅 정보를 보고 패킷을 다음 지점으로 넘깁니다. 한 번에 최종 목적지로 직접 보내는 것은 아닙니다.</p></article>
     <article class="card"><span class="big-num">PROTOCOL</span><h3>프로토콜</h3><p>데이터 형식, 주고받는 순서, 상황별 동작에 관한 약속입니다. 같은 선으로 연결되어 있어도 이 약속을 이해하지 못하면 올바른 통신이 어렵습니다.</p></article>
   </div>
@@ -93,17 +93,17 @@
 
 <section class="section" id="layers">
   <div class="section-top"><span class="kicker">02 / FOUR LAYERS</span><span class="source-ref">원본 PDF 5–6, 9쪽 · 슬라이드 9–12, 18</span></div>
-  <h2>네 개의 계층.<br>서로 다른 네 가지 책임.</h2>
+  <h2>TCP/IP의 네 계층과<br>각 계층의 역할</h2>
   <p class="intro">이 강의는 TCP/IP를 네 계층으로 설명합니다. 송신할 때는 위에서 아래로, 수신할 때는 아래에서 위로 데이터를 처리합니다.</p>
   <figure class="figure"><div class="layer-stack">
     <div class="layer"><b>응용 계층</b><span>어떤 의미의 데이터를 주고받을까?</span><small>HTTP · SMTP · FTP</small></div>
     <div class="layer"><b>전송 계층</b><span>어느 통신 종단점으로, 어떤 방식으로 전달할까?</span><small>TCP · UDP / 포트</small></div>
     <div class="layer"><b>인터넷 계층</b><span>어느 네트워크의 어느 주소로 전달할까?</span><small>IP / IP 주소</small></div>
     <div class="layer"><b>네트워크 접근 계층</b><span>바로 연결된 다음 지점에 어떻게 보낼까?</span><small>Ethernet · Wi-Fi</small></div>
-  </div><figcaption>원본의 4계층 도식을 재구성했습니다. 아래 계층은 위 계층이 사용할 전달 서비스를 제공합니다.</figcaption></figure>
+  </div><figcaption>아래 계층은 위 계층에 데이터 전달 서비스를 제공합니다.</figcaption></figure>
   <h3>1. 응용 계층 — 데이터에 의미를 부여한다.</h3>
-  <p>응용 계층은 프로그램끼리 주고받을 메시지의 형식과 처리 방법을 정합니다. 웹의 HTTP 요청·응답과 메일을 보내는 SMTP가 예입니다. 원본에는 오래전부터 쓰인 Telnet·FTP도 나옵니다.</p>
-<p>원본에 함께 등장하는 MIME은 콘텐츠의 종류와 표현 형식을 정하는 규약입니다. TCP처럼 데이터를 전달하는 역할은 아닙니다.</p>
+  <p>응용 계층은 프로그램끼리 주고받을 메시지의 형식과 처리 방법을 정합니다. 웹의 HTTP 요청·응답과 메일을 보내는 SMTP, 원격 접속용 Telnet, 파일 전송용 FTP가 예입니다.</p>
+<p>MIME은 콘텐츠의 종류와 표현 형식을 정하는 규약입니다. TCP처럼 데이터를 전달하지는 않습니다.</p>
   <h3>2. 전송 계층 — 프로그램의 통신을 구분한다.</h3>
   <p>전송 계층은 <strong>포트 번호</strong>를 사용해 통신 끝점을 구분합니다. 대표 프로토콜은 TCP와 UDP입니다.</p>
 <p>TCP는 데이터의 순서를 관리하고 필요한 재전송을 수행합니다. UDP는 데이터그램 단위로 전달하며, 기본 기능에 재전송이나 순서 보장은 없습니다.</p>
@@ -111,15 +111,15 @@
   <p>IP 주소는 논리적인 주소입니다. 라우터는 라우팅 정보를 바탕으로 다음 홉(next hop)을 결정합니다. IP 자체는 도착·순서·중복 방지를 보장하지 않는 최선형(best-effort) 전달을 제공하므로, 필요한 추가 기능을 위 계층이 맡습니다.</p>
   <h3>4. 네트워크 접근 계층 — 한 구간을 실제로 건넌다.</h3>
   <p>네트워크 하드웨어와 드라이버가 실제 연결된 구간에서 프레임을 전달합니다. 이더넷에서는 보통 48비트 MAC 주소를 사용합니다. MAC 주소는 IP 주소와 역할이 다르며, 모든 링크 기술이 같은 종류의 물리 주소를 쓰는 것은 아닙니다.</p>
-  <p class="note"><strong>보충 · 어디까지가 라우터의 역할일까?</strong><br>일반적인 IP 전달을 설명할 때 라우터는 인터넷 계층과 네트워크 접근 계층을 중심으로 봅니다. 중간 라우터가 사용자의 TCP 연결을 매번 새로 만드는 것은 아닙니다. 방화벽·NAT 같은 추가 기능은 별도로 구분합니다.</p>
+  <p class="note"><strong>보충 · 어디까지가 라우터의 역할일까?</strong><br>일반적인 IP 전달에서 라우터는 인터넷 계층의 경로 결정과 네트워크 접근 계층의 프레임 전달을 맡습니다. 중간 라우터가 사용자의 TCP 연결을 매번 새로 만드는 것은 아닙니다. 방화벽·NAT는 별도의 추가 기능입니다.</p>
 
   <label class="complete"><input type="checkbox" id="done-layers"> 각 계층의 역할과 사용하는 주소를 구분할 수 있어요</label>
 </section>
 
 <section class="section" id="transport">
   <div class="section-top"><span class="kicker">03 / TCP &amp; UDP</span><span class="source-ref">원본 PDF 7–9쪽 · 슬라이드 13–17</span></div>
-  <h2>흐름으로 보낼까.<br>상자에 담아 보낼까.</h2>
-  <p class="intro">TCP는 순서 있는 바이트의 흐름을, UDP는 경계가 있는 개별 데이터그램을 제공합니다. 이 차이는 프로그램의 수신 코드를 직접 바꿉니다.</p>
+  <h2>TCP의 바이트 스트림과<br>UDP의 데이터그램</h2>
+  <p class="intro">TCP는 순서가 있는 바이트 스트림을, UDP는 경계가 있는 개별 데이터그램을 전달합니다. 이에 따라 수신 코드가 데이터를 처리하는 방식도 달라집니다.</p>
   <div class="table-wrap"><table><caption class="mini-label">TCP와 UDP의 기본 서비스 비교</caption><thead><tr><th scope="col">관점</th><th scope="col">TCP</th><th scope="col">UDP</th></tr></thead><tbody>
     <tr><td>통신 준비</td><td>연결 설정 후 송수신</td><td>TCP와 같은 연결 설정 절차 없음</td></tr>
     <tr><td>손실·순서</td><td>재전송·순서 복원·중복 처리</td><td>기본적으로 복구·순서·중복 방지 보장 없음</td></tr>
@@ -142,11 +142,11 @@
     <article class="card"><span class="big-num">FRAMING 02</span><h3>길이를 먼저 보내기</h3><p><span class="code-label">[길이 5][Hello]</span>처럼 헤더 뒤에 본문을 둡니다. 예를 들어 4바이트 길이 헤더를 먼저 모으고, 지정된 바이트 수만큼 본문을 모읍니다. 헤더 자체도 여러 번에 나뉘어 도착할 수 있습니다.</p></article>
   </div>
   <p class="note"><strong>보충 · 길이는 문자 수가 아니라 바이트 수</strong><br>UTF-8의 “안녕”은 2글자지만 6바이트입니다. 길이 헤더의 크기·바이트 순서·최대 허용 길이와 텍스트 인코딩을 양쪽이 똑같이 정해야 합니다.</p>
-  <h3>UDP: 상자의 경계는 남지만, 상자가 사라질 수 있다.</h3>
+  <h3>UDP: 데이터그램 경계와 유실</h3>
   <p>UDP는 한 번 보낸 데이터그램의 경계를 유지합니다. 수신된 데이터그램 두 개가 하나의 메시지로 합쳐져 전달되지는 않습니다.</p>
 <p>다만 데이터가 사라지거나, 중복되거나, 순서가 바뀔 수 있습니다. 수신 버퍼가 너무 작으면 데이터그램 일부가 잘리고 나머지는 버려질 수 있습니다. <strong>경계를 유지한다는 것과 전달에 성공한다는 것은 다릅니다.</strong></p>
 <p>UDP에도 <code>connect()</code>를 사용할 수 있습니다. 같은 이름의 함수여도 TCP처럼 연결을 맺는 절차를 수행하는 것은 아닙니다.</p>
-  <p class="note"><strong>신뢰성을 정확히 이해하기</strong><br>TCP가 있어도 네트워크 단절이나 상대 프로그램 종료는 발생합니다. TCP의 전달 기능이 “상대 앱이 데이터를 처리하고 저장했다”는 확인까지 대신하지는 않습니다. 그런 확인이 필요하면 응용 프로토콜에 응답을 설계해야 합니다.<small>근거: <a href="https://man7.org/linux/man-pages/man7/tcp.7.html" target="_blank" rel="noopener">Linux tcp(7)</a> · <a href="https://man7.org/linux/man-pages/man7/udp.7.html" target="_blank" rel="noopener">Linux udp(7)</a></small></p>
+  <p class="note"><strong>TCP의 전달 보장과 응용프로그램의 처리</strong><br>TCP가 있어도 네트워크 단절이나 상대 프로그램 종료는 발생합니다. TCP의 전달 기능이 “상대 앱이 데이터를 처리하고 저장했다”는 확인까지 대신하지는 않습니다. 그런 확인이 필요하면 응용 프로토콜에 응답을 설계해야 합니다.<small>근거: <a href="https://man7.org/linux/man-pages/man7/tcp.7.html" target="_blank" rel="noopener">Linux tcp(7)</a> · <a href="https://man7.org/linux/man-pages/man7/udp.7.html" target="_blank" rel="noopener">Linux udp(7)</a></small></p>
 
 
   <label class="complete"><input type="checkbox" id="done-transport"> TCP에서 메시지 경계를 직접 처리해야 하는 이유를 설명할 수 있어요</label>
@@ -154,14 +154,14 @@
 
 <section class="section" id="encapsulation">
   <div class="section-top"><span class="kicker">04 / THE JOURNEY OF DATA</span><span class="source-ref">원본 PDF 10–12쪽 · 슬라이드 19–23</span></div>
-  <h2>보낼 때는 감싸고.<br>받을 때는 풀어낸다.</h2>
-  <p class="intro">계층은 자신의 일을 수행하는 데 필요한 제어 정보를 붙입니다. 이 과정을 캡슐화(encapsulation), 수신 측이 정보를 해석하고 벗기는 과정을 역캡슐화라고 합니다.</p>
+  <h2>송신 시 캡슐화와<br>수신 시 역캡슐화</h2>
+  <p class="intro">각 계층은 데이터에 필요한 제어 정보를 붙입니다. 이 과정을 캡슐화(encapsulation), 수신 측이 제어 정보를 해석하고 제거하는 과정을 역캡슐화라고 합니다.</p>
   <figure class="figure"><div class="mini-label">송신 측 · 위에서 아래로 캡슐화 ↓</div><div class="packet-stack">
     <div class="packet-line"><span class="layer-name">응용 계층</span><span class="p-data">응용 데이터</span></div>
     <div class="packet-line"><span class="layer-name">TCP</span><span class="p-tcp">TCP 헤더</span><span class="p-data">응용 데이터</span></div>
     <div class="packet-line"><span class="layer-name">IP</span><span class="p-ip">IP 헤더</span><span class="p-tcp">TCP 헤더</span><span class="p-data">응용 데이터</span></div>
     <div class="packet-line"><span class="layer-name">Ethernet</span><span class="p-eth">Ethernet 헤더</span><span class="p-ip">IP 헤더</span><span class="p-tcp">TCP 헤더</span><span class="p-data">응용 데이터</span><span class="p-eth">트레일러</span></div>
-  </div><figcaption>수신 측은 아래에서 위로 처리합니다 ↑. 원본의 송신·수신 도식을 한 그림으로 재구성했습니다. 블록 너비는 실제 헤더 크기나 데이터 길이를 의미하지 않습니다.</figcaption></figure>
+  </div><figcaption>수신 측은 아래에서 위로 처리합니다 ↑. 블록 너비는 실제 헤더 크기나 데이터 길이와 비례하지 않습니다.</figcaption></figure>
   <div class="grid two"><article class="card"><h3>헤더와 트레일러</h3><p>헤더(header)는 데이터 앞의 제어 정보입니다. TCP에는 포트·순서 정보 등이, IP에는 출발지·목적지 주소 등이 들어갑니다. 트레일러(trailer)는 뒤에 붙는 정보로, 이더넷의 프레임 오류 검사용 FCS가 예입니다.</p></article><article class="card"><h3>계층별 단위 이름</h3><p>TCP의 단위는 세그먼트, UDP의 단위는 데이터그램, IP에서는 패킷 또는 데이터그램, 링크 계층에서는 프레임이라고 부릅니다. “패킷”을 넓은 의미의 전송 단위로 쓰는 경우도 있습니다.</p></article></div>
   <h3>중간 라우터에서는 무엇이 바뀔까?</h3>
   <p>라우터는 들어온 링크의 프레임을 처리하고, IP 목적지와 라우팅 정보를 확인한 뒤 다음 링크에 맞는 새 프레임으로 전달합니다. 따라서 <strong>링크 계층 주소는 구간마다 달라질 수 있습니다.</strong> </p>
@@ -174,7 +174,7 @@
 
 <section class="section" id="address">
   <div class="section-top"><span class="kicker">05 / IP ADDRESS &amp; PORT</span><span class="source-ref">원본 PDF 12–14쪽 · 슬라이드 24–27</span></div>
-  <h2>어느 컴퓨터의,<br>어느 통신 종단점으로?</h2>
+  <h2>IP 주소로 목적지를,<br>포트로 통신을 구분</h2>
   <p class="intro">IP 주소로 네트워크상의 목적지를 지정하고, 전송 프로토콜과 포트 번호로 그 안의 통신을 구분합니다. 주소와 포트는 함께 읽어야 합니다.</p>
   <div class="address-example"><div class="mini-label">이 장의 실습에서 사용할 TCP 서버</div><div class="endpoint"><span class="ip">127.0.0.1</span><span>:</span><span class="port">9000</span></div><p>루프백 IP · 현재 운영체제 자신 <span aria-hidden="true">/</span> 포트 · 실습 서버의 접속 지점</p></div>
   <div class="grid two"><article class="card"><span class="big-num">IPv4 · 32 BITS</span><h3>192.0.2.10</h3><p>8비트씩 네 부분으로 나누어 10진수와 점으로 표시합니다. 각 부분은 0~255입니다. 이 주소는 문서 예시용입니다. 실습에서는 자기 자신을 가리키는 <code>127.0.0.1</code>을 사용합니다.</p></article><article class="card"><span class="big-num">IPv6 · 128 BITS</span><h3>2001:db8::10</h3><p>16비트씩 여덟 부분을 16진수와 콜론으로 표시하며, 연속된 0은 한 번의 <code>::</code>로 줄일 수 있습니다. 루프백은 <code>::1</code>입니다. 포트와 함께 쓸 때는 <code>[::1]:9000</code>처럼 주소를 대괄호로 감쌉니다.</p></article></div>
@@ -192,12 +192,12 @@
 
 <section class="section" id="model">
   <div class="section-top"><span class="kicker">06 / CLIENT &amp; SERVER</span><span class="source-ref">원본 PDF 14쪽 · 슬라이드 28 + 보충</span></div>
-  <h2>먼저 기다리는 쪽.<br>연결을 요청하는 쪽.</h2>
+  <h2>접속을 기다리는 서버와<br>연결을 요청하는 클라이언트</h2>
   <p class="intro">서버와 클라이언트는 프로그램이 맡는 역할입니다. TCP 서버는 접속을 기다리고, 클라이언트는 서버의 주소로 연결을 요청합니다.</p>
   <figure class="figure"><div class="sequence">
     <div><h4>서버 · 먼저 실행</h4><div class="step">socket()<small>대기용 소켓 생성</small></div><div class="arrow">↓</div><div class="step">bind() → listen()<small>주소를 정하고 접속 대기 상태로</small></div><div class="arrow">↓</div><div class="step key">accept()<small>연결을 받아 새 통신용 소켓 반환</small></div><div class="arrow">↓</div><div class="step">recv() / send()<small>클라이언트와 양방향 데이터 교환</small></div><div class="arrow">↓</div><div class="step">close()<small>소켓 자원 해제</small></div></div>
     <div><h4>클라이언트 · 나중에 실행</h4><div class="step">socket()<small>소켓 생성</small></div><div class="arrow">↓</div><div class="step">서버 IP + 포트 지정<small>예: 127.0.0.1:9000</small></div><div class="arrow">↓</div><div class="step key">connect()<small>서버에 연결 요청 →</small></div><div class="arrow">↓</div><div class="step">send() / recv()<small>서버와 양방향 데이터 교환</small></div><div class="arrow">↓</div><div class="step">close()<small>소켓 자원 해제</small></div></div>
-  </div><figcaption>보충: 기본적인 블로킹 TCP 프로그램의 호출 흐름입니다. 서로 마주 놓인 호출이 매번 정확히 동시에 실행된다는 뜻은 아닙니다.</figcaption></figure>
+  </div><figcaption>보충: 블로킹 TCP 프로그램의 호출 순서이며, 양쪽의 같은 높이에 있는 호출이 동시에 실행된다는 뜻은 아닙니다.</figcaption></figure>
   <p>연결된 뒤에는 양쪽 모두 데이터를 보내고 받을 수 있습니다. “서버는 받기만 하고 클라이언트는 보내기만 한다”는 뜻이 아닙니다. 같은 컴퓨터에서도 서버 프로그램과 클라이언트 프로그램을 따로 실행해 통신할 수 있습니다.</p>
   <aside class="note">
 <p><strong>accept()가 돌려주는 소켓</strong></p>
@@ -210,11 +210,11 @@
 
 <section class="section" id="sockets">
   <div class="section-top"><span class="kicker">07 / WHAT IS A SOCKET?</span><span class="source-ref">원본 PDF 15–17쪽 · 슬라이드 30–34</span></div>
-  <h2>소켓 하나를 이해하는<br>세 가지 관점.</h2>
-  <p class="intro">“소켓은 연결점이다”만으로는 코드를 읽기 어렵습니다. 코드에서 보이는 값, 통신에서 맡는 역할, 운영체제와의 접점을 함께 봅시다.</p>
+  <h2>소켓의 식별자·종단점·API:<br>세 가지 관점</h2>
+  <p class="intro">소켓은 코드에서 사용하는 식별자, 데이터를 주고받는 종단점, 운영체제의 통신 기능을 호출하는 API라는 세 관점으로 설명할 수 있습니다.</p>
   <div class="grid three"><article class="card"><span class="big-num">01 / DATA TYPE</span><h3>다루기 위한 값</h3><p>Linux에서 <code>socket()</code>은 정수형 파일 디스크립터를 반환합니다. 이 값은 운영체제가 관리하는 소켓 객체를 참조하는 식별자입니다. 숫자 자체에 모든 연결 정보가 들어 있는 것은 아닙니다.</p></article><article class="card"><span class="big-num">02 / ENDPOINT</span><h3>통신의 종단점</h3><p>프로그램이 데이터를 주고받는 끝점입니다. 인터넷 소켓은 프로토콜, 로컬 주소·포트, 연결된 경우 상대 주소·포트 같은 정보와 관련됩니다. 생성 직후에는 주소가 아직 정해지지 않을 수 있습니다.</p></article><article class="card"><span class="big-num">03 / INTERFACE</span><h3>운영체제에 대한 API</h3><p><code>socket()</code>, <code>connect()</code>, <code>send()</code>, <code>recv()</code>처럼 통신 서비스를 요청하는 함수 집합입니다. 응용프로그램이 전송 계층 서비스를 사용하는 접점으로 이해할 수 있습니다.</p></article></div>
-  <h3>전화에 비유하면 이해가 쉽다.</h3>
-  <p>원본은 사람을 응용프로그램, 전화기를 소켓에 대응시킵니다. 대표 전화번호를 IP 주소, 내선 번호를 포트에 비유하면 목적지 구분도 이해하기 쉽습니다. 다만 소켓은 실제 전화기 같은 물리 장치가 아니라 <strong>운영체제가 관리하는 소프트웨어 자원</strong>입니다.</p>
+  <h3>전화 비유로 보는 소켓</h3>
+  <p>강의의 전화 비유에서 사람은 응용프로그램, 전화기는 소켓에 해당합니다. 대표 전화번호는 IP 주소, 내선 번호는 포트에 비유할 수 있습니다. 다만 소켓은 물리 장치가 아니라 <strong>운영체제가 관리하는 소프트웨어 자원</strong>입니다.</p>
   <div class="codebox"><div class="codehead"><span>Ubuntu · C17 / 개념을 보여 주는 코드 조각</span><button class="copy-btn" type="button">복사</button></div><pre><code data-language="c">int fd = socket(AF_INET, SOCK_STREAM, 0);
 /* fd가 -1이면 생성 실패. 성공하면 이후 호출에서 fd로 소켓을 참조한다. */
 /* AF_INET: IPv4 / SOCK_STREAM: 스트림 / 여기에서 0: 기본 TCP 선택 */</code></pre></div>
@@ -226,7 +226,7 @@
 
 <section class="section" id="winsock">
   <div class="section-top"><span class="kicker">08 / WINDOWS &amp; LINUX</span><span class="source-ref">원본 PDF 18–21쪽 · 슬라이드 36–41</span></div>
-  <h2>개념은 이어지고.<br>플랫폼의 차이는 남는다.</h2>
+  <h2>Windows Winsock과<br>Linux 소켓의 차이</h2>
   <p class="intro">Winsock은 Berkeley UNIX 소켓 인터페이스의 개념을 Windows에서 사용할 수 있게 발전시킨 API입니다. 함수와 흐름은 비슷하지만 초기화, 자료형, 종료와 오류 처리에는 차이가 있습니다.</p>
   <div class="table-wrap"><table><thead><tr><th scope="col">항목</th><th scope="col">Ubuntu / POSIX 소켓</th><th scope="col">Windows / Winsock</th></tr></thead><tbody>
     <tr><td>소켓 자료형</td><td><code>int</code> 파일 디스크립터</td><td><code>SOCKET</code></td></tr>
@@ -237,8 +237,8 @@
     <tr><td>전체 사용 정리</td><td>각 자원 해제</td><td>소켓 해제 후 <code>WSACleanup()</code></td></tr>
     <tr><td>대표 헤더·링크</td><td><code>sys/socket.h</code>, <code>arpa/inet.h</code><br>기본 소켓에 별도 Winsock 링크 불필요</td><td><code>winsock2.h</code>, <code>ws2tcpip.h</code><br><code>Ws2_32.lib</code> / MinGW의 <code>-lws2_32</code></td></tr>
   </tbody></table></div>
-  <p class="note"><strong>환경 구분</strong><br>Windows 11 위에서 WSL의 Ubuntu 터미널을 쓰는 경우, 이 장의 Linux 예제는 <strong>Ubuntu용 실행 파일</strong>로 빌드합니다. 원본 Windows 화면의 <code>-lws2_32</code> 옵션을 Ubuntu GCC 명령에 붙이지 않습니다.<small>근거: <a href="https://learn.microsoft.com/en-us/windows/win32/winsock/initializing-winsock" target="_blank" rel="noopener">Microsoft · Winsock 초기화</a> · <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-closesocket" target="_blank" rel="noopener">closesocket</a></small></p>
-  <h3>낮은 수준의 제어에는 설계 책임이 따른다.</h3>
+  <p class="note"><strong>환경 구분</strong><br>Windows 11 위에서 WSL의 Ubuntu 터미널을 쓰는 경우, 이 장의 Linux 예제는 <strong>Ubuntu용 실행 파일</strong>로 빌드합니다. Windows용 <code>-lws2_32</code> 옵션을 Ubuntu GCC 명령에 붙이지 않습니다.<small>근거: <a href="https://learn.microsoft.com/en-us/windows/win32/winsock/initializing-winsock" target="_blank" rel="noopener">Microsoft · Winsock 초기화</a> · <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-closesocket" target="_blank" rel="noopener">closesocket</a></small></p>
+  <h3>소켓 프로그램에서 정해야 할 사항</h3>
   <p>소켓은 범용적인 통신 인터페이스이므로 세부 제어와 이식에 유리합니다. 반면 메시지 형식·길이·종료 절차·오류 처리를 프로그램이 정해야 합니다. </p>
 <p>서로 다른 바이트 순서와 자료형 크기를 고려해야 하며, C 구조체를 메모리 그대로 보내면 패딩·정렬·표현 차이 때문에 해석이 어긋날 수 있습니다.</p>
   <aside class="note">
@@ -247,8 +247,8 @@
 <p>텍스트나 여러 필드를 보내려면 바이트로 표현할 형식도 정해야 합니다. 이를 <strong>직렬화</strong>라고 합니다.</p>
 <p>TCP 코드를 UDP로 바꿀 때는 소켓 종류뿐 아니라 송수신 처리도 바뀝니다. 두 프로토콜이 데이터를 전달하는 방식이 다르기 때문입니다.</p>
 </aside>
-  <details class="history"><summary>원본의 역사·지원 버전 표 읽기</summary><p>원본은 Windows 95의 Winsock 1.1, 이후 Winsock 2.2 지원, IPv4·IPv6·Bluetooth·IrDA의 과거 도입 시점을 설명합니다. 이 표는 당시의 발전 과정에 대한 자료이며 현재 PC의 지원 기능을 보장하는 점검표로 사용하지 않습니다. </p>
-<p>원본의 GUI·메시지 처리·멀티스레드 확장은 Windows API의 특징을 설명하는 문맥입니다. Linux도 GUI와 멀티스레드를 지원하므로 “Windows만 멀티스레드를 지원한다”는 의미가 아닙니다.</p><p>원본 구조도는 Winsock 1.x 응용프로그램, <code>WSOCK32.DLL</code>, Winsock 2.x의 <code>WS2_32.DLL</code>, 확장 API와 프로토콜 제공자 사이의 관계를 보여 줍니다. 학습 시에는 응용프로그램이 공개 API를 호출하고, 구현 라이브러리와 하부 프로토콜이 처리를 맡는다는 구조에 집중하세요.</p></details>
+  <details class="history"><summary>Winsock의 역사와 지원 버전</summary><p>강의 자료는 Windows 95의 Winsock 1.1, 이후 Winsock 2.2 지원과 IPv4·IPv6·Bluetooth·IrDA의 도입 시점을 다룹니다. 과거 발전 과정에 관한 자료이므로 현재 PC의 지원 기능과는 다를 수 있습니다. </p>
+<p>강의의 GUI·메시지 처리·멀티스레드 확장은 Windows API의 특징을 설명합니다. Linux도 GUI와 멀티스레드를 지원합니다.</p><p>강의 구조도는 Winsock 1.x 응용프로그램, <code>WSOCK32.DLL</code>, Winsock 2.x의 <code>WS2_32.DLL</code>, 확장 API와 프로토콜 제공자의 관계를 보여 줍니다. 응용프로그램이 공개 API를 호출하면 구현 라이브러리와 하부 프로토콜이 통신을 처리합니다.</p></details>
 
 
   <label class="complete"><input type="checkbox" id="done-winsock"> Winsock과 Linux에서 달라지는 초기화·종료·오류 처리를 알아요</label>
@@ -256,12 +256,12 @@
 
 <section class="section" id="practice">
   <div class="section-top"><span class="kicker">09 / YOUR FIRST CONNECTION</span><span class="source-ref">원본 PDF 22–24쪽 · 슬라이드 43–48 + 보충 실습</span></div>
-  <h2>“Hello, network!”<br>직접 보내고, 돌려받기.</h2>
-  <p class="intro">원본의 실행 화면을 읽는 데서 한 걸음 더 나아가, 같은 Ubuntu 안의 두 터미널로 TCP 에코 통신을 실습합니다. 에코 서버는 받은 바이트를 그대로 돌려주는 프로그램입니다.</p>
+  <h2>“Hello, network!”<br>TCP 에코 실습</h2>
+  <p class="intro">같은 Ubuntu 안의 두 터미널에서 TCP 에코 통신을 실습합니다. 에코 서버는 받은 바이트를 그대로 돌려주는 프로그램입니다.</p>
   <aside class="note">
-<p><strong>원본과 아래 실습의 차이</strong></p>
-<p>원본의 Windows 화면은 Dev-C++·Winsock 설정과 Telnet 통신을 보여 줍니다. Linux 화면은 <code>g++</code>·<code>make</code>를 확인하고 IPv6 루프백 <code>::1</code>의 9000번 포트에 접속하는 예입니다.</p>
-<p>아래 실습은 별도로 작성한 <strong>C17·IPv4·클라이언트 한 명</strong>의 에코 예제입니다. 원본 화면의 전체 소스 코드를 복원한 것은 아닙니다.</p>
+<p><strong>강의 예시와 보충 실습의 차이</strong></p>
+<p>강의의 Windows 예시는 Dev-C++·Winsock 설정과 Telnet 통신을 다룹니다. Linux 예시는 <code>g++</code>·<code>make</code>를 확인하고 IPv6 루프백 <code>::1</code>의 9000번 포트에 접속하는 예입니다.</p>
+<p>아래 보충 실습은 <strong>C17·IPv4·클라이언트 한 명</strong>의 에코 예제입니다.</p>
 </aside>
   <h3>1. Ubuntu에서 준비하기</h3>
   <p>Ubuntu 초기 설정을 마친 뒤 진행합니다. 아직 준비하지 않았다면 프로젝트 루트의 <code>wsl-ubuntu-gcc-guide.html</code> 가이드를 참고하세요. 강의 폴더만 별도로 받은 경우 아래 Ubuntu 공식 안내를 사용할 수 있습니다. </p>
@@ -269,9 +269,9 @@
   <div class="codebox"><div class="codehead"><span>Ubuntu · Bash / GCC가 없을 때 개발 도구 설치</span><button class="copy-btn" type="button">복사</button></div><pre><code data-language="bash">sudo apt update
 sudo apt install build-essential gdb
 gcc --version</code></pre></div>
-  <p>목적은 C 컴파일러와 기본 개발 도구를 준비하는 것입니다. 마지막 명령에서 GCC 버전이 출력되면 다음 단계로 진행합니다. <a href="https://ubuntu.com/developers/docs/howto/gcc-setup/" target="_blank" rel="noopener">Ubuntu 공식 개발 환경 안내 ↗</a></p>
+  <p>C 컴파일러와 기본 개발 도구를 설치합니다. 마지막 명령에서 GCC 버전이 출력되면 다음 단계로 진행합니다. <a href="https://ubuntu.com/developers/docs/howto/gcc-setup/" target="_blank" rel="noopener">Ubuntu 공식 개발 환경 안내 ↗</a></p>
   <div class="download-row"><a href="examples/echo_server.c" download="">서버 소스 내려받기 ↓</a><a href="examples/echo_client.c" download="">클라이언트 소스 내려받기 ↓</a></div>
-  <p>현재 프로젝트 위치를 기준으로 제공된 소스를 Linux 홈으로 복사합니다. 경로에 있는 <code>USER</code>는 이 프로젝트의 Windows 계정 폴더 이름입니다. 다른 PC나 이동한 폴더에서는 출발 경로를 바꾸세요.</p>
+  <p>제공된 소스를 Linux 작업 폴더로 복사합니다. 경로의 <code>USER</code>는 Windows 계정 폴더 이름으로 바꾸고, 출발 경로는 소스를 저장한 위치에 맞추세요.</p>
   <div class="codebox"><div class="codehead"><span>Ubuntu · Bash / 두 소스를 Linux 작업 폴더에 복사</span><button class="copy-btn" type="button">복사</button></div><pre><code data-language="bash">mkdir -p ~/projects/network-ch01
 cp /mnt/c/Users/USER/Desktop/Network_Programing/Lecture_HTML/1장/examples/echo_server.c ~/projects/network-ch01/
 cp /mnt/c/Users/USER/Desktop/Network_Programing/Lecture_HTML/1장/examples/echo_client.c ~/projects/network-ch01/
@@ -521,7 +521,7 @@ int main(void)
 </code></pre></div></details>
   <h3>예상과 다를 때 확인하기</h3>
   <div class="table-wrap"><table><thead><tr><th scope="col">현상</th><th scope="col">확인할 내용</th></tr></thead><tbody><tr><td>gcc: command not found</td><td>Ubuntu에 개발 도구를 설치했는지 확인합니다. Windows의 컴파일러 설치와 별개입니다.</td></tr><tr><td>Connection refused</td><td>서버가 먼저 실행 중인지, 동일한 Ubuntu 환경과 주소·포트를 사용하는지 확인합니다.</td></tr><tr><td>Address already in use</td><td>이전 서버 등 다른 프로세스가 포트를 사용 중일 수 있습니다. 자신이 띄운 서버 터미널에서 Ctrl+C로 종료한 뒤 다시 실행합니다.</td></tr><tr><td>서버가 멈춘 것처럼 보임</td><td>대기 메시지 이후 accept()가 클라이언트를 기다리는 것은 정상입니다. 터미널 B에서 클라이언트를 실행합니다.</td></tr><tr><td>No such file or directory</td><td>현재 위치, 소스 복사 경로, 컴파일 오류 여부를 확인합니다. 실행은 ./echo_server처럼 경로를 명시합니다.</td></tr></tbody></table></div>
-  <p class="mini-label" id="compile-status">검증 완료: Ubuntu-22.04 · GCC 11.4.0에서 C17 및 경고 옵션으로 컴파일했습니다. 기본 에코 통신, 여러 조각으로 나눈 8,195바이트 바이너리 데이터의 반환, EOF 종료, 서버가 없을 때의 접속 오류 처리를 확인했습니다.</p>
+  <p class="mini-label" id="compile-status">실행 기록: Ubuntu-22.04 · GCC 11.4.0, C17·경고 옵션에서 기본 에코 통신, 분할 전송한 8,195바이트 바이너리 데이터 반환, EOF 종료, 서버가 없을 때의 접속 오류 처리를 확인했습니다.</p>
 
 
 
@@ -530,7 +530,7 @@ int main(void)
 
 <section class="section" id="review">
   <div class="section-top"><span class="kicker">10 / CHECK YOUR UNDERSTANDING</span><span class="source-ref">보충 · 자기 점검</span></div>
-  <h2>설명할 수 있다면,<br>연결된 지식입니다.</h2>
+  <h2>이해도<br>체크</h2>
   <p class="intro">먼저 자신의 말로 답해 보세요. 질문을 누르면 해설이 펼쳐집니다.</p>
   <details class="quiz-item"><summary>01. TCP로 3번 보냈는데 recv()가 2번만 반환해도 정상일까?</summary><p>그럴 수 있습니다. TCP는 송신 호출 횟수가 아니라 바이트의 순서를 보존합니다. 받은 바이트를 누적하고, 응용 프로토콜의 규칙으로 메시지를 분리해야 합니다.</p></details>
   <details class="quiz-item"><summary>02. UDP가 메시지 경계를 유지한다면 재전송도 해 줄까?</summary><p>아닙니다. 경계 유지와 신뢰성은 다른 특성입니다. 도착한 데이터그램은 구분되지만 유실될 수도 있습니다. 필요하다면 응용 계층이 복구 정책을 정해야 합니다.</p></details>
@@ -539,22 +539,22 @@ int main(void)
   <details class="quiz-item"><summary>05. Ubuntu 프로그램에 WSAStartup()과 -lws2_32가 필요할까?</summary><p>필요하지 않습니다. 두 항목은 Windows Winsock 사용과 관련됩니다. WSL의 Ubuntu에서 빌드하는 Linux 소켓 코드는 POSIX/Linux API를 사용합니다.</p></details>
   <details class="quiz-item"><summary>06. 실습 클라이언트에서 shutdown(SHUT_WR)을 빼면 어떻게 될까?</summary><p>클라이언트는 응답을 받은 뒤에도 EOF를 기다리고, 서버는 다음 데이터를 기다릴 수 있습니다. 양쪽이 상대의 다음 동작을 기다리는 상황입니다. 데이터 형식뿐 아니라 “누가 언제 송신을 끝내는가”도 프로토콜의 일부입니다.</p></details>
   <details class="quiz-item"><summary>07. recv() 결과를 printf("%s", buffer)로 바로 출력해도 될까?</summary><p>안전하다고 볼 수 없습니다. recv()는 문자열 종료 문자를 넣지 않습니다. 버퍼 밖을 읽지 않도록 받은 길이를 사용하거나, 충분한 공간을 확보하고 적절하게 NUL 종료를 처리해야 합니다. 바이너리 데이터는 문자열과 다르게 다룹니다.</p></details>
-  <div class="note"><strong>이 장의 연결 고리</strong><br>응용프로그램은 소켓 API로 운영체제에 통신을 요청합니다. 전송 계층은 포트로 통신을 구분하고, IP는 네트워크를 넘어 목적지로 전달하며, 네트워크 접근 계층은 실제 한 구간을 건넙니다. 그 위에서 프로그램은 메시지의 의미와 경계를 정합니다.</div>
+  <div class="note"><strong>통신 흐름 정리</strong><br>응용프로그램은 메시지의 의미와 경계를 정하고 소켓 API로 운영체제에 통신을 요청합니다. 전송 계층은 포트로 통신을 구분하고, IP는 네트워크를 넘어 목적지로 데이터를 전달합니다. 네트워크 접근 계층은 연결된 한 구간에서 프레임을 전달합니다.</div>
 </section>
 
 <section class="section" id="sources">
   <div class="section-top"><span class="kicker">11 / REFERENCES</span><span class="source-ref">제공 강의 25쪽 기준</span></div>
   <h2>학습 범위와 참고 자료</h2>
-  <p class="intro">제공 강의의 네트워크 구조와 소켓 개념을 본문 도식으로 풀어 설명했습니다. 아래 표에서 주제별 근거 위치를 확인할 수 있습니다. TCP 에코 전체 코드와 실행 절차는 직접 통신 흐름을 확인하기 위한 보충 실습입니다.</p>
+  <p class="intro">아래 표는 각 주제에 해당하는 강의 자료의 위치입니다. TCP 에코 코드와 실행 절차는 보충 실습입니다.</p>
 
 
 
-  <h3>원본 반영 범위</h3>
+  <h3>주제별 강의 출처</h3>
   <div class="table-wrap"><table><thead><tr><th scope="col">원본 PDF</th><th scope="col">주요 내용·시각요소</th><th scope="col">HTML 위치</th></tr></thead><tbody><tr><td>1–2쪽</td><td>제목, 학습 목표, 4개 주제 목차</td><td><a href="#overview">학습 지도</a></td></tr><tr><td>3–6쪽</td><td>호스트·라우터, TCP/IP 구조, 계층 도식</td><td><a href="#internet">인터넷</a> · <a href="#layers">네 계층</a></td></tr><tr><td>7–9쪽</td><td>TCP/UDP 비교, 스트림·프레이밍, 데이터그램</td><td><a href="#transport">TCP와 UDP</a></td></tr><tr><td>10–12쪽</td><td>헤더와 트레일러, 송수신 캡슐화, 계층별 경로</td><td><a href="#encapsulation">데이터 이동</a></td></tr><tr><td>12–14쪽</td><td>IPv4/IPv6, 포트 표, 도메인, 서버·클라이언트</td><td><a href="#address">주소</a> · <a href="#model">통신 역할</a></td></tr><tr><td>15–17쪽</td><td>전화 비유, 파일과 소켓 비교, 종단점·API</td><td><a href="#sockets">소켓의 세 관점</a></td></tr><tr><td>18–21쪽</td><td>Winsock 역사, 차이·장단점, DLL 구조도</td><td><a href="#winsock">플랫폼 비교</a></td></tr><tr><td>22–24쪽</td><td>Dev-C++ 설정, 서버·Telnet·Linux 실행 화면</td><td><a href="#practice">첫 소켓 프로그램</a></td></tr><tr><td>25쪽</td><td>마무리 슬라이드</td><td>별도 학습 개념 없음</td></tr></tbody></table></div>
   <h3>보충 설명의 참고 문서</h3>
   <ul class="source-list"><li><a href="https://man7.org/linux/man-pages/man2/socket.2.html" target="_blank" rel="noopener">Linux man-pages · socket(2)</a> — 소켓 생성, 자료형 및 인터페이스.</li><li><a href="https://man7.org/linux/man-pages/man7/tcp.7.html" target="_blank" rel="noopener">Linux man-pages · tcp(7)</a> / <a href="https://man7.org/linux/man-pages/man7/udp.7.html" target="_blank" rel="noopener">udp(7)</a> — 바이트 스트림, 데이터그램, 전달 특성.</li><li><a href="https://man7.org/linux/man-pages/man2/recvmsg.2.html" target="_blank" rel="noopener">Linux man-pages · recv(2)</a> — 수신 길이, 반환값과 오류 처리.</li><li><a href="https://www.iana.org/assignments/service-names-port-numbers" target="_blank" rel="noopener">IANA · Service Name and Transport Protocol Port Number Registry</a> — 포트 번호의 분류.</li><li><a href="https://learn.microsoft.com/en-us/windows/win32/winsock/initializing-winsock" target="_blank" rel="noopener">Microsoft Learn · Initializing Winsock</a> / <a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-closesocket" target="_blank" rel="noopener">closesocket</a> — 초기화·정리·Windows API 차이.</li><li><a href="https://ubuntu.com/developers/docs/howto/gcc-setup/" target="_blank" rel="noopener">Ubuntu · GCC 개발 환경 설정</a> — Ubuntu 개발 도구 준비.</li></ul>
-  <p class="mini-label">작성 기준: 제공된 1장 PDF 및 2026-09-14에 확인한 참고 문서. 본문의 PDF 쪽 번호는 제공 자료의 근거 위치입니다. </p>
-<p class="mini-label">각 장은 공통 스타일·스크립트와 로고를 공유합니다. 서버 없이 이 HTML을 직접 열 수 있습니다. 다른 위치로 옮길 때는 Lecture_HTML 폴더 전체를 복사하세요. 외부 참고 문서 방문에는 인터넷 연결이 필요합니다.</p>
+  <p class="mini-label">출처: 1장 PDF와 참고 문서(2026-09-14 확인). </p>
+<p class="mini-label">서버 없이 이 HTML을 직접 열 수 있습니다. 다른 위치로 옮길 때는 Lecture_HTML 폴더 전체를 복사하세요. 외부 참고 문서는 인터넷 연결이 필요합니다.</p>
 </section>
 <footer class="footer"><span>Network Notes · Chapter 01</span><span>네트워크와 소켓 프로그래밍 <span aria-hidden="true">/</span> <a href="#overview">맨 위로 ↑</a></span></footer>
 </div>

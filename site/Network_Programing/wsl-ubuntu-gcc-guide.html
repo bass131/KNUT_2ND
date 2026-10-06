@@ -141,7 +141,7 @@ footer p{color:inherit}
 </aside>
 <main id="main">
 <header class="hero">
-<div class="eyebrow">WINDOWS에서 시작하는 LINUX</div>
+<div class="eyebrow">Windows 11 · Linux 개발 환경</div>
 <h1>Windows 11에서 Ubuntu와 GCC 시작하기</h1>
 <p class="lead">WSL 2와 Ubuntu를 설치하고 GCC로 C 프로그램을 빌드합니다.</p>
 <p class="lead">명령을 실행하기 전에 코드 위에 표시된 터미널을 확인하세요.</p>
@@ -160,11 +160,11 @@ footer p{color:inherit}
 <p>WSL은 Windows에서 리눅스 환경을 실행하는 기능입니다. Ubuntu는 여기에 설치할 리눅스 배포판이며, GCC는 Ubuntu 안에서 사용할 컴파일러입니다.</p>
 <ul><li>Windows 11 PC, 인터넷 연결, Windows 관리자 권한을 준비합니다.</li><li>진행 중인 작업을 저장합니다. 설치 중 재부팅이 필요할 수 있습니다.</li><li>작업 관리자 → 성능 → CPU에서 <strong>가상화: 사용</strong> 여부를 확인합니다. 꺼져 있다면 PC 제조사의 BIOS/UEFI 안내를 확인하세요.</li></ul>
 <div class="cards"><div class="card"><strong>Windows PowerShell</strong><p>WSL 설치·업데이트·상태 확인에 사용합니다. 시작 메뉴에서 PowerShell을 검색하세요.</p></div><div class="card"><strong>Ubuntu 터미널 / Bash</strong><p>패키지 설치·파일 작업·GCC 컴파일에 사용합니다. 시작 메뉴에서 Ubuntu를 실행하세요.</p></div></div>
-<div class="note">명령어는 한 줄씩 실행하고 결과를 확인하세요. 코드 블록에는 <code>$</code>, <code>PS&gt;</code> 같은 프롬프트를 넣지 않았으므로 그대로 복사할 수 있습니다.</div>
+<div class="note">명령어는 한 줄씩 실행하고 결과를 확인하세요. 코드에는 <code>$</code>, <code>PS&gt;</code> 같은 프롬프트가 없으므로 그대로 복사할 수 있습니다.</div>
 </section>
 <section id="install"><h2><span class="num">STEP 02</span>WSL 2와 Ubuntu 설치</h2>
 <div class="note blue">이미 Ubuntu를 설치했다면 <a href="#launch">Ubuntu 실행 가이드</a>에서 배포판을 확인하고 바로 실행하세요.</div>
-<p>교수님 추천 자료인 <a href="https://wikidocs.net/219899">위키독스 「2.2. WSL 설치와 실행」</a>의 배포판 설치·계정 생성 흐름을 따릅니다. 아래는 자료의 예시인 <strong>Ubuntu 22.04</strong> 기준이며, 수업에서 지정한 버전이 있으면 그 버전을 우선하세요.</p>
+<p>교수님이 추천한 설치 안내는 <a href="https://wikidocs.net/219899">위키독스 「2.2. WSL 설치와 실행」</a>입니다. 아래 설치 명령은 이 자료에서 사용하는 <strong>Ubuntu 22.04</strong> 기준입니다. 수업에서 지정한 버전이 있으면 그 버전을 사용하세요.</p>
 <h3>① 먼저 설치 상태 확인</h3>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl --version
 wsl --status
@@ -174,11 +174,11 @@ wsl -l -v</code></pre></div>
 <h3>② 설치할 배포판 선택</h3>
 <p>시작 메뉴에서 PowerShell을 검색해 <strong>관리자 권한으로 실행</strong>합니다. 먼저 온라인 목록에 원하는 배포판 이름이 있는지 확인하세요.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --list --online</code></pre></div>
-<p>Ubuntu가 아직 설치되지 않았다면 아래 명령을 실행합니다. 이미 수업에 맞는 Ubuntu가 등록되어 있다면 중복 설치하지 않고 해당 배포판을 사용하면 됩니다.</p>
+<p>Ubuntu가 없으면 아래 명령으로 설치합니다. 수업에 맞는 Ubuntu가 이미 등록되어 있으면 해당 배포판을 사용하세요.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --install -d Ubuntu-22.04</code></pre></div>
 <p>재부팅 안내가 나오면 작업을 저장하고 Windows를 재부팅합니다. 이후 시작 메뉴에서 Ubuntu 22.04를 열거나 아래 명령으로 실행하고, STEP 03의 사용자 계정을 만듭니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -d Ubuntu-22.04</code></pre></div>
-<p>추천 자료는 Windows 기능 활성화와 Store 설치를 나누어 설명합니다. 이미 WSL 버전이 정상 출력되는 환경에서는 배포판 설치부터 진행할 수 있습니다.</p>
+<p>WSL 버전이 정상 출력된다면 Ubuntu 배포판 설치부터 진행할 수 있습니다.</p>
 <p>최신 WSL의 커널은 WSL 업데이트로 관리하므로 별도의 구형 커널 패키지 설치부터 시작할 필요는 없습니다.</p>
 <h3>WSL 2 사용 여부 확인</h3>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -l -v</code></pre></div>
@@ -189,8 +189,8 @@ wsl -l -v</code></pre></div>
 <p class="sources">설치 및 WSL 버전 확인: <a href="https://learn.microsoft.com/en-us/windows/wsl/install">Microsoft WSL 설치 문서</a></p>
 </section>
 <section id="launch"><h2><span class="num">STEP 02-1</span>WSL 1·2에서 Ubuntu 실행하기</h2>
-<p>설치한 Ubuntu를 처음 열거나, PC를 재시작한 뒤 다시 실습할 때 사용하는 순서입니다. 여기서 실행하는 것은 명령어를 입력하는 <strong>Ubuntu 터미널(Bash)</strong>입니다. Ubuntu 바탕화면 전체가 열리는 것은 아닙니다.</p>
-<div class="note blue"><p><strong>WSL 1과 WSL 2의 Ubuntu 실행 명령은 같습니다.</strong> WSL은 실행 환경의 이름이고, 1·2는 배포판에 적용된 실행 방식입니다.</p>
+<p>Ubuntu를 처음 열거나 PC 재시작 후 다시 실습할 때는 아래 순서를 따릅니다. 명령을 입력할 <strong>Ubuntu 터미널(Bash)</strong>이 열리며, Ubuntu 바탕화면은 표시되지 않습니다.</p>
+<div class="note blue"><p><strong>WSL 1과 WSL 2의 Ubuntu 실행 명령은 같습니다.</strong> 1·2는 각 배포판이 사용하는 WSL 실행 방식을 나타냅니다.</p>
 <p>별도의 <code>wsl2</code> 명령을 찾을 필요 없이 <code>wsl</code>을 사용합니다. 이 가이드의 실습 기준은 WSL 2입니다.</p></div>
 <h3>① PowerShell에서 설치된 Ubuntu 이름 확인</h3>
 <p>Windows 시작 메뉴에서 <strong>PowerShell</strong>을 열고 아래 명령을 한 줄씩 실행합니다. 일반적인 Ubuntu 실행에는 관리자 권한이 필요하지 않습니다.</p>
@@ -200,24 +200,24 @@ wsl -l -v</code></pre></div>
 <p><code>wsl --version</code>은 WSL 구성 요소 버전, <code>wsl --status</code>는 기본 설정을 보여 줍니다. <strong>설치된 Ubuntu의 이름과 WSL 1·2 여부는 마지막 목록의 NAME과 VERSION</strong>에서 확인합니다.</p>
 <div class="terminal"><div class="terminal-head"><span>Windows PowerShell · wsl -l -v 출력 예시 · 입력하지 마세요</span></div><pre class="output"><code>  NAME             STATE           VERSION
 * Ubuntu-22.04     Stopped         2</code></pre></div>
-<p>이 예시의 배포판 이름은 <code>Ubuntu-22.04</code>, 실행 방식은 WSL 2입니다. <code>*</code>는 기본 배포판이고, <code>Stopped</code>는 현재 멈춰 있다는 뜻으로 실행하면 시작됩니다. <code>Running</code>이면 이미 실행 중입니다. 실제 이름이 <code>Ubuntu</code> 또는 <code>Ubuntu-24.04</code>라면 <strong>아래 모든 PowerShell 예제의 Ubuntu-22.04를 그 이름으로 바꾸세요.</strong></p>
+<p>이 예시의 배포판 이름은 <code>Ubuntu-22.04</code>, 실행 방식은 WSL 2입니다. <code>*</code>는 기본 배포판이고, <code>Stopped</code>는 현재 멈춘 상태이며, 실행 명령을 입력하면 시작됩니다. <code>Running</code>이면 이미 실행 중입니다. 실제 이름이 <code>Ubuntu</code> 또는 <code>Ubuntu-24.04</code>라면 <strong>아래 모든 PowerShell 예제의 Ubuntu-22.04를 그 이름으로 바꾸세요.</strong></p>
 <p>목록에 Ubuntu가 없다면 <a href="#install">STEP 02의 배포판 설치</a>를 먼저 진행하세요. VERSION이 1이어도 실행 방법은 같으며, WSL 2로 전환하려면 STEP 02의 버전 확인 안내를 따릅니다. 기본 버전이 2라는 설정만으로 기존 Ubuntu가 WSL 2로 바뀌지는 않습니다.</p>
 <h3>② 이름을 지정해 Ubuntu 열기</h3>
-<p>같은 PowerShell 창에서 실행합니다. <code>-d</code>는 열 배포판을 지정하므로, 다른 리눅스가 기본값이어도 원하는 Ubuntu로 들어갈 수 있습니다.</p>
+<p>같은 PowerShell 창에서 실행합니다. <code>-d</code>는 실행할 배포판을 지정합니다. 기본 배포판이 다른 리눅스여도 지정한 Ubuntu가 열립니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell</span></div><pre><code>wsl -d Ubuntu-22.04</code></pre></div>
 <p>최초 실행에서 사용자 이름과 비밀번호를 요청하면 <a href="#ubuntu">STEP 03의 계정 생성 안내</a>를 따라 설정합니다. 이미 계정을 만들었다면 보통 그 사용자로 바로 들어갑니다.</p>
 <p>성공하면 같은 창에 다음과 비슷한 프롬프트가 표시됩니다. 사용자 이름·PC 이름·현재 경로는 환경마다 다릅니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span>Ubuntu · Bash 프롬프트 예시 · 입력하지 마세요</span></div><pre class="output"><code>student@MY-PC:~$</code></pre></div>
 <h3>③ Ubuntu 안에 들어왔는지 확인</h3>
-<p>이제 아래 명령은 <strong>Ubuntu · Bash</strong>에서 실행합니다. PowerShell에서 열면 시작 위치가 Windows 폴더에 대응하는 <code>/mnt/c/...</code>일 수 있으므로, 먼저 <code>cd ~</code>로 Linux 홈 폴더로 이동합니다.</p>
+<p>이제 아래 명령은 <strong>Ubuntu · Bash</strong>에서 실행합니다. PowerShell에서 열면 시작 위치가 Windows 폴더에 대응하는 <code>/mnt/c/...</code>일 수 있습니다. 먼저 <code>cd ~</code>로 Linux 홈 폴더로 이동합니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>cd ~
 whoami
 pwd
 cat /etc/os-release</code></pre></div>
-<p>예상 결과는 차례로 자신의 Linux 사용자 이름, <span class="code-label">/home/사용자명</span> 경로, <code>NAME="Ubuntu"</code> 등이 포함된 배포판 정보입니다. Ubuntu 버전 번호와 WSL의 VERSION 1·2는 서로 다른 정보입니다.</p>
+<p>출력은 순서대로 Linux 사용자 이름, <span class="code-label">/home/사용자명</span> 경로, <code>NAME="Ubuntu"</code> 등이 포함된 배포판 정보입니다. Ubuntu 버전과 WSL 실행 방식(VERSION 1·2)은 별개입니다.</p>
 <p>처음 설정 중이라면 <a href="#ubuntu">STEP 03</a>으로, 설정을 마쳤다면 <a href="#files">작업 폴더</a>로 이어가세요.</p>
 <h3>④ 시작 메뉴나 Windows Terminal로 열기</h3>
-<ul><li><strong>시작 메뉴:</strong> 설치한 Ubuntu 앱(예: Ubuntu 22.04)을 검색해 엽니다.</li><li><strong>Windows Terminal:</strong> 새 탭 버튼 옆의 펼침 메뉴에서 설치한 Ubuntu 프로필을 선택합니다. 목록에 없다면 PowerShell 탭에서 ②의 명령을 사용하면 됩니다.</li><li><strong>네트워크 실습용 터미널 두 개:</strong> PowerShell 탭을 두 개 열고 각각 같은 배포판 이름으로 ②의 명령을 실행합니다. 두 창이 같은 Ubuntu 환경을 사용하므로 서버와 클라이언트를 나누어 실행할 수 있습니다.</li></ul>
+<ul><li><strong>시작 메뉴:</strong> 설치한 Ubuntu 앱(예: Ubuntu 22.04)을 검색해 엽니다.</li><li><strong>Windows Terminal:</strong> 새 탭 버튼 옆의 메뉴에서 Ubuntu 프로필을 선택합니다. 목록에 없으면 PowerShell 탭에서 ②의 명령을 실행하세요.</li><li><strong>네트워크 실습용 터미널 두 개:</strong> PowerShell 탭 두 개에서 같은 배포판 이름으로 ②의 명령을 실행합니다. 한 창에서는 서버를, 다른 창에서는 클라이언트를 실행합니다.</li></ul>
 <h3>⑤ 기본 Ubuntu를 짧은 명령으로 열기 <small>· 선택</small></h3>
 <p><code>wsl</code>만 입력하면 기본 배포판이 열립니다. 항상 이 Ubuntu가 열리게 하려면 <strong>새 PowerShell 탭</strong>에서 아래 설정을 한 번 실행하세요. 기본 배포판 선택을 변경하는 명령이며 WSL 1·2를 바꾸지는 않습니다.</p>
 <div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 기본 배포판 설정</span></div><pre><code>wsl --set-default Ubuntu-22.04</code></pre></div>
@@ -236,7 +236,7 @@ cat /etc/os-release</code></pre></div>
 <p>계정 생성이 끝나면 <strong>Ubuntu 터미널</strong>에서 아래 명령을 실행하고 방금 만든 Ubuntu 비밀번호를 입력합니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>whoami
 sudo whoami</code></pre></div>
-<p>첫 번째 명령은 자신의 사용자 이름을, 두 번째 명령은 아래와 같이 관리자 계정 이름을 출력해야 합니다.</p>
+<p>첫 번째 명령은 현재 사용자 이름을, 두 번째 명령은 아래의 관리자 계정 이름을 출력합니다.</p>
 <div class="terminal"><div class="terminal-head"><span>sudo whoami 예상 출력 · 입력하지 마세요</span></div><pre class="output"><code>root</code></pre></div>
 <div class="note blue"><strong>Windows용 sudo와 Ubuntu용 sudo는 다릅니다.</strong> 이 실습을 위해 Windows 설정에서 sudo를 켤 필요는 없습니다. PowerShell에서 “Sudo가 이 컴퓨터에서 사용하지 않도록 설정되어 있습니다”가 나오면 Ubuntu를 먼저 열고 그 안에서 명령을 실행하세요.</div>
 <h3>② 패키지 업데이트</h3>
@@ -249,11 +249,11 @@ sudo apt install git curl nano</code></pre></div>
 <p class="sources">계정과 초기 환경: <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment">Microsoft 개발 환경 설정</a></p>
 </section>
 <section id="files"><h2><span class="num">STEP 04</span>리눅스 작업 폴더 만들기</h2>
-<p>리눅스 도구로 빌드할 코드는 Ubuntu의 홈 폴더 아래에 두는 것이 파일 접근 성능에 유리합니다. <code>~</code>는 현재 사용자의 홈 디렉터리입니다.</p>
+<p>리눅스 도구로 빌드할 코드는 파일 접근 성능을 위해 Ubuntu 홈 폴더 아래에 둡니다. <code>~</code>는 현재 사용자의 홈 디렉터리입니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>mkdir -p ~/projects/network-practice
 cd ~/projects/network-practice
 pwd</code></pre></div>
-<p>출력은 <span class="code-label">/home/사용자명/projects/network-practice</span> 형태입니다. Windows의 현재 작업 폴더에도 다음처럼 접근할 수 있습니다.</p>
+<p>출력은 <span class="code-label">/home/사용자명/projects/network-practice</span> 형태입니다. Windows 폴더에는 다음처럼 접근합니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash · Windows 폴더 접근 예시</span></div><pre><code>ls /mnt/c/Users/USER/Desktop/Network_Programing</code></pre></div>
 <p>Ubuntu의 현재 폴더를 Windows 탐색기로 열려면 <code>explorer.exe .</code>를 실행합니다. 이 가이드의 C 실습은 <code>~/projects/network-practice</code>에서 진행합니다.</p>
 <p class="sources">파일 위치와 Windows 연동: <a href="https://learn.microsoft.com/en-us/windows/wsl/filesystems">Microsoft 파일 시스템 안내</a></p>
@@ -285,11 +285,11 @@ int main(void)
 <h3>③ 컴파일하고 실행</h3>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>gcc -std=c17 -Wall -Wextra -Wpedantic -g -O0 hello.c -o hello
 ./hello</code></pre></div>
-<p>성공하면 아래 문장이 출력됩니다. 컴파일에 실패하면 오류를 해결한 뒤 실행하세요.</p>
+<p>컴파일에 성공한 뒤 실행하면 아래 문장이 출력됩니다. 컴파일 오류가 있으면 먼저 해결하세요.</p>
 <div class="terminal"><div class="terminal-head"><span>예상 출력 · 입력하지 마세요</span></div><pre class="output"><code>Hello, Ubuntu! Port: 9000</code></pre></div>
 <div class="table-wrap"><table><thead><tr><th scope="col">옵션</th><th scope="col">역할</th></tr></thead><tbody><tr><td><code>-std=c17</code></td><td>C17 표준으로 컴파일</td></tr><tr><td><code>-Wall -Wextra</code></td><td>자주 유용한 경고와 추가 경고 활성화. 모든 경고를 켜는 옵션은 아닙니다.</td></tr><tr><td><code>-Wpedantic</code></td><td>선택한 ISO 표준을 벗어나는 일부 확장 등에 진단 출력</td></tr><tr><td><code>-g -O0</code></td><td>디버깅 정보 포함, 최적화를 끄고 실습</td></tr><tr><td><code>-o hello</code></td><td>실행 파일 이름을 hello로 지정</td></tr><tr><td><code>./hello</code></td><td>현재 폴더의 실행 파일 실행</td></tr></tbody></table></div>
 <h3>④ 여러 파일 / C++를 빌드할 때</h3>
-<p>아래는 해당 소스 파일이 있을 때 사용하는 명령 형식입니다. C++은 표준 라이브러리 링크까지 처리하는 <code>g++</code>를 사용합니다.</p>
+<p>해당 소스 파일이 있을 때는 아래 명령을 사용합니다. C++ 빌드에는 표준 라이브러리도 링크하는 <code>g++</code>를 사용합니다.</p>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash · 별도 소스가 있을 때</span></div><pre><code># C 소스 파일이 main.c, helper.c인 경우
 gcc -std=c17 -Wall -Wextra -g main.c helper.c -o app
 
@@ -318,7 +318,7 @@ quit</code></pre></div>
 code .</code></pre></div>
 <p>최초 연결에는 VS Code 서버 다운로드가 필요할 수 있습니다. 창 왼쪽 아래에 <strong>WSL: Ubuntu</strong>가 표시되는지 확인하고, 확장 화면에서 Microsoft의 <strong>C/C++</strong> 확장을 WSL 환경에 설치합니다.</p>
 <p>VS Code의 터미널 → 새 터미널에서 <code>command -v gcc</code>를 실행해 리눅스 컴파일러 경로를 확인하세요.</p>
-<p><code>hello.c</code>를 열고 터미널에서 STEP 05의 GCC 명령으로 빌드하면 됩니다. IntelliSense에서 컴파일러 경로를 요구하면 <code>/usr/bin/gcc</code>를 지정합니다.</p>
+<p><code>hello.c</code>를 열고 터미널에서 STEP 05의 GCC 명령으로 빌드합니다. IntelliSense에서 컴파일러 경로를 요구하면 <code>/usr/bin/gcc</code>를 지정합니다.</p>
 <p class="sources">편집기 연결과 C/C++ 설정: <a href="https://code.visualstudio.com/docs/cpp/config-wsl">VS Code 공식 WSL 튜토리얼</a></p>
 </section>
 <section id="linux"><h2><span class="num">STEP 08</span>자주 쓰는 리눅스 명령</h2>
@@ -343,7 +343,7 @@ ss -lnt</code></pre></div>
 <details><summary>Ubuntu 실행 시 지정한 이름의 배포판이 없다고 나와요</summary><p>PowerShell에서 <code>wsl -l -v</code>를 실행하고 NAME 열의 이름을 그대로 사용하세요. 예를 들어 이름이 <code>Ubuntu</code>이면 <code>wsl -d Ubuntu</code>로 엽니다.</p>
 <p>설치 가능한 배포판을 보여 주는 <code>wsl --list --online</code>과 이미 설치된 배포판 목록은 다릅니다. <a href="#launch">Ubuntu 실행 가이드</a>에서 확인 순서를 볼 수 있습니다.</p></details>
 <details><summary>wsl -l -v에 “설치된 배포가 없습니다”가 나와요</summary><p>WSL 실행 파일은 있지만 현재 Windows 계정에 배포판이 등록되지 않은 상태입니다. <a href="#install">STEP 02</a>에서 온라인 목록을 확인한 후 Ubuntu를 설치하고 최초 계정 설정을 마치세요. 다른 Windows 계정에서 설치했다면 현재 계정의 목록에는 나타나지 않을 수 있습니다.</p></details>
-<details><summary>WSL1이 지원되지 않는다는 메시지가 나와요</summary><p>WSL 2를 사용할 때 WSL1 지원 안내만으로 실패라고 판단하지 않습니다. <code>wsl -l -v</code>에 Ubuntu 행과 VERSION 2가 표시되는지, 해당 Ubuntu를 실제로 실행할 수 있는지 확인하세요.</p></details>
+<details><summary>WSL1이 지원되지 않는다는 메시지가 나와요</summary><p>WSL1 지원 안내가 나와도 WSL 2는 실행될 수 있습니다. <code>wsl -l -v</code>에 Ubuntu 행과 VERSION 2가 표시되는지, 해당 Ubuntu를 실제로 실행할 수 있는지 확인하세요.</p></details>
 <details><summary>sudo가 비활성화되어 있거나 비밀번호가 틀리다고 나와요</summary><p>PowerShell의 Windows용 sudo가 아닌 Ubuntu 안의 sudo를 사용해야 합니다. PowerShell에서 <code>wsl -d Ubuntu-22.04</code>로 들어간 다음 <code>sudo whoami</code>를 실행하세요.</p>
 <p>비밀번호는 Windows PIN이 아니라 Ubuntu 계정 생성 때 정한 비밀번호입니다. 입력 중 글자가 보이지 않는 것은 정상입니다.</p></details>
 <details><summary>WSL 설치가 0%에서 멈추거나 도움말만 나와요</summary><p>PowerShell에서 배포판 목록을 확인하고 웹 다운로드 방식으로 다시 시도합니다.</p><div class="terminal"><div class="terminal-head"><span class="shell">Windows PowerShell · 관리자</span></div><pre><code>wsl --list --online
@@ -362,7 +362,7 @@ wsl -d Ubuntu-22.04</code></pre></div></details>
 <p>직접 확인한 항목에 체크하세요. 체크 상태는 현재 페이지를 열어 둔 동안 유지됩니다.</p>
 <div class="progress" id="progress" aria-live="polite">0 / 6 완료</div>
 <div class="checklist"><label><input type="checkbox"><span>PowerShell에서 실제 배포판 이름으로 Ubuntu를 열고, <code>whoami</code>와 <code>cat /etc/os-release</code>로 사용자와 Ubuntu 정보를 확인했다.</span></label><label><input type="checkbox"><span>PowerShell의 <code>wsl -l -v</code>에서 Ubuntu 배포판 행과 VERSION 2를 확인했다.</span></label><label><input type="checkbox"><span>Ubuntu 계정을 만들고 <code>sudo whoami</code>의 root 출력과 패키지 업데이트를 확인했다.</span></label><label><input type="checkbox"><span>Ubuntu에서 <code>gcc --version</code>과 <code>gdb --version</code>이 출력된다.</span></label><label><input type="checkbox"><span><code>hello.c</code>를 컴파일하고 <code>./hello</code>의 출력을 확인했다.</span></label><label><input type="checkbox"><span>GDB에서 main에 멈추고 port 변수 값을 확인했다.</span></label></div>
-<div class="note blue">다음 작업부터는 <a href="#launch">Ubuntu 실행 가이드</a>에 따라 Ubuntu를 열고 <code>cd ~/projects/network-practice</code>로 이동해 소스를 편집하고 GCC로 빌드하면 됩니다.</div>
+<div class="note blue">다음 작업부터는 <a href="#launch">Ubuntu 실행 가이드</a>에 따라 Ubuntu를 열고 <code>cd ~/projects/network-practice</code>로 이동해 소스를 편집하고 GCC로 빌드하세요.</div>
 </section>
 <footer><p>Windows 11 · WSL 2 · Ubuntu · GCC 실습 가이드</p>
 <p>공식 문서 확인일: 2026년 9월 7일. 설치되는 Ubuntu 및 도구 버전에 따라 화면과 출력은 다를 수 있습니다. 본문은 오프라인에서도 볼 수 있으며, 설치와 외부 문서 열기에는 인터넷이 필요합니다.</p></footer>

@@ -24,12 +24,12 @@
 
 
 <div id="course-shell"></div><main id="main-content" class="main-content">
-<header class="chapter-hero"><p class="eyebrow">CHAPTER 04 · SPARK DATAFRAME</p><h1>주문 데이터로 배우는<br><span class="title-purple">DataFrame 프로그래밍</span></h1><p class="hero-description">CSV의 열과 자료형을 정하고, 정상 주문을 골라 사용자별 구매금액을 구합니다. 코드가 정의하는 연산과 실제 계산이 수행되는 위치를 함께 읽습니다.</p><div class="hero-meta"><span>4주차 · 주문 데이터</span><span>Schema·정제·집계</span><span>지연 평가·Shuffle</span></div></header>
+<header class="chapter-hero"><p class="eyebrow">CHAPTER 04 · SPARK DATAFRAME</p><h1>주문 데이터로 배우는<br><span class="title-purple">DataFrame 프로그래밍</span></h1><p class="hero-description">CSV의 열과 자료형을 정하고, 정상 주문을 골라 사용자별 구매금액을 구합니다. 각 연산이 무엇을 계산하고 어디서 실행되는지도 확인합니다.</p><div class="hero-meta"><span>4주차 · 주문 데이터</span><span>Schema·정제·집계</span><span>지연 평가·Shuffle</span></div></header>
 <section class="lesson-section" id="orders" data-title="주문 데이터와 처리 순서">
 <div class="section-heading"><span class="section-number">01</span><h2>주문 데이터와 처리 순서</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 4–12쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 4–12쪽 · 4주차 강의노트.</p>
 
-<p class="lead">이번 장에서는 주문 한 건을 한 행으로 읽고, 잘못된 수량과 가격을 걸러 낸 뒤 사용자별 구매금액을 계산합니다. 3장에서 계산한 숫자 한 열의 합을 실제 업무 형태의 표로 확장하는 과정입니다.</p>
+<p class="lead">주문 한 건을 한 행으로 읽고, 잘못된 수량과 가격을 걸러 낸 뒤 사용자별 구매금액을 계산합니다. 3장의 숫자 한 열 합계와 달리, 여러 열을 가진 표에서 조건에 맞는 행을 골라 집계합니다.</p>
 <p>CSV(Comma-Separated Values)는 쉼표로 열을 구분한 텍스트 파일입니다. 첫 줄에는 열 이름을, 이후 줄에는 주문 값을 둡니다. 아래는 강의노트가 제시한 <strong>4행 예시</strong>이며 전체 실습 데이터가 아닙니다.</p>
 <pre><code>order_id,user_id,product_id,quantity,price,event_time
 1,U001,P001,2,12000.00,2026-09-01 09:00:00
@@ -39,16 +39,16 @@
 <p>첫 행은 U001이 P001을 2개 주문한 기록입니다. 주문금액은 <code>2 × 12000.00 = 24000.00</code>입니다. 네 번째 행은 수량이 0이므로 이번 정제 조건을 통과하지 못합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 주문 장부 정리</strong><p>종이 장부의 칸 이름과 작성 규칙을 정하고, 잘못 쓴 주문을 제외한 다음 손님별 합계를 내는 일과 같습니다. Spark에서는 장부를 나눈 Partition에 계산을 배정합니다.</p></div>
 <ol class="steps"><li><strong>읽기:</strong> 열 이름·자료형을 정한 Schema로 CSV를 해석합니다.</li><li><strong>정제:</strong> 수량과 가격의 NULL·범위를 검사합니다.</li><li><strong>변환:</strong> 수량과 단가를 곱해 주문금액을 만듭니다.</li><li><strong>집계·정렬:</strong> 사용자별 주문 수와 금액을 계산하고 순서를 정합니다.</li><li><strong>확인:</strong> 결과를 요구하는 Action을 호출하고 작은 입력의 예상값과 비교합니다.</li></ol>
-<div class="callout"><strong>현재 자료 범위</strong><p>4주차 PDF 90쪽과 개념 강의노트를 바탕으로 작성했습니다. 노트가 언급하는 별도 실습 가이드, 전체 프로그램, orders.csv는 현재 제공되지 않았습니다.</p><p>따라서 이 장의 코드는 개념별 발췌이며, 미제공 파일의 실행 명령이나 전체 실습 결과를 가정하지 않습니다. 앞선 실행 환경은 <a href="../03/index.html#full-source">3장 환경과 전체 코드</a>에서 확인할 수 있습니다.</p></div>
+<div class="callout"><strong>예제 코드와 입력</strong><p>별도 실습 가이드, 전체 프로그램, orders.csv는 제공되지 않아 이 장에서는 개념별 코드 발췌와 4행 예시를 사용합니다.</p><p>실행 환경은 <a href="../03/index.html#full-source">3장 환경과 전체 코드</a>에서 확인할 수 있습니다.</p></div>
 <div class="quiz" data-answer="1" data-explanation="Schema는 값의 형태를 정하며 quantity &gt; 0 같은 업무 규칙은 별도로 검사합니다."><h3>수량 0인 행도 정수로 읽혔다면 정상 주문일까요?</h3><div class="quiz-options"><button type="button">자료형이 맞으므로 정상입니다.</button><button type="button">자료형과 별도로 수량 조건을 검사해야 합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-orders"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="dataframe" data-title="DataFrame과 실행 위치">
 <div class="section-heading"><span class="section-number">02</span><h2>DataFrame과 실행 위치</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 13–20쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 13–20쪽 · 4주차 강의노트.</p>
 
-<p>DataFrame은 이름과 자료형이 있는 열(Column)과 행(Row)으로 구성된 데이터 구조입니다. 큰 표를 나누어 처리할 때는 데이터 조각과 계산 역할을 구분합니다.</p><ul class="explanation-list"><li><strong>Partition:</strong> 나누어 처리하는 데이터 조각입니다.</li><li><strong>Executor:</strong> 각 조각을 실제로 계산하는 프로세스입니다.</li><li><strong>Driver:</strong> 애플리케이션을 이끄는 프로세스입니다. 연산을 계획하고 실행을 요청합니다.</li></ul>
-<div class="analogy" data-labelled=""><strong>보조 비유 · 여러 담당자의 장부</strong><p>한 사람이 모든 장부를 받아 계산하는 대신, 책임자가 계산 규칙을 정해 여러 담당자에게 보냅니다. 담당자의 수가 늘어도 나눠 줄 장부가 하나뿐이면 모두 동시에 일하지 못할 수 있습니다.</p></div>
+<p>DataFrame은 이름과 자료형이 있는 열(Column)과 행(Row)으로 구성된 데이터 구조입니다. 큰 표를 나누어 처리할 때는 데이터 조각과 계산 역할을 구분합니다.</p><ul class="explanation-list"><li><strong>Partition:</strong> 나누어 처리하는 데이터 조각입니다.</li><li><strong>Executor:</strong> 각 조각을 실제로 계산하는 프로세스입니다.</li><li><strong>Driver:</strong> 연산을 계획하고 실행을 요청하는 프로세스입니다.</li></ul>
+<div class="analogy" data-labelled=""><strong>보조 비유 · 여러 담당자의 장부</strong><p>책임자가 계산 규칙을 정하고 여러 담당자가 나눠 맡은 장부를 계산합니다. 담당자가 많아도 나눠 맡을 장부가 부족하면 일부는 일을 기다립니다.</p></div>
 <div class="table-wrap"><table><thead><tr><th scope="col">구조</th><th scope="col">기본 계산 위치</th><th scope="col">큰 입력을 처리할 때</th></tr></thead><tbody><tr><td>Python List</td><td>한 Python 프로세스</td><td>개별 객체와 참조가 한 프로세스의 메모리를 사용합니다.</td></tr><tr><td>Pandas DataFrame</td><td>일반적으로 한 Python 프로세스</td><td>열별 배열을 이용하지만 보통 한 PC의 메모리 범위를 고려합니다.</td></tr><tr><td>Spark DataFrame</td><td>Driver가 계획, Executor가 계산</td><td>Partition별 Task(실행 작업)를 여러 코어에 배정할 수 있습니다.</td></tr></tbody></table></div>
 <h3>SparkSession에서 시작하기</h3><p><code>SparkSession</code>은 DataFrame과 Spark SQL 기능을 사용하는 시작점입니다. 세션 이름은 실행 화면에서 애플리케이션을 찾는 데 사용합니다.</p>
 <pre><code># SparkSession 클래스를 PySpark SQL 모듈에서 가져옴
@@ -70,7 +70,7 @@ spark = (
 </section>
 <section class="lesson-section" id="schema" data-title="Schema와 자료형">
 <div class="section-heading"><span class="section-number">03</span><h2>Schema와 자료형</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 21–22, 39–43쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 21–22, 39–43쪽 · 4주차 강의노트.</p>
 
 <p>CSV에는 값이 문자열로 기록되어 있습니다. <strong>Schema(스키마)</strong>는 각 열의 이름·자료형·NULL 허용 여부를 정해 같은 파일을 일관되게 해석하도록 합니다. NULL은 값이 없거나 알 수 없다는 뜻입니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 장부 작성 양식</strong><p>“수량 칸에는 정수, 단가 칸에는 소수 둘째 자리까지”라고 정한 양식과 같습니다. 양식에 맞게 쓴 수량 0도 정상 주문인지 별도로 판단해야 합니다.</p></div>
@@ -102,14 +102,14 @@ order_schema = StructType([
 ])</code></pre>
 <ul class="explanation-list"><li><strong>StructType:</strong> 여러 필드 정의를 묶어 전체 표의 구조를 만듭니다.</li><li><strong>StructField:</strong> <code>이름, 자료형, nullable</code> 순으로 한 필드를 정의합니다. 마지막 <code>True</code>는 NULL을 허용한다는 메타데이터입니다.</li><li><strong>LongType·IntegerType:</strong> 각각 64비트·32비트 정수입니다. 주문 식별자와 수량의 자료형을 구분합니다.</li><li><strong>TimestampType:</strong> 날짜와 시각을 표현합니다. 입력 문자열을 해석할 형식도 확인해야 합니다.</li></ul>
 <h3>금액을 Decimal로 읽는 이유</h3><p><code>DecimalType(12, 2)</code>는 전체 유효 숫자 최대 12자리, 소수점 아래 2자리인 고정 소수점 수입니다. Double의 이진 부동소수점 표현에서는 <code>0.1 + 0.2</code> 같은 계산이 십진수와 정확히 일치하지 않을 수 있습니다. 이 예제는 단가를 소수 둘째 자리까지 표현하기 위해 Decimal을 씁니다.</p>
-<h3>추론과 명시적 정의</h3><p><code>inferSchema=True</code>를 쓰면 Spark가 값을 읽어 자료형을 추론합니다. 처음 받은 파일을 탐색할 때 편리하지만 값을 추가로 읽는 비용이 있습니다. 가격에 <code>N/A</code>가 섞이면 문자열로 판단할 수 있습니다. 반복 처리할 입력 형식이 정해졌다면 명시적 Schema로 계약을 드러내는 편이 적합합니다.</p>
+<h3>추론과 명시적 정의</h3><p><code>inferSchema=True</code>를 쓰면 Spark가 값을 읽어 자료형을 추론합니다. 처음 받은 파일을 살펴볼 때 편리하지만 데이터를 추가로 읽어야 합니다. 가격에 <code>N/A</code>가 섞이면 문자열로 판단할 수 있습니다. 반복해서 처리할 파일의 형식이 정해져 있다면 Schema를 직접 정의해 열 이름과 자료형을 명시합니다.</p>
 <p class="source-note">보충 근거: <a href="https://spark.apache.org/docs/4.1.3/sql-data-sources-csv.html">Apache Spark CSV 옵션 문서</a>의 inferSchema 추가 읽기 설명.</p>
 <div class="quiz" data-answer="1" data-explanation="Precision은 전체 자리 수, Scale은 소수점 아래 자리 수입니다."><h3>DecimalType(12, 2)의 12는 무엇인가요?</h3><div class="quiz-options"><button type="button">소수점 위에만 12자리를 뜻합니다.</button><button type="button">소수점 앞뒤를 합친 유효 숫자 최대 12자리입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-schema"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="nested" data-title="중첩된 데이터 구조">
 <div class="section-heading"><span class="section-number">04</span><h2>중첩된 데이터 구조</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 28–38쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 28–38쪽 · 4주차 강의노트.</p>
 
 <p>한 주문 안에 고객 정보나 여러 상품이 들어 있다면 평평한 열만으로 구조를 설명하기 어렵습니다. 중첩 Schema는 한 열 안의 하위 필드와 배열·키/값 관계를 표현합니다.</p><p>이번 주문 CSV는 평면 구조이고, 아래는 강의노트의 별도 JSON 구조 예시입니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 주문 봉투</strong><p>한 봉투 안에 고객 카드 한 장, 상품 목록 여러 줄, 추가 메모가 들어 있는 모습입니다. 고객 카드와 상품 목록은 서로 다른 구조이므로 꺼내는 방법도 다릅니다.</p></div>
@@ -126,7 +126,7 @@ order_schema = StructType([
  |-- attributes: map
  |    |-- key: string
  |    |-- value: string</code></pre><div class="table-wrap"><table><thead><tr><th scope="col">자료형</th><th scope="col">표현하는 구조</th><th scope="col">접근 예</th></tr></thead><tbody><tr><td>StructType</td><td>이름을 가진 하위 필드 묶음</td><td><code>customer.user_id</code></td></tr><tr><td>ArrayType</td><td>같은 자료형의 원소 여러 개</td><td><code>items</code>의 상품 목록</td></tr><tr><td>MapType</td><td>키와 값의 대응</td><td><code>attributes["channel"]</code></td></tr></tbody></table></div>
-<h3>중첩 Schema 정의 읽기</h3><p>처음에는 고객의 이름 있는 칸은 Struct, 상품 여러 개는 Array, 추가 메모의 항목과 값은 Map이라는 차이만 잡으면 됩니다. 아래 전체 정의는 각 구조를 코드로 어떻게 조합하는지 확인할 때 펼쳐 보세요.</p><p>고객과 상품의 하위 구조를 먼저 정의한 뒤 전체 주문 Schema에 넣습니다. 배열 자체의 NULL 허용 여부와 배열 안 원소의 NULL 허용 여부는 별개입니다.</p>
+<h3>중첩 Schema 정의 읽기</h3><p>Struct는 고객 정보처럼 이름이 있는 필드를 묶고, Array는 여러 상품을 담으며, Map은 추가 메모의 항목과 값을 연결합니다. 아래 전체 정의에서 세 구조를 조합하는 방법을 확인할 수 있습니다.</p><p>고객과 상품의 하위 구조를 먼저 정의한 뒤 전체 주문 Schema에 넣습니다. 배열 자체의 NULL 허용 여부와 배열 안 원소의 NULL 허용 여부는 별개입니다.</p>
 <details><summary>중첩 Schema 전체 정의와 주석 보기</summary><pre><code># 중첩 Schema 정의에 필요한 Spark SQL 자료형을 가져옴
 from pyspark.sql.types import (
     ArrayType,    # 같은 자료형의 원소 여러 개를 저장하는 배열
@@ -215,15 +215,15 @@ order_items = (
         F.col("item.price").alias("price"),
     )
 )</code></pre>
-<p>Map은 <code>F.col("attributes")["channel"].alias("channel")</code>처럼 키를 지정해 값을 고릅니다. 이 예시에서 <code>channel</code> 값은 <code>mobile</code>입니다.</p><p>중첩 예제의 <code>orders</code>와 평면 CSV의 <code>orders</code>는 Schema가 다르므로 코드를 그대로 섞지 않습니다.</p>
+<p>Map은 <code>F.col("attributes")["channel"].alias("channel")</code>처럼 키를 지정해 값을 고릅니다. 이 예시에서 <code>channel</code> 값은 <code>mobile</code>입니다.</p><p>중첩 예제의 <code>orders</code>와 평면 CSV의 <code>orders</code>는 Schema가 다르므로 각각의 입력 구조에 맞는 코드를 사용합니다.</p>
 <div class="quiz" data-answer="1" data-explanation="explode는 배열 원소 하나마다 결과 행 하나를 만듭니다."><h3>items 배열에 상품 2개가 들어 있는 행을 explode하면 몇 행이 되나요?</h3><div class="quiz-options"><button type="button">항상 원래의 1행입니다.</button><button type="button">상품별 2행이 됩니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-nested"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="csv" data-title="CSV 읽기와 입력 확인">
 <div class="section-heading"><span class="section-number">05</span><h2>CSV 읽기와 입력 확인</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 44–48쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 44–48쪽 · 4주차 강의노트.</p>
 
-<p>Schema를 선언한 뒤 읽기 설정에 연결해야 실제 CSV 값에 적용됩니다. 다음 경로는 <strong>강의노트의 컨테이너 내부 예시 경로</strong>입니다. 현재 미제공된 파일을 가리키므로 그대로 실행할 준비가 된 다운로드 경로로 해석하지 않습니다.</p>
+<p>정의한 Schema를 CSV 읽기 설정에 지정합니다. 다음 경로는 <strong>강의노트의 컨테이너 내부 예시 경로</strong>이며, 해당 입력 파일은 제공되지 않았습니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 양식과 장부 연결</strong><p>양식을 정했더라도 어느 장부를 읽을지 지정해야 합니다. 파일 경로가 장부의 위치라면 Schema는 그 장부를 해석하는 규칙입니다.</p></div>
 <pre><code># 명시적 Schema를 적용하여 주문 CSV DataFrame 정의
 orders = (
@@ -238,17 +238,17 @@ orders = (
     # 지정한 CSV 경로를 입력으로 사용
     .csv("/opt/spark/data/orders.csv")
 )</code></pre>
-<ul class="explanation-list"><li><strong>header:</strong> 첫 줄을 헤더로 처리합니다. 위처럼 Schema를 지정한 코드는 입력 열을 이름으로 자동 재배열하지 않으므로 CSV와 Schema의 열 순서도 맞춰 확인합니다.</li><li><strong>timestampFormat:</strong> 시각 문자열의 해석 형식을 지정합니다.</li><li><strong>schema:</strong> 앞에서 만든 <code>order_schema</code>를 읽기에 적용합니다.</li><li><strong>csv:</strong> 입력 경로를 지정하고 DataFrame을 정의합니다. 결과를 요구하는 Action에서 본문의 데이터 계산이 수행됩니다. 파일 확인이나 Schema 추론 등 준비 작업까지 모두 지연된다는 뜻은 아닙니다.</li></ul>
+<ul class="explanation-list"><li><strong>header:</strong> 첫 줄을 헤더로 처리합니다. 위처럼 Schema를 지정한 코드는 입력 열을 이름으로 자동 재배열하지 않으므로 CSV와 Schema의 열 순서도 맞춰 확인합니다.</li><li><strong>timestampFormat:</strong> 시각 문자열의 해석 형식을 지정합니다.</li><li><strong>schema:</strong> 앞에서 만든 <code>order_schema</code>를 읽기에 적용합니다.</li><li><strong>csv:</strong> 입력 경로를 지정하고 DataFrame을 정의합니다. 데이터 계산은 Action이 결과를 요청할 때 수행되지만, 파일 확인이나 Schema 추론 같은 준비 작업은 그 전에 이루어질 수 있습니다.</li></ul>
 <div class="table-wrap"><table><thead><tr><th scope="col">확인할 것</th><th scope="col">코드</th><th scope="col">읽는 방법</th></tr></thead><tbody><tr><td>자료형</td><td><code>orders.printSchema()</code></td><td>열 이름·자료형·nullable을 출력합니다. 전체 주문 결과를 요구하는 Action과 구분합니다.</td></tr><tr><td>샘플 값</td><td><code>orders.show(20, truncate=False)</code></td><td>최대 20행을 문자열 생략 없이 출력하는 Action입니다.</td></tr><tr><td>열 목록</td><td><code>orders.columns</code></td><td>Python 문자열 List입니다. Schema에 없는 이름을 찾는 데 사용합니다.</td></tr><tr><td>입력 조각 수</td><td><code>orders.rdd.getNumPartitions()</code></td><td>현재 Partition 수를 확인합니다. 이후 처리는 DataFrame API로 계속합니다.</td></tr></tbody></table></div>
-<div class="callout warning"><strong>nullable=False만으로 입력이 검증되지는 않습니다.</strong><p>CSV를 읽은 결과에서는 nullable 표시가 완화되어 true로 보일 수 있습니다. 실제 NULL·수량·가격 범위는 별도로 검사합니다. 열 이름만 맞고 값이나 시각이 NULL로 바뀌었다면 입력 형식·자료형·시각 형식을 함께 살펴보세요.</p></div>
+<div class="callout warning"><strong>nullable=False만으로 입력이 검증되지는 않습니다.</strong><p>CSV를 읽은 결과에서는 nullable이 true로 표시될 수 있습니다. 실제 NULL·수량·가격 범위는 별도로 검사합니다. 열 이름은 맞는데 값이나 시각이 NULL로 바뀌었다면 입력 형식·자료형·시각 형식을 확인합니다.</p></div>
 <div class="quiz" data-answer="1" data-explanation="정수 0과 음수도 정수 자료형에는 맞을 수 있습니다."><h3>Schema 출력만 확인하면 잘못된 수량까지 모두 찾을 수 있나요?</h3><div class="quiz-options"><button type="button">자료형을 확인했으므로 충분합니다.</button><button type="button">샘플 값과 NULL·값 범위도 확인해야 합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-csv"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="column" data-title="Column 표현식과 열 선택">
 <div class="section-heading"><span class="section-number">06</span><h2>Column 표현식과 열 선택</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 23–28, 49–53쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 23–28, 49–53쪽 · 4주차 강의노트.</p>
 
-<p>Python 숫자끼리 곱하면 즉시 값이 나옵니다. Spark의 <strong>Column 표현식</strong>은 각 행의 어떤 열을 어떻게 계산할지 정한 연산 정보입니다. 큰 입력을 Driver의 반복문으로 처리하지 않고 Executor에 계산을 맡기려면 이 차이를 이해해야 합니다.</p>
+<p>Python 숫자끼리 곱하면 즉시 값이 나옵니다. Spark의 <strong>Column 표현식</strong>은 각 행의 어떤 열을 어떻게 계산할지 정의한 규칙입니다. Driver에서 이 표현식을 만들고, Executor가 각 행에 적용해 계산합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 계산 규칙 전달</strong><p>“2 × 12000”을 지금 계산하는 것과 “각 주문의 수량 × 단가를 계산하라”는 지시를 적는 것은 다릅니다. Column은 후자의 규칙에 해당합니다.</p></div>
 <pre><code># pyspark.sql.functions 모듈을 F라는 짧은 이름으로 사용
 from pyspark.sql import functions as F
@@ -268,15 +268,15 @@ selected = orders.select(
 )</code></pre>
 <h3>한 행에 적용되는 계산</h3><p>수량이 2이고 단가가 12000.00인 행에는 <code>amount=24000.00</code>이 만들어집니다. 코드에는 특정 주문의 숫자를 직접 넣지 않았으므로 같은 규칙을 다른 행에도 적용할 수 있습니다.</p><h3>Python에서 호출해도 행 계산은 Executor에서</h3>
 <div class="table-wrap"><table><thead><tr><th scope="col">순서</th><th scope="col">프로세스</th><th scope="col">역할</th></tr></thead><tbody><tr><td>Column·DataFrame API 호출</td><td>Driver Python → Driver JVM</td><td>Py4J 연결 계층을 통해 연산 정보를 전달합니다. JVM은 Java 가상 머신입니다.</td></tr><tr><td>Action 호출</td><td>Driver</td><td>결과를 요구하고 실행을 준비합니다.</td></tr><tr><td>내장 연산 계산</td><td>Executor JVM</td><td>배정된 Partition에서 필터·곱셈·집계를 실행합니다.</td></tr><tr><td>collect 결과 받기</td><td>Driver JVM → Driver Python</td><td>결과를 Python Row와 값으로 변환합니다.</td></tr></tbody></table></div>
-<p><strong>지금 기억할 것:</strong> Python으로 처리 방법을 적고, 실제 주문 행의 계산은 Executor에 맡깁니다. 프로세스 사이의 연결 이름은 아래 표와 함께 필요할 때 다시 확인하면 됩니다.</p><p>여기서 설명하는 것은 내장 DataFrame 연산입니다. 사용자가 작성한 Python UDF나 RDD의 Python 함수는 Executor의 Python Worker에서 실행될 수 있으므로 “PySpark의 모든 계산은 JVM에서만 한다”라고 일반화하지 않습니다.</p>
+<p><strong>내장 연산의 실행 위치:</strong> Python으로 처리 방법을 정의하고, 실제 주문 행의 계산은 Executor가 수행합니다.</p><p>내장 DataFrame 연산과 달리, 사용자가 작성한 Python UDF(사용자 정의 함수)나 RDD의 Python 함수는 Executor의 Python Worker에서 실행될 수 있습니다.</p>
 <div class="quiz" data-answer="1" data-explanation="표현식은 계획에 포함되며 실제 행에 대한 계산은 실행 시 수행됩니다."><h3>F.col("quantity") * F.col("price")의 반환값은 무엇인가요?</h3><div class="quiz-options"><button type="button">지금 선택한 주문의 금액 숫자입니다.</button><button type="button">각 행의 두 열을 곱하라는 Column 표현식입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-column"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="null-filter" data-title="조건과 NULL 처리">
 <div class="section-heading"><span class="section-number">07</span><h2>조건과 NULL 처리</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 23–24, 54–58쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 23–24, 54–58쪽 · 4주차 강의노트.</p>
 
-<p>집계 전에 어떤 주문을 포함할지 정해야 결과의 의미가 분명해집니다. 이 장은 수량·가격이 NULL이 아니고, 수량이 0보다 크며, 가격이 0 이상인 주문을 남깁니다. <code>filter()</code>와 <code>where()</code>는 같은 조건에 대해 같은 행 선택을 수행합니다.</p>
+<p>집계할 주문의 조건을 먼저 정합니다. 이 예제에서는 수량·가격이 NULL이 아니고, 수량이 0보다 크며, 가격이 0 이상인 주문을 남깁니다. <code>filter()</code>와 <code>where()</code>는 같은 조건이면 같은 행을 선택합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 접수 조건 확인</strong><p>수량 칸이 비어 있는 주문과 수량 0으로 적힌 주문은 다릅니다. 둘 다 이번 접수 조건에서는 제외되지만 제외 이유는 구분해서 읽습니다.</p></div>
 <pre><code># 수량과 가격이 데이터 품질 조건을 만족하는 행만 선택
 valid_orders = orders.filter(
@@ -292,13 +292,13 @@ valid_orders = orders.filter(
 <ul class="explanation-list"><li><strong>&amp;, |, ~:</strong> 각각 Column 조건의 AND, OR, NOT입니다. Python의 <code>and</code>, <code>or</code>, <code>not</code>으로 대체하지 않습니다.</li><li><strong>괄호:</strong> 각 비교식을 괄호로 묶어 연산 순서를 분명히 합니다.</li><li><strong>isNull·isNotNull:</strong> NULL인지 직접 확인합니다. <code>== None</code>으로 일반 값처럼 비교하지 않습니다.</li></ul>
 <div class="table-wrap"><table><thead><tr><th scope="col">quantity</th><th scope="col">quantity &gt; 0</th><th scope="col">filter 결과</th></tr></thead><tbody><tr><td>2</td><td>True</td><td>남음</td></tr><tr><td>0</td><td>False</td><td>제외</td></tr><tr><td>NULL</td><td>NULL(알 수 없음)</td><td>제외</td></tr></tbody></table></div>
 <p class="source-note">보충 근거: <a href="https://spark.apache.org/docs/4.1.3/sql-ref-null-semantics.html">Spark 4.1.3 NULL 의미 규칙</a>.</p><p><code>filter()</code>는 조건이 True인 행만 남깁니다. NULL은 0이나 빈 문자열과 같지 않으며, NULL과의 일반 비교는 알 수 없는 결과가 될 수 있습니다.</p><p><code>fillna({"quantity": 0})</code>는 NULL을 0으로 대체하므로 단순 검사와 의미가 다릅니다. 대체해도 되는지 업무 규칙을 먼저 정합니다.</p>
-<h3>Schema의 NULL 허용과 실제 행의 NULL</h3><p>NULL을 다루는 데 필요한 것은 먼저 <code>isNull()</code>과 <code>isNotNull()</code>의 구분입니다. 아래 내부 저장 방식은 이 두 검사가 가능한 이유를 설명하는 보충 내용입니다.</p><p><code>nullable=True</code>는 열이 NULL을 가질 수 있다는 선언입니다. 모든 행이 NULL이라는 뜻은 아닙니다.</p><p>Spark SQL의 대표적 내부 행 형식인 UnsafeRow는 NULL 여부를 별도 비트 영역으로 관리합니다. 필드의 비트가 1이면 그 행의 필드가 NULL입니다. 애플리케이션에서는 이 내부 비트를 직접 고치지 않고 위 공개 API를 사용합니다.</p>
+<h3>Schema의 NULL 허용과 실제 행의 NULL</h3><p>NULL 여부는 <code>isNull()</code>과 <code>isNotNull()</code>으로 검사합니다. 아래는 Spark가 NULL 여부를 저장하는 방식에 대한 보충 설명입니다.</p><p><code>nullable=True</code>는 열이 NULL을 가질 수 있다는 선언입니다. 모든 행이 NULL이라는 뜻은 아닙니다.</p><p>Spark SQL의 대표적 내부 행 형식인 UnsafeRow는 NULL 여부를 별도 비트 영역으로 관리합니다. 필드의 비트가 1이면 그 행의 필드가 NULL입니다. 애플리케이션에서는 이 내부 비트를 직접 고치지 않고 위 공개 API를 사용합니다.</p>
 <div class="quiz" data-answer="1" data-explanation="NULL은 미지의 값입니다. filter는 True인 행만 유지합니다."><h3>quantity가 NULL이면 quantity &gt; 0 필터에서 어떻게 되나요?</h3><div class="quiz-options"><button type="button">0과 같게 취급되어 False가 됩니다.</button><button type="button">비교 결과가 NULL이며 True가 아니므로 제외됩니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-null-filter"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="withcolumn" data-title="금액 계산과 새 DataFrame">
 <div class="section-heading"><span class="section-number">08</span><h2>금액 계산과 새 DataFrame</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 59–61쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 59–61쪽 · 4주차 강의노트.</p>
 
 <p>집계에 필요한 주문금액을 만들기 위해 정상 주문의 수량과 단가를 곱합니다. <code>withColumn()</code>은 열을 추가하거나 같은 이름의 열을 바꾸는 연산이 포함된 새 DataFrame을 반환합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 계산 칸을 더한 양식</strong><p>기존 장부를 지우고 고치는 대신, “금액 칸을 계산해서 보여 주는 양식”을 새로 정하는 모습입니다. 실제 데이터가 호출 즉시 전부 복사된다는 뜻은 아닙니다.</p></div>
@@ -320,15 +320,15 @@ classified_orders = enriched_orders.withColumn(
      # 그 밖의 행은 NORMAL 반환
      .otherwise("NORMAL"),
 )</code></pre>
-<p><code>when()</code>은 조건을 만족할 때의 값을, <code>otherwise()</code>는 나머지 경우의 값을 지정합니다. 위 분류 기준은 강의 예시인 100000이며 주문금액 합계나 측정 결과가 아닙니다.</p>
+<p><code>when()</code>은 조건을 만족할 때의 값을, <code>otherwise()</code>는 나머지 경우의 값을 지정합니다. 이 예제의 분류 기준 금액은 100000입니다.</p>
 <div class="quiz" data-answer="1" data-explanation="원래 DataFrame은 보존되고 연산이 추가된 새 DataFrame을 반환합니다."><h3>withColumn 호출 뒤 원래 valid_orders에도 amount 열이 생기나요?</h3><div class="quiz-options"><button type="button">기존 객체를 직접 수정하므로 생깁니다.</button><button type="button">반환된 enriched_orders에 정의됩니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-withcolumn"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="aggregate" data-title="사용자별 집계와 Shuffle">
 <div class="section-heading"><span class="section-number">09</span><h2>사용자별 집계와 Shuffle</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 62–65쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 62–65쪽 · 4주차 강의노트.</p>
 
-<p>개별 주문금액을 사용자별로 묶으면 주문 수·총액·평균을 알 수 있습니다. Group Key(그룹 기준)는 어떤 값이 같은 행을 함께 계산할지 정하는 열이며, 여기서는 <code>user_id</code>입니다.</p>
+<p>개별 주문금액을 사용자별로 묶으면 주문 수·총액·평균을 알 수 있습니다. Group Key(그룹 기준)는 값이 같은 행끼리 묶는 기준 열이며, 여기서는 <code>user_id</code>입니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 고객별 영수증 모으기</strong><p>여러 담당자가 가진 영수증을 고객별로 합쳐야 전체 구매액을 알 수 있습니다. 자기 책상 위 영수증만 더하면 다른 담당자가 가진 같은 고객의 주문을 빠뜨립니다.</p></div>
 <pre><code># 사용자별 주문 수, 총 구매금액, 평균 구매금액을 계산
 summary = (
@@ -349,14 +349,14 @@ summary = (
 <ul class="explanation-list"><li><strong>groupBy:</strong> 그룹 기준을 지정하고 집계식을 받을 <code>GroupedData</code>를 반환합니다.</li><li><strong>agg:</strong> 그룹별 집계식을 지정한 DataFrame을 반환합니다.</li><li><strong>F.count("*"):</strong> 각 그룹의 주문 행 수를 계산하는 표현식입니다. <code>orders.count()</code>처럼 전체 행 수를 Python 숫자로 반환하는 Action과 다릅니다.</li><li><strong>F.sum·F.avg:</strong> 주문금액의 합계와 평균입니다. 여기서는 앞서 정제한 주문만 대상입니다.</li></ul>
 <h3>같은 키를 다시 모으는 이유</h3>
 <div class="table-wrap"><table><thead><tr><th scope="col">처리 전 조각</th><th scope="col">담긴 주문</th><th scope="col">집계 방향</th></tr></thead><tbody><tr><td>Partition A</td><td>U001: 24000, U002: 35000</td><td>U001 계산 쪽과 U002 계산 쪽으로 전달</td></tr><tr><td>Partition B</td><td>U001: 24000</td><td>앞의 U001 금액과 함께 합산</td></tr><tr><td>집계 결과</td><td>U001: 48000, U002: 35000</td><td>다음 결과 표의 학습용 예시</td></tr></tbody></table></div>
-<p>이처럼 연산에 필요한 기준으로 Partition 사이 데이터를 다시 배치하는 과정을 <strong>Shuffle(셔플)</strong>이라고 합니다.</p><p>표는 데이터 이동 이유를 설명하는 도식이며 실제 입력 Partition 수나 실행 화면을 재현한 것은 아닙니다. 실행 엔진은 부분 집계 등을 사용할 수 있으므로 항상 원본 행 전체를 그대로 전송한다고 단정하지 않습니다.</p>
+<p>이처럼 연산에 필요한 기준으로 Partition 사이 데이터를 다시 배치하는 과정을 <strong>Shuffle(셔플)</strong>이라고 합니다.</p><p>표는 데이터 이동을 설명하는 학습용 도식이며, 실제 실행에서는 부분 집계 등을 거쳐 전송할 데이터가 줄어들 수 있습니다.</p>
 <p><code>groupBy().agg()</code>를 쓸 때는 계획을 정의합니다. 실제 계산과 필요한 데이터 이동은 Action이 결과를 요구할 때 이루어집니다.</p>
 <div class="quiz" data-answer="1" data-explanation="한 조각의 값만으로는 전체 사용자 구매금액을 완성할 수 없습니다."><h3>같은 사용자의 주문이 여러 Partition에 있다면 왜 이동이 필요할까요?</h3><div class="quiz-options"><button type="button">사용자 이름을 바꾸기 위해서입니다.</button><button type="button">그 사용자에 대한 전체 집계에 필요한 값을 모으기 위해서입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-aggregate"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="sort-results" data-title="정렬과 예상 결과 확인">
 <div class="section-heading"><span class="section-number">10</span><h2>정렬과 예상 결과 확인</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 9–10, 66–67쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 9–10, 66–67쪽 · 4주차 강의노트.</p>
 
 <p>집계 결과를 비교하려면 출력 순서를 정해야 합니다. 총 구매금액 내림차순으로 정렬하되, 금액이 같으면 사용자 식별자 오름차순으로 정렬하면 동점의 순서도 명확해집니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 순위표 정리</strong><p>여러 담당자가 자기 종이만 정렬해도 전체 순위는 완성되지 않습니다. 앞쪽에 올 금액 범위와 뒤쪽에 올 범위를 맞춘 다음 각 범위 안의 순서를 정해야 합니다.</p></div>
@@ -368,23 +368,23 @@ ranked = summary.orderBy(
     F.asc("user_id"),
 )</code></pre>
 <ul class="explanation-list"><li><strong>F.desc():</strong> 큰 값부터 배치하는 내림차순입니다.</li><li><strong>F.asc():</strong> 작은 값부터 배치하는 오름차순입니다.</li><li><strong>orderBy():</strong> 전체 결과의 정렬 기준을 정의하는 Transformation입니다.</li></ul><p>분산된 결과를 전체 순서에 맞게 배치하려면 일반적으로 Shuffle이 필요합니다. 정확한 실행 구조는 입력과 실행계획에 따라 달라질 수 있습니다.</p>
-<h3>강의의 4행 예시를 손으로 확인하기</h3><p>첫 절의 <strong>4행만</strong> 입력으로 삼아 앞의 수량·가격 조건을 적용하면 정상 주문 3행이 남습니다. 아래는 손으로 계산한 예상값이며 Spark를 실행해 얻은 결과가 아닙니다. 전체 실습 데이터의 정답으로 사용하지 않습니다.</p>
+<h3>강의의 4행 예시를 손으로 확인하기</h3><p>첫 절의 <strong>4행만</strong> 입력으로 삼아 앞의 수량·가격 조건을 적용하면 정상 주문 3행이 남습니다. 아래는 이 4행에서 손으로 계산한 예상값입니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">user_id</th><th scope="col">order_count</th><th scope="col">total_amount</th><th scope="col">avg_amount</th></tr></thead><tbody><tr><td>U001</td><td>2</td><td>48000.00</td><td>24000.00</td></tr><tr><td>U002</td><td>1</td><td>35000.00</td><td>35000.00</td></tr></tbody></table></div>
 <p>U001은 24000원짜리 주문 두 건을 합쳐 48000원입니다. U003의 수량 0 주문은 제외되므로 결과에 나타나지 않습니다.</p><p>Decimal 연산의 출력 소수 자릿수는 위 표와 다를 수 있으므로 표시 폭보다 숫자 값·행 수·열 이름·정렬 기준을 비교합니다.</p>
-<p>실제로 실행할 입력이 준비되면 <code>ranked.show(truncate=False)</code>로 결과를 요청합니다. 예상과 다르면 정제 전후 행 수, 빠진 사용자, 금액 계산, 그룹 키, 정렬 기준의 순서로 확인합니다.</p>
+<p>실제로 실행할 입력이 준비되면 <code>ranked.show(truncate=False)</code>로 결과를 확인합니다. 예상과 다르면 정제 전후 행 수, 빠진 사용자, 금액 계산, 그룹 키, 정렬 기준을 차례로 확인합니다.</p>
 <div class="quiz" data-answer="1" data-explanation="수량 2 × 12000과 수량 3 × 8000을 합하면 48000입니다."><h3>4행 예시의 정상 주문에서 U001의 총액은 얼마인가요?</h3><div class="quiz-options"><button type="button">24000.00입니다.</button><button type="button">48000.00입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-sort-results"> 이 내용을 이해했어요</label>
 </section>
 <section class="lesson-section" id="lazy" data-title="실행계획과 Action">
 <div class="section-heading"><span class="section-number">11</span><h2>실행계획과 Action</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 68–78쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 68–78쪽 · 4주차 강의노트.</p>
 
 <p>연산을 적을 때마다 전체 데이터를 읽으면 중간 결과를 반복해서 만들 수 있습니다. Spark는 Transformation으로 무엇을 할지 모아 두고 Action이 결과를 요구할 때 실행합니다. 이를 <strong>Lazy Evaluation(지연 평가)</strong>이라고 합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 작업 지시서와 실행 요청</strong><p>“불량 주문 제외 → 금액 계산 → 사용자별 합계”를 지시서에 적는 단계와, 그 지시서를 실제로 처리해 결과를 달라는 단계가 나뉩니다. 지시서는 계산을 마친 결과 표가 아닙니다.</p></div>
 <div class="table-wrap"><table><thead><tr><th scope="col">연산</th><th scope="col">반환·효과</th><th scope="col">분류</th></tr></thead><tbody><tr><td>select, filter, withColumn</td><td>연산이 추가된 DataFrame</td><td>Transformation</td></tr><tr><td>groupBy(...).agg(...)</td><td>집계 결과를 정의한 DataFrame</td><td>Transformation</td></tr><tr><td>orderBy(...)</td><td>정렬 결과를 정의한 DataFrame</td><td>Transformation</td></tr><tr><td>show()</td><td>일부 결과를 계산해 출력</td><td>Action</td></tr><tr><td>count()</td><td>전체 행 수를 Python 숫자로 반환</td><td>Action</td></tr><tr><td>first()</td><td>첫 결과 행을 반환</td><td>Action</td></tr><tr><td>collect()</td><td>모든 결과 행을 Python List로 반환</td><td>Action</td></tr></tbody></table></div>
 <h3>DataFrame이 기억하는 것</h3><p><strong>Logical Plan(논리 계획)</strong>은 어떤 입력에 어떤 연산을 적용할지 나타냅니다. 실제 계산된 전체 행이나 실행 중인 Task와는 다릅니다. 연산을 연결하면서 계획에 처리 단계가 추가됩니다.</p><ul class="explanation-list"><li><strong>orders:</strong> CSV 입력을 나타냅니다.</li><li><strong>valid_orders:</strong> 입력과 정상 주문을 고르는 필터를 포함합니다.</li><li><strong>enriched_orders:</strong> 앞의 계획에 금액 계산을 더합니다.</li><li><strong>summary:</strong> 집계까지 포함한 계획을 나타냅니다.</li></ul>
-<p>Action 요청에 따라 Spark는 계획을 분석·최적화하고 <strong>Physical Plan(물리 계획)</strong>이라는 구체적 실행 방법을 정합니다. 실행은 Stage(단계)와 Task로 나뉩니다. 한 Action이 항상 정확히 하나의 Job과 대응한다고 외우지 않습니다.</p>
-<h3>출력 사이의 실행 시점 읽기</h3><p>다음은 강의의 지연 평가 관찰 코드입니다. 실행 시점을 보여 주기 위한 간단한 필터이므로 앞 절의 전체 데이터 품질 조건과 같지는 않습니다.</p>
+<p>Action 요청에 따라 Spark는 계획을 분석·최적화하고 <strong>Physical Plan(물리 계획)</strong>이라는 구체적 실행 방법을 정합니다. 실행은 Stage(단계)와 Task로 나뉩니다. Action 하나가 실행하는 Job 수는 처리 과정에 따라 달라질 수 있습니다.</p>
+<h3>출력 사이의 실행 시점 읽기</h3><p>다음 코드는 간단한 수량 필터로 지연 평가의 실행 시점을 보여 줍니다. 앞 절의 전체 정제 조건을 적용한 코드는 아닙니다.</p>
 <pre><code># Python 출력만 수행하며 Spark Job은 없음
 print("STEP_A")
 
@@ -411,7 +411,7 @@ print("STEP_C")</code></pre>
 </section>
 <section class="lesson-section" id="collect" data-title="collect와 Driver 메모리">
 <div class="section-heading"><span class="section-number">12</span><h2>collect와 Driver 메모리</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 79–81쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 79–81쪽 · 4주차 강의노트.</p>
 
 <p>결과를 Python에서 다루려면 어디로 얼마나 가져오는지 먼저 판단해야 합니다. <code>collect()</code>는 모든 결과 행을 Driver 메모리로 가져옵니다. Worker가 많아도 Driver 한곳에 모을 수 있는 크기에는 한계가 있습니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 모든 장부를 한 책상으로</strong><p>각 담당자에게 계산을 맡긴 뒤 작은 합계표만 받는 것과, 원본 장부를 한 책상에 전부 쌓고 혼자 다시 계산하는 것은 다릅니다. collect 뒤 Python 반복문으로 원본 집계를 하면 후자에 가까워집니다.</p></div>
@@ -426,17 +426,17 @@ for row in rows:
 </section>
 <section class="lesson-section" id="review" data-title="코드 검토와 복습">
 <div class="section-heading"><span class="section-number">13</span><h2>코드 검토와 복습</h2></div>
-<p class="source-note">출처: 2026-bigdata-04, PDF 실제 82–90쪽 · 4주차 강의노트의 해당 개념.</p>
+<p class="source-note">출처: 2026-bigdata-04, PDF 82–90쪽 · 4주차 강의노트.</p>
 
-<p>코드가 실행된다는 사실만으로 요구한 처리가 맞다고 판단할 수는 없습니다. 입력·정제 조건·집계 기준·실행 위치·예상 결과를 차례로 확인하면 AI가 작성한 코드도 같은 기준으로 검토할 수 있습니다.</p>
+<p>코드가 실행되어도 잘못된 행을 포함하거나 집계 기준을 다르게 적용할 수 있습니다. AI가 작성한 코드도 입력·정제 조건·집계 기준·실행 위치·예상 결과를 차례로 확인합니다.</p>
 <div class="analogy" data-labelled=""><strong>보조 비유 · 계산서 검산</strong><p>합계 숫자만 보는 대신 어떤 영수증을 넣고 뺐는지, 누구의 주문을 묶었는지까지 살펴보는 검산입니다. 작은 예시의 정답과 큰 입력을 처리하는 구조를 함께 봅니다.</p></div>
 <div class="table-wrap"><table><thead><tr><th scope="col">검토 항목</th><th scope="col">확인 질문</th></tr></thead><tbody><tr><td>입력</td><td>열 이름과 자료형이 실제 Schema와 같은가? 존재하지 않는 user_name을 쓰지 않았는가?</td></tr><tr><td>정제</td><td>NULL, quantity &gt; 0, price &gt;= 0을 요구사항에 맞게 처리하는가?</td></tr><tr><td>조건식</td><td>각 비교식에 괄호가 있고 Column 조건을 &amp;, |, ~로 결합하는가?</td></tr><tr><td>집계</td><td>user_id별 주문 수와 amount의 합계·평균을 구하는가?</td></tr><tr><td>실행 위치</td><td>원본 collect와 Python 반복문으로 계산을 Driver에 몰지 않는가?</td></tr><tr><td>결과</td><td>작은 검증 입력의 정상 행 수, 그룹 수, 총액, 정렬 순서와 일치하는가?</td></tr></tbody></table></div>
-<h3>실행 중 문제가 생겼을 때</h3><ul class="explanation-list"><li><strong>열을 찾지 못함:</strong> <code>orders.columns</code>와 <code>printSchema()</code>에서 실제 이름·오타를 확인합니다.</li><li><strong>CSV 경로를 찾지 못함:</strong> 컨테이너 내부 경로와 실제 마운트 위치를 확인합니다. 이 장의 4주차 전체 실습 파일은 아직 제공되지 않았습니다.</li><li><strong>예상보다 결과가 적음:</strong> NULL과 0·음수의 정제 조건을 확인합니다. 배열을 펼쳤다면 빈 배열·NULL 배열도 살펴봅니다.</li><li><strong>Worker가 모두 바쁘지 않음:</strong> 입력 Partition과 Task 수를 먼저 확인합니다. Worker 수만으로 병렬성이 결정되지는 않습니다.</li><li><strong>작은 CSV가 느림:</strong> 세션·작업 시작 비용과 Shuffle 비용도 포함될 수 있습니다. 이 장은 측정 수치나 성능 향상을 보장하지 않습니다.</li></ul>
-<h3>다음 내용과 연결</h3><p>강의노트는 다음 주에 같은 조건을 Spark SQL로 표현한다고 예고합니다.</p><p>아래 두 표현은 수량이 양수인 행을 선택한다는 뜻입니다. SQL 예시는 <code>orders</code>라는 임시 뷰가 준비되어 있을 때의 표현이며, 새 주차 실행 과정을 추가한 것은 아닙니다.</p>
+<h3>실행 중 문제가 생겼을 때</h3><ul class="explanation-list"><li><strong>열을 찾지 못함:</strong> <code>orders.columns</code>와 <code>printSchema()</code>에서 실제 이름·오타를 확인합니다.</li><li><strong>CSV 경로를 찾지 못함:</strong> 컨테이너 내부 경로와 실제 마운트 위치를 확인합니다.</li><li><strong>예상보다 결과가 적음:</strong> NULL과 0·음수의 정제 조건을 확인합니다. 배열을 펼쳤다면 빈 배열·NULL 배열도 살펴봅니다.</li><li><strong>Worker가 모두 바쁘지 않음:</strong> 입력 Partition과 Task 수를 먼저 확인합니다. Worker 수만으로 병렬성이 결정되지는 않습니다.</li><li><strong>작은 CSV가 느림:</strong> 세션·작업 시작 시간과 Shuffle 시간이 처리 시간에 포함될 수 있습니다.</li></ul>
+<h3>Spark SQL로 같은 조건 표현하기</h3><p>다음 주에는 같은 조건을 Spark SQL로 표현합니다.</p><p>아래 두 표현은 모두 수량이 양수인 행을 선택합니다. SQL 예시는 <code>orders</code>라는 임시 뷰가 있어야 실행할 수 있습니다.</p>
 <pre><code>orders.filter(F.col("quantity") &gt; 0)</code></pre><pre><code>SELECT *
 FROM orders
 WHERE quantity &gt; 0</code></pre>
-<p>이 장에서 배운 핵심은 표의 구조를 명시하고, Column 표현식으로 처리 과정을 정의하며, 결과를 요구할 때 분산 실행된다는 점입니다. Join·Window·Parquet·실행계획 상세 분석은 이번 장의 범위에 넣지 않습니다.</p>
+<p>Schema는 표의 구조를 정하고, Column 표현식은 처리할 연산을 정의합니다. Action이 결과를 요청하면 Spark가 이 연산들을 분산 실행합니다.</p>
 <div class="quiz" data-answer="1" data-explanation="작은 입력에서 맞는 것과 큰 입력을 분산 처리할 수 있는 것은 별도 검증 항목입니다."><h3>작은 입력의 정답은 맞지만 원본 10억 행을 collect하는 코드라면 어떻게 검토하나요?</h3><div class="quiz-options"><button type="button">정답이 맞으므로 그대로 사용합니다.</button><button type="button">결과뿐 아니라 데이터 이동량과 실행 위치도 수정·검증합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div>
 <label class="completion"><input type="checkbox" data-complete="04-review"> 이 내용을 이해했어요</label>
 </section><nav class="chapter-footer" aria-label="챕터 이동"><a class="button secondary" href="../03/index.html">← 3장 · 분산 처리와 Spark 실행 원리</a><a class="button" href="../../index.html">강의 목록으로</a></nav></main></body></html>
