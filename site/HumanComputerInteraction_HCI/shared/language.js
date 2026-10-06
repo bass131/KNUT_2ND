@@ -22,7 +22,8 @@
   ];
   const originals = new WeakMap();
   const originalAttributes = new WeakMap();
-  let language = 'ko';
+  // English is the default; Korean (the authored DOM) is shown when chosen.
+  let language = 'en';
   let explicit = false;
   try {
     const stored = localStorage.getItem('knut-language');
@@ -161,11 +162,11 @@
   const start = () => {
     controls = document.createElement('nav');
     controls.className = 'knut-language';
-    controls.setAttribute('aria-label', '언어 선택 / Language');
+    controls.setAttribute('aria-label', 'Language / 언어 선택');
     controls.setAttribute('data-no-translate', '');
     for (const [value, label] of [
-      ['ko', '한국어'],
       ['en', 'English'],
+      ['ko', '한국어'],
     ]) {
       const button = document.createElement('button');
       button.type = 'button';

@@ -8,7 +8,7 @@
 
 **[학습 사이트 열기 →](https://bass131.github.io/KNUT_2ND/)**
 
-각 페이지의 **한국어 / English** 버튼으로 본문과 학습 메뉴의 언어를 전환할 수 있습니다. 선택한 언어는 다음 페이지와 새로고침에도 유지됩니다. 코드·명령·원본 파일명과 실제 실행 화면은 그대로 제공합니다. 번역은 페이지에 포함되어 있어 별도 번역 서비스에 연결하지 않습니다.
+페이지는 영어로 먼저 열립니다. 각 페이지의 **English / 한국어** 버튼으로 본문과 학습 메뉴의 언어를 바꿀 수 있고, 선택한 언어는 다음 페이지와 새로고침에도 유지됩니다. 코드·명령·원본 파일명과 실제 실행 화면은 그대로 제공합니다. 번역은 페이지에 포함되어 있어 별도 번역 서비스에 연결하지 않습니다.
 
 | 빅데이터 | 인간컴퓨터상호작용(HCI) | 네트워크 프로그래밍 |
 | :---: | :---: | :---: |
@@ -30,7 +30,7 @@ A personal study repository with notes and examples for three courses: Big Data,
 
 **[Open the study site →](https://bass131.github.io/KNUT_2ND/)**
 
-Use the **한국어 / English** buttons on each page to switch the language of the content and navigation. Your choice is kept when you move to another page or reload. Code, commands, original filenames, and screenshots of actual runs are left unchanged. Translations are built into the pages, so no external translation service is used.
+Pages open in English by default. Use the **English / 한국어** buttons on each page to switch the language of the content and navigation. Your choice is kept when you move to another page or reload. Code, commands, original filenames, and screenshots of actual runs are left unchanged. Translations are built into the pages, so no external translation service is used.
 
 | Big Data | Human–Computer Interaction (HCI) | Network Programming |
 | :---: | :---: | :---: |
