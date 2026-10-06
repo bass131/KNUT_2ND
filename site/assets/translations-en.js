@@ -23,12 +23,13 @@ window.KNUT_TRANSLATIONS = {
     '빅데이터 학습 홈': 'Big Data home',
     인간컴퓨터상호작용: 'Human–Computer Interaction',
     'HCI 3.0과 사용자경험,': 'HCI 3.0 and user experience,',
-    '유용성·사용성의 원리와 교수님 강조 요약.':
-      'usefulness, usability, and summaries of the instructor’s emphasis.',
+    '유용성·사용성·신뢰성의 원리와 교수님 강조 요약.':
+      'usefulness, usability, reliability, and summaries of the instructor’s emphasis.',
     'HCI 3.0의 개념': 'Concepts of HCI 3.0',
     'HCI 3.0과 사용자경험': 'HCI 3.0 and user experience',
     '유용성의 원리': 'Principles of usefulness',
     '사용성의 원리': 'Principles of usability',
+    '신뢰성의 원리': 'Principles of reliability',
     'HCI 학습 홈': 'HCI home',
     '네트워크 프로그래밍': 'Network Programming',
     'C 기초, 소켓 생성과 오류 처리.': 'C fundamentals, socket creation, and error handling.',

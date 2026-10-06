@@ -9,11 +9,7 @@
   font-size: 12px;
   border-bottom: 1px solid var(--line);
 }
-.course-nav a {
-  color: #616775;
-}
 .course-nav a[aria-current] {
-  color: #0066cc;
   font-weight: 700;
 }
 .course-nav a:first-child {
@@ -51,6 +47,18 @@
   color: #626773;
   background: #eff0f4;
 }
+.flag:is(.bold, .underline, .bold-underline) {
+  color: #26282d;
+  background: #f1f1ee;
+  box-shadow: inset 0 0 0 1px #d6d6d0;
+}
+.flag:is(.bold, .bold-underline) {
+  font-weight: 800;
+}
+.flag:is(.underline, .bold-underline) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .chapter-hero {
   padding: 64px 0 48px;
 }
@@ -58,11 +66,6 @@
   font-size: clamp(38px, 4.4vw, 64px);
   margin: 20px 0 24px;
   line-height: 1.2;
-}
-.chapter-hero .lede {
-  max-width: 680px;
-  font-size: 17px;
-  color: #626976;
 }
 .hero-badges {
   display: flex;
@@ -79,34 +82,6 @@
   gap: 14px;
   margin: 30px 0 0;
 }
-.concept-map > div {
-  background: #f3f6fb;
-  border: 1px solid #e2e8f2;
-  border-radius: 20px;
-  padding: 25px 20px;
-}
-.concept-map strong {
-  font-size: 25px;
-  display: block;
-  margin: 6px 0;
-}
-.concept-map small {
-  font-size: 11px;
-  color: #667486;
-}
-.concept-map > div:nth-child(2) {
-  background: #f5f1fb;
-  border-color: #e9e1f4;
-}
-.concept-map > div:nth-child(3) {
-  background: #eef7f4;
-  border-color: #dcece5;
-}
-.section .lead {
-  font-size: 17px;
-  color: #5b6270;
-  margin-bottom: 24px;
-}
 .recall-actions {
   display: flex;
   gap: 12px;
@@ -120,23 +95,10 @@
   color: #687183;
   margin-top: 16px;
 }
-.comparison-tip {
-  border-left: 3px solid #94afd3;
-  padding: 16px 22px;
-  margin: 24px 0;
-  background: #f6f8fc;
-  font-size: 13px;
-}
 .reading-note {
   font-size: 12px;
   color: #707784;
   margin-top: 14px;
-}
-.dimension-demo {
-  padding: 28px;
-  border-radius: 24px;
-  background: #f4f6fa;
-  margin-top: 26px;
 }
 .dimension-demo .segmented {
   margin: 18px 0;
@@ -560,9 +522,6 @@
   .course-nav {
     padding: 18px 24px;
   }
-  .concept-map strong {
-    font-size: 21px;
-  }
 }
 @media (max-width: 600px) {
   .home-hero {
@@ -626,29 +585,6 @@
   .chapter-hero {
     padding: 40px 0 30px;
   }
-  .chapter-hero .lede {
-    font-size: 15px;
-  }
-  .concept-map {
-    gap: 9px;
-  }
-  .concept-map > div {
-    padding: 18px 21px;
-  }
-  .concept-map strong {
-    display: inline;
-    font-size: 20px;
-    margin-right: 12px;
-  }
-  .concept-map small {
-    display: block;
-  }
-  .concept-map span {
-    font-size: 13px;
-  }
-  .dimension-demo {
-    padding: 22px;
-  }
   .axis-row {
     grid-template-columns: 80px 1fr 85px;
     gap: 8px;
@@ -704,32 +640,32 @@
     white-space: nowrap;
   }
   .study-table tr + tr {
-    border-top: 2px solid #cbd7e8;
+    border-top: 2px solid var(--line-strong);
   }
   .study-table td {
-    padding: 15px 20px;
+    padding: 12px 16px;
     border: 0;
-    font-size: 13px;
+    font-size: 15px;
     min-width: 0;
   }
   .study-table td:first-child {
-    background: #f1f5fb;
-    font-size: 14px;
+    background: var(--surface-2);
+    font-size: 15px;
   }
   .study-table td + td {
-    border-top: 1px solid #e8edf4;
+    border-top: 1px solid var(--line);
   }
   .study-table td:before {
     content: attr(data-label);
     display: block;
-    font-size: 10px;
-    color: #536c8f;
+    font-size: 13px;
+    color: var(--muted);
     font-weight: 650;
     margin-bottom: 5px;
   }
   .study-table caption {
-    padding: 15px 20px;
-    font-size: 11px;
+    padding: 12px 16px;
+    font-size: 15px;
   }
   .definition-quote {
     font-size: 20px;

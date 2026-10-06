@@ -20,6 +20,7 @@
 }
 .nav-key {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
   margin-bottom: 10px;
 }
@@ -40,7 +41,7 @@
 }
 .section-index {
   font-size: 11px;
-  color: #7b7b85;
+  color: #646469;
 }
 .section-head {
   margin-bottom: 12px;
@@ -55,7 +56,7 @@
 .micro {
   font-size: 9px;
   letter-spacing: 1.45px;
-  color: #72727c;
+  color: #646469;
   font-weight: 700;
   display: block;
 }
@@ -74,6 +75,7 @@
 }
 .hero-legend {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: 24px;
 }
@@ -679,7 +681,8 @@
 }
 .verification-grid {
   display: flex;
-  gap: 40px;
+  flex-wrap: wrap;
+  gap: 16px 40px;
   margin: 26px 0;
 }
 .verification-grid > div {

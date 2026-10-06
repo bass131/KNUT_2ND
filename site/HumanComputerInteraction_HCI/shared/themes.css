@@ -63,6 +63,12 @@
     --raised: #202b3c;
     --soft: #1b2433;
     --text-secondary: #c1ccdc;
+    --ink-2: #c9d3e2;
+    --surface-2: #19212e;
+    --accent-soft: #1f3350;
+    --line-strong: #4a5a73;
+    --note: #e7b85c;
+    --note-soft: #2a2416;
   }
   [data-theme='dark'] body {
     background: #101620;
@@ -146,7 +152,6 @@
       .inline-note,
       .note,
       .interactive,
-      .dimension-demo,
       .axis-list,
       .purpose-grid div,
       .goal-no,
@@ -173,10 +178,33 @@
   [data-theme='dark'] :is(.example, .support-box, .quiz, .table-wrap, .study-steps article) {
     border-color: var(--line);
   }
-  [data-theme='dark'] :is(.termline, .comparison-tip) {
+  [data-theme='dark'] .termline {
     background: #19283c;
     border-color: #719acb;
     color: var(--text-secondary);
+  }
+  [data-theme='dark'] .learning-figure img {
+    filter: brightness(0.88);
+  }
+  [data-theme='dark'] .risk-matrix .grade-1 {
+    background: #1d3524;
+    color: #a9dfb5;
+  }
+  [data-theme='dark'] .risk-matrix .grade-2 {
+    background: #29351b;
+    color: #c8e09d;
+  }
+  [data-theme='dark'] .risk-matrix .grade-3 {
+    background: #3a3218;
+    color: #f0d27c;
+  }
+  [data-theme='dark'] .risk-matrix .grade-4 {
+    background: #42281a;
+    color: #f6b48f;
+  }
+  [data-theme='dark'] .risk-matrix .grade-5 {
+    background: #45202a;
+    color: #f7a9b8;
   }
   [data-theme='dark'] :is(.definition-box, .definition-quote, .summary-page .definition-quote) {
     background: #33212d;
@@ -197,6 +225,11 @@
     :is(.flag.red, .chapter-actions a:nth-child(2), .visual-card:nth-child(2) mark) {
     color: #ffb9c8;
     background: #402635;
+  }
+  [data-theme='dark'] .flag:is(.bold, .underline, .bold-underline) {
+    color: #eceef2;
+    background: #2a2d33;
+    box-shadow: inset 0 0 0 1px #4a4f59;
   }
   [data-theme='dark'] .flag.supplement {
     color: #d1d8e5;
@@ -339,16 +372,16 @@
     border: 1px solid var(--line);
     color: var(--ink);
   }
-  [data-theme='dark'] :is(caption, th) {
-    background: #202c3e;
+  [data-theme='dark'] th {
+    background: var(--surface-2);
+    color: #e2eaf5;
+  }
+  [data-theme='dark'] caption {
     color: #e2eaf5;
   }
   [data-theme='dark']
     :is(td, th, .process-card dl > div, .glossary > div, .example-chip, .loop-caption) {
     border-color: var(--line);
-  }
-  [data-theme='dark'] .study-table td:first-child {
-    background: #1d2b40;
   }
   [data-theme='dark'] .study-table tr + tr {
     border-color: #566984;
@@ -364,7 +397,7 @@
   [data-theme='dark'] .glossary-search::placeholder {
     color: #a6b4c8;
   }
-  [data-theme='dark'] :is(.essential, .concept-map > div) {
+  [data-theme='dark'] .essential {
     background: #1c2b40;
     border-color: #3a4d68;
     color: var(--ink);
@@ -372,14 +405,6 @@
   [data-theme='dark'] .essential:hover {
     background: #263a56;
     border-color: #7197c8;
-  }
-  [data-theme='dark'] .concept-map > div:nth-child(2) {
-    background: #2a2540;
-    border-color: #4e456d;
-  }
-  [data-theme='dark'] .concept-map > div:nth-child(3) {
-    background: #1a322f;
-    border-color: #355e57;
   }
   [data-theme='dark'] .keyword-pair span {
     background: #2b3e59;
@@ -452,9 +477,6 @@
     border-color: #57647b;
     color: #c3cee0;
   }
-  [data-theme='dark'] [style*='color'] {
-    color: var(--blue) !important;
-  }
   [data-theme='dark'] :is(.goal b, .statement > b) {
     color: var(--ink);
   }
@@ -466,4 +488,8 @@
   .theme-toggle {
     display: none !important;
   }
+}
+/* Chapter 1 notes keep a light-theme gray text color unless the dark theme swaps it. */
+[data-theme='dark'] .note {
+  color: var(--muted);
 }

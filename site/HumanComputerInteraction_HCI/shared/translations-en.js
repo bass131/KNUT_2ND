@@ -1,6 +1,38 @@
 /* Authored English translations. Korean content remains in the HTML. */
 window.KNUT_TRANSLATIONS = {
   text: {
+    '굵게·밑줄 선정 기록': 'Bold and underline selection record',
+    '5장 전체 강의 →': 'Chapter 5 full lecture →',
+    '5장 강조 요약 →': 'Chapter 5 emphasis summary →',
+    '1~5장 전체 강의와 교수님 강조 요약.':
+      'Full lectures and instructor-emphasis summaries for Chapters 1–5.',
+    'HCI 3.0의 개념, 사용자경험, 유용성·사용성·신뢰성.':
+      'The concept of HCI 3.0, user experience, usefulness, usability, and reliability.',
+    '5장 학습하기 ↗': 'Study Chapter 5 ↗',
+    '장마다 전체 강의와 교수님 강조 요약이 있습니다.':
+      'Each chapter has a full lecture and an instructor-emphasis summary.',
+    '1장': 'Ch. 1',
+    '2장': 'Ch. 2',
+    '3장': 'Ch. 3',
+    '4장': 'Ch. 4',
+    '5장': 'Ch. 5',
+    '개발 방법론': 'Development methodology',
+    '문제·모형·가치': 'Problems · models · value',
+    '유용성의 조건': 'Conditions of usefulness',
+    '사용성 속성': 'Usability attributes',
+    '오류 예방·감지·회복': 'Error prevention · detection · recovery',
+    '원본 65쪽': '65 source pages',
+    '안전성·보안성·안정성과 신뢰감. 위험 매트릭스, 사용자 중심 보안, 믿음직한 인공지능.':
+      'Safety, security, stability, and credibility. The risk matrix, usable security, and trustable AI.',
+    '위험 관리': 'Risk management',
+    'AI 신뢰감': 'Credibility of AI',
+    '원문의 색·굵게·밑줄 강조와 해당 PDF 페이지. 보충 설명은 별도로 구분.':
+      'Color, bold, and underline emphasis in the source with PDF pages. Supplements are marked separately.',
+    '‘교수님 강조’는 제공된 PDF의 색·굵게·밑줄 표시를 기준으로 합니다. 구두 강조나 실제 출제 여부를 뜻하지는 않습니다.':
+      '“Instructor emphasis” follows the color, bold, and underline marks in the provided PDFs. It does not indicate spoken emphasis or actual exam content.',
+    '5장 · 서비스 신뢰성 점검표': 'Ch. 5 · Service reliability checklist',
+    '교수님 강의자료 기반 · 1–5장 학습 노트':
+      'Based on the lecture materials · Notes for Chapters 1–5',
     '그림 크게 보기': 'View full-size image',
     '이해 보완 · 가상 사례': 'Supplement · hypothetical example',
     사람: ' Human',
@@ -854,15 +886,10 @@ window.KNUT_TRANSLATIONS = {
     '출처와 검증': ' Sources and verification',
     '원문 빨강': ' Source: red emphasis',
     '원문 파랑': ' Source: blue emphasis',
-    '색상은 원본의 강조 표시입니다.': ' Colors indicate emphasis in the source.',
     'CHAPTER 01 · HCI 3.0의 개념': ' CHAPTER 01 · The concept of HCI 3.0',
     '강조된 개념만.': ' The emphasized concepts.',
     '선명하게 기억하기.': ' Remember them clearly.',
-    '파란색·빨간색 강조를 따라 정리한 1장 핵심 노트.':
-      ' Chapter 1 key notes organized around blue and red emphasis.',
     '이해 보완': ' Supplementary explanation',
-    '색상과 내용에 근거한 복습 자료입니다. 실제 출제 여부를 뜻하지는 않습니다.':
-      ' Review material based on source colors and content. It does not establish what will appear on an exam.',
     '인간 ↔ AI': ' Human ↔ AI',
     'HCI 3.0의 중심 관계': ' The central relationship in HCI 3.0',
     '인간이 참여하는 세 단계': ' Three stages of human participation',
@@ -1102,6 +1129,7 @@ window.KNUT_TRANSLATIONS = {
     '1장 · 시험 대비 핵심 정리': ' Chapter 1 · Key exam review notes',
     'HCI 3.0 · 2장 HCI 3.0과 사용자경험': ' HCI 3.0 · Chapter 2 HCI 3.0 and user experience',
     '전체 챕터': ' All chapters',
+    '전체 장': 'All chapters',
     '2장 목차': ' Chapter 2 contents',
     '본문 목차': ' Content navigation',
     '학습 안내': ' Study guide',
@@ -1716,8 +1744,6 @@ window.KNUT_TRANSLATIONS = {
     '설명할 수 있는 지식으로.': ' into knowledge you can explain.',
     '2장 교수님 강조 요약. 정의와 비교, 조절 요인, 목표 경험 설정을 원본 페이지와 함께 복습합니다.':
       ' Chapter 2 instructor-emphasis summary. Review definitions, comparisons, regulating factors, and target-experience definition alongside source pages.',
-    '색상 표시는 PDF에서 확인한 강조입니다. 실제 출제 여부를 뜻하지는 않습니다.':
-      ' Color labels indicate emphasis verified in the PDF. They do not establish what will appear on an exam.',
     '는 사용 전·중·후의 전체 경험입니다. 감각적·판단적·구성적 경험을 각각 실재감·기인점·관계의 복잡도에 연결하세요.':
       ' is the entire experience before, during, and after use. Connect sensory, judgmental, and compositional experience to presence, locus of causality, and relationship complexity, respectively.',
     '강조 범위:': ' Scope of emphasis: ',
@@ -1793,8 +1819,6 @@ window.KNUT_TRANSLATIONS = {
     '이 요약은 해당 사례의 효능·허가를 추가로 판단하지 않습니다.':
       ' This summary does not make additional judgments about the case’s efficacy or authorization.',
     '이해 보완:': ' Supplementary explanation: ',
-    '각 SET 요인이 세 경험 차원 모두에 영향을 줄 수 있습니다. 환자·의료진처럼 다른 사용자 유형은 별도로 분석하고, 경험 좌표를 단순 평균내지 않습니다.':
-      ' Each SET factor can affect all three experience dimensions. Analyze different user types, such as patients and healthcare professionals, separately without simply averaging their experience coordinates.',
     '숫자보다 방향과 강도': ' Direction and magnitude before numbers',
     'p. 67은 −5와 +5의 양 끝을 극단적인 경험의 예시로 정한다는 내용을 강조합니다. p. 69는 가정된 변화 방향을':
       ' Page 67 emphasizes defining the endpoints −5 and +5 through examples of extreme experiences. Page 69 represents assumed changes as ',
@@ -1823,12 +1847,6 @@ window.KNUT_TRANSLATIONS = {
     '본문 빨강 · 이미지 확인': ' Body-text red emphasis · Image verification',
     'p. 2의 교재 목차, 표지·마지막 페이지의 이메일 링크 색상은 본문 강조 수에서 제외했습니다.':
       ' The textbook contents on p. 2 and colored email links on the cover and final page are excluded from body-text emphasis counts.',
-    '이미지 속 청색 제목·표 머리글·선·배경과 도표 화살표 색상은 본문 강조와 구분했습니다.':
-      ' Blue titles, table headers, lines, backgrounds, and arrows in images are distinguished from body-text emphasis.',
-    '밑줄·굵은 글씨와 주변 검정 본문은 이해 보완에 사용하며 빨강·파랑 강조로 표시하지 않았습니다.':
-      ' Underlining, bold text, and surrounding black text support supplementary explanations and are not labeled as red or blue emphasis.',
-    '본문·도표 이미지는 전체 95쪽의 렌더링을 검토했습니다. 핵심 도표와 빨강 강조는 개별 페이지로 추가 확인했습니다.':
-      ' Rendered text and diagrams were reviewed across all 95 pages. Key diagrams and red emphasis received additional page-by-page checks.',
     '2장 전체 강의 ↗': ' Chapter 2 full lecture ↗',
     '← 1장 강조 요약': '← Chapter 1 emphasis summary',
     '3장 강조 요약 →': ' Chapter 3 emphasis summary →',
@@ -2599,8 +2617,6 @@ window.KNUT_TRANSLATIONS = {
       ' The source introduces a development example measuring heart rate variability using a smartphone’s front camera.',
     '최일준 교수의 「3장. 유용성의 원리」 PDF 58쪽을 바탕으로 구성했습니다. 페이지 번호는 표지부터 세는 실제 PDF 순서입니다. 본문과 표·그림을 묶어 설명하며, 반복 슬라이드는 통합했습니다.':
       ' Based on 58 pages of Professor Choi Il-jun’s PDF, “Chapter 3. Principles of usefulness.” Page numbers follow actual PDF order from the cover. Text, tables, and figures are explained together, with repeated slides combined.',
-    '교수님 강조 요약은 원문의 실제 빨강·파랑 글자를 따릅니다. 본문의 굵은 글씨 전체가 교수님의 색상 강조인 것은 아닙니다.':
-      ' The instructor-emphasis summary follows actual red and blue source text. Not all bold text in the lecture is the instructor’s color emphasis.',
     '원본의 사례와 추가한 LMS 분석·연습 문제를 구분했습니다. 복습 질문은 실제 시험 문제가 아닙니다.':
       ' Source cases are distinguished from added LMS analyses and exercises. Review questions are not actual exam questions.',
     '심성·개념적 모형의 겹치는 표현, 그림 지시와 실제 도식의 차이, 가치 지표·쿠폰의 분류, 유용성·유효성의 표기를 설명했습니다.':
@@ -2648,8 +2664,6 @@ window.KNUT_TRANSLATIONS = {
     '실제 환경을 고려해 균형점 찾기.': ' Find balance by considering actual environments.',
     '강조된 개념을,': ' Distinguish and explain, ',
     '구분하고 설명하다.': ' the emphasized concepts.',
-    '3장 교수님 강조 요약. 원문 빨강·파랑 구절을 확인하고, 문제 공간·모형·가치·유용성의 조건을 비교하며 복습합니다.':
-      ' Chapter 3 instructor-emphasis summary. Check red and blue source phrases, then review by comparing problem spaces, models, value, and conditions for usefulness.',
     '“구글의 목적은 검색” · “네이버의 목적은 브라우징”':
       ' “Google’s purpose is searching” · “Naver’s purpose is browsing”',
     '강조 범위: 검색·브라우징을 대비하는 두 구절입니다. 두 서비스의 모든 기능을 제한하는 분류는 아닙니다.':
@@ -2688,8 +2702,6 @@ window.KNUT_TRANSLATIONS = {
     '는 제공 가치와 사용 목적의 일치입니다. 원본 p. 22는 개념적 모형과 심성 모형을 겹쳐 설명하므로, 단순화한 시스템 표현과 사용자의 실제 기대를 구분하며 연결하세요.':
       ' means alignment between provided value and the purpose of use. Source p. 22 overlaps conceptual and mental models, so distinguish and connect simplified system representations with users’ actual expectations.',
     '이해 보완 · 주변 본문': ' Supplementary explanation · Surrounding text',
-    '기대와 실제 기능이 다르면 실망할 수 있습니다. 투명성·일관성·가치 중심 설계는 그 차이를 줄이기 위한 원본의 설명입니다. 위 빨간 구절과 구분해서 읽습니다.':
-      ' A gap between expectations and actual functions can cause disappointment. Transparency, consistency, and value-driven design are the source’s ways of reducing that gap. Distinguish this explanation from the red phrases above.',
     '“1) 표현 모형 (Representation Model, UI)”': ' “1) Representation Model, UI”',
     '강조 범위: 모형 명칭이 파랑입니다. 세부 원리·설계 도구·평가 지표는 검정 본문입니다.':
       ' Scope: the model name is blue. Detailed principles, design tools, and evaluation indicators are black body text.',
@@ -2715,19 +2727,13 @@ window.KNUT_TRANSLATIONS = {
       ' Scope: the blue heading. The definition paragraph is black body text.',
     '“수단적 가치(Utilitarian value)” · “프리아가 제공하는 핵심 가치”':
       ' “Instrumental value (Utilitarian value)” · “the core value provided by Pria”',
-    '강조 범위: 제목과 핵심 가치라는 구절입니다. “제때 약을 먹도록 돕는다”는 주변 검정 본문을 통한 설명입니다.':
-      ' Scope: the heading and the phrase about core value. “Helping users take medication on time” is an explanation from surrounding black text.',
     '“경험적 가치(Hedonistic Value)”': ' “Experiential value (Hedonistic Value)”',
     '강조 범위: 파란 제목입니다.': ' Scope: the blue heading.',
     '“차별화 요인”': ' “differentiating factor”',
     '강조 범위: 이 두 단어가 빨강입니다. 경험적 가치의 정의 전체가 빨강은 아닙니다.':
       ' Scope: these words are red. The entire definition of experiential value is not red.',
-    '강조 범위: 파란 제목입니다. EndeavorRx 사례 설명은 검정 본문입니다.':
-      ' Scope: the blue heading. The EndeavorRx case explanation is black body text.',
     '“기능적 가치 + 경험적 가치” · ““쓰고 싶다(desirable)””':
       ' “functional value + experiential value” · “desirable”',
-    '강조 범위: 두 구절이 빨강입니다. “쓸 수 있다(usable)”는 검정입니다.':
-      ' Scope: the two phrases are red. “Usable” is black.',
     '이해 보완 · 두 가치의 비교': ' Supplementary explanation · Comparing two values',
     '수단적 가치는 필요한 목표를 달성하는 도구로서의 가치, 경험적 가치는 과정의 즐거움과 만족입니다. 주된 목적을 지키면서 두 가치를 함께 제공할 수 있습니다. 의료 사례는 강의의 설명 범위로 읽습니다.':
       ' Instrumental value is value as a tool for needed goals; experiential value is enjoyment and satisfaction in the process. Both can be provided while preserving the primary purpose. Read medical examples within the scope of the lecture’s explanation.',
@@ -2760,10 +2766,6 @@ window.KNUT_TRANSLATIONS = {
       ' Supplementary explanation · Key criteria for explaining cases',
     '큐어앱SC는 원본이 금연 관련 임상 결과를 소개하는 사례, 뽀미는 일상 과업 수행과 습관 형성의 이점을 설명하는 사례입니다. 실제 환경의 환경 적합성은 별도로 살펴야 합니다.':
       ' The source introduces smoking-cessation clinical results for Cure-App SC and benefits of daily task performance and habit formation for Ppomi. Environmental suitability in real settings requires separate examination.',
-    '이해 보완 · 정의와 실제 환경':
-      ' Supplementary explanation · Definitions and real environments',
-    '유효성·환경 적합성의 비교표는 이해에 필요한 주변 본문을 정리한 것입니다. 표 전체가 교수님의 빨강·파랑 강조라는 뜻은 아닙니다. 현재의 제품 효능이나 허가를 추가로 판단하지 않았습니다.':
-      ' The efficacy and environmental-suitability comparison table summarizes surrounding content needed for understanding. It does not mean the whole table is the instructor’s red or blue emphasis. Current product efficacy and authorization are not independently judged.',
     '“선결 조건인 유효성을 먼저 높이고, 그 다음에 환경 적합성을 갖추도록” · “균형점을 찾는 전략을 사용”':
       ' “first improve efficacy as a prerequisite, then establish environmental suitability” · “use a strategy to find balance”',
     '강조 범위: 디지털 헬스 개발 전략 설명 중 파란 구절입니다. 보편적인 현재 인허가 규칙으로 확대하지 않습니다.':
@@ -2779,13 +2781,6 @@ window.KNUT_TRANSLATIONS = {
     'p. 56의 8번은 “유용성과 환경 적합성”으로 표기되어 있으나, 본문과 표의 다른 항목이 설명하는 쌍은 “유효성과 환경 적합성”입니다. 원문 표기와 문맥을 구분해 기억하세요.':
       ' Item 8 on p. 56 says “usefulness and environmental suitability,” but the pair described elsewhere in the text and table is “efficacy and environmental suitability.” Remember the distinction between source wording and context.',
     '이해 보완 · 자체 복습 질문': ' Supplementary explanation · Original review questions',
-    '원본 58쪽의 텍스트·색상과 전체 페이지 이미지를 대조했습니다. 선정한':
-      ' Text, colors, and full-page images were compared across all 58 source pages. The selected',
-    '본문 빨강 강조는 3쪽': ' red body-text emphasis appears on 3 pages',
-    '파랑 강조는 20쪽': ' and blue emphasis on 20 pages',
-    '입니다. p. 32는 두 색상에 함께 포함되므로 서로 다른 페이지는':
-      '. Since p. 32 includes both colors, the number of distinct pages is ',
-    '22쪽': ' 22',
     '본문 빨강 · 선정 페이지': 'Body red · selected pages',
     '본문 파랑 · 선정 페이지': 'Body blue · selected pages',
     '제외한 색상:': ' Excluded colors: ',
@@ -2801,11 +2796,7 @@ window.KNUT_TRANSLATIONS = {
     '순수 파랑뿐 아니라 pp. 30–33 제목의 RGB(0, 0.102, 1)도 시각적으로 확인해 포함했습니다.':
       ' In addition to pure blue, RGB(0, 0.102, 1) in headings on pp. 30–33 was visually checked and included.',
     '강조와 보완:': ' Emphasis and supplementation: ',
-    '따옴표 안의 발췌만 실제 색상 구절입니다. 비교표·정의 풀이·추가 사례·복습 질문은 이해 보완입니다. 원문의 밑줄·굵은 검정 글씨를 색상 강조로 바꾸지 않았습니다.':
-      ' Only quoted excerpts correspond to actual colored phrases. Comparison tables, definition explanations, added examples, and review questions are supplementary. Underlining and bold black source text are not relabeled as color emphasis.',
     '시험과의 관계:': ' Relationship to exams: ',
-    '교수님의 색상 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
-      ' The instructor’s color emphasis is not interpreted as confirmation of exam questions or an importance ranking.',
     '3장 전체 강의 ↗': ' Chapter 3 full lecture ↗',
     '← 2장 강조 요약': '← Chapter 2 emphasis summary',
     '다크 모드': ' Dark mode',
@@ -3326,8 +3317,6 @@ window.KNUT_TRANSLATIONS = {
     '핵심 용어 찾아보기': 'Key terms',
     '본문은 원본 73쪽을 주제별로 재구성했습니다. 각 절의 페이지 표시는 실제 PDF의 1부터 시작하는 순서입니다.':
       "The lecture reorganizes all 73 source pages by topic. Page references use the PDF's actual sequence starting at 1.",
-    '전체 강의의 사례 비교·활동·퀴즈는 이해를 돕는 설명입니다. 교수님의 실제 색상 강조는 별도 요약본에서 발췌 범위를 표시합니다.':
-      "Comparisons, activities, and quizzes support understanding. The separate summary identifies the actual ranges of the instructor's colored emphasis.",
     'pp. 1–4는 표지·장 위치·도입, p. 72는 참고문헌, p. 73은 질문 안내입니다. 이미지로 된 도식과 표도 대조했으며 원본 이미지를 본문에 노출하지 않습니다.':
       'Pages 1–4 provide the cover, chapter placement, and introduction; p. 72 lists references and p. 73 invites questions. Image-based diagrams and tables were also reviewed, without embedding source images in the learning pages.',
     '명칭과 분류가 달라지는 부분은 사용 오류, 과업 전이성, 과업적합성 설명에서 구분했습니다. 원문의 의료·표준 사례를 현재 사실이나 규정으로 확장하지 않았습니다.':
@@ -3463,28 +3452,18 @@ window.KNUT_TRANSLATIONS = {
     '원본 p. 69의 ‘의도한 행위’는 무엇과 구분해야 하나요?':
       'What must be distinguished from intended action on p. 69?',
     '서술형 복습': 'Recall questions',
-    '원본 73쪽을 대조했습니다. 본문 빨강 2쪽, 파랑 53쪽이며, 두 색상을 중복 제외하면 53쪽입니다. 아래 발췌는 강조된 모든 문장을 복사한 것이 아니라 각 페이지의 대표 구절을 선정한 것입니다.':
-      'All 73 source pages were reviewed. Body emphasis appears in red on 2 pages and blue on 53 pages, covering 53 distinct pages. Excerpts select representative phrases from each page rather than reproducing every emphasized sentence.',
     '포함: 실제 빨강·파랑 본문 글자와 개념을 지시하는 제목. p. 5의 질문과 p. 40의 사례 제목도 개념 안내로 포함했습니다.':
       'Included: actual red and blue body text and concept-identifying headings, including the question on p. 5 and case title on p. 40.',
-    '제외: 표지·마지막 쪽의 이메일, 교재 구성과 장 위치 안내, 그림의 선·배경·라벨·표 서식 색상. 검정 굵은 글자나 밑줄을 색상 강조로 바꾸지 않았습니다.':
-      'Excluded: cover and final-page email links, book and chapter navigation, and colors used in diagram lines, backgrounds, labels, or table formatting. Black bold or underlined text was not reclassified as colored emphasis.',
-    '보완: 정의 풀이, 비교표, 추가 사례와 복습 문제는 자체 학습 설명입니다. 색상 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
-      'Supplements: explanatory definitions, comparison tables, additional examples, and recall questions are authored learning material. Color does not establish exam inclusion or a ranking of importance.',
     '4장 전체 강의 ↗': 'Chapter 4 full lecture ↗',
     '강조 선정과 제외 기준': 'Emphasis inclusion and exclusion criteria',
     '사용성의 원리': 'Principles of usability',
     '사용자의 목표와 맥락을 기준으로 효율성·정확성·의미성·유연성·일관성을 구분하고, 오류를 줄이는 설계를 설명합니다.':
       "Distinguish efficiency, accuracy, meaningfulness, flexibility, and consistency through users' goals and contexts, and explain designs that reduce errors.",
     '4장 교수님 강조 요약': 'Chapter 4 instructor-emphasis summary',
-    '실제 빨강·파랑 구절과 보완 설명을 구분해 사용성의 속성과 사용 오류를 복습합니다.':
-      'Review usability attributes and use errors while distinguishing actual red and blue excerpts from learning supplements.',
     '누가, 어디서 사용하는가': 'Who uses it, and where?',
     '무엇을 점검하는가': 'What should be examined?',
     오류: 'Errors',
     '어떻게 예방하고 회복하는가': 'How can errors be prevented and recovered from?',
-    '색상은 원본의 실제 강조를 뜻하며 시험 출제 확정을 뜻하지 않습니다.':
-      'Colors identify actual source emphasis, not confirmed exam content.',
     '4장 전체 강의': 'Chapter 4 full lecture',
     '4장 목차': 'Chapter 4 contents',
     '강의자료 73쪽 기반': 'Based on 73 source pages',
@@ -3523,7 +3502,6 @@ window.KNUT_TRANSLATIONS = {
     '관계의 종류와 복잡도': 'Types and complexity of relationships',
     '경험의 세 축과 SET 비교': 'Comparing the experience axes with SET',
     '목표 경험 설정의 네 단계': 'Four stages of setting a target experience',
-    '빨강 강조: 제공할 경험': 'Red emphasis: the experience to provide',
     '유용성과 사용자 목적': 'Usefulness and user purposes',
     '문제 공간과 네 요소': 'Problem space and its four elements',
     '문제 공간과 솔루션 공간': 'Problem space and solution space',
@@ -3537,7 +3515,6 @@ window.KNUT_TRANSLATIONS = {
     '사용자·과업·환경에 맞는 균형': 'Balance for users, tasks, and environments',
     'LMS에 네 모형 적용하기': 'Applying four models to an LMS',
     '사용자 목적과 문제 공간': 'User purposes and problem space',
-    '빨강 강조: 심성 모형과 가치': 'Red emphasis: mental models and value',
     '네 모형과 LMS 적용 질문': 'Four models and LMS application questions',
     '수단적·경험적 가치 비교': 'Comparing utilitarian and experiential value',
     '주된 가치와 보완 가치': 'Primary and complementary value',
@@ -3594,6 +3571,1456 @@ window.KNUT_TRANSLATIONS = {
       'Three scenes compare selecting delete instead of save, omitting an attachment, and believing a saved draft has already been submitted.',
     '왼쪽부터 저장하려다 삭제를 누른 실수, 첨부하려던 파일을 잊은 과실, 임시 저장을 최종 제출로 이해한 착오를 가정합니다. 가운데 화면 밖 파란 파일은 빠뜨린 첨부 파일을, 오른쪽 생각 풍선은 사용자가 제출을 마쳤다고 믿는 상태를 나타냅니다. 실제 원인은 관찰과 질문으로 확인해야 하며, 이 그림이 원문의 의도한 행위·의도하지 않은 행위 분류를 대신하지는 않습니다.':
       'From left to right, the assumed causes are a slip that selects delete instead of save, a lapse that omits an intended attachment, and a mistake that treats a saved draft as a final submission. The blue file outside the middle screen represents the omitted attachment; the thought bubble on the right represents the belief that submission is complete. Real causes require observation and questions. This illustration does not replace the source’s intended-versus-unintended-action classification.',
+    '원문 굵게·밑줄 구절': 'Source bold and underlined phrases',
+    '원문 굵게·밑줄': ' Source: bold and underlined',
+    '원문 굵게': ' Source: bold',
+    '원문 밑줄': ' Source: underlined',
+    '사람과 컴퓨터의 상호작용 방식 자체를 변화 · 인간과 AI의 역할 및 상호작용 방식':
+      'changing the very way people and computers interact · the roles of humans and AI and the way they interact',
+    '강조 범위: 도입 슬라이드에서 HCI 관점의 변화와 앞으로의 방향을 말하는 두 구절입니다. ‘기존 인공지능의 한계’ 같은 항목 제목도 굵지만 제목이라 제외했습니다.':
+      'Scope: two phrases on the opening slide about the shift in HCI and its future direction. Item headings such as “Limits of earlier AI” are also bold but were excluded as headings.',
+    '개인(human), 컴퓨터(computer), 상호작용(interaction)':
+      'individual (human), computer (computer), interaction (interaction)',
+    '강조 범위: HCI 1.0의 세 요소 이름이 굵게·밑줄입니다. 바로 앞 줄의 ‘개인과 컴퓨터 간의 상호작용’은 밑줄만 있습니다.':
+      'Scope: the names of the three elements of HCI 1.0 are bold and underlined. The line just before, “interaction between an individual and a computer,” is underlined only.',
+    '최적의 사용자 경험을 할 수 있는 방법과 원리를 연구 · 새롭고 유익한 경험을 제공하는 데에 초점':
+      'studying methods and principles for the best user experience · focusing on providing new and beneficial experiences',
+    '강조 범위: HCI 2.0을 설명하는 두 문장의 뒷부분입니다. 앞의 ‘다양한 디지털 기술을 통해’는 파랑이며 굵지 않습니다.':
+      'Scope: the second half of the two sentences describing HCI 2.0. The preceding “through various digital technologies” is blue and not bold.',
+    '집단·사회와 디지털 시스템 간 상호작용 · 학습·판단하고 행동 · 도메인별 HCI 설계':
+      'interaction between groups or society and digital systems · learn, judge, and act · domain-specific HCI design',
+    '강조 범위: 2000년대·2020년대의 변화와 도메인별 설계를 말하는 구절만 굵게입니다. ‘2020년대(본격적으로)’는 파랑 굵게·밑줄이라 원문 파랑으로 셉니다.':
+      'Scope: only the phrases on the changes of the 2000s and 2020s and on domain-specific design are bold. “2020s (in earnest)” is blue, bold, and underlined, so it counts as blue.',
+    '적용 도메인에 따라 입력, 출력, 처리 과정과 필요한 상호작용이 달라짐.':
+      'Depending on the application domain, the input, output, processing, and required interaction differ.',
+    '강조 범위: 같은 AI 기술이라도 자동차·금융·헬스 등 분야에 따라 달라진다는 결론 부분입니다. 앞의 분야 예시는 굵지 않습니다.':
+      'Scope: the conclusion that the same AI technology differs by field, such as cars, finance, and health. The field examples before it are not bold.',
+    '기존 HCI보다 AI의 학습·추론·행동 과정에서 사용자가 어떻게 참여하고 상호작용하는지가 중요해짐':
+      'Compared with earlier HCI, how users take part and interact in AI’s learning, reasoning, and action has become important',
+    '강조 범위: HCI 3.0 정의 뒤 문장에 밑줄이 있습니다. 정의 구절 ‘사람과 AI 시스템이 효과적으로 상호작용하도록 설계하는 것’은 파랑 굵게입니다.':
+      'Scope: the sentence after the HCI 3.0 definition is underlined. The definition phrase “designing so that people and AI systems interact effectively” is blue and bold.',
+    '디지털 기술을 기반으로 사용자가 특정 목적을 달성하도록 제공되는 제품이나 서비스':
+      'a product or service, based on digital technology, provided so that users can achieve a specific goal',
+    '강조 범위: 디지털 프로덕트의 정의 부분이 굵게입니다. 용어 ‘디지털 프로덕트(Digital Product)’는 파랑 굵게·밑줄입니다.':
+      'Scope: the definition of a digital product is bold. The term “Digital Product” itself is blue, bold, and underlined.',
+    '디지털 프로덕트가 증가하고 사용 방법이 다양해지면서 HCI의 중요성이 높아':
+      'as digital products increase and ways of using them diversify, the importance of HCI grows',
+    '강조 범위: 마지막 요약표 1번 칸의 뒤 문장입니다. 같은 칸의 ‘최적의 사용자 경험’은 굵게만 있습니다.':
+      'Scope: the second sentence in row 1 of the final summary table. “The best user experience” in the same cell is bold only.',
+    '데이터 수집 → 학습·추론 → 상황에 따른 판단 → 행동':
+      'data collection → learning and reasoning → situational judgment → action',
+    '강조 범위: AI 기반 시스템의 처리 흐름에 밑줄이 있습니다. 기존 시스템의 흐름(사용자 입력 → 규칙에 따른 처리 → 결과 제공)에는 밑줄이 없습니다.':
+      'Scope: the processing flow of AI-based systems is underlined. The flow of earlier systems (user input → rule-based processing → result) is not.',
+    '화면·버튼 설계 · 지각(Sensing, perception) · 추론(Reasoning) · 실행(Actuating)':
+      'screen and button design · Sensing (perception) · Reasoning · Actuating',
+    '강조 범위: 관심이 옮겨 간 출발점과 세 영역의 이름이 굵게·밑줄입니다. 지각·추론의 풀이 일부(‘감지하고 인식하는 과정’ 등)는 파랑 굵게라 원문 파랑으로 셉니다.':
+      'Scope: the starting point of the shift and the names of the three areas are bold and underlined. Parts of the perception and reasoning explanations, such as “the process of detecting and recognizing,” are blue and bold, so they count as blue.',
+    '사용자가 데이터 수집과 설명 과정에 참여': 'users take part in data collection and explanation',
+    '강조 범위: 지각 단계에서 사람이 맡는 역할을 말하는 구절입니다.':
+      'Scope: the phrase describing the human role in the perception stage.',
+    '상호작용형 머신러닝(Interactive Machine Learning, IML)': 'Interactive Machine Learning (IML)',
+    '강조 범위: 추론 단계에서 쓰는 방법의 이름입니다. 사용자가 학습에 참여해 피드백한다는 설명은 굵지 않은 본문입니다.':
+      'Scope: the name of the method used in the reasoning stage. The explanation that users join the learning process and give feedback is regular text.',
+    'Human-in-the-loop, 즉 사람의 개입': 'Human-in-the-loop, that is, human intervention',
+    '강조 범위: 실행 단계의 핵심어입니다. 같은 슬라이드의 ‘디지털 프로덕트의 효과’는 굵게·밑줄입니다.':
+      'Scope: the key term of the action stage. “The effect of the digital product” on the same slide is bold and underlined.',
+    '효율성·접근성·개인화 · 사회 전체에 미치는 영향까지 고려':
+      'efficiency, accessibility, and personalization · considering even the impact on society as a whole',
+    '강조 범위: 디지털 헬스의 특징을 나열한 문장 중 이 구절들이 굵게입니다.':
+      'Scope: these phrases are bold within the sentences listing the features of digital health.',
+    '사람의 건강 상태나 질병의 변화를 객관적으로 나타내는 지표':
+      'an indicator that objectively shows a person’s health status or changes in disease',
+    '강조 범위: 디지털 바이오마커 정의의 뒷부분입니다. 아래 예시 목록의 굵은 낱말(심박수, 걸음 수 등)은 예시라 따로 옮기지 않았습니다.':
+      'Scope: the second half of the digital biomarker definition. Bold words in the example list below, such as heart rate and step count, are examples and were not quoted separately.',
+    '건강 데이터 수집·모니터링 → AI를 활용한 분석·판단 → 개인 맞춤형 치료 및 건강관리':
+      'health data collection and monitoring → analysis and judgment using AI → personalized treatment and health management',
+    '강조 범위: 핵심 구조를 나타낸 세 줄 흐름입니다. 아래 ‘핵심 정리’의 결론 문장은 파랑입니다.':
+      'Scope: the three-line flow that shows the core structure. The concluding sentence under “Key summary” below is blue.',
+    '객관적·정량적 생리 및 행동 데이터 · 선별·진단·모니터링·예후 예측·약리학적 반응 평가':
+      'objective, quantitative physiological and behavioral data · screening, diagnosis, monitoring, prognosis prediction, and pharmacological response assessment',
+    '강조 범위: 디지털 바이오마커 정의의 데이터 성격과 다섯 가지 활용 구절입니다.':
+      'Scope: the nature of the data in the digital biomarker definition and the five uses.',
+    '고품질 소프트웨어 · 치료 효과가 입증': 'high-quality software · proven therapeutic effect',
+    '강조 범위: 디지털 치료기기의 개념 중 이 두 구절이 굵게입니다. ‘소프트웨어 의료기기(SaMD)’는 파랑입니다.':
+      'Scope: these two phrases in the concept of digital therapeutics are bold. “Software as a Medical Device (SaMD)” is blue.',
+    '좋은 AI 알고리즘만으로는 좋은 디지털 치료 기기를 만들 수 없음.':
+      'A good AI algorithm alone cannot make a good digital therapeutic device.',
+    '강조 범위: HCI 3.0의 역할을 설명하는 첫 문장입니다. 이 슬라이드는 굵은 구절이 많아, 정의와 결론에 해당하는 문장만 골랐습니다.':
+      'Scope: the first sentence explaining the role of HCI 3.0. This slide has many bold phrases, so only the sentences that act as the definition and conclusion were chosen.',
+    '‘무엇을 치료할 것인가’를 · ‘어떻게 쉽고 정확하게 사용할 것인가’를':
+      '‘what to treat’ · ‘how to use it easily and accurately’',
+    '강조 범위: AI와 HCI 3.0의 역할을 대비하는 두 인용 구절만 굵게·밑줄입니다. 문장의 나머지는 굵게입니다.':
+      'Scope: only the two quoted phrases contrasting the roles of AI and HCI 3.0 are bold and underlined. The rest of the sentence is bold.',
+    '편리성·지속성·사용 만족도 · 장기간 지속적으로 사용':
+      'convenience, continuity, and user satisfaction · used continuously over a long period',
+    '강조 범위: 디지털 치료기기에서 사용자 경험이 중요한 이유를 말하는 구절입니다.':
+      'Scope: the phrases explaining why user experience matters in digital therapeutics.',
+    '사용자 경험을 중요한 평가 요소 · 허가 유지 또는 취소 여부를 판단':
+      'user experience as an important evaluation factor · deciding whether to maintain or revoke approval',
+    '강조 범위: FDA 설명 중 이 두 구절이 굵게입니다. 원본의 규제 설명이며 현재 제도로 확대하지 않습니다. 아래 지표 이름(User Satisfaction 등)은 굵게·밑줄, 풀이는 밑줄입니다.':
+      'Scope: these two phrases in the FDA explanation are bold. This is the lecture’s description of regulation and is not extended to current rules. The indicator names below, such as User Satisfaction, are bold and underlined, and their explanations are underlined.',
+    '근거 기반 치료를 환자에게 제공하는 의료용 전문 소프트웨어':
+      'specialized medical software that provides evidence-based treatment to patients',
+    '강조 범위: 마지막 요약표 5번 칸의 디지털 치료기기 정의 부분입니다. 표 머리글(번호·핵심 내용)은 서식이라 제외했습니다.':
+      'Scope: the definition of digital therapeutics in row 5 of the final summary table. The table headers (No., Key content) were excluded as formatting.',
+    '모든 감정·지각·인지적 결과 · 사용 전 → 사용 중 → 사용 후':
+      'all emotional, perceptual, and cognitive results · before use → during use → after use',
+    '강조 범위: 사용자 경험의 정의와 범위를 말하는 구절입니다. ‘진정한 사용자 경험(RUX)’은 파랑 굵게·밑줄입니다.':
+      'Scope: the phrases on the definition and range of user experience. “Real User Experience (RUX)” is blue, bold, and underlined.',
+    '“정말 좋은 경험이었다”라고 자연스럽게 기억할 수 있는 경험':
+      'an experience naturally remembered as “that was a really good experience”',
+    '강조 범위: 진정한 사용자 경험을 풀이한 구절입니다.':
+      'Scope: the phrase explaining real user experience.',
+    '좋은 사용자 경험의 3가지 기본 원리': 'the three basic principles of good user experience',
+    '강조 범위: 세 원리를 묶는 구절입니다. 원리 이름 유용성·사용성·신뢰성은 파랑 굵게입니다.':
+      'Scope: the phrase that groups the three principles. The principle names usefulness, usability, and reliability are blue and bold.',
+    '사용자와 사용 환경을 먼저 이해하고 → 적절한 디지털 프로덕트를 기획·설계한 뒤 → 실제 사용자 경험을 평가하여 지속적으로 개선하는 방법론':
+      'a methodology that first understands users and their environment → plans and designs a suitable digital product → evaluates the real user experience and keeps improving it',
+    '강조 범위: HCI 3.0 방법론을 정리한 문장의 굵은 부분입니다. 같은 슬라이드의 ‘반복적·유기적 프로세스’는 빨강, ‘반복적으로 개선’은 파랑 굵게·밑줄입니다.':
+      'Scope: the bold part of the sentence summarizing the HCI 3.0 methodology. On the same slide, “iterative and organic process” is red and “improve iteratively” is blue, bold, and underlined.',
+    'AI가 관계자에게 미치는 영향 · 물리적·사회문화적·기술적 환경':
+      'the impact of AI on stakeholders · physical, sociocultural, and technical environments',
+    '강조 범위: 관계자 분석과 맥락 분석에서 살필 대상입니다. 세 분석 이름은 파랑 굵게·밑줄입니다.':
+      'Scope: what to examine in stakeholder analysis and context analysis. The three analysis names are blue, bold, and underlined.',
+    '구조·기능·표현 방법 · 지속적으로 제공할 수 있는 방법':
+      'structure, function, and presentation · a way to provide it continuously',
+    '강조 범위: 콘셉트 모형과 비즈니스 모델이 정하는 내용입니다.':
+      'Scope: what the concept model and the business model define.',
+    '익숙한 대상이나 개념을 이용해 새로운 시스템의 기능과 사용법을 이해하도록 돕는 표현 방식':
+      'a way of expression that uses familiar objects or concepts to help people understand the functions and use of a new system',
+    '강조 범위: 메타포 정의에 밑줄이 있습니다. ‘은유’와 ‘HCI에서의 메타포’는 굵게·밑줄이고, 휴지통·폴더 등 예시 이름은 굵게입니다.':
+      'Scope: the definition of metaphor is underlined. “Metaphor (eunyu)” and “metaphor in HCI” are bold and underlined, and example names such as trash can and folder are bold.',
+    '사용자와 시스템 간 의사소통 과정 · 입·출력 수단과 표현 방식':
+      'the communication process between user and system · input and output means and ways of presentation',
+    '강조 범위: 인터랙션 설계와 인터페이스 설계를 풀이한 구절입니다. 세 설계 이름은 파랑 굵게·밑줄입니다.':
+      'Scope: the phrases explaining interaction design and interface design. The three design names are blue, bold, and underlined.',
+    '사용자의 목적과 니즈를 달성할 수 있는가? · 쉽고 효율적으로 사용할 수 있는가? · 시스템의 기능과 결과를 믿을 수 있는가? · 실제 사용 환경에서도 제대로 기능하는가?':
+      'Can it achieve the user’s goals and needs? · Can it be used easily and efficiently? · Can the system’s functions and results be trusted? · Does it work properly in the real environment of use?',
+    '강조 범위: 평가 기준 네 개의 질문에 밑줄이 있습니다. 기준 이름(유용성·사용성·신뢰성·환경 적합성)은 굵게입니다.':
+      'Scope: the four evaluation questions are underlined. The criterion names (usefulness, usability, reliability, environmental fit) are bold.',
+    '실험실 평가만으로 부족하며 실제 사용 현장에서 평가하는 것이 중요함':
+      'Laboratory evaluation alone is not enough; evaluating in the real field of use is important',
+    '강조 범위: 현장 평가의 필요를 말하는 구절입니다.':
+      'Scope: the phrase on the need for field evaluation.',
+    'AI가 사용자에게 어떤 가치를 제공하는가': 'what value AI provides to users',
+    '강조 범위: 마지막 문장 중 이 구절이 굵게·밑줄입니다. 관계자·과업·맥락 등 단계별 요소는 파랑 굵게·밑줄입니다.':
+      'Scope: this phrase in the last sentence is bold and underlined. Step elements such as stakeholders, tasks, and context are blue, bold, and underlined.',
+    '생산성·이익 창출 · 소비자의 요구(Needs)와 만족 · 사회적 가치':
+      'productivity and profit · consumers’ needs and satisfaction · social value',
+    '강조 범위: 가치 기준이 바뀌는 세 단계의 핵심어입니다. 문장의 나머지 일부에는 밑줄만 있습니다. ‘환경 문제(E), 사회 문제(S), 지배구조(G)’는 빨강 굵게·밑줄입니다.':
+      'Scope: the key words of the three stages in which value criteria change. Parts of the rest of the sentences are underlined only. “Environmental (E), social (S), and governance (G) issues” is red, bold, and underlined.',
+    '반사회적이라면 가치가 낮음': 'if it is antisocial, its value is low',
+    '강조 범위: 프로세스를 잘 수행해도 반사회적인 프로덕트는 가치가 낮다는 결론 구절입니다.':
+      'Scope: the concluding phrase that an antisocial product has low value even if the process is carried out well.',
+    '국가·지역사회·환경에 미치는 영향 · 사회적 가치와 책임 · 인간의 건강과 삶의 질':
+      'impact on the nation, local communities, and the environment · social value and responsibility · human health and quality of life',
+    '강조 범위: 고려 범위와 HCI 3.0의 핵심 방향을 말하는 구절입니다. 주변의 ‘디지털 시스템이 만들어내는’ 등은 밑줄만 있습니다.':
+      'Scope: phrases on the range to consider and the core direction of HCI 3.0. Surrounding phrases such as “created by digital systems” are underlined only.',
+    '라벨은 원본의 글자색·굵게·밑줄 강조를 뜻합니다.':
+      ' Labels indicate color, bold, and underline emphasis in the source.',
+    '빨강·파랑 글자와 굵게·밑줄 강조를 따라 정리한 1장 핵심 노트.':
+      ' Chapter 1 key notes following the red and blue text and the bold and underlined emphasis in the source.',
+    '원본의 글자색·굵게·밑줄과 내용에 근거한 복습 자료입니다. 실제 출제 여부를 뜻하지는 않습니다.':
+      ' A review aid based on the source’s text color, bold, and underlining and on its content. It does not indicate what will actually be on the exam.',
+    '굵게·밑줄 발췌 페이지': ' Pages with bold or underlined excerpts',
+    '원문 굵게 선정 페이지': ' Pages with selected bold text',
+    '원문 굵게·밑줄 선정 페이지': ' Pages with selected bold and underlined text',
+    '원문 밑줄 선정 페이지': ' Pages with selected underlined text',
+    '검정 굵게, 굵게·밑줄, 밑줄도 교수님 강조로 포함합니다. 개념 정의·핵심 주장·구분 기준·사례 결론을 골랐고, 굵은 구절을 모두 옮기지는 않았습니다.':
+      'Black bold, bold and underlined, and underlined text are also treated as the instructor’s emphasis. Definitions, key claims, distinguishing criteria, and case conclusions were chosen; not every bold phrase was copied.',
+    '슬라이드 제목, 표 머리글과 행 라벨, 그림 캡션, 도입 항목 제목, 표지·Q&A 페이지는 제외했습니다. 글자색과 굵게·밑줄이 겹치면 원문 빨강·파랑으로 셉니다.':
+      'Slide titles, table headers and row labels, figure captions, opening item headings, and the cover and Q&A pages were excluded. When color overlaps with bold or underlining, the text counts as red or blue.',
+    '굵게·밑줄 발췌 37개는 PDF에서 추출한 글자 스타일과 대조했고, 페이지 이미지로 다시 확인했습니다. 일부만 굵은 문장은 굵은 구절만 옮겼습니다.':
+      'The 37 bold or underlined excerpts were checked against text styles extracted from the PDF and rechecked in page images. In sentences only partly bold, only the bold phrases were quoted.',
+    '제공할 경험 정의와 정리 예시': 'Defining the experience to provide, with a review example',
+    '색상·굵게·밑줄 표시는 PDF에서 확인한 강조입니다. 실제 출제 여부를 뜻하지는 않습니다.':
+      'Color, bold, and underline marks are emphasis confirmed in the PDF. They do not indicate what will be on the exam.',
+    '“현재 사용자가 어떤 경험을 하고 있는가” · “사용자가 어떤 경험을 원하는가” · “현재 경험과 원하는 경험의 차이는 무엇인가” · “기술·사회 등 외부 환경 변화가 경험에 어떤 영향을 주는가”':
+      '“What experience is the user having now?” · “What experience does the user want?” · “What is the gap between the current and the desired experience?” · “How do changes in the external environment, such as technology and society, affect the experience?”',
+    '파랑 안내 문장 ‘좋은 디지털 시스템을 설계하려면 다음을 파악해야 함’ 아래의 네 질문입니다.':
+      'These are the four questions under the blue lead sentence, ‘To design a good digital system, identify the following.’',
+    '“사용자가 제품, 시스템 또는 서비스와 상호작용하면서 발생하는 지각적·감정적·심리적 반응들의 총합” · “사람의 내면적 경험 전체를 다루는 복합적 개념”':
+      '“The sum of perceptual, emotional, and psychological responses that arise as a user interacts with a product, system, or service” · “A complex concept covering a person’s entire inner experience”',
+    'UX의 정의입니다. 단순한 디자인 만족도가 아니라는 대비 문장에서 굵게·밑줄인 부분만 옮겼습니다.':
+      'This is the definition of UX. From the sentence contrasting it with simple design satisfaction, only the bold and underlined parts are quoted.',
+    '“전·사용 중·사용 후에 느끼고 생각하고 행동하는 모든 과정”':
+      '“The whole process of feeling, thinking, and acting before, during, and after use”',
+    '같은 문장의 ‘사용자 경험(UX)’은 파랑, ‘제품을 사용하기’는 밑줄만 있습니다.':
+      'In the same sentence, ‘user experience (UX)’ is blue and ‘using the product’ is only underlined.',
+    '“보고, 듣고, 만지고, 느끼는 감각적 경험”':
+      '“The sensory experience of seeing, hearing, touching, and feeling”',
+    '감각적 경험의 범위입니다. 이어지는 ‘실재감(Sense of Presence)’은 파랑입니다.':
+      'This sets the scope of sensual experience. The following ‘Sense of Presence’ is blue.',
+    '“실재감이 높다고 항상 좋은 사용자 경험(UX)이 되는 것은 아님.”':
+      '“High presence does not always make a good user experience (UX).”',
+    '위 문단의 ‘적절한 수준’ 설명이 이 굵은 문장에 근거합니다.':
+      'The ‘appropriate level’ explanation above is based on this bold sentence.',
+    '“특정 대상이나 환경 속에 실제로 ‘존재한다’는 감각”':
+      '“The sense of actually ‘being’ within a particular object or environment”',
+    '실재감(being there)의 정의 부분입니다.':
+      'This is the definition part for presence (being there).',
+    '“자극을 얼마나 사실적이고 풍부하게 제공하는가?” · “사용자의 행동에 시스템이 얼마나 적절하고 빠르게 반응하는가?”':
+      '“How realistically and richly are stimuli provided?” · “How appropriately and quickly does the system respond to the user’s actions?”',
+    '각각 생동감과 상호성을 묻는 질문입니다. 두 명칭은 파랑입니다.':
+      'These questions ask about vividness and interactivity respectively. Both names are blue.',
+    '“핵심: HCI 3.0은 AI를 활용하여 사용자의 행동과 상황에 맞게 생동감과 상호성을 동적으로 조절함으로써 더욱 높은 실재감과 개인화된 사용자 경험을 제공함.”':
+      '“Key point: HCI 3.0 uses AI to dynamically adjust vividness and interactivity to the user’s actions and situation, providing higher presence and a personalized user experience.”',
+    '“가치 있고 유용했는지를 생각하고 평가하는 경험”':
+      '“The experience of thinking about and evaluating whether it was valuable and useful”',
+    '판단적 경험의 정의입니다. 앞부분 ‘사용자가 제품이나 서비스를 사용한 후, 그 경험이 자신에게’는 밑줄만 있습니다.':
+      'This is the definition of judgmental experience. The preceding part, ‘after using a product or service, whether that experience to the user’, is only underlined.',
+    '“원인을 어디에서 찾는가”': '“Where the cause is located”',
+    '기인점 정의 문장에서 이 부분만 굵게·밑줄이고, 나머지는 밑줄만 있습니다.':
+      'In the definition of locus of causality, only this part is bold and underlined; the rest is only underlined.',
+    '“상황과 경험의 목적에 따라 적절하게 설계해야 함.”':
+      '“It should be designed appropriately for the situation and the purpose of the experience.”',
+    '내재적·외재적 기인점 중 어느 쪽이 항상 좋은 것은 아니라는 문장의 결론입니다.':
+      'This concludes the sentence saying that neither the internal nor the external locus of causality is always better.',
+    '“자동화 수준이 높을수록 시스템 주도성이 증가”':
+      '“The higher the level of automation, the greater the system initiative”',
+    '“사용 목적에 맞는 가치를 제공하고, 사용자와 시스템의 주도성을 적절히 조절하여”':
+      '“By providing value that fits the purpose of use and appropriately balancing user and system initiative”',
+    '핵심 정리에서 ‘좋은 판단적 경험을 설계’(굵게·밑줄)하는 방법을 설명하는 부분입니다.':
+      'In the key summary, this part explains how to ‘design a good judgmental experience’ (bold + underline).',
+    '“‘그리는 과정 자체’가 즐거움의 근원임.” · “외부 요인에 의해 동기가 부여” · “즉, 외부 보상이 경험을 규정함.”':
+      '“‘The drawing process itself’ is the source of enjoyment.” · “Motivated by external factors” · “In other words, external rewards define the experience.”',
+    '그림 그리기 앱 예시의 두 결론입니다. 두 기인점 명칭은 파랑입니다.':
+      'These are the two conclusions of the drawing-app example. Both locus names are blue.',
+    '원문 굵게 구절': 'Source bold phrases',
+    '“관계의 수뿐 아니라 연결성과 상호작용의 강도”':
+      '“Not only the number of relationships but also connectedness and the strength of interaction”',
+    '‘사용자 경험을 설계할 때는 … 를 함께 고려해야 함’ 문장에서 굵은 부분입니다.':
+      'This is the bold part of the sentence ‘When designing user experience, consider … together.’',
+    '“실제로 연결된 관계가 많을수록 밀도가 높아짐.” · “상호작용의 빈도와 정보 교환량”':
+      '“The more relationships actually connected, the higher the density.” · “The frequency of interaction and the amount of information exchanged”',
+    '밀도와 강도를 판단하는 기준입니다. 두 명칭은 파랑입니다.':
+      'These are the criteria for judging density and strength. Both names are blue.',
+    '“관계의 밀도와 강도를 모두 높일 수 있음.”':
+      '“It can increase both the density and the strength of relationships.”',
+    '사용자와 직접 상호작용하는 AI 에이전트에 대한 설명입니다.':
+      'This describes AI agents that interact directly with users.',
+    '각 SET 요인이 세 경험 차원 모두에 영향을 줄 수 있습니다. 환자·의료진처럼 사용자 유형이 다르면 따로 분석합니다.':
+      'Each SET factor can affect all three experience dimensions. Analyze different user types, such as patients and clinicians, separately.',
+    '“다른 사용자 유형의 경험을 합쳐서 평균을 내면 안 된다는 것임”':
+      '“The experiences of different user types must not be combined and averaged”',
+    '‘주의할 점’(굵게) 뒤의 문장입니다. 경험 좌표를 단순 평균내지 않는다는 기준이 여기서 나옵니다.':
+      'This sentence follows ‘a point of caution’ (bold). The rule against simply averaging experience coordinates comes from here.',
+    '“사용자 경험에 영향을 미치는 외부 환경을 파악하고, 향후 경험이 어떤 방향으로 변화할지 예측”':
+      '“Identify the external environment affecting user experience and predict the direction in which experience will change”',
+    'SET 분석의 목적입니다. ‘SET(Socio-cultural, Economic, Technological) 분석’은 파랑에 굵게·밑줄입니다.':
+      'This is the purpose of SET analysis. ‘SET (Socio-cultural, Economic, Technological) analysis’ is blue, bold, and underlined.',
+    '“인공지능 기술의 발달과 넓은 보급으로 인해 기술적 요인의 영향력이 매우 커지고 있음”':
+      '“With the development and wide adoption of AI technology, the influence of technological factors is growing greatly”',
+    '“사용자의 내적 경험과 상호작용하며, 특정 시점의 ‘경험점’을 형성함” · “언제나 외적 맥락의 영향을 받아 의미화되며”':
+      '“Interact with the user’s inner experience and form the ‘experience point’ at a given time” · “Always take on meaning under the influence of the external context”',
+    '주어인 ‘사회·문화적, 경제적, 기술적 요인’은 굵게·밑줄, ‘사용자의 감각적·판단적·구성적 경험’은 굵게입니다.':
+      'The subject ‘socio-cultural, economic, and technological factors’ is bold and underlined, and ‘the user’s sensual, judgmental, and compositional experience’ is bold.',
+    'SET 세 요인의 정의 · 원문 굵게': 'Definitions of the three SET factors · Source bold',
+    '“사회·문화적 요인은 사용자가 속한 환경과 집단이 경험에 미치는 영향을 의미함.”':
+      '“Socio-cultural factors mean the influence that the user’s environment and groups have on experience.”',
+    '“경제적 요인은 사용자의 구매 능력과 소비 행태, 그리고 시장 환경을 포괄함.”':
+      '“Economic factors cover the user’s purchasing power, consumption behavior, and the market environment.”',
+    '“기술적 요인은 경험의 형태와 가능성을 확장시키는 동력이 됨.”':
+      '“Technological factors are the driving force that expands the forms and possibilities of experience.”',
+    '좌표보다 방향 · 원문 굵게·밑줄': 'Direction over coordinates · Source bold and underline',
+    '“인식, 기억, 해석과 같이 본질적으로 주관적인 인지 작용이기 때문에 정량화해서 객관적 치수로 치환하는 데에는 한계가 있음”':
+      '“Because it is an inherently subjective cognitive process such as perception, memory, and interpretation, there are limits to quantifying it into objective measures”',
+    '주어인 ‘경험’은 굵게·밑줄입니다.': 'The subject ‘experience’ is bold and underlined.',
+    '“구체적인 좌푯값보다는 상대적으로 어떤 방향으로 얼마나 강하게 이동할 것인지가 더 중요함”':
+      '“Rather than exact coordinate values, the relative direction and strength of movement matter more”',
+    '단계별 원문 굵게·밑줄': 'Source bold and underline by step',
+    '“현재의 경험점에서 사용자가 더 원하는 방향으로 얼마나 강하게 이끌리는지 그 방향성과 강도를 표시함”':
+      '“Mark the direction and strength with which the user is pulled from the current experience point toward the preferred direction”',
+    '1단계 설명입니다.': 'This explains step 1.',
+    '“현재의 경험과 비교해서 사용자가 원하는 경험을 추정하는 것”':
+      '“Estimating the experience the user wants compared with the current experience”',
+    '2단계 설명입니다. ‘두번째의 단계’는 파랑입니다.':
+      'This explains step 2. ‘The second step’ is blue.',
+    '“욕구, 목표, 가치관”': '“Needs, goals, values”',
+    '내적 갈등을 ‘사용자의 내적 요인, 즉 욕구, 목표, 가치관 사이에서 발생하는 긴장’으로 설명하는 문장입니다. ‘사용자의 내적 요인’은 밑줄만 있습니다.':
+      'This sentence describes internal conflict as ‘tension arising among the user’s internal factors, that is, needs, goals, and values.’ ‘The user’s internal factors’ is only underlined.',
+    '“사회·문화적, 경제적, 기술적 환경에서 비롯된 외부 요인”':
+      '“External factors arising from the socio-cultural, economic, and technological environment”',
+    '외적 압력의 정의 부분입니다.': 'This is the definition part for external pressure.',
+    '“To-be는 단순히 현재 상태의 연장” · “내적 긴장을 해소하고 외부 압력에 적응하는 과정 속에서 도달하게 되는 목표 상태”':
+      '“To-be is simply an extension of the current state” · “The target state reached while resolving internal tension and adapting to external pressure”',
+    '원문은 ‘… 연장이 아니라, … 목표 상태임’으로 이어집니다.':
+      'The source reads ‘… is not an extension, but … the target state.’',
+    '“다양한 사회 문화적, 기술적 환경 요인을 되도록 많이 도출함”':
+      '“Identify as many socio-cultural and technological environmental factors as possible”',
+    '3단계 설명입니다. 이 문장에는 경제적 요인이 빠져 있지만, 바로 다음 밑줄 문장은 사회문화적·경제적·기술적 요인을 모두 분석 대상으로 듭니다.':
+      'This explains step 3. This sentence omits economic factors, but the next underlined sentence names socio-cultural, economic, and technological factors as targets of analysis.',
+    '“새로 그린 균형점이 어디인지를 알고 어느 정도의 힘으로 현재의 경험을 변화시켜야 하는지를 파악함”':
+      '“Identify where the newly drawn balance point is and how much force is needed to change the current experience”',
+    '4단계 설명입니다. ‘마지막 단계’는 파랑입니다.':
+      'This explains step 4. ‘The last step’ is blue.',
+    '“새로운 경험점에 있는 경험을 제공하기 위해 디지털 시스템의 아키텍처와 인터렉션, 인터페이스를 설계하고 구현하며, 그 결과를 검증하는 것”':
+      '“Designing and implementing the digital system’s architecture, interaction, and interface to provide the experience at the new experience point, and verifying the result”',
+    '정리 · 원문 밑줄': 'Summary · Source underline',
+    '“설정한 목표 경험점을 더욱 구체화해서 실제 시스템 분석과 설계에 활용할 수 있어야 한다는 점임”':
+      '“The target experience point must be made more concrete so it can be used in actual system analysis and design”',
+    '같은 쪽에서 3~5장으로 이어지는 교재 안내 구절은 제외했습니다.':
+      'The textbook guidance on the same page that points to Chapters 3–5 is excluded.',
+    '“경험은 고정된 것이 아니라, 내적 긴장과 외부 맥락의 압력 속에서 항상 변화함”':
+      '“Experience is not fixed; it always changes under internal tension and the pressure of the external context”',
+    '온라인 학습 정리 예시 · 원문 굵게·밑줄':
+      'Online learning review example · Source bold and underline',
+    '“즉, As-is 분석은 사용자가 지금 ‘어떤 경험 좌표에 위치해 있는지’를 파악하는 과정임.”':
+      '“In other words, As-is analysis is the process of identifying ‘which experience coordinates’ the user is at now.”',
+    '“사용자의 욕구(Needs)와 기대가 현재 경험과 충돌하는 지점을 확인”':
+      '“Identify where the user’s needs and expectations conflict with the current experience”',
+    '“앞의 세 단계를 종합하여, 사용자에게 어떤 경험을 제공하고자 하는지를 명확히 정의하는 것.” · “전략적 UX 설계 방향”':
+      '“Combining the previous three steps to clearly define what experience to provide to the user.” · “Strategic UX design direction”',
+    'p. 91의 빨강 구절과 같은 내용을 p. 92는 굵게·밑줄로 다시 표시합니다. ‘마지막 단계는’은 굵게만 있습니다.':
+      'p. 92 marks the same content as the red phrase on p. 91 again in bold and underline. ‘The last step is’ is only bold.',
+    '검정 굵게·밑줄은 대표 구절 39개를 골랐습니다. 선정 페이지는 굵게·밑줄 15쪽, 굵게 11쪽, 밑줄 13쪽이며, 겹치는 페이지를 빼면 36쪽입니다.':
+      'For black bold and underline, 39 representative phrases were selected. Selected pages: bold + underline 15, bold 11, underline 13; excluding overlaps, 36 pages.',
+    '원문 굵게·밑줄 · 선정 페이지': 'Source bold + underline · selected pages',
+    '원문 굵게 · 선정 페이지': 'Source bold · selected pages',
+    '원문 밑줄 · 선정 페이지': 'Source underline · selected pages',
+    'p. 2의 교재 목차, 표지·마지막 페이지의 이메일 링크 색상은 본문 강조 수에서 제외했습니다. 이미지 속 청색 제목·표 머리글·선·배경과 도표 화살표 색상도 본문 강조와 구분했습니다.':
+      'The textbook outline on p. 2 and the email link colors on the cover and last page are excluded from the body emphasis count. Blue titles, table headers, lines, backgrounds, and diagram arrow colors inside images are also distinguished from body emphasis.',
+    '굵게·밑줄 선정:': 'Bold and underline selection: ',
+    '이 장은 굵은 글씨를 본문 핵심어 표시에 널리 씁니다. 모든 굵은 구절을 옮기지 않고 정의·주장·구분 기준·사례 결론을 페이지당 1~2개 골랐습니다.':
+      'This chapter uses bold widely to mark key words in the body. Rather than copying every bold phrase, one or two definitions, claims, distinguishing criteria, or example conclusions were chosen per page.',
+    '굵게·밑줄 제외:': 'Bold and underline exclusions: ',
+    '교재 구성 안내(p. 2, pp. 81–82의 다른 장 안내), 슬라이드 제목과 소제목, 표 머리글·행 라벨(pp. 13·47·54·60), 그림 캡션(pp. 51·66·79), 연습문제 안내(pp. 9–10), Q&A·이메일(pp. 1·95)입니다.':
+      'Textbook structure guidance (p. 2 and the references to other chapters on pp. 81–82), slide titles and subheadings, table headers and row labels (pp. 13, 47, 54, 60), figure captions (pp. 51, 66, 79), exercise prompts (pp. 9–10), and Q&A and email (pp. 1, 95).',
+    '발췌 범위:': 'Excerpt scope: ',
+    '따옴표 안 구절만 해당 서식입니다. 일부 단어만 굵은 문장은 그 부분만 옮겼습니다. 색과 굵게·밑줄이 겹치면 빨강·파랑으로 표시합니다. 표·풀이·추가 사례는 이해 보완입니다.':
+      'Only the quoted phrases carry that formatting. Where only some words in a sentence are bold, only that part is quoted. When color overlaps with bold or underline, it is marked as red or blue. Tables, explanations, and added examples are learning supplements.',
+    '대조 방법:': 'Comparison method: ',
+    '발췌는 생성할 때 PDF에서 추출한 굵기·밑줄 글자와 비교합니다. 선정한 페이지는 렌더링 이미지로 서식을 다시 확인했습니다.':
+      'During generation, excerpts are compared with the bold and underlined text extracted from the PDF. The formatting of the selected pages was rechecked against rendered page images.',
+    '교수님의 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
+      'The professor’s emphasis is not interpreted as confirmed exam content or a ranking of importance.',
+    '39쪽': ' 39',
+    '3장 교수님 강조 요약. 원문 빨강·파랑과 굵게·밑줄 구절을 확인하고, 문제 공간·모형·가치·유용성의 조건을 비교하며 복습합니다.':
+      'Chapter 3 instructor emphasis summary. Check red, blue, bold, and underlined source phrases, then review by comparing problem spaces, models, value, and the conditions of usefulness.',
+    '“감성적 만족이나 즐거움(쾌락적 경험)” · “얼마나 즐겁게, 만족스럽게 쓸 수 있는가?”':
+      '“emotional satisfaction or enjoyment (hedonic experience)” · “How enjoyably and satisfyingly can it be used?”',
+    '“겉모습으로 이해” · “표상 수준의 심성 모형”':
+      '“understanding by appearance” · “a mental model at the representation level”',
+    '“결론적으로 유효성은 디지털 프로덕트가 사용자에게 어떤 이점을 가져다 줄 수 있는지에 대한 것”':
+      '“in conclusion, efficacy is about what benefits a digital product can bring to users”',
+    '“경험적 가치가 의료적 효능을 강화하는 매개체로 작용한 사례”':
+      '“a case in which experiential value acted as a medium strengthening medical efficacy”',
+    '“과거의 경험을 얼마나 반영할지는 데이터의 성격을 고려해서 신중히 결정해야 함”':
+      '“how much past experience to reflect should be decided carefully in light of the nature of the data”',
+    '“기본적으로 사용자에게 쓸모 있는 기능을 제공해야 하고, 사용하기 쉬우며, 믿고 쓸 만해야 할 것”':
+      '“basically, they should provide functions useful to users, be easy to use, and be trustworthy”',
+    '“무슨 가치를 얻으려 하는가(해야 할 일, JTBD)” · “기능·구조·표현이 왜 존재해야 하는지를 규정함”':
+      '“what value users seek (jobs to be done, JTBD)” · “defines why function, structure, and representation should exist”',
+    '“문제 공간에서 정의된 사용자의 목표와 맥락” · “솔루션 공간에서 구체적인 디자인과 서비스 대안이”':
+      '“the user’s goals and context defined in the problem space” · “concrete design and service alternatives in the solution space”',
+    '“문제를 해결해 줄 수 있는 모든 제품이나 서비스 대안의 집합”':
+      '“the set of all product or service alternatives that can solve the problem”',
+    '“복잡한 문제를 단순하게 해결”': '“solving complex problems simply”',
+    '“사람이 문제를 해결할 수 있는 모든 상태의 집합”':
+      '“the set of all states in which a person can solve a problem”',
+    '“사용자가 어떤 서비스를 접했을 때 그 안에서 무엇을 할 수 있고 어떤 결과가 나올지를 상상하고 예측하는 사고 틀”':
+      '“the frame of thought with which users imagine and predict what they can do in a service and what results will follow when they encounter it”',
+    '“사용자가 원하는 목적을 정확히 수행할 수 있다면 그 시스템은 ‘유용하다’고 평가” · “맥락적 기준으로 변화”':
+      '“if users can accurately carry out the purpose they want, the system is evaluated as ‘useful’” · “changing to contextual criteria”',
+    '“사용자가 특정 디지털 시스템을 사용할 때 자신의 목적을 효과적으로 달성할 수 있도록 돕는 원리” · “유용성은 단순한 사용 편의성(usability)과는 구별됨”':
+      '“the principle that helps users effectively achieve their goals when using a particular digital system” · “usefulness is distinguished from simple ease of use (usability)”',
+    '“사용자에게 유효성이라는 명확한 이익과 높은 환경 적합성이라는 가치를 제공하는 것”':
+      '“providing users with the clear benefit of efficacy and the value of high environmental suitability”',
+    '“사용자의 상황과 맥락에 따라 달라지는 상대적 개념”':
+      '“a relative concept that varies with the user’s situation and context”',
+    '“설계된 디지털 프로덕트가 통제된 환경에서 최근 데이터만 이용할 경우 과적합으로 이어질 수 있음” · “특정 부분 또는 오히려 과소적합이 발생해 유효성이 낮아지게 됨”':
+      '“if a designed digital product uses only recent data in a controlled environment, it can lead to overfitting” · “in certain areas, underfitting may instead occur and efficacy decreases”',
+    '“시스템의 불필요한 세부사항을 제거하고 본질적인 구조와 작동 방식을 표현” · “복잡한 과정도 사용자가 쉽게 이해할 수 있도록 구조화”':
+      '“removing unnecessary system details and expressing the essential structure and operation” · “structuring even complex processes so users can easily understand them”',
+    '“시스템이 제공하려는 가치(System Value)” · “사용자가 그 시스템을 사용하려는 목적(System Use Purpose)”':
+      '“the value the system intends to provide (System Value)” · “the purpose for which users use the system (System Use Purpose)”',
+    '“실용적인 목적이나 필요를 달성하기 위해 시스템을 도구로 사용하는 가치” · “이 시스템을 통해 내가 필요한 일을 제대로 할 수 있는가?”':
+      '“the value of using a system as a tool to achieve a practical purpose or need” · “Can I properly do what I need through this system?”',
+    '“실제 문제 상황을 사용자가 머릿속에서 구조화하고 이해하는 과정”':
+      '“the process by which users structure and understand the actual problem situation in their minds”',
+    '“실제 사용 환경에서 사용자의 요구 사항을 이해하고 충족하는지, 즉 사용 환경에서의 유효성”':
+      '“whether it understands and meets user requirements in the actual use environment, that is, efficacy in the use environment”',
+    '“실제 시스템은 한정된 데이터와 규칙 속에서만 응답하기 때문에, 인간적 공감이나 맥락 이해에서 한계를 드러냄”':
+      '“because actual systems respond only within limited data and rules, they show limits in human empathy and contextual understanding”',
+    '“쓸 수 있다(usable)”': '“can be used (usable)”',
+    '“안전하고 정확하게 과제를 제출할 수 있도록 하는 것” · “‘제출함’과 ‘제출 영수증’ 같은 중요한 정보는 항상 같은 위치에서 확인할 수 있도록 배치”':
+      '“enabling students to submit assignments safely and accurately” · “placing important information such as the ‘submission box’ and ‘submission receipt’ so it can always be checked in the same location”',
+    '“어떤 상태 전이를 거치며 무엇을 조작하는가를”':
+      '“which state transitions occur and what is manipulated”',
+    '“어떻게 묶고 이름 붙이며 연결할 것인가를”': '“how to group, name, and connect”',
+    '“여러 가치 가운데 무엇을 우선적으로 제공할 것인가를 명확히 하는 것” · “주된 가치가 분명히 드러나지 않아 전체적으로 유용성이 떨어지는 시스템으로 인식될 수 있음.”':
+      '“clarifying which of several values to provide first” · “the main value is not clearly revealed, so the system may be perceived as less useful overall.”',
+    '“여러 임상 시험을 통해 시험군의 지속적인 금연율이 대조군에 비해 유의미하게 높음을 보여주어 그 유효성을 입증했음”':
+      '“proved its efficacy by showing in several clinical trials that the continuous smoking-cessation rate of the test group was significantly higher than that of the control group”',
+    '“유효성과 환경 적합성 사이에는 상충 관계가 존재” · “유효성과 환경 적합성 간의 적절히 균형을”':
+      '“a trade-off exists between efficacy and environmental suitability” · “an appropriate balance between efficacy and environmental suitability”',
+    '“유효성과 환경 적합성의 균형점을 찾아야 하는데, 이는 HCI 3.0에서 유용성을 높이는 중요한 역할을”':
+      '“the balance point between efficacy and environmental suitability must be found, which plays an important role in increasing usefulness in HCI 3.0”',
+    '“이런 이차적 문제가 일어나지 않도록 ADHD 아동이 일상생활 과업을 스스로 완성도 있게 해내게 도움”':
+      '“helps children with ADHD complete daily tasks thoroughly on their own so these secondary problems do not arise”',
+    '“인공지능 알고리즘을 활용해 데이터를 학습하고 모델을 수립해 추후 새로운 데이터에 대해 예측하거나 분류하는 데이터 분석 방법” · “과적합(Overfitting)” · “과소적합(Underfitting)”':
+      '“a data analysis method that uses AI algorithms to learn from data and build a model to predict or classify new data later” · “overfitting” · “underfitting”',
+    '“초기 상태, 목표 상태, 제한 조건, 조작자” · “유용한 시스템이 만들어짐”':
+      '“initial state, goal state, constraints, operators” · “a useful system is created”',
+    '“필요(Need)를 넘어, 더 많은 만족을 추구하는 욕망” · “어떤 필요와 욕구를 충족하려 하는지” · “어떤 가치를 얻으려 하는지”':
+      '“a desire that goes beyond need (Need) to seek greater satisfaction” · “which needs and wants they seek to satisfy” · “what value they seek to gain”',
+    '“현재의 불만족스러운 상황을 개선하기 위해 새로운 무언가를 필요로 하는 상태” · “기본적이고 본질적인 요구와 관련이 있음.”':
+      '“a state of needing something new to improve a currently unsatisfactory situation” · “related to basic and essential requirements.”',
+    '“환경 적합성은 통제된 실험 상황이 아닌 실제 환경에서 사용자가 겪는 실질적인 유용성을 의미”':
+      '“environmental suitability means the practical usefulness users experience in real environments, not in controlled experimental situations”',
+    '“환경 적합성의 문제는 디지털 헬스 프로덕트에서 매우 중요한 사안”':
+      '“environmental suitability is a very important issue for digital health products”',
+    '“환자가 제때 약을 먹도록 돕는 것” · “실용적 기능, 즉 수단적 가치”':
+      '“helping patients take their medicine on time” · “a practical function, that is, instrumental value”',
+    '강조 범위: AI·챗봇 사례에서 기대와 실제의 차이를 설명하는 구절입니다. 기대를 나타낸 “사람처럼 대화하고 이해할 것”은 굵게입니다.':
+      ' Scope: a phrase explaining the gap between expectation and reality in the AI and chatbot example. The expectation “will converse and understand like a person” is bold.',
+    '강조 범위: EndeavorRx 사례의 결론 구절입니다. 치료제 소개는 밑줄만 있습니다.':
+      ' Scope: the concluding phrase of the EndeavorRx case. The introduction of the therapeutic is only underlined.',
+    '강조 범위: Need의 정의와 성격입니다. 배고픔 예시는 일반 본문입니다.':
+      ' Scope: the definition and nature of Need. The hunger example is plain text.',
+    '강조 범위: Want의 정의와 마지막 문장의 두 구절입니다. 고급 레스토랑 예시는 굵게만 표시되어 있습니다.':
+      ' Scope: the definition of Want and two phrases from the last sentence. The fine-dining example is only bold.',
+    '강조 범위: 가치 모형의 정의 구절입니다. 도구·지표 목록은 옮기지 않았습니다.':
+      ' Scope: definition phrases of the value model. Tool and metric lists were not copied.',
+    '강조 범위: 가치·구조 모형 답의 굵은 구절입니다. 기능·표현 모형의 굵은 흐름과 화면 요소는 아래 표에 정리했습니다.':
+      ' Scope: bold phrases in the value and structural model answers. The bold flow and screen elements of the functional and representation models are summarized in the table below.',
+    '강조 범위: 개념적 모형의 핵심인 두 항목에 밑줄이 있습니다. 둘이 일치해야 한다는 서술은 일반 본문입니다.':
+      ' Scope: the two core items of the conceptual model are underlined. The statement that they must match is plain text.',
+    '강조 범위: 결론 문장 일부입니다. 앞의 “결론적으로”와 끝의 “함”은 밑줄 밖입니다.':
+      ' Scope: part of the concluding sentence. “In conclusion” at the start and the sentence ending are outside the underline.',
+    '강조 범위: 경험적 가치의 정의와 초점을 나타낸 구절입니다.':
+      ' Scope: phrases showing the definition and focus of experiential value.',
+    '강조 범위: 고위험군 환자의 부작용 가능성을 이유로 든 문장의 결론입니다.':
+      ' Scope: the conclusion of a sentence that cites possible side effects for high-risk patients.',
+    '강조 범위: 구조 모형 정의의 핵심 구절입니다. 내비게이션·카드 소팅 같은 대상·도구 이름도 굵게·밑줄이지만 목록이라 옮기지 않았습니다.':
+      ' Scope: the key phrase of the structural model definition. Target and tool names such as navigation and card sorting are also bold and underlined but were not copied because they form a list.',
+    '강조 범위: 기능 모형 정의의 핵심 구절입니다. 도구·지표 목록은 옮기지 않았습니다.':
+      ' Scope: the key phrase of the functional model definition. Tool and metric lists were not copied.',
+    '강조 범위: 데이터 사용 범위 예시 뒤의 결론입니다. 1년·한 달 데이터 예시는 굵게·밑줄입니다.':
+      ' Scope: the conclusion after the data-range example. The one-year and one-month data example is bold and underlined.',
+    '강조 범위: 두 공간의 순서를 말하는 구절입니다. 그 사이의 “이 먼저 파악되고, 이를 기반으로”는 일반 본문입니다.':
+      ' Scope: phrases describing the order of the two spaces. The words between them, “are identified first, and based on this,” are plain text.',
+    '강조 범위: 두 구절이 굵게·밑줄입니다. 앞의 “사용 과정이 다소 복잡하거나 불편하더라도”는 일반 본문입니다.':
+      ' Scope: the two phrases are bold and underlined. The preceding “even if the process of use is somewhat complex or inconvenient” is plain text.',
+    '강조 범위: 두 구절이 빨강입니다. “쓸 수 있다(usable)”는 검정 굵게·밑줄입니다.':
+      ' Scope: the two phrases are red. “Can be used (usable)” is black bold and underlined.',
+    '강조 범위: 디지털 프로덕트의 유용성을 정리한 문장입니다.':
+      ' Scope: a sentence summarizing the usefulness of digital products.',
+    '강조 범위: 리셋오 사례 뒤의 정리 구절입니다.':
+      ' Scope: the summary phrase following the reSET-O case.',
+    '강조 범위: 머신러닝의 정의와 두 용어입니다. “그림 3의 … 그래프에 해당하는”도 같은 서식이지만 그림 위치 안내라 옮기지 않았습니다.':
+      ' Scope: the definition of machine learning and two terms. “Corresponding to the … graph in Figure 3” has the same formatting but was not copied because it points to a figure position.',
+    '강조 범위: 문제 공간의 네 구성 요소와 마지막 결론 부분입니다. 정의 문장의 나머지는 밑줄만 있습니다.':
+      ' Scope: the four components of the problem space and the final conclusion. The rest of the definition is only underlined.',
+    '강조 범위: 문제 공간의 정의입니다. 아래 책 구매 예시는 별도 문맥입니다.':
+      ' Scope: the definition of the problem space. The book-purchase example below is separate context.',
+    '강조 범위: 문제 표상의 정의에 밑줄이 있습니다. 앞의 용어 “문제 표상”은 굵게입니다.':
+      ' Scope: the definition of problem representation is underlined. The preceding term “problem representation” is bold.',
+    '강조 범위: 빨간 두 구절 사이의 검정 구절입니다. 문장 전체가 굵게·밑줄이며 글자색만 다릅니다.':
+      ' Scope: the black phrase between the two red phrases. The whole sentence is bold and underlined; only the text color differs.',
+    '강조 범위: 뽀미의 역할을 설명하는 구절입니다. 이 쪽에서 일부 글자가 굵어 보이는 것은 추출 결과 굵은 서체가 아니어서 강조로 보지 않았습니다.':
+      ' Scope: a phrase explaining Ppomi’s role. Some characters on this page look bold, but extraction shows they are not set in a bold face, so they are not treated as emphasis.',
+    '강조 범위: 상충 관계와 균형의 필요를 말하는 구절입니다. 뒤의 “적합(Fitting)”은 굵게·밑줄이며 다음 쪽에서 설명합니다.':
+      ' Scope: phrases about the trade-off and the need for balance. The following “fitting” is bold and underlined and is explained on the next page.',
+    '강조 범위: 선택되는 애플리케이션의 세 조건에 밑줄이 있습니다. 같은 쪽의 “쓸모 있는 기능”은 굵게만 표시되어 있습니다.':
+      ' Scope: the three conditions for chosen applications are underlined. “Useful functions” on the same page is only bold.',
+    '강조 범위: 솔루션 공간의 정의입니다.': ' Scope: the definition of the solution space.',
+    '강조 범위: 수단적 가치의 정의와 그것이 답하는 질문입니다.':
+      ' Scope: the definition of instrumental value and the question it answers.',
+    '강조 범위: 심성 모형을 다시 풀어 쓴 문장입니다. 위의 빨간 정의와 이어 읽습니다.':
+      ' Scope: a sentence restating the mental model. Read it together with the red definition above.',
+    '강조 범위: 유용성을 설명하는 구절입니다. 앞의 “정적이고 고정된 특성이 아니라”는 일반 본문입니다.':
+      ' Scope: a phrase explaining usefulness. The preceding “not a static, fixed characteristic” is plain text.',
+    '강조 범위: 유용성의 정의와 사용 편의성과의 구분에 밑줄이 있습니다. 앞의 용어 “유용성”은 굵게·밑줄입니다.':
+      ' Scope: the definition of usefulness and its distinction from ease of use are underlined. The preceding term “usefulness” is bold and underlined.',
+    '강조 범위: 유효성의 뜻을 정리한 결론 구절입니다.':
+      ' Scope: the concluding phrase summarizing the meaning of efficacy.',
+    '강조 범위: 이 쪽은 본문 대부분에 밑줄이 있어 과적합·과소적합의 결과를 말한 두 구절만 골랐습니다.':
+      ' Scope: most of the text on this page is underlined, so only the two phrases stating the results of overfitting and underfitting were selected.',
+    '강조 범위: 제목과 핵심 가치라는 구절입니다. 이어지는 “환자가 제때 약을 먹도록 돕는 것”은 검정 굵게·밑줄이라 아래에 따로 표시했습니다.':
+      ' Scope: the heading and the phrase “core value.” The following “helping patients take their medicine on time” is black bold and underlined, so it is shown separately below.',
+    '강조 범위: 추상화 과정의 결론 구절입니다. 여섯 단계 목록은 굵게만 되어 있어 옮기지 않았습니다.':
+      ' Scope: the concluding phrase of the abstraction process. The six-step list is only bold and was not copied.',
+    '강조 범위: 추상화·단순화의 풀이에 밑줄이 있습니다. 앞의 용어 이름은 굵게입니다.':
+      ' Scope: the explanations of abstraction and simplification are underlined. The preceding term names are bold.',
+    '강조 범위: 큐어앱SC 사례의 결론에 밑줄이 있습니다. 앞의 기능 소개 문장은 굵게·밑줄입니다.':
+      ' Scope: the conclusion of the CureApp SC case is underlined. The preceding sentence introducing its functions is bold and underlined.',
+    '강조 범위: 파란 구절 뒤의 설계 과제와 금융·소셜 앱 사례의 결론입니다. 사례 앞부분은 굵게만 표시되어 있습니다.':
+      ' Scope: the design task following the blue phrase and the conclusion of the finance and social app example. The first part of the example is only bold.',
+    '강조 범위: 파란 제목입니다. 사례의 결론 구절은 아래에 굵게·밑줄로 따로 표시했습니다.':
+      ' Scope: the blue heading. The case’s concluding phrase is shown separately below as bold and underlined.',
+    '강조 범위: 표현 모형을 설명하는 두 구절입니다. 원리·도구·지표 목록의 밑줄은 대표 구절로 옮기지 않았습니다.':
+      ' Scope: two phrases explaining the representation model. Underlining in the lists of principles, tools, and metrics was not copied as representative phrases.',
+    '강조 범위: 프리아 사례의 결론 구절입니다.': ' Scope: concluding phrases of the Pria case.',
+    '강조 범위: 환경 적합성의 정의에 밑줄이 있습니다. 앞의 용어 “환경 적합성”은 굵게·밑줄입니다.':
+      ' Scope: the definition of environmental suitability is underlined. The preceding term “environmental suitability” is bold and underlined.',
+    '같은 포털이라도 구글은 검색, 네이버는 브라우징처럼 목적이 다르면 유용성의 기준도 달라집니다.':
+      ' Even among portals, when purposes differ, such as searching for Google and browsing for Naver, the criteria for usefulness also differ.',
+    '검정 굵은 글씨와 밑줄 가운데 개념 정의, 핵심 주장, 구분 기준, 사례의 결론을 페이지당 한두 구절 골랐습니다. 색과 서식이 겹치면 빨강·파랑으로, 굵게와 밑줄이 함께 있으면 굵게·밑줄로 표시합니다.':
+      'From black bold and underlined text, one or two phrases per page were chosen, prioritizing concept definitions, key claims, distinguishing criteria, and case conclusions. When color and formatting overlap, the phrase is marked red or blue; when bold and underline appear together, it is marked bold and underlined.',
+    '교수님 강조 요약은 원문의 빨강·파랑 글자와 검정 굵은 글씨·밑줄을 근거로 합니다. 서식이 들어간 구절 가운데 정의·핵심 주장·결론을 골랐으며, 모든 구절을 옮기지는 않았습니다.':
+      ' The instructor emphasis summary is based on red and blue text and black bold or underlined text in the source. Definitions, key claims, and conclusions were selected from the formatted phrases; not every phrase was copied.',
+    '교수님의 색상·서식 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
+      ' The instructor’s color and formatting emphasis is not interpreted as confirmation of exam questions or an importance ranking.',
+    '굵게·밑줄의 선정:': ' Selecting bold and underlined text: ',
+    '기대와 실제 기능이 다르면 실망할 수 있습니다. 투명성·일관성·가치 중심 설계는 그 차이를 줄이기 위한 원본의 설명입니다. 위 발췌 구절과 구분해서 읽습니다.':
+      ' When expectations differ from actual functions, users may be disappointed. Transparency, consistency, and value-driven design are the source’s explanations for reducing that gap. Read them separately from the excerpts above.',
+    '따옴표 안의 발췌만 실제 색상·서식 구절입니다. 비교표·정의 풀이·추가 사례·복습 질문은 이해 보완입니다.':
+      'Only quoted excerpts correspond to actual colored or formatted phrases. Comparison tables, definition explanations, added examples, and review questions are supplementary.',
+    '맥락:': 'Context:',
+    '사용 편의성:': 'Ease of use:',
+    '사용자가 원하는 목적을 달성하게 해 주는가를 봅니다. 조작이 조금 불편해도 목적을 정확히 이루면 유용하다고 평가됩니다.':
+      ' Asks whether the system lets users achieve the goal they want. Even if operation is somewhat inconvenient, a system that accomplishes the goal accurately is judged useful.',
+    '슬라이드 제목, 교재 구성 안내(p. 2), 표 머리글·행 라벨(pp. 38·41), 사례 분류 라벨(p. 36), 다른 장 안내(pp. 43·45), 도구·지표 이름 목록(pp. 25–28), 복습 문항 번호(p. 56), Q&A(p. 58)입니다. p. 42에서 굵어 보이는 일부 글자는 추출 결과 굵은 서체가 아니어서 제외했습니다.':
+      'Slide titles, textbook structure guidance (p. 2), table headers and row labels (pp. 38 and 41), case category labels (p. 36), pointers to other chapters (pp. 43 and 45), lists of tool and metric names (pp. 25–28), review question numbers (p. 56), and Q&A (p. 58). Some characters on p. 42 look bold, but extraction shows they are not set in a bold face, so they were excluded.',
+    '심성 모형과 가치': 'Mental models and value',
+    '얼마나 쉽게 쓸 수 있는가를 봅니다. 4장의 사용성과 이어지는 내용입니다.':
+      ' Asks how easily the system can be used. This connects to usability in Chapter 4.',
+    '원문 굵게 · 선정 1쪽': 'Source bold · 1 selected page',
+    '원문 굵게·밑줄 · 선정 24쪽': 'Source bold and underlined · 24 selected pages',
+    '원문 밑줄 · 선정 14쪽': 'Source underlined · 14 selected pages',
+    '원문 빨강 · 선정 3쪽': 'Source red · 3 selected pages',
+    '원문 파랑 · 선정 20쪽': 'Source blue · 20 selected pages',
+    '원본 58쪽의 텍스트·색상·글자 서식과 전체 페이지 이미지를 대조했습니다. 아래 발췌는 서식이 들어간 모든 구절이 아니라 각 페이지의 대표 구절입니다. 종류를 합친 서로 다른 선정 페이지는':
+      ' Text, colors, typography, and full-page images were compared across all 58 source pages. The excerpts below are representative phrases from each page, not every formatted phrase. Across all types, the number of distinct selected pages is',
+    '유용성:': 'Usefulness:',
+    '유용성의 의미': 'Meaning of usefulness',
+    '유효성·환경 적합성의 비교표는 이해에 필요한 주변 본문을 정리한 것입니다. 표 전체가 원문 강조라는 뜻은 아닙니다. 현재의 제품 효능이나 허가를 추가로 판단하지 않았습니다.':
+      ' The efficacy and environmental-suitability comparison table summarizes surrounding text needed for understanding. It does not mean the whole table is source emphasis. No additional judgment is made about current product efficacy or approval.',
+    '이해 보완 · 쓸모와 편의를 구분하기':
+      'Supplementary explanation · Distinguishing usefulness from ease of use',
+    '이해 보완 · 정의와 표': ' Supplementary explanation · Definitions and tables',
+    '제외한 서식:': ' Excluded formatting: ',
+    '전체 강의의 사례 비교·활동·퀴즈는 이해를 돕는 설명입니다. 교수님의 실제 색상·굵게·밑줄 강조는 별도 요약본에서 발췌 범위를 표시합니다.':
+      "Comparisons, activities, and quizzes support understanding. The separate summary identifies the actual ranges of the instructor's colored, bold, and underlined emphasis.",
+    '시스템이 목적으로 하는 기능을 수행할 수 있는지 없는지를 결정하는 유용성과 대비되는 개념':
+      'A concept contrasted with usefulness, which determines whether a system can perform its intended function',
+    '사용자가 얼마나 자연스럽고 심리적으로 부담 없이 목표를 달성할 수 있는가':
+      'How naturally, and without psychological burden, users can achieve their goals',
+    '프로덕트와 관련된 무형 서비스 및 시스템, 그리고 연관된 관계자와의 상호작용까지 고려해야':
+      'Considering intangible services and systems related to the product, and even interactions with associated stakeholders',
+    '목표를 얼마나 정확하고 완전하게 수행':
+      'How accurately and completely the goal is accomplished',
+    '시스템을 이용하는 과정에서 느끼는 쾌적함, 신뢰감, 심리적 안정감을 포함하는 정서적 평가.':
+      'An emotional evaluation that includes the comfort, trust, and psychological security felt while using the system.',
+    '‘수단적 가치(instrumental value)’': 'Instrumental value',
+    '기능적 품질(Functionality)과 경험적 품질(Experience Quality)의 통합적 개념':
+      'An integrated concept of functional quality and experience quality',
+    '시스템이 사용자의 사고 흐름과 감정 리듬에 조응하도록 설계하는 것':
+      "Designing the system to attune to the user's flow of thought and emotional rhythm",
+    '사용과 관련된 위험 요소를 최소화해 사용자가 안전하고 효과적이고 효율적으로 기기를 사용하게 하는 것임':
+      'Minimizing use-related risks so that users can operate a device safely, effectively, and efficiently',
+    '상호 연관되어 안전하고 효과적인 사용 또는 안전하지 않거나 비효율적인 사용이 발생하는 결과로 이어짐':
+      'Being interrelated, they lead to either safe and effective use or unsafe and inefficient use',
+    '어떤 시스템이든 꼭 있어야 하는 것과 시스템의 특징에 따라 있을 수도 없을 수도 있는':
+      "What every system must have, versus what may or may not be present depending on the system's characteristics",
+    '기본적 속성은 효율성, 정확성으로, 부수적 속성은 의미성, 유연성, 일관성으로 이루어져 있음':
+      'Basic attributes consist of efficiency and accuracy; secondary attributes consist of meaningfulness, flexibility, and consistency',
+    '사용 과정에서 불필요한 단계를 최소화하고, 인지적 부담(cognitive load)을 줄이며, 사용자의 행동과 시스템의 반응이 자연스럽게 이어지는 정도로 평가':
+      'Evaluated by how far unnecessary steps are minimized, cognitive load is reduced, and user actions flow naturally into system responses',
+    '사용자의 입력에 시스템이 얼마나 즉각적이고 명확하게 반응하는가를':
+      'How immediately and clearly the system responds to user input',
+    '사용자가 목표를 달성하기 위해 거쳐야 하는 절차의 최소화를':
+      'Minimizing the steps users must go through to achieve a goal',
+    '시스템의 반응 속도(시간)와 안정성을 강조':
+      "Emphasizing the system's response speed (time) and stability",
+    '시스템과 네트워크 환경을 개선하는 것이지만, 예산과 기술적 이유로 시행하기 어려운 경우가 있음':
+      'Improving the system and network environment, although budget and technical constraints can make this difficult',
+    '디지털 시스템의 부하가 증가하기 때문에 시스템 지체가 더욱 크게 발생하기 때문':
+      'Because the load on the digital system increases, system delay becomes even greater',
+    '단축 경로는 시스템의 전체 구조에 대해 정확한 심성 모형이 아닌 편향된 심성 모형을 구축할 수 있으므로':
+      'Because shortcuts can lead users to build a biased rather than accurate mental model of the overall system structure',
+    '오류를 예방하고, 감지하며, 복구할 수 있는 능력':
+      'The ability to prevent, detect, and recover from errors',
+    '시스템이 인간의 불완전성을 얼마나 포용하는가를 평가하는 지표':
+      'A measure of how well the system accommodates human imperfection',
+    '오류가 발생하기 이전에 그것을 원천적으로 차단하는 설계':
+      'Design that blocks errors at the source before they occur',
+    '‘선택의 자유’와 ‘행동의 제약’ 사이에서 균형을 유지':
+      'Maintaining a balance between freedom of choice and constraints on action',
+    '사용자의 입력값이나 조건을 시스템이 먼저 검토하여 오류 가능성을 줄이는 기능':
+      'A function in which the system first reviews user input or conditions to reduce the chance of error',
+    '사용자의 실수를 미연에 차단하여 정확성을 높이는 사전방지성의 좋은 예':
+      'A good example of error prevention that increases accuracy by blocking user mistakes in advance',
+    '이미 발생한 오류를 사용자가 즉시 인지할 수 있도록 시각적·청각적 피드백을 제공하는 설계':
+      'Design that provides visual and auditory feedback so users immediately notice an error that has occurred',
+    '단순한 “삑” 소리보다는 부드러운 톤의 경고음을 사용하여 불쾌감을 줄이는 것이':
+      'Using a softer alert tone rather than a simple beep to reduce discomfort',
+    '오류가 발생한 후 사용자가 손쉽게 문제를 수정하거나 원상태로 복원할 수 있도록 돕는 설계':
+      'Design that helps users easily correct a problem or restore the original state after an error',
+    '정상 동작을 이어갈 수 있도록 재구성하는 방식':
+      'An approach that reconfigures the situation so normal operation can continue',
+    '실수를 ‘용인하고 수정 가능한 상태’로 유지하는 시스템':
+      'A system that keeps mistakes in a tolerated and correctable state',
+    '‘의미 있고 일관된 경험’': 'A meaningful and consistent experience',
+    '‘자신에게 맞는 정보와 기능이 제공되고 있다’고 느끼는 정도':
+      'The degree to which users feel that information and functions suited to them are being provided',
+    '‘정보의 적합도’를 중심으로 평가': 'Evaluated mainly by the fit of information',
+    '직전 시점에 필요한 최소 정보를 제공하는 원칙':
+      'The principle of providing the minimum information needed just before it is required',
+    '결정 품질을 높이는 보조 정보': 'Supporting information that improves decision quality',
+    '빠르게 해독하고, 올바르게 추론': 'Decoding quickly and inferring correctly',
+    '정보의 냄새(Information Scent)': 'Information scent',
+    '짧은 시간 내 과업을 독립 수행': 'Performing a task independently within a short time',
+    '사용자의 목표–행동–피드백 루프': "The user's goal–action–feedback loop",
+    '시스템을 다양한 방식으로 조작하고, 자신의 선호나 상황에 따라 적응적으로 사용할 수 있는 자유도':
+      "The freedom to operate a system in various ways and use it adaptively according to one's preferences or situation",
+    '사용자가 하나의 과업을 중단하고 다른 과업으로 전환할 수 있는 능력':
+      'The ability of users to suspend one task and switch to another',
+    '‘중단의 자유’와 ‘복귀의 안전성’': 'Freedom to interrupt and safety in returning',
+    '입력 또는 출력 수단을 자유롭게 교체할 수 있는 능력':
+      'The ability to freely swap input or output methods',
+    '여러 과업을 동시에 또는 교차적으로 수행할 수 있는 시스템의 능력':
+      "A system's ability to perform multiple tasks simultaneously or alternately",
+    '자신의 특성, 선호, 사용 패턴에 맞게 조정하거나, 시스템이 이를 스스로 학습하여 적응하는 능력':
+      "The ability to adjust to one's characteristics, preferences, and usage patterns, or for the system to learn and adapt to them itself",
+    '다른 장치·서비스와 상호작용하여 연속적인 사용자 경험을 유지':
+      'Maintaining a continuous user experience by interacting with other devices and services',
+    '사용자 중심의 ‘통합된 경험(Integrated Experience)’을 완성하는 기술적 기반':
+      'The technical foundation that completes a user-centered integrated experience',
+    '인간의 다양한 조건을 포용하는 설계': 'Design that embraces diverse human conditions',
+    '이미 학습된 규칙을 확장 적용할 수 있도록 돕는 설계 철학':
+      'A design philosophy that helps users extend rules they have already learned',
+    '사전에 예상할 수 있는 정도': 'The degree to which something can be anticipated in advance',
+    '시스템의 모든 기능과 명령은 일관된 논리적 구조로 배열되어야 함':
+      'All system functions and commands should be arranged in a consistent logical structure',
+    '링크·아이콘·메뉴의 단서만 보고도 그 결과를 추론할 수 있는 능력':
+      'The ability to infer outcomes from the cues of links, icons, and menus alone',
+    '새로운 환경임에도 불구하고 익숙한 조작감과 시각적 안정감을 느끼는 정도':
+      'The degree to which users feel familiar operation and visual stability even in a new environment',
+    '시각적 형태와 배치가 사용자의 기대 모델(Mental Model)과 일치해야':
+      "Visual form and layout should match the user's expected mental model",
+    '보는 순간 기능을 이해할 수 있는 정도':
+      'The degree to which a function can be understood at a glance',
+    '새로운 기능이 기존 과업 흐름 속에서 자연스럽게 통합되어야 함.':
+      'New functions should integrate naturally into existing task flows.',
+    '의료 기기가 환자의 생명과 건강에 직접적인 영향을 미치는 만큼 사소한 오류라도 치명적인 결과를 초래할 수 있기 때문':
+      "Because medical devices directly affect patients' lives and health, even a minor error can have fatal consequences",
+    '제조사가 의도하거나 사용자가 기대하는 것과는 다른 반응을 유도하는 속성':
+      'An attribute that induces a response different from what the manufacturer intended or the user expected',
+    '‘착오’는 잘못된 규칙이나 지식을 적용하거나 또는 알고 있으면서도 괜찮겠지 하고 저지르는 오류를 의미':
+      'A mistake is an error made by applying the wrong rule or knowledge, or by knowingly assuming it will be fine',
+    '옳은 목표를 가지고 있었으나 실행 과정에서 실수한 경우':
+      'Cases in which the goal was correct but an error occurred during execution',
+    '주의가 분산되거나 습관적 자동행동이 잘못 발동':
+      'Attention is diverted or a habitual automatic action is wrongly triggered',
+    '기억력 부족이나 주의 결핍': 'Lack of memory or attention',
+    '부적절한 규칙을 선택': 'Selecting an inappropriate rule',
+    '의식적으로 수행했지만, 그 방식이 올바르지 않거나 위험을 초래하는 경우':
+      'Cases performed consciously, but in a way that is incorrect or creates risk',
+    '오용 가능성을 사전에 예측하고 경고·차단하는 책임':
+      'The responsibility to anticipate possible misuse and to warn against or block it',
+    '원본 73쪽을 대조했습니다. 본문 빨강 2쪽, 파랑 53쪽이며, 두 색상을 중복 제외하면 53쪽입니다. 검정 굵게·밑줄 발췌는 굵게·밑줄 42쪽, 굵게 2쪽, 밑줄 13쪽에서 골랐고, 색상과 합쳐 중복 제외하면 56쪽입니다. 아래 발췌는 강조된 모든 문장을 복사한 것이 아니라 각 페이지의 대표 구절을 선정한 것입니다.':
+      'All 73 source pages were reviewed. Body emphasis appears in red on 2 pages and blue on 53 pages, covering 53 distinct pages. Black typographic excerpts were selected from 42 pages with bold underlining, 2 with bold only, and 13 with underlining only; together with color, they cover 56 distinct pages. Excerpts select representative phrases from each page rather than reproducing every emphasized sentence.',
+    '포함: 검정 굵은 글자와 밑줄 중 개념 정의, 핵심 주장, 구분 기준, 강조된 사례 결론. 모든 굵은 글자를 옮기지 않고 페이지당 대표 구절 1~2개를 골랐습니다. 굵게와 밑줄이 함께 있으면 ‘원문 굵게·밑줄’, 한쪽만 있으면 ‘원문 굵게’ 또는 ‘원문 밑줄’로 표시하고, 색이 있는 구절은 굵기나 밑줄과 관계없이 색으로 표시합니다.':
+      'Included: black bold or underlined definitions, key claims, distinguishing criteria, and emphasized case conclusions. Rather than copying every bold run, one or two representative phrases were chosen per page. Phrases that are both bold and underlined are labeled source bold and underline, those with only one style are labeled source bold or source underline, and colored phrases keep their color label regardless of weight or underlining.',
+    '제외: 표지·마지막 쪽의 이메일, 교재 구성과 장 위치 안내, 슬라이드 제목, 표 머리글과 행 라벨, 그림의 선·배경·라벨·표 서식 색상. 본문 대부분이 굵은 마무리 인용·정리 슬라이드(pp. 31·58·65)는 주변 글과 구분되는 강조로 보기 어려워 발췌하지 않았습니다.':
+      'Excluded: cover and final-page email links, book and chapter navigation, slide titles, table headers and row labels, and colors used in diagram lines, backgrounds, labels, or table formatting. Closing quotation and recap slides set almost entirely in bold (pp. 31, 58, and 65) were not excerpted because the bold does not set phrases apart from the surrounding text.',
+    '보완: 정의 풀이, 비교표, 추가 사례와 복습 문제는 자체 학습 설명입니다. 색상·굵게·밑줄 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
+      'Supplements: explanatory definitions, comparison tables, additional examples, and recall questions are authored learning material. Color, bold, or underlining does not establish exam inclusion or a ranking of importance.',
+    '굵게·밑줄 선정 기록 ↗': 'Bold and underline selection record ↗',
+    '실제 빨강·파랑·굵게·밑줄 구절과 보완 설명을 구분해 사용성의 속성과 사용 오류를 복습합니다.':
+      'Review usability attributes and use errors while distinguishing actual red, blue, bold, and underlined excerpts from learning supplements.',
+    '색상·굵게·밑줄 표시는 원본의 실제 강조를 뜻하며 시험 출제 확정을 뜻하지 않습니다.':
+      'Color, bold, and underline labels identify actual source emphasis, not confirmed exam content.',
+    '본문 굵게·밑줄 · 선정 페이지': 'Body bold and underlined · selected pages',
+    '본문 굵게 · 선정 페이지': 'Body bold · selected pages',
+    '본문 밑줄 · 선정 페이지': 'Body underlined · selected pages',
+    '신뢰성(Reliability)은 특정한 사용 조건에서 고유의 기능을 안전하고 지속적으로 고장 없이 수행할 수 있는 성질입니다. 오래 이어지는 관계에서 신뢰가 중요하듯, 사람과 디지털 프로덕트의 관계도 믿고 쓸 수 있어야 유지됩니다.':
+      'Reliability is the property of performing an intended function safely, continuously, and without failure under specified conditions of use. Just as trust sustains long-term relationships, people keep using a digital product only when they can rely on it.',
+    '알람 시계로 보는 유용성과 신뢰성': 'Usefulness and reliability through an alarm clock',
+    '알람 시계에서 확인할 점': 'What to check in an alarm clock',
+    '이 장의 구분': 'Distinction in this chapter',
+    '설정한 시각에 정확히 울리고, 적절한 소리 크기로 사용자를 깨운다.':
+      'It rings at the set time and wakes the user at an appropriate volume.',
+    '목적 달성을 효과적으로 돕는가 (3장)': 'Does it effectively help achieve the goal? (Chapter 3)',
+    '별다른 고장 없이 매일 충실하게 울린다.': 'It rings faithfully every day without failure.',
+    '그 기능을 지속적으로 고장 없이 수행하는가':
+      'Does it perform that function continuously and without failure?',
+    '원본 p. 8의 알람 시계 사례를 두 관점으로 나눈 표':
+      'The alarm-clock example on p. 8 divided into two perspectives',
+    '중요한 날 알람이 울리지 않으면 사용자는 시계가 쓸모없다고 느끼기 쉽습니다. 원본은 이것을 유용성이 낮다고 오인할 수 있지만, 실제로 흔들린 것은 신뢰성이라고 설명합니다. 시계를 믿고 편히 잠들 수 있었던 이유는 다음 날 아침에도 울릴 것이라고 믿었기 때문입니다.':
+      'If the alarm fails on an important day, users may feel the clock is useless. The source explains that this may be mistaken for low usefulness, whereas reliability is what has actually been damaged. Users could sleep comfortably only because they believed it would ring the next morning.',
+    '밤에 알람을 맞추고 잠드는 사람, 여러 날 제때 울린 알람, 알람이 멈춰 늦게 깬 아침을 나란히 보여 주는 그림':
+      'An illustration showing a person setting an alarm at night, an alarm that rang on time for several days, and a morning when the stopped alarm caused the person to wake late',
+    '같은 기능이라도 매일 고장 없이 작동해야 믿고 맡길 수 있습니다.':
+      'Even the same function can be trusted only when it works every day without failure.',
+    '소프트웨어 신뢰성과 설계 단계': 'Software reliability and the design stage',
+    '컴퓨터·네트워크 신뢰성에서 출발한 개념은 소프트웨어 신뢰성으로 발전하며, 주어진 환경에서 주어진 기간 동안 주어진 작업을 문제없이 안전하게 수행하는 것으로 정립되었습니다.':
+      'The concept evolved from computer and network reliability into software reliability: performing a given task safely and without problems in a given environment for a given period.',
+    '하드웨어는 물리적 노화나 고장이 문제지만, 소프트웨어 신뢰성은 설계 단계의 결함에 의해 타격을 받습니다. 그래서 시스템을 분석하고 설계할 때부터 신중해야 합니다.':
+      'Hardware suffers from physical aging and breakdown, whereas software reliability is damaged by defects introduced during design. Care must therefore begin during system analysis and design.',
+    '디지털 헬스처럼 사용자가 환자이고 건강과 맞닿은 영역에서는 신뢰성의 원리가 더 강하게 작용합니다.':
+      'In domains such as digital health, where users are patients and health is at stake, the principle of reliability applies even more strongly.',
+    '조사 결과가 보여 주는 불안': 'Concerns revealed by a survey',
+    '원본이 인용한 환자 조사에서는 응답자의 19.4%가 개인 의료 정보 보호와 보안 문제를 우려했습니다. 디지털 헬스를 잘 이해할수록 ‘오류 및 의료사고의 위험성’에 대한 우려는 줄었지만, ‘개인 정보 보호 및 보안 문제’에 대한 걱정은 늘었습니다.':
+      'In the patient survey cited by the source, 19.4% of respondents were concerned about personal medical information protection and security. Greater understanding of digital health reduced concern about errors and medical accidents, but increased worry about privacy and security.',
+    '수치는 원본이 인용한 조사 결과이며, 이 페이지에서 조사 대상과 시기를 새로 확인하지 않았습니다. 이 장의 요점은 신뢰가 기능의 정확성만이 아니라 정보 보호에 대한 확신과도 연결된다는 점입니다.':
+      'The figures are survey results cited in the source; this page does not independently verify the sample or date. The key point is that trust depends not only on functional accuracy but also on confidence in information protection.',
+    '그래서 설계 단계부터 여러 관계자 집단의 요구, 다른 시스템과의 연계, 사용 환경을 함께 고려해야 합니다. 의료처럼 복잡하고 위험한 작업에서는 정밀한 과업 분석으로 사람이 만들 수 있는 오류를 줄이는 방향이 필요합니다.':
+      'Design should therefore consider the needs of multiple stakeholder groups, links with other systems, and the use environment from the start. In complex and risky work such as healthcare, detailed task analysis is needed to reduce errors people may make.',
+    '신뢰성의 의미': 'What reliability means',
+    '신뢰성을 갖춘 프로덕트를 만드는 것과 사용자가 그것에 신뢰감(Credibility)을 갖는 것은 다릅니다. 신뢰감은 프로덕트가 갖춘 신뢰성에 대해 사용자가 지속적으로 믿음을 가지는 마음이며, 감성의 하위 요소입니다.':
+      "Building a reliable product differs from users feeling credibility toward it. Credibility is the user's continuing belief in the reliability a product provides, and it is a component of affect.",
+    '감성과 세 가지 하위 개념': 'Affect and its three components',
+    '감성(Emotion)은 외부 자극에 의한 감각이나 지각으로 사람의 내부에 일어나는 미적이고 심리적인 체험입니다. HCI의 초점이 UI에서 UX로 넓어지면서 기능과 사용성에 더해, 사용하면서 즐거움을 느끼는지도 중요해졌습니다.':
+      'Affect is an aesthetic and psychological experience arising within a person from sensations or perceptions of external stimuli. As HCI broadened its focus from UI to UX, whether people enjoy using a product became important alongside function and usability.',
+    '하위 개념': 'Component',
+    정서: 'Emotion',
+    '특정 대상에 대해 단시간(보통 몇 분, 많아야 몇 시간 미만) 느끼는 핵심 감성':
+      'A core feeling toward a specific object lasting a short time (usually minutes, at most a few hours)',
+    '공포 영화의 장면에서 느낀 두려움은 영화가 끝나면 대개 잊힌다.':
+      'Fear felt during a horror film is usually forgotten when the film ends.',
+    정취: 'Mood',
+    '‘기분’에 가까우며, 강도는 약하지만 더 오래 지속되고 특정 대상과 관계없이 환경의 영향을 받는 감성':
+      'Close to a mood: weaker but longer-lasting, unrelated to a particular object, and influenced by the surroundings',
+    '하루 종일 불쾌한 상태, 따뜻하고 부드러운 색조의 화면에서 느끼는 편안함':
+      'Feeling irritable all day; feeling at ease with a screen in warm, soft tones',
+    인상: 'Impression',
+    '어떤 대상물에 대해 처음 느끼는 감성. 아직 정서로 관념화되지 않았으며, 마음에서 다시 재생되면 정서로 변한다.':
+      'The first feeling toward an object. It has not yet become an emotion, but turns into one when recalled.',
+    '제품을 처음 쓸 때 남은 ‘경험의 잔상’이 다시 사용할지 결정하는 데 영향을 준다.':
+      'The afterimage of a first use influences whether a person uses the product again.',
+    '감성을 구성하는 정서·정취·인상 · 원본 pp. 14–16의 재구성':
+      'Emotion, mood, and impression as components of affect · adapted from pp. 14–16',
+    '원본 p. 16의 도식은 정서를 ‘1차 반응’, 인상을 ‘정서와 정취를 통합한 경험의 잔상’으로도 설명합니다. 본문의 ‘처음 느끼는 감성’과 함께 읽으면, 첫 사용에서 남은 인상이 이후의 정서와 재사용 판단으로 이어진다는 흐름으로 이해할 수 있습니다.':
+      "The diagram on p. 16 also describes emotion as a first response and impression as an afterimage integrating emotion and mood. Read alongside the text's definition of a first feeling, this suggests that an impression from first use carries into later emotions and decisions to reuse a product.",
+    '신뢰감은 언제 생기는가': 'When credibility forms',
+    '디지털 프로덕트가 핵심적으로 전달해야 하는 감정은 신뢰감입니다. 병원과 의료진을 떠올릴 때 신뢰감을 느끼는 이유는 몸과 건강 문제를 믿고 맡길 수 있다고 여기기 때문입니다.':
+      'Credibility is the key feeling a digital product should convey. People feel it toward hospitals and clinicians because they believe they can entrust their bodies and health problems to them.',
+    '사용자는 프로덕트가 기대한 긍정적 결과를 제대로 해냈을 때 믿음직스럽다고 느낍니다. 디지털 헬스에서는 효과를 기대하기 전에 사용 과정이 위험하지 않고 의료 정보 보안이 철저하다는 사실이 입증되어야 안심할 수 있습니다.':
+      'Users find a product credible when it delivers the positive outcomes they expected. In digital health, users feel secure only after it is shown that use is not dangerous and medical information is well protected.',
+    '오류나 버그 없이 일관된 기능을 제공해 신뢰성이 확보되었을 때 비로소 신뢰감이 생깁니다.':
+      'Credibility forms only once reliability is established through consistent functions without errors or bugs.',
+    '원본 p. 12의 절 제목은 ‘1. 감성과 신뢰성’으로 적혀 있지만, 이어지는 소절이 2-1·2-2이고 p. 7의 구성도와도 이어지므로 이 페이지에서는 두 번째 주제로 배치했습니다.':
+      'The section heading on p. 12 reads ‘1. Affect and reliability’, but its subsections are numbered 2-1 and 2-2 and follow the structure on p. 7, so it is presented here as the second topic.',
+    '감성과 신뢰감': 'Affect and credibility',
+    '원본은 신뢰성의 구성 요소를 안전성(Safety), 보안성(Security), 안정성(Stability)으로 정의합니다. FDA가 제시한 실세계 헬스 분석(RWHA)과 제품 성능 분석(PPA)에 속하는 속성에서 가져왔으며, 디지털 헬스뿐 아니라 일반 디지털 프로덕트에도 적용된다고 설명합니다.':
+      "The source defines the components of reliability as safety, security, and stability. They derive from attributes in the FDA's Real World Health Analytics (RWHA) and Product Performance Analytics (PPA), and the source applies them to digital products generally as well as digital health.",
+    '세부 요인': 'Component',
+    'FDA가 제시한 개념': 'FDA concept',
+    '교재의 조작적 정의': 'Operational definition in the textbook',
+    '안전성 · Safety': 'Safety',
+    'Clinical Safety (RWHA)': 'Clinical Safety (RWHA)',
+    '잠재적 위험이 적절히 관리 및 완화되고 있다는 확신을 제공하는 속성':
+      'Providing assurance that potential risks are appropriately managed and mitigated',
+    '보안성 · Security': 'Security',
+    'Cybersecurity (PPA)': 'Cybersecurity (PPA)',
+    '프로덕트 내에 통용되는 데이터를 보호하고 방어하는 속성':
+      'Protecting and defending the data used within the product',
+    '안정성 · Stability': 'Stability',
+    'Product Performance (PPA)': 'Product Performance (PPA)',
+    '내부 및 외부 요인에 영향받지 않고 서비스의 본질적 기능을 지속적으로 제공하는 속성':
+      'Continuously providing the essential functions of a service regardless of internal and external factors',
+    '신뢰성의 세부 요인 · 원본 p. 22': 'Components of reliability · p. 22',
+    '세 요소를 구분하는 질문': 'Questions that separate the three',
+    '안전성: 사용자에게 해를 가하지 않는가? 잠재적 위험이 관리·감소되고 있다는 확신을 주는가?':
+      'Safety: does it avoid harming users, and does it give assurance that potential risks are managed and reduced?',
+    '보안성: 시스템 안에서 생성되고 저장되는 데이터를 보호하는가?':
+      'Security: does it protect the data created and stored in the system?',
+    '안정성: 오류나 결함으로 성능이 떨어지지 않고, 실제 사용 환경에서 본질적인 기능을 일정하게 제공하는가?':
+      'Stability: does it avoid performance degradation from errors or defects and consistently provide essential functions in real use?',
+    '세 요소는 디지털 프로덕트를 평가하는 기준과 맞물려 성능을 보장합니다. 원본 p. 21의 도식은 FDA가 단순히 ‘기능이 작동하는가’가 아니라 임상·기술·보안 측면에서 안전하고 안정적이며 신뢰 가능하게 작동하는지를 종합적으로 검증해야 한다고 정리합니다.':
+      'The three components combine with evaluation criteria to assure performance. The diagram on p. 21 summarizes that verification should examine not only whether a function works, but whether it works safely, stably, and reliably across clinical, technical, and security aspects.',
+    '원본 p. 22의 표 아래에는 ‘표 1. 국제표준에서 정의한 사용성의 사용 오류’라는 캡션이 붙어 있지만 표의 내용은 신뢰성의 세부 요인입니다. 이 페이지에서는 표 내용에 맞는 제목을 사용했습니다.':
+      "The table on p. 22 carries the caption ‘Table 1. Use errors in usability defined by international standards’, but it lists the components of reliability. This page uses a title that matches the table's content.",
+    '안전성(해를 끼치지 않음)과 안정성(성능이 일정함)은 글자가 비슷해 헷갈리기 쉽습니다. 혈당 측정기가 잘못된 경고로 위험한 행동을 유도하면 안전성, 측정할 때마다 수치가 들쭉날쭉하면 안정성 문제로 먼저 생각해 봅니다.':
+      'Safety (doing no harm) and stability (consistent performance) are easily confused in Korean. A glucose meter that prompts a dangerous action through a false warning is first a safety issue; one that gives different readings every time is first a stability issue.',
+    '신뢰성의 세 가지 조건': 'Three conditions of reliability',
+    '안전성은 디지털 프로덕트의 사용 절차와 방법이 안전하다는 것입니다. 원본은 안전성 분석을 세 단계로 설명하고, 분석한 위험을 심각도와 발생 가능성의 2차원 위험 매트릭스(Risk Matrix, ISO 14971)로 표현합니다.':
+      'Safety means that the procedures and methods for using a digital product are safe. The source describes a three-step safety analysis and represents the resulting risks in a two-dimensional risk matrix of severity and likelihood (ISO 14971).',
+    '안전성 분석의 세 단계': 'Three steps of safety analysis',
+    '1단계: 임상 시험 등 검증 결과로 평가할 수 있는 안전성 수준을 정하기 위해 사용 범위(사용 기간·횟수·강도, 시험 대상 수)를 검토합니다.':
+      'Step 1: review the scope of use (duration, frequency, intensity, and number of subjects) to determine the level of safety that verification results such as clinical trials can support.',
+    '2단계: 이상 사례와 다르게 도출된 검사 결과를 확인하고, 인구학적 특성이나 사용 방법처럼 이상 사례에 영향을 줄 수 있는 요인을 분석합니다.':
+      'Step 2: examine adverse events and divergent test results, analyzing factors such as demographics or method of use that may contribute to them.',
+    '3단계: 작동이 중단되었거나 상해를 입은 사용자를 면밀히 조사해 중대한 이상 사례와 기타 중요한 이상 사례를 식별합니다.':
+      'Step 3: investigate cases where operation stopped or users were injured, identifying serious and other significant adverse events.',
+    '원본은 이 과정의 큰 틀을 유지하되 도메인 특성에 맞게 바꿔 적용해야 한다고 덧붙입니다.':
+      'The source adds that the overall framework should be kept but adapted to the characteristics of each domain.',
+    '2차원 위험 매트릭스 읽기': 'Reading the two-dimensional risk matrix',
+    '심각도(가로축): 문제가 생겼을 때 결과가 얼마나 심각한가. 사소한·경미한·상당한·중대한·치명적의 5단계이며, ‘치명적’은 사망까지 이를 수 있는 피해입니다.':
+      'Severity (horizontal axis): how serious the outcome is if a problem occurs, in five levels from negligible to catastrophic; catastrophic harm can include death.',
+    '발생 가능성(세로축): 위험 로그에 기록된 빈도를 바탕으로 한 합리적인 질적 판단입니다. 매우 낮음부터 매우 높음까지 5단계로 평가합니다.':
+      'Likelihood (vertical axis): a reasoned qualitative judgment based on frequencies recorded in a risk log, rated in five levels from very low to very high.',
+    '두 축을 함께 보아 안전성 등급을 정합니다. 발생 가능성이 낮고 심각도가 사소하면 매우 높은 안전성인 1등급, 발생 가능성이 매우 높고 치명적이면 매우 낮은 안전성인 5등급입니다.':
+      'Both axes together determine a safety grade. Low likelihood and negligible severity give grade 1, very high safety; very high likelihood and catastrophic severity give grade 5, very low safety.',
+    '2차원 위험 매트릭스 · 원본 p. 26 (숫자는 안전성 등급, 1이 가장 안전)':
+      'Two-dimensional risk matrix · p. 26 (numbers are safety grades; 1 is safest)',
+    '발생 가능성 \\ 심각도': 'Likelihood \\ severity',
+    사소한: 'Negligible',
+    경미한: 'Minor',
+    상당한: 'Serious',
+    중대한: 'Critical',
+    치명적: 'Catastrophic',
+    '매우 높음': 'Very high',
+    높음: 'High',
+    보통: 'Moderate',
+    낮음: 'Low',
+    '매우 낮음': 'Very low',
+    '사례 표의 두 가지 계산 방식': 'Two scoring methods in the examples',
+    '원본 p. 27은 ADHD 어린이를 위한 디지털 헬스 서비스 ‘뽀미’의 네 가지 문제를 표 2로 정리하고, 위험 정도의 평균을 2등급으로 추정했다고 설명합니다. 이어지는 p. 28에는 표 2 대신 스마트워치 건강 알림 예시가 실려 있습니다.':
+      'Page 27 says that four problems in Bbomi, a digital health service for children with ADHD, are summarized in Table 2 and that their average risk was estimated at grade 2. Page 28, however, presents a smartwatch health-alert example instead of Table 2.',
+    '위험 상황': 'Risk situation',
+    심각도: 'Severity',
+    '발생 가능성': 'Likelihood',
+    '위험 수준': 'Risk level',
+    '1. 알림이 늦게 뜸': '1. The alert appears late',
+    '낮음 (1점)': 'Low (1)',
+    '보통 (2점)': 'Moderate (2)',
+    '2점': '2',
+    '큰 위험은 아니지만 개선 필요': 'Not a major risk, but needs improvement',
+    '2. 알림이 전혀 안 뜸': '2. The alert never appears',
+    '높음 (4점)': 'High (4)',
+    '4점': '4',
+    '드물지만 생명과 직결될 수 있어 관리 필요':
+      'Rare but potentially life-threatening; needs management',
+    '3. 심박수 오류 측정으로 잘못된 경고 표시':
+      '3. A false warning from a heart-rate measurement error',
+    '중간 (3점)': 'Medium (3)',
+    '12점': '12',
+    '자주 발생하고 혼란 유발 → 즉시 개선 필요':
+      'Frequent and confusing → needs immediate improvement',
+    '4. 시스템 전체 다운': '4. Total system failure',
+    '매우 높음 (5점)': 'Very high (5)',
+    '5점': '5',
+    '드물지만 재난 수준 → 비상 대책 필요': 'Rare but disastrous → needs an emergency plan',
+    '스마트워치 건강 알림 기능의 위험 평가 · 원본 p. 28':
+      'Risk assessment of a smartwatch health-alert feature · p. 28',
+    'p. 28의 위험 수준은 심각도 점수 × 발생 가능성 점수(최대 25점)로 계산되어, p. 26 매트릭스의 1~5등급과 척도가 다릅니다. 심각도 표기도 ‘낮음·중간·높음·매우 높음’으로 p. 25의 다섯 단계 명칭과 다릅니다. 시험이나 과제에서 등급을 물으면 어떤 방식을 쓰는지 먼저 확인하세요. 또한 p. 26 그림의 캡션 ‘국제표준에서 정의한 사용성의 사용 오류’는 그림 내용(위험 매트릭스)과 맞지 않습니다.':
+      'The risk level on p. 28 multiplies the severity score by the likelihood score (up to 25), a different scale from the grades 1–5 in the matrix on p. 26. Its severity labels (low, medium, high, very high) also differ from the five levels on p. 25. When asked for a grade, first confirm which method applies. The caption on p. 26, ‘use errors in usability defined by international standards’, also does not match the figure, which is a risk matrix.',
+    '곱셈 방식으로 보면 3번(12점)이 가장 먼저 개선할 대상입니다. 하지만 4번처럼 드물어도 결과가 치명적인 위험은 점수만으로 우선순위를 낮추지 않고 비상 대책을 함께 세웁니다. 원본의 해석 열도 그렇게 적고 있습니다.':
+      "Under the multiplication method, case 3 (12 points) is the first to improve. Yet a rare but catastrophic risk such as case 4 is not deprioritized by score alone; it also needs an emergency plan, as the source's interpretation column notes.",
+    '안전성: 위험의 심각도와 발생 가능성': 'Safety: severity and likelihood of risk',
+    '보안성은 사용자 데이터에 대한 사이버 공격, 데이터 가로채기, 조작이나 오용에 대비하는 것입니다. 디지털 헬스는 건강 정보, 금융 서비스는 금융 정보, 소셜 네트워크는 사진과 신상 정보처럼 대부분의 도메인이 민감한 데이터를 다룹니다.':
+      'Security means preparing for cyberattacks, interception, manipulation, or misuse of user data. Most domains handle sensitive data: health information in digital health, financial information in finance, and photos and personal details in social networks.',
+    '디지털 프로덕트의 약점인 정보 취약성(Information Vulnerabilities)에는 인구통계·신원·사용 내역 같은 정보 유출과 데이터 오염이 포함됩니다. 이를 보완하려면 엄격한 가이드라인과 표준 절차를 마련하고, 각 지침이 지켜지는지 지속적으로 검토해야 합니다.':
+      'Information vulnerabilities include leaks of demographic, identity, and usage information as well as data contamination. Addressing them requires strict guidelines and standard procedures, with continuous review of whether each guideline is met.',
+    내용: 'Description',
+    '보안 정책': 'Security policy',
+    '시스템 운영에 대한 보안 정책이 수립되었는지 여부':
+      'Whether a security policy for system operation has been established',
+    '사용자 정보는 암호화해 저장하고 전송 구간에 암호화 수단을 제공한다. 정해진 휴지 시간 후 자동 로그오프·세션 종료가 이루어지게 한다.':
+      'Store user information encrypted and encrypt transmission. Log off and end sessions automatically after a preset idle time.',
+    '사용자 데이터 암호화': 'User data encryption',
+    '데이터를 축적·저장할 때 개인 식별 정보를 포함한 정보가 암호화되는지 여부':
+      'Whether information, including personally identifiable information, is encrypted when data is accumulated and stored',
+    '(위 칸과 병합된 같은 방법)': '(Same merged method as above)',
+    '변경 방지': 'Tamper prevention',
+    '다른 사용자가 무단으로 수정할 수 없도록 보호하는지 여부':
+      'Whether data is protected from unauthorized modification by other users',
+    '경보 발생': 'Alarm generation',
+    '비상시에 시각 또는 청각 경보가 발생하는지 여부':
+      'Whether a visual or audible alarm is generated in an emergency',
+    '오작동으로 인한 데이터 손상·왜곡을 막기 위해 잘못 입력된 정보를 알 수 있는 알림을 제공한다.':
+      'Provide notifications that reveal incorrectly entered information to prevent data damage or distortion from malfunctions.',
+    기밀성: 'Confidentiality',
+    '사용자의 개인 정보 및 시스템 운영에 대한 보안 정책이 수립되었는지 여부':
+      "Whether a security policy for users' personal information and system operation has been established",
+    가용성: 'Availability',
+    '공식 인증된 사용자의 요청에 따라 관련 정보를 즉시 제공하는지 여부':
+      'Whether relevant information is provided immediately at the request of an authenticated user',
+    '생체 정보·사용 결과·개인 정보를 나타내는 기능이 있으면 데이터를 확인할 수 있게 하고, 송수신된 데이터를 표현할 수단(화면, 글자 등)을 제공한다.':
+      'Where functions present biometric data, usage results, or personal information, let users check the data, and provide means such as screens or text to present transmitted and received data.',
+    '보안성에 대한 최적의 경험을 위한 세부 항목과 방법 · 원본 표 3, p. 31':
+      'Security items and methods for an optimal experience · Table 3, p. 31',
+    '원본 표 3의 ‘방법’ 열은 여러 행이 하나의 칸으로 병합되어 있습니다. 보안 정책·사용자 데이터 암호화·변경 방지가 한 칸, 경보 발생·기밀성이 한 칸, 가용성이 한 칸입니다. 기밀성의 ‘내용’ 문구는 보안 정책 행과 거의 같습니다. 원본 그대로 옮겼으며 병합 칸을 행별 방법으로 새로 나누지 않았습니다.':
+      'In Table 3, the Method column merges several rows: security policy, encryption, and tamper prevention share one cell; alarm generation and confidentiality share another; availability has its own. The confidentiality description nearly repeats the security-policy row. These are reproduced as in the source without inventing row-specific methods.',
+    '가이드라인을 항목과 연결하기': 'Linking guidelines to items',
+    '일정 시간 사용하지 않으면 자동으로 로그아웃·세션 종료 → 기밀성. 허가되지 않은 사람에게 개인 정보가 공개되거나 다른 용도로 쓰이지 않게 미리 막습니다.':
+      'Automatic logout or session end after a period of inactivity → confidentiality, preventing disclosure of personal information to unauthorized people or use for other purposes.',
+    '정보가 잘못된 방향으로 바뀌면 기존 사용자에게 알림 → 변경 방지(타인이 바꾸지 못하게 하는 장치)와 경보 발생(시각·청각 알림). 의도한 변경이면 무시하고, 아니면 복구합니다.':
+      'Notifying the existing user when information is changed incorrectly → tamper prevention and alarm generation through visual or audible alerts. Users ignore intended changes and restore unintended ones.',
+    '사용자 정보를 암호화해 저장하고 전송 구간도 암호화 → 사용자 데이터 암호화.':
+      'Encrypting stored user information and transmissions → user data encryption.',
+    '승인된 사람이 필요한 때 필요한 곳에서 정보를 즉시 쓸 수 있게 → 가용성.':
+      'Making information immediately available to authorized people when and where needed → availability.',
+    '원본 p. 32는 자동 로그아웃을 ‘기밀성’의 반영으로 설명하지만, 표 3에서는 자동 로그오프가 보안 정책·암호화·변경 방지와 병합된 방법 칸에 있습니다. 표의 배치와 해설의 연결이 다르다는 점을 알고 읽으면 됩니다.':
+      'Page 32 explains automatic logout as reflecting confidentiality, whereas Table 3 places automatic logoff in the merged method cell for security policy, encryption, and tamper prevention. Be aware that the table layout and the explanation link it differently.',
+    '보안성: 데이터를 지키는 여섯 항목': 'Security: six items that protect data',
+    '안정적이라는 말은 바뀌거나 달라지지 않고 일정한 상태를 유지한다는 뜻입니다. 약품의 안정성이 유통기한 동안 효과가 변하지 않는 것이듯, 디지털 프로덕트의 안정성은 시스템이 망가지지 않고 잘 작동하는 것과 의도하지 않은 오류가 발생하지 않는 것 전반을 아우릅니다.':
+      "Being stable means remaining in a consistent state without change. Just as a drug's stability means its effect does not change before expiry, a digital product's stability covers both working without breaking down and avoiding unintended errors.",
+    '당뇨 환자는 하루 1~2회 혈당을 잽니다. 측정 도구가 불안정해 잴 때마다 다른 수치가 나온다면 환자는 도구를 믿을 수 없고, 정확한 혈당을 모르게 되어 건강에 큰 문제가 생길 수 있습니다. 안정성이 떨어지면 사용성이 낮아지거나 프로덕트를 신뢰하지 못하게 됩니다.':
+      'People with diabetes measure their blood glucose once or twice a day. If an unstable meter gives different readings each time, they cannot trust it and may not know their true glucose level, risking serious health problems. Poor stability lowers usability or undermines trust.',
+    '그래서 원본은 안정성 훼손을 미리 막기 위해 외부의 신뢰할 수 있는 기관으로부터 공인 인증 시험을 받는 등의 노력이 필수적이라고 설명합니다.':
+      'The source therefore states that efforts such as certification testing by trusted external bodies are essential to prevent stability from being compromised.',
+    '안정성: 일정하게 작동하기': 'Stability: working consistently',
+    '안전성·보안성·안정성은 모두 사용자가 겪을 수 있는 문제를 선제적으로 파악하고 예방 장치를 마련하는 데서 출발합니다. 먼저 발생 가능한 문제를 파악하고, 각 위험 요인을 분석한 뒤 해결책을 고안합니다.':
+      'Safety, security, and stability all begin with anticipating problems users may face and preparing safeguards. First identify possible problems, then analyze each risk factor and devise solutions.',
+    '원본은 대표 도구로 ‘IT 네트워크로 연결된 의료 기기 혹은 건강 소프트웨어의 안전성과 효과성, 그리고 보안 관리에 대한 국제 가이드라인(IEC 80001-1:2020)’을 소개합니다. 이 가이드라인은 신뢰성을 지속적으로 관리하는 방안을 다룹니다.':
+      'The source introduces IEC 80001-1:2020, an international guideline on the safety, effectiveness, and security management of networked medical devices and health software, as a representative tool for continuous reliability management.',
+    '하는 일': 'What happens',
+    '‘마음검진’ 사례': 'The Maeum Checkup example',
+    '1. 위험 요소 분석 및 식별': '1. Risk analysis and identification',
+    '시스템의 어느 지점에 초점을 둘지 범위를 정하고, 사용 중 생길 수 있는 위험 요소를 추정해 특성과 중요도로 범주화한다.':
+      'Define the scope of the system to examine, estimate risks that may arise during use, and categorize them by characteristics and importance.',
+    '정신 건강 설문 응답도 의료 데이터이며, 유출되면 제3자가 정신 상태를 알게 되는 사생활 침해가 생길 수 있다.':
+      "Mental-health survey answers are medical data; a leak could expose a person's mental state to third parties.",
+    '2. 대응 방안 평가': '2. Evaluation of responses',
+    '위험이 사용자에게 주는 영향, 심각도, 발생 빈도로 평가하고 위험 요소별 대응 방안을 구상한다.':
+      "Assess each risk's impact on users, severity, and frequency, and devise a response for each.",
+    '모든 검진 데이터를 익명화하고 개인 식별이 가능한 자료는 삭제한다.':
+      'Anonymize all checkup data and delete personally identifiable records.',
+    '3. 위험 요소 통제': '3. Risk control',
+    '대응 방안의 이익과 손해를 분석해 통제 방안을 고르고, 시행 후 효과를 평가해 한 주기를 마무리한다.':
+      'Analyze the benefits and costs of responses, choose a control, implement it, and evaluate its effect to complete one cycle.',
+    '데이터 암호화와 보안 서버 구축. 관리 작업은 늘지만 정확한 데이터와 믿고 쓰는 경험을 얻으므로 이익이 더 크다고 판단하고, 효과는 사용자 인터뷰와 응답 정확도로 측정한다.':
+      'Encrypt data and build a secure server. Administrative work increases, but accurate data and trustworthy use outweigh the cost; effects are measured through user interviews and response accuracy.',
+    '소프트웨어 위험 관리 프로세스의 세 단계 · 원본 pp. 37–40':
+      'Three stages of the software risk-management process · pp. 37–40',
+    '원본 p. 38의 그림은 세 단계를 하나의 원으로 그려, 통제 후 평가가 다시 분석으로 이어지는 순환 구조임을 보여 줍니다. 분석 단계 옆에는 범위·위험 요소 추정이, 통제 단계 옆에는 옵션 평가·이익 분석·실행·작동 평가가, 아래에는 위험 요소 평가가 놓여 있습니다.':
+      'The figure on p. 38 draws the three stages as a circle, showing a cycle in which evaluation after control leads back to analysis. Scope and risk estimation sit beside analysis; option evaluation, benefit analysis, implementation, and operational evaluation beside control; and risk evaluation below.',
+    'p. 7의 구성도는 두 번째 단계를 ‘대안 방법 평가’로, 본문과 p. 61은 ‘대응 방안 평가’로 적습니다. p. 38 그림의 ‘위험 요소 명창’은 원본 표기 그대로이며 이 페이지에서 의미를 새로 단정하지 않습니다.':
+      'The overview on p. 7 calls the second stage evaluation of alternative methods, while the text and p. 61 call it evaluation of responses. The label on p. 38 is reproduced as written, without assigning it a new meaning here.',
+    '소프트웨어 위험 관리 가이드라인': 'Guidelines for software risk management',
+    '보안성에는 안전성·안정성과 달리 추가로 고려할 요소가 있습니다. 바로 사용자 보안입니다. 보안 공격은 대부분 가장 취약한 부분인 ‘사용자’를 노리기 때문에, 사용자가 보안을 쉽고 편리하게 여기도록 사용 용이성에 초점을 맞춘 ‘사용자 중심 보안(Usable Security)’이 강조됩니다.':
+      'Security involves an extra consideration beyond safety and stability: user security. Because most attacks target users as the weakest link, usable security, which focuses on making security easy and convenient, has gained emphasis.',
+    '보안과 편리함의 상충': 'The trade-off between security and convenience',
+    '보안 시스템이 불편하면 그 자체가 위험 요소가 됩니다. 편리함에 치우쳐 보안을 느슨하게 하면 보안의 본질을 놓치고, 보안에 지나치게 치중하면 사용성이 낮아져 오히려 보안성이 훼손될 수 있습니다. 비밀번호를 여러 번 입력하게 하면 사용자는 자동 입력 프로그램을 쓰거나 같은 비밀번호를 반복하는 등 취약한 선택을 할 수 있습니다.':
+      'An inconvenient security system is itself a risk. Loosening security for convenience misses its purpose, while overemphasizing it lowers usability and can actually weaken security. If users must enter passwords repeatedly, they may resort to autofill tools or reuse passwords.',
+    '반복되는 비밀번호 창과 메모지가 붙은 노트북 앞에서 지친 사용자, 그리고 한 번의 확인과 보호 상태 표시로 편안하게 진행하는 사용자를 비교하는 그림':
+      'An illustration comparing a tired user facing repeated password prompts and a laptop covered in notes with a user who proceeds comfortably after a single confirmation and a visible protection status',
+    '보안 절차가 지나치게 번거로우면 사용자는 메모나 같은 비밀번호처럼 더 위험한 우회 방법을 찾습니다.':
+      'When security steps are too cumbersome, users find riskier workarounds such as notes or reused passwords.',
+    '사용자 경험을 고려한 보안 체계': 'Building a user-centered security system',
+    '사용자의 눈높이에 맞춘 정보: 보안 지식과 행동 수준은 집단마다 다르므로 전문 용어를 자제하고, 도움말·오류 처리·보안 상태 안내를 이해하기 쉽게 제공합니다.':
+      'Information suited to users: security knowledge varies across groups, so avoid jargon and make help, error handling, and security status easy to understand.',
+    '보안 기능에 접근하는 방식: 보안 기능을 찾기 어려우면 사용자는 자연스레 보안을 지키지 못합니다. 인터페이스에 가시적으로 두고, 단순한 형태로 인지 부하를 줄입니다.':
+      'Access to security features: if they are hard to find, users naturally fail to use them. Make them visible and keep them simple to reduce cognitive load.',
+    '균형: 신뢰성을 높이는 방안 자체에 높은 사용성을 고려한 디자인이 들어갈 수 있지만, 핵심은 사용성과 신뢰성의 상충 관계를 이해하고 균형을 맞추는 것입니다.':
+      'Balance: measures that increase reliability may themselves include highly usable design, but the key is understanding and balancing the trade-off between usability and reliability.',
+    분류: 'Category',
+    지침: 'Guideline',
+    '사용자 정보를 보호하고 있는가?': 'Is user information protected?',
+    '개인 정보에 대한 암호화된 문서를 사용하거나 복호화한다.':
+      'Use or decrypt encrypted documents containing personal information.',
+    '사용자에게 충분한 정보를 제공하는가?': 'Do users receive enough information?',
+    '개인이 시스템의 현재 보안 상태를 알 수 있어야 한다. 보안 정책에 필요한 가이드라인과 사용자에게 필요한 보안 가이드라인을 분리해서 제공한다.':
+      "Individuals should be able to know the system's current security status. Provide policy-level guidelines separately from the security guidance users need.",
+    '사용자 관점에서 이해가 쉬운가?': "Is it easy to understand from the user's perspective?",
+    '도움말·오류 처리·보안 시스템 상태 안내를 이해하기 쉽게 제공하고, 보안 기능의 도움말·매뉴얼·문서를 쉽게 찾아볼 수 있어야 한다.':
+      'Provide understandable help, error handling, and security-status guidance, and make help, manuals, and documents for security features easy to find.',
+    '사용자가 사용하기 용이한가?': 'Is it easy to use?',
+    '보안 기능이 인터페이스에서 가시적이고 쉽게 접근 가능해야 한다. 익숙한 사용자에게 바로 가기를 주고, 일정 부분 사용자 지정을 허용하며, 인터페이스를 단순하게 유지해 정보 과부하를 줄인다.':
+      'Security features should be visible and easy to reach. Offer shortcuts to experienced users, allow some customization, and keep the interface simple to reduce information overload.',
+    '디지털 프로덕트의 보안성을 위한 사용자 경험 가이드라인 · 원본 표 4, p. 45':
+      'User-experience guidelines for digital product security · Table 4, p. 45',
+    '원본은 최근의 AI-UX 디자인 가이드라인도 함께 고려하라고 말합니다. 예로 Microsoft Research의 〈Guidelines for Human-AI Interaction〉, Google의 〈People + AI Guidebook〉, 카네기멜론대학의 〈Co-designing Checklist for fairness AI〉를 들며, 이들이 디자인 단계·토픽·사례와 함께 자세한 지침을 제공한다고 설명합니다.':
+      "The source also recommends recent AI-UX design guidelines, citing Microsoft Research's Guidelines for Human-AI Interaction, Google's People + AI Guidebook, and Carnegie Mellon University's co-designing checklist for fairness in AI, which provide detailed guidance with design stages, topics, and cases.",
+    '원본은 Microsoft Research 가이드라인의 발표처를 ‘HCI 2019’로 적고 있습니다. 이 페이지에서는 해당 표기를 고치지 않고 원본의 소개 범위만 옮겼습니다.':
+      "The source gives the venue of the Microsoft Research guidelines as ‘HCI 2019’. This page does not alter that wording and reproduces only the source's description.",
+    '사용자 경험을 고려한 보안성': 'Security that considers user experience',
+    '인공지능이 탑재된 프로덕트에서도 안전성·보안성·안정성은 중요하고, 사용자에게 신뢰감을 주는 것도 필수입니다. 하지만 사용자가 인공지능에 대해 가진 심성 모형과 가치 모형은 현실과 다소 동떨어져 있어, 인공지능 프로덕트의 신뢰성에 대한 인식도 일반 프로덕트와 다릅니다.':
+      "Safety, security, and stability remain important in AI-based products, and conveying credibility is essential. However, users' mental and value models of AI are somewhat removed from reality, so their perception of AI products' reliability differs from that of ordinary products.",
+    '설명하기 어려운 이유': 'Why AI is hard to explain',
+    '구조의 문제: 원본은 2023년 공개된 ChatGPT-4가 심층신경망(Deep Neural Network)을 쓰는 자연어 처리 모델이며, 딥러닝은 결과는 확인할 수 있어도 결과를 낸 과정과 근거를 알기 어려운 블랙박스 문제를 지닌다고 설명합니다.':
+      'The problem of structure: the source describes ChatGPT-4, released in 2023, as a natural-language model using deep neural networks, and notes that deep learning has a black-box problem—results are visible, but the process and grounds are not.',
+    '지식의 문제: 인공지능에 대한 관심은 늘었지만 충분한 지식을 갖춘 사람은 많지 않습니다. 일부를 설명하더라도 사용자 입장에서는 이해하기 어렵습니다.':
+      'The problem of knowledge: interest in AI has grown, but few people have sufficient knowledge. Even partial explanations remain hard for users to understand.',
+    '결과와 과정을 이해시킬 수 없으니, 안전성·보안성·안정성이 어떻게 보장되는지도 설명하기 어렵습니다.':
+      'Because results and processes cannot be made understandable, it is also difficult to explain how safety, security, and stability are assured.',
+    '원본은 ChatGPT-4의 파라미터 수가 공개되지 않았지만 약 100조 개 이상으로 추정된다고 적습니다. 공식 공개값이 아닌 추정이라는 원본의 단서를 그대로 유지해 읽습니다.':
+      "The source states that ChatGPT-4's parameter count has not been disclosed but is estimated at over 100 trillion. Keep the source's own caveat that this is an estimate, not an official figure.",
+    '인식과 실제의 차이': 'Perception versus performance',
+    '원본이 제시한 내용': 'Source statement',
+    수치: 'Figure',
+    'AI 오류로 인명 피해가 생길 것을 우려하는 비율':
+      'Share worried that AI errors will cause loss of life',
+    '48.6%': '48.6%',
+    'AI가 일자리를 대체할 것을 우려하는 비율': 'Share worried that AI will replace jobs',
+    '33.7%': '33.7%',
+    '대한민국 국민의 인공지능 신뢰도': "Korean public's trust in AI",
+    '39% 수준': 'Around 39%',
+    '10만 km당 사고율: 사람이 운전하는 일반 자동차 / 테슬라 자율 주행차':
+      'Accident rate per 100,000 km: human-driven cars / Tesla autonomous driving',
+    '약 13% / 1~2%': 'About 13% / 1–2%',
+    '원본 pp. 48–49가 인용한 수치 (출처·조사 시기는 원본에 별도 표시 없음)':
+      'Figures cited on pp. 48–49 (the source does not list their origin or survey dates)',
+    '원본은 대중의 인식과 달리 인공지능 프로덕트가 기존 프로덕트보다 안전하고 보안성이 높으며 안정적이라고 주장합니다. 학습한 범위에서는 틀릴 가능성이 낮고, 결과의 정확도를 계산할 수 있어 성능을 미리 예측하고 개선할 수 있다는 이유입니다. 그런데도 사람들은 사고 소식을 접하면 안전성이 낮다고 느끼고 오류에 집중합니다.':
+      'The source argues that, contrary to public perception, AI products are safer, more secure, and more stable than conventional ones: within what they have learned they are unlikely to err, and their accuracy can be calculated so performance can be predicted and improved. Yet news of accidents leads people to feel AI is unsafe and to focus on its errors.',
+    '위 수치와 ‘더 안전하다’는 판단은 강의 원본의 주장으로 소개합니다. 자율 주행 사고율처럼 비교 조건에 따라 달라지는 수치는 이 페이지에서 새로 검증하지 않았습니다. 이 절에서 배울 점은 실제 성능과 사용자가 느끼는 신뢰감이 다를 수 있다는 구조입니다.':
+      "These figures and the claim that AI is safer are presented as the lecture's statements. Figures such as autonomous-driving accident rates depend on comparison conditions and are not independently verified here. The lesson of this section is that actual performance and perceived credibility can diverge.",
+    '주도권의 이동과 신뢰감': 'Shifting control and credibility',
+    '2장 ‘판단적 경험’의 기인점에서 보았듯, 인공지능 기반 프로덕트는 시스템 주도적일 가능성이 높습니다. 자율 주행차에서는 운전의 주도권이 사람에서 시스템으로 넘어갑니다. 수십 년간 사람이 주도하던 일이 사람의 개입 없이 이루어지면 신뢰감 상실로 이어지고, 지금의 불안도 이 과도기의 맥락에서 해석할 수 있습니다.':
+      "As discussed under locus of causality in Chapter 2's judgmental experience, AI-based products are likely to be system-driven. In autonomous vehicles, control passes from people to the system. When tasks people controlled for decades happen without human involvement, credibility is lost, and current anxiety can be read in the context of this transition.",
+    '인공지능 자체의 정확도를 높이는 것과 신뢰감을 주는 것은 별개입니다. 99.9%의 정확도라도 0.1%의 확률로 틀릴 수 있어 결함은 피할 수 없으므로, 원본은 UX로 신뢰감을 보완해야 한다고 말합니다. 주요 국가도 위험과 인간 중심을 키워드로 하는 신뢰 확보 정책을 추진하고 있으며, 이와 관련한 두 개념이 책임지는 인공지능과 믿음직한 인공지능입니다.':
+      'Improving AI accuracy and conveying credibility are separate matters. Even 99.9% accuracy leaves a 0.1% chance of error, so flaws are unavoidable, and the source argues that UX must compensate. Governments are pursuing trust policies centered on risk and human-centeredness, and two related concepts are responsible AI and trustable AI.',
+    'HCI 3.0에서 인공지능에 대한 신뢰감': 'Credibility of AI in HCI 3.0',
+    '원본은 마이크로소프트(MS)가 자사 포럼에 게재한 글을 인용해 ‘책임지는 인공지능(Responsible AI)’을 공정성·안전성·보안성·다양성·투명성·책무성의 개념으로 정의합니다. 기존 ‘설명 가능한 인공지능(Explainable AI)’이 다소 제한적이고 수동적인 필수 조건을 말했다면, 책임지는 인공지능은 더 총체적이고 능동적으로 사회적 선행을 추구해야 한다는 점을 강조합니다.':
+      'Citing a Microsoft forum post, the source defines Responsible AI through fairness, safety, security, diversity, transparency, and accountability. Whereas Explainable AI addressed somewhat limited, passive, essential conditions, Responsible AI emphasizes pursuing social good more holistically and actively.',
+    '원본의 예와 이유': 'Source example and rationale',
+    공정성: 'Fairness',
+    '특정 이해관계에 얽매이지 않고 있는 그대로 판단한다.':
+      'Judging things as they are, without being bound by particular interests.',
+    '법률 지원 AI가 특정 이해 집단에 유리하게 판단하면 위배된다. 누가 어떻게 개발하느냐에 따라 치우칠 수 있어 경계해야 한다.':
+      'A legal-assistance AI favoring a particular group violates it; because AI can be biased by who develops it and how, vigilance is needed.',
+    안전성: 'Safety',
+    '인간의 판단·예측을 보조하는 만큼 위험 발생 가능성이 커져 특히 중요하다.':
+      'Especially important because supporting human judgment and prediction increases the potential for harm.',
+    '통계적 확률에 근거하고 학습된 상황에만 대처할 수 있다는 한계 때문이다.':
+      'This stems from AI relying on statistical probability and coping only with situations it has learned.',
+    보안성: 'Security',
+    'AI에 활용되는 데이터가 유출되면 사용자가 큰 피해를 입을 수 있다.':
+      'Users can suffer serious harm if data used by AI is leaked.',
+    '다양하고 많은 양의 데이터를 활용하므로 기존 프로덕트보다 중요하다.':
+      'More important than in conventional products because AI uses large and varied data.',
+    다양성: 'Diversity',
+    '인종·성별·연령 등에 대한 편견 없이 다양한 가치를 아우른다.':
+      'Embracing diverse values without bias regarding race, gender, age, and similar traits.',
+    '편향된 운동 데이터로 학습하면 특정 집단에 낮은 수준의 운동만 추천할 수 있다. 편향되지 않은 데이터 수집이 중요하다.':
+      'Training on biased exercise data could lead to recommending only low-level exercise to a particular group; collecting unbiased data matters.',
+    투명성: 'Transparency',
+    '사용자가 인공지능의 판단과 그 근거를 이해할 수 있어야 한다.':
+      'Users should be able to understand AI judgments and their grounds.',
+    '인사 업무에 AI를 쓸 때 판단 근거가 빈약하거나 이해할 수 없으면 관계자가 결과를 받아들이기 어렵다.':
+      'If AI used in HR offers weak or incomprehensible grounds, stakeholders struggle to accept its results.',
+    책무성: 'Accountability',
+    '시스템을 설계하는 담당자가 시스템의 작동에 책임을 진다.':
+      'Those who design the system take responsibility for how it operates.',
+    '데이터 추적, 문제 모니터링, 관계자에게 충분한 설명 제공. 결함으로 피해를 입지 않고 가용한 정보로 지원받게 한다.':
+      'Tracking data, monitoring problems, and explaining sufficiently to stakeholders, so they avoid harm from defects and receive support through available information.',
+    '책임지는 인공지능의 여섯 개념 · 원본 pp. 52–57': 'Six concepts of responsible AI · pp. 52–57',
+    '원본 p. 53의 그림 3은 공정성·안전성·보안성·다양성을 위에 나란히 두고, 그 아래에 투명성과 책무성을 넓은 띠로 놓아 여섯 조건을 정리합니다.':
+      'Figure 3 on p. 53 places fairness, safety, security, and diversity side by side, with transparency and accountability as broad bands beneath them.',
+    '다양성 사례에서 원본은 집단 간 신체 능력의 차이가 있을 수는 있다고 인정하면서도, 편향된 데이터로 학습하는 것은 올바르지 않으며 사용자가 인간이라면 가치 판단은 온전히 인간의 몫이어야 한다고 말합니다. 차이의 존재와 데이터 편향을 구분해 읽어야 합니다.':
+      'In the diversity example, the source acknowledges that physical abilities may differ between groups, yet states that training on biased data is wrong and that value judgments about human users must remain with people. Distinguish the existence of differences from bias in data.',
+    '책임지는 인공지능': 'Responsible AI',
+    '믿음직한 인공지능(Trustable AI)은 사람들이 인공지능을 믿을 수 있어야 한다는 관점입니다. 원본은 사람과의 관계든 인공지능과의 관계든 믿을 수 있으려면 예측 가능성, 의지 가능성, 믿음의 세 조건이 필요하다고 설명하며, 마음 건강을 돕는 디지털 헬스 서비스 ‘마음정원’을 예로 듭니다.':
+      'Trustable AI holds that people must be able to trust AI. The source explains that trust in any relationship, with people or AI, requires predictability, dependability, and faithfulness, using Maeum Garden, a digital mental-health service, as its example.',
+    조건: 'Condition',
+    '마음정원 사례': 'Maeum Garden example',
+    '예측 가능성 · Predictability': 'Predictability',
+    '결과가 무엇일지 맞히는 것이 아니라, 도출된 결과가 납득 가능할 것임을 예측할 수 있는 것':
+      'Not guessing the exact output, but expecting that whatever results will be reasonable',
+    '‘기분 전환을 위해 샤워를 하세요’는 납득할 수 있지만 ‘밀린 업무를 해보세요’는 예측도 납득도 어렵다.':
+      '‘Take a shower to refresh yourself’ is acceptable, but ‘catch up on overdue work’ is neither expected nor acceptable.',
+    '의지 가능성 · Dependability': 'Dependability',
+    '능동적인 반응으로 라포(친밀도)를 쌓아 일상의 동반자가 되어 가는 과정에서 생기는 속성':
+      'A quality that emerges as active responses build rapport and the AI becomes an everyday companion',
+    '진행 상황에 맞춰 적시에 격려하면 사용자가 앱을 친근하게 느끼고, 반응을 학습해 친근감이 더 높아질 수 있다.':
+      'Timely encouragement based on progress makes the app feel familiar, and learning from reactions can deepen that familiarity.',
+    '믿음 · Faithfulness': 'Faithfulness',
+    '얕은 수준: 목표를 믿고 맡길 수 있음. 깊은 수준: 상식이나 외부 정보에 반하는 결론도 믿음':
+      'Shallow: entrusting a goal to the product. Deep: believing conclusions that contradict common sense or other information',
+    '‘오늘은 평소 하던 운동을 잠시 멈추는 것이 좋겠습니다’라는 답에도 이유가 있을 것이라 믿고 따른다면 깊은 수준의 믿음이다.':
+      'Following ‘You should pause your usual exercise today’ because there must be a reason indicates deep faith.',
+    '믿음직한 인공지능의 세 조건 · 원본 pp. 58–60': 'Three conditions of trustable AI · pp. 58–60',
+    '마음 관리 앱이 납득할 만한 제안을 하고, 며칠 동안 격려하며, 운동을 잠시 쉬라는 예상 밖 제안을 사용자가 편안히 따르는 세 장면':
+      'Three scenes in which a mental-wellbeing app makes a reasonable suggestion, offers encouragement over several days, and the user calmly follows an unexpected suggestion to pause exercise',
+    '예측 가능성 → 의지 가능성 → 믿음 순으로, 납득할 수 있는 제안과 꾸준한 상호작용이 쌓여 신뢰감이 깊어집니다.':
+      'From predictability to dependability to faithfulness, reasonable suggestions and steady interaction build deeper credibility.',
+    '원본의 결론은 인공지능의 신뢰감 확보가 기존 프로덕트의 신뢰감 확보 방안에 추가적인 고려를 더하는 데서 출발한다는 것입니다. 안전성·보안성·안정성을 기반으로, 예측 가능하고 의지할 수 있으며 믿을 수 있는 인공지능 프로덕트를 만들어야 합니다.':
+      'The source concludes that building credibility for AI starts from adding further considerations to the methods used for conventional products. On the foundation of safety, security, and stability, AI products should be predictable, dependable, and faithful.',
+    '깊은 수준의 믿음은 무조건 따르라는 뜻으로 읽으면 위험합니다. 원본 p. 62의 토론 질문처럼 설명 가능성과 인간의 통제권이 함께 있어야 사용자가 예상 밖 결론을 믿을지 판단할 수 있습니다.':
+      'Deep faith should not be read as blind obedience. As the discussion questions on p. 62 suggest, explainability and human oversight must accompany it so users can judge whether to trust an unexpected conclusion.',
+    '믿음직한 인공지능': 'Trustable AI',
+    '심각도와 발생 가능성을 고르면 원본 p. 26의 매트릭스에서 안전성 등급을 찾아 줍니다. 아래 상황은 개념 연습을 위한 가상 사례이며 실제 제품 평가가 아닙니다.':
+      'Select severity and likelihood to look up the safety grade in the matrix on p. 26. The scenarios below are hypothetical practice cases, not evaluations of real products.',
+    '선택: 상당한 · 보통 → 3등급': 'Selection: serious · moderate → grade 3',
+    '복약 알림 앱이 가끔 알림을 몇 분 늦게 보낸다 → 심각도 ‘경미한’, 발생 가능성 ‘보통’이면 2등급.':
+      'A medication reminder occasionally arrives a few minutes late → minor severity and moderate likelihood give grade 2.',
+    '인슐린 용량 계산기가 드물게 잘못된 값을 보여 준다 → 심각도 ‘치명적’, 발생 가능성 ‘매우 낮음’이어도 3등급. 드물다는 이유만으로 1등급이 되지 않습니다.':
+      'An insulin-dose calculator rarely shows a wrong value → catastrophic severity with very low likelihood still gives grade 3; rarity alone does not make it grade 1.',
+    '운동 기록 앱이 자주 걸음 수를 조금 다르게 센다 → 심각도 ‘사소한’, 발생 가능성 ‘매우 높음’이면 3등급. 이 경우는 안정성 문제로도 함께 점검합니다.':
+      'An activity app often miscounts steps slightly → negligible severity with very high likelihood gives grade 3; also examine it as a stability problem.',
+    '위험 매트릭스로 안전성 등급 정하기': 'Determining safety grades with a risk matrix',
+    '선택: 사소한 · 매우 높음 → 3등급': 'Selection: negligible · very high → grade 3',
+    '선택: 사소한 · 높음 → 2등급': 'Selection: negligible · high → grade 2',
+    '선택: 사소한 · 보통 → 2등급': 'Selection: negligible · moderate → grade 2',
+    '선택: 사소한 · 낮음 → 1등급': 'Selection: negligible · low → grade 1',
+    '선택: 사소한 · 매우 낮음 → 1등급': 'Selection: negligible · very low → grade 1',
+    '선택: 경미한 · 매우 높음 → 4등급': 'Selection: minor · very high → grade 4',
+    '선택: 경미한 · 높음 → 3등급': 'Selection: minor · high → grade 3',
+    '선택: 경미한 · 보통 → 2등급': 'Selection: minor · moderate → grade 2',
+    '선택: 경미한 · 낮음 → 2등급': 'Selection: minor · low → grade 2',
+    '선택: 경미한 · 매우 낮음 → 1등급': 'Selection: minor · very low → grade 1',
+    '선택: 상당한 · 매우 높음 → 4등급': 'Selection: serious · very high → grade 4',
+    '선택: 상당한 · 높음 → 3등급': 'Selection: serious · high → grade 3',
+    '선택: 상당한 · 낮음 → 2등급': 'Selection: serious · low → grade 2',
+    '선택: 상당한 · 매우 낮음 → 2등급': 'Selection: serious · very low → grade 2',
+    '선택: 중대한 · 매우 높음 → 5등급': 'Selection: critical · very high → grade 5',
+    '선택: 중대한 · 높음 → 4등급': 'Selection: critical · high → grade 4',
+    '선택: 중대한 · 보통 → 3등급': 'Selection: critical · moderate → grade 3',
+    '선택: 중대한 · 낮음 → 3등급': 'Selection: critical · low → grade 3',
+    '선택: 중대한 · 매우 낮음 → 2등급': 'Selection: critical · very low → grade 2',
+    '선택: 치명적 · 매우 높음 → 5등급': 'Selection: catastrophic · very high → grade 5',
+    '선택: 치명적 · 높음 → 5등급': 'Selection: catastrophic · high → grade 5',
+    '선택: 치명적 · 보통 → 4등급': 'Selection: catastrophic · moderate → grade 4',
+    '선택: 치명적 · 낮음 → 4등급': 'Selection: catastrophic · low → grade 4',
+    '선택: 치명적 · 매우 낮음 → 3등급': 'Selection: catastrophic · very low → grade 3',
+    '원본 p. 62의 토론 질문입니다. 각 질문 아래의 관점은 원본이 붙인 짧은 안내이며, 정답이 정해진 문제가 아닙니다.':
+      "These are the discussion questions on p. 62. The perspectives under each question are the source's brief prompts; there is no single correct answer.",
+    'AI가 인간보다 더 정확한 판단을 내릴 때 최종 결정을 AI에게 맡겨도 되는가? → 책임성과 인간 통제권(Human Oversight)의 관계를 논의합니다.':
+      'When AI judges more accurately than people, may the final decision be left to it? → Discuss the relationship between accountability and human oversight.',
+    '설명 가능한 AI(Explainable AI)는 항상 사용자의 신뢰를 높이는가? → 투명성은 필요조건이지만, 과도한 정보는 오히려 인지 부하를 높일 수 있습니다.':
+      'Does explainable AI always increase user trust? → Transparency is necessary, but too much information can raise cognitive load.',
+    'AI의 공감성은 실제 감정인가, 시뮬레이션된 감정인가? → 정서적 신뢰의 한계를 성찰합니다.':
+      'Is AI empathy real emotion or simulated emotion? → Reflect on the limits of emotional trust.',
+    '토론할 때는 이 장의 개념과 연결해 근거를 세우면 정리가 쉽습니다. 예를 들어 첫 질문은 책무성과 믿음(깊은 수준), 둘째 질문은 투명성과 4장의 이해가능성, 셋째 질문은 감성의 하위 개념과 의지 가능성으로 이어 볼 수 있습니다.':
+      "Grounding arguments in this chapter's concepts helps. The first question connects to accountability and deep faith, the second to transparency and Chapter 4's comprehensibility, and the third to the components of affect and dependability.",
+    '토론: 인공지능을 어디까지 믿을까': 'Discussion: how far should we trust AI?',
+    '이해 보완 · 직접 만든 학습 활동입니다. 자주 쓰는 건강·금융·학습 서비스 하나를 골라 신뢰성과 신뢰감을 나눠 점검합니다.':
+      'Learning supplement · an authored activity. Choose a health, finance, or learning service you use and examine reliability and credibility separately.',
+    '서비스·사용자·핵심 과업을 한 문장으로 적습니다. 예: 대학생이 학습 앱으로 과제 마감을 관리한다.':
+      'Describe the service, user, and core task in one sentence. Example: a student manages assignment deadlines in a study app.',
+    '안전성·보안성·안정성 각각에 대해 실제로 겪었거나 상상할 수 있는 문제를 하나씩 적고, 위험 매트릭스로 등급을 매깁니다.':
+      'For safety, security, and stability, write one problem you experienced or can imagine, and grade it with the risk matrix.',
+    '보안 기능 하나(로그인, 2단계 인증, 기기 관리 등)를 표 4의 네 질문으로 점검합니다.':
+      'Check one security feature (sign-in, two-step verification, device management) against the four questions in Table 4.',
+    'AI 기능이 있다면 예측 가능성·의지 가능성·믿음 중 무엇이 부족한지 판단하고, 개선안과 확인 방법을 씁니다.':
+      'If it has an AI feature, judge which of predictability, dependability, or faithfulness is lacking, and propose an improvement and a way to check it.',
+    '예시: 학습 앱의 마감 알림이 가끔 오지 않는다(안정성, 심각도 ‘상당한’·발생 가능성 ‘낮음’ → 2등급). 로그인 유지 기간을 사용자가 알 수 없다(표 4의 ‘충분한 정보 제공’ 부족). 개선: 알림 실패 시 앱을 열면 놓친 마감을 먼저 보여 주고, 설정 화면에 로그인 유지 상태를 표시한다. 확인: 일주일 동안 알림 누락 횟수와, 사용자가 현재 로그인 상태를 설명할 수 있는지 확인한다.':
+      'Example: deadline reminders in a study app sometimes fail (stability; serious severity, low likelihood → grade 2). Users cannot tell how long they stay signed in (lacking sufficient information under Table 4). Improvement: when reminders fail, show missed deadlines first on opening the app, and display sign-in status in settings. Check: count missed reminders over a week and ask users to explain their current sign-in status.',
+    '완료 기준: 세 요소별 문제와 등급, 보안 기능 점검 결과, 개선안과 확인 방법을 적었는지 봅니다. ‘믿을 만하게 만든다’처럼 막연한 표현은 관찰할 수 있는 행동과 상태로 바꿉니다.':
+      'Completion criteria: include a problem and grade for each component, the security-feature check, and an improvement with a way to check it. Replace vague aims such as making it trustworthy with observable actions and states.',
+    '서비스의 신뢰성 점검표 만들기': 'Build a reliability checklist for a service',
+    '기능 자체는 목적에 맞으므로 유용성은 갖췄습니다. 고장 없이 지속적으로 수행하지 못하는 것은 신뢰성 문제입니다. (p. 8)':
+      'The function fits its purpose, so it is useful. Failing to perform continuously without failure is a reliability issue. (p. 8)',
+    '1. 알람 시계가 정확한 시각에 적절한 소리로 울리지만, 한 달에 한 번꼴로 이유 없이 울리지 않습니다. 가장 먼저 문제 삼을 특성은?':
+      '1. An alarm clock rings at the right time and volume, but fails to ring about once a month for no reason. Which property is primarily at issue?',
+    감성: 'Affect',
+    '하드웨어와 달리 소프트웨어는 설계 단계의 결함에 의해 타격을 받으므로 분석·설계 단계부터 신중해야 합니다. (p. 10)':
+      'Unlike hardware, software is harmed by design defects, so care must begin during analysis and design. (p. 10)',
+    '2. 소프트웨어 신뢰성을 주로 해치는 원인으로 원본이 든 것은?':
+      '2. According to the source, what mainly damages software reliability?',
+    '물리적 노화': 'Physical aging',
+    '설계 단계의 결함': 'Defects introduced in design',
+    '사용자의 감성': "Users' feelings",
+    '정취는 강도는 약하지만 오래 지속되며 특정 대상과 관계없는 막연한 상태입니다. (p. 15)':
+      'Mood is weak but long-lasting and not tied to a particular object. (p. 15)',
+    '3. 특정 대상과 상관없이 하루 종일 이어지는 불쾌한 기분은 감성의 어떤 하위 개념인가?':
+      '3. A day-long irritable mood unrelated to any particular object is which component of affect?',
+    '원본은 이 사례를 안정성의 예로 들며, 수치가 일정하지 않으면 도구를 신뢰할 수 없다고 설명합니다. (p. 34)':
+      'The source uses this case to illustrate stability: inconsistent readings make the tool untrustworthy. (p. 34)',
+    '4. 혈당 측정기가 잴 때마다 다른 수치를 보여 줍니다. 원본의 설명에 가장 가까운 요소는?':
+      "4. A glucose meter shows a different reading each time. Which component best matches the source's explanation?",
+    안정성: 'Stability',
+    '매트릭스의 해당 칸은 3입니다. 드물게 발생해도 결과가 치명적이면 높은 안전성으로 보지 않습니다. (pp. 25–26)':
+      'That cell contains 3. A rare risk with catastrophic consequences is not considered highly safe. (pp. 25–26)',
+    '5. p. 26 위험 매트릭스에서 심각도 ‘치명적’, 발생 가능성 ‘매우 낮음’의 안전성 등급은?':
+      '5. In the risk matrix on p. 26, what safety grade corresponds to catastrophic severity and very low likelihood?',
+    '1등급': 'Grade 1',
+    '3등급': 'Grade 3',
+    '5등급': 'Grade 5',
+    '허가되지 않은 사람의 접근을 막아 개인 정보가 공개되지 않게 하므로 기밀성으로 설명합니다. (p. 32)':
+      'It prevents unauthorized access and disclosure of personal information, so it is explained as confidentiality. (p. 32)',
+    '6. 일정 시간 사용하지 않으면 자동으로 로그아웃되는 기능을 원본 p. 32는 어떤 항목의 반영으로 설명하나?':
+      '6. Page 32 explains automatic logout after inactivity as reflecting which item?',
+    '위험 요소 통제 단계에서 방안을 선택·시행하고 효과를 평가해 한 주기를 마무리합니다. (p. 40)':
+      'The risk-control stage selects and implements a measure and evaluates its effect, completing one cycle. (p. 40)',
+    '7. IEC 80001-1:2020 기반 위험 관리에서 ‘대응 방안의 이익과 손해를 분석해 선택하고 효과를 평가’하는 단계는?':
+      '7. In risk management based on IEC 80001-1:2020, which stage analyzes the benefits and costs of responses, selects one, and evaluates its effect?',
+    '위험 요소 분석 및 식별': 'Risk analysis and identification',
+    '대응 방안 평가': 'Evaluation of responses',
+    '위험 요소 통제': 'Risk control',
+    '보안과 사용성의 상충을 이해하고 균형을 맞추는 것이 핵심입니다. (pp. 41–43)':
+      'The key is understanding and balancing the trade-off between security and usability. (pp. 41–43)',
+    '8. 비밀번호를 여러 번 입력하게 했더니 사용자들이 같은 비밀번호를 반복해 쓰기 시작했습니다. 원본이 강조한 관점은?':
+      '8. Requiring repeated password entry led users to reuse the same password. Which perspective does the source emphasize?',
+    '보안 절차는 많을수록 안전하다.': 'More security steps always mean more safety.',
+    '사용자 중심 보안: 지나친 보안은 사용성을 낮춰 오히려 보안성을 해칠 수 있다.':
+      'Usable security: excessive security lowers usability and can actually weaken security.',
+    '보안은 사용자 경험과 관계없다.': 'Security is unrelated to user experience.',
+    '투명성은 사용자가 AI의 판단과 근거를 이해할 수 있어야 한다는 개념입니다. (p. 56)':
+      'Transparency requires that users can understand AI judgments and their grounds. (p. 56)',
+    '9. 인사 담당자가 AI의 추천 결과를 받았지만 근거를 이해할 수 없어 수용하기 어렵습니다. 책임지는 인공지능의 어떤 개념과 관련되나?':
+      '9. An HR manager cannot accept an AI recommendation because its grounds are incomprehensible. Which concept of responsible AI is involved?',
+    '예측 가능성은 결과가 납득 가능할 것임을 예측할 수 있는 것인데, 이 제안은 예측도 납득도 어렵습니다. 책무성은 책임지는 인공지능의 개념입니다. (p. 58)':
+      'Predictability means expecting reasonable results, and this suggestion is neither expected nor acceptable. Accountability belongs to responsible AI. (p. 58)',
+    '10. 마음 건강 앱이 ‘기분 전환을 위해 밀린 업무를 해보세요’라고 제안해 사용자가 당황했습니다. 믿음직한 인공지능의 어떤 조건이 부족한가?':
+      '10. A mental-health app suggests catching up on overdue work to refresh, confusing the user. Which condition of trustable AI is lacking?',
+    '예측 가능성': 'Predictability',
+    '의지 가능성': 'Dependability',
+    '예: 신뢰감, 보안, 투명성': 'e.g. credibility, security, transparency',
+    '신뢰성 · Reliability': 'Reliability',
+    '특정 사용 조건에서 고유의 기능을 안전하고 지속적으로 고장 없이 수행하는 성질.':
+      'Performing an intended function safely, continuously, and without failure under specified conditions.',
+    '신뢰감 · Credibility': 'Credibility',
+    '프로덕트의 신뢰성에 대해 사용자가 지속적으로 믿음을 가지는 마음. 감성의 하위 요소.':
+      "A user's continuing belief in a product's reliability; a component of affect.",
+    '감성 · Emotion': 'Affect',
+    '외부 자극의 감각·지각으로 내부에 일어나는 미적이고 심리적인 체험.':
+      'An aesthetic and psychological experience arising from sensing and perceiving external stimuli.',
+    '특정 대상에 대해 단시간 갖는 핵심적인 감성. 인간에게 보편적이다.':
+      'A core, short-lived feeling toward a specific object, universal among people.',
+    '강도는 약하지만 오래 지속되고 특정 대상과 관계없는 기분.':
+      'A weak but long-lasting feeling unrelated to a specific object.',
+    '대상물에 대해 처음 느끼는 감성. 다시 떠올리면 정서로 변한다.':
+      'The first feeling toward an object, which becomes an emotion when recalled.',
+    '사용자에게 해를 가하지 않고 잠재적 위험이 관리·완화된다는 확신을 주는 속성.':
+      'Avoiding harm and assuring that potential risks are managed and mitigated.',
+    '시스템에서 생성·저장되는 데이터를 보호하고 공격·오용에 대비하는 속성.':
+      'Protecting data created and stored in a system and preparing for attacks and misuse.',
+    '내부·외부 요인에 영향받지 않고 본질적 기능을 일정하게 제공하는 속성.':
+      'Consistently providing essential functions regardless of internal and external factors.',
+    '위험 매트릭스 · Risk Matrix': 'Risk matrix',
+    '심각도와 발생 가능성을 결합해 안전성 등급을 정하는 2차원 표 (ISO 14971).':
+      'A two-dimensional table combining severity and likelihood to set a safety grade (ISO 14971).',
+    '심각도 · Severity': 'Severity',
+    '문제가 생겼을 때 사용자가 겪는 위험이나 부작용의 크기. 사소한~치명적 5단계.':
+      'The size of harm or side effects if a problem occurs, in five levels from negligible to catastrophic.',
+    '발생 가능성 · Likelihood': 'Likelihood',
+    '위험 요소가 얼마나 자주 발생할지에 대한 질적 판단. 매우 낮음~매우 높음 5단계.':
+      'A qualitative judgment of how often a risk will occur, in five levels from very low to very high.',
+    '정보 취약성 · Information Vulnerabilities': 'Information vulnerabilities',
+    '인구통계·신원·사용 내역 같은 정보 유출과 데이터 오염을 포함하는 약점.':
+      'Weaknesses including leaks of demographic, identity, and usage information and data contamination.',
+    '기밀성 · Confidentiality': 'Confidentiality',
+    '개인 정보가 허가되지 않은 사람에게 공개되거나 다른 용도로 쓰이지 않게 막는 것.':
+      'Preventing personal information from being disclosed to unauthorized people or used for other purposes.',
+    '가용성 · Availability': 'Availability',
+    '승인된 사람이 필요한 때와 곳에서 정보를 즉시 쓸 수 있게 하는 것.':
+      'Making information immediately usable by authorized people when and where needed.',
+    '사용자 중심 보안 · Usable Security': 'Usable security',
+    '사용자가 보안을 쉽고 편리하게 여기도록 사용 용이성에 초점을 맞춘 보안.':
+      'Security focused on ease of use so that users find it easy and convenient.',
+    '블랙박스 · Black Box': 'Black box',
+    '결과는 확인할 수 있지만 결과를 낸 과정과 근거를 알 수 없는 문제.':
+      'A problem in which results are visible but the process and grounds that produced them are not.',
+    '책임지는 인공지능 · Responsible AI': 'Responsible AI',
+    '공정성·안전성·보안성·다양성·투명성·책무성으로 사회적 선행을 능동적으로 추구하는 AI.':
+      'AI that actively pursues social good through fairness, safety, security, diversity, transparency, and accountability.',
+    '투명성 · Transparency': 'Transparency',
+    '사용자가 AI의 판단과 그 근거를 이해할 수 있어야 한다는 원칙.':
+      'The principle that users should understand AI judgments and their grounds.',
+    '책무성 · Accountability': 'Accountability',
+    'AI 시스템을 설계한 담당자가 시스템의 작동에 책임을 지는 것.':
+      'Those who design an AI system taking responsibility for its operation.',
+    '믿음직한 인공지능 · Trustable AI': 'Trustable AI',
+    '예측 가능성·의지 가능성·믿음을 갖춰 사람들이 믿을 수 있는 AI.':
+      'AI that people can trust through predictability, dependability, and faithfulness.',
+    '도출될 결과가 납득 가능할 것임을 예측할 수 있는 것.':
+      'Being able to expect that results will be reasonable.',
+    '능동적 상호작용으로 라포를 쌓아 일상의 동반자가 되며 생기는 속성.':
+      'A quality emerging as active interaction builds rapport and the AI becomes an everyday companion.',
+    '목표를 믿고 맡김(얕은 수준), 상식에 반하는 결론도 믿음(깊은 수준).':
+      'Entrusting goals (shallow) and believing conclusions that contradict common sense (deep).',
+    '본문은 원본 65쪽을 주제별로 재구성했습니다. 각 절의 페이지 표시는 실제 PDF의 1부터 시작하는 순서입니다.':
+      "The lecture reorganizes all 65 source pages by topic. Page references use the PDF's actual sequence starting at 1.",
+    'pp. 1–4는 표지·교재 구성·장 위치·도입, p. 7은 장 전체 구성도, p. 61은 핵심 내용 정리, p. 62는 토론, p. 63은 참고문헌, pp. 64–65는 질문 안내와 인사입니다. 이미지로 된 도식과 표도 대조했으며 원본 이미지를 본문에 노출하지 않습니다.':
+      'Pages 1–4 are the cover, textbook structure, chapter placement, and introduction; p. 7 maps the chapter; p. 61 summarizes key points; p. 62 poses discussion questions; p. 63 lists references; and pp. 64–65 invite questions and close. Image-based diagrams and tables were also reviewed, without embedding source images.',
+    '원본의 캡션·번호·사례 불일치(p. 12 절 번호, p. 22·26 캡션, pp. 27–28 사례 표, p. 31 병합 칸, p. 7과 본문의 단계 명칭)는 해당 절의 ‘원본 표기 확인’에 적었습니다. 원문의 의료·통계·기업 사례를 현재 사실이나 규정으로 확장하지 않았습니다.':
+      'Inconsistencies in captions, numbering, and examples (section number on p. 12, captions on pp. 22 and 26, the example table on pp. 27–28, merged cells on p. 31, stage names on p. 7 versus the text) are noted under ‘Source notation’ in each section. Medical, statistical, and corporate examples are not extended into claims about current facts or regulations.',
+    '비교표·위험 매트릭스 연습·활동·퀴즈는 이해를 돕는 설명입니다. 교수님 강조(색·굵게·밑줄)는 별도 요약본에서 발췌 범위를 표시합니다.':
+      "Comparison tables, the risk-matrix practice, activities, and quizzes support understanding. The separate summary identifies the instructor's emphasis (color, bold, underline).",
+    '상대방에 대한 ‘신뢰’': 'Trust in the other party',
+    '믿고 사용할 수 없는 시스템은 결국 사용자로부터 외면받기':
+      'A system that cannot be relied on is eventually abandoned by users',
+    '신뢰성(Reliability)': 'Reliability',
+    '특정한 사용 조건에서 고유의 기능을 안전하고 지속적으로 고장 없이 수행할 수 있는 성질':
+      'The property of performing an intended function safely, continuously, and without failure under specified conditions of use',
+    '별다른 고장 없이 충실하게 알람이 울린다면 그것은 신뢰성이 높다':
+      'If the alarm rings faithfully without failure, its reliability is high',
+    '주어진 기간 동안 주어진 작업을 문제없이 안전하게 수행하는 것으로 정립':
+      'Established as performing a given task safely and without problems for a given period',
+    '설계 단계의 결함에 의해': 'By defects introduced in design',
+    '가 개인 의료 정보 보호 및 보안 문제를 우려했음':
+      'were concerned about personal medical information protection and security',
+    '의료 분야와 같이 작업이 복잡하고 위험한 상황에서는':
+      'In complex and risky work such as healthcare',
+    '진정한 사용 경험을 제공하기 위한 선결 조건이 될 수밖에 없으':
+      'Inevitably becomes a prerequisite for providing a genuine user experience',
+    'p. 8은 정의 용어가 파랑, 정의 문장이 굵게·밑줄입니다. 유용성(목적 달성)과 신뢰성(고장 없는 지속 수행)을 알람 시계로 구분하는 흐름을 함께 기억합니다. p. 10의 19.4%는 조사 대상의 우려 비율이며, 신뢰가 정보 보호와 연결된다는 근거로 쓰였습니다.':
+      'On p. 8 the defined term is blue and the definition is bold and underlined. Remember how the alarm clock separates usefulness (achieving the purpose) from reliability (continuous operation without failure). The 19.4% on p. 10 is the share of respondents with concerns, used to show that trust connects with information protection.',
+    '신뢰성의 정의와 출발점': 'Definition and starting point of reliability',
+    신뢰감: 'Credibility',
+    '디지털 프로덕트가 갖춘 신뢰성에 대해 사용자가 지속적으로 믿음을 가지는':
+      "The user's continuing belief in the reliability a digital product provides",
+    '정서, 정취, 인상': 'Emotion, mood, and impression',
+    '감성을 구성하는 가장 핵심적이면서도 복잡한 요소로, 특정 대상에 대해 비':
+      'The most central and complex component of affect, felt toward a specific object',
+    '강도는 미약하지만 정서보다 더 오랜 기간 지': 'Weaker but longer-lasting than emotion',
+    '세상의 대상에 의해 사람에게 각인되는 변화로, 어떤 대상물에 대해 처음 느':
+      'A change imprinted by objects in the world, the first feeling toward an object',
+    '디지털 프로덕트가 핵심적으로 전달해야 하는 감정':
+      'The feeling a digital product must essentially convey',
+    '지털 프로덕트에 대한 신뢰감을 가질 수 있음':
+      'can come to feel credibility toward a digital product',
+    '정서는 짧고 대상이 있는 감성, 정취는 약하지만 오래가는 기분, 인상은 처음 느끼는 감성입니다. 신뢰감은 신뢰성이 확보된 뒤에 생기는 사용자의 마음이라는 순서를 함께 기억합니다. 발췌는 원문 서식이 적용된 범위 그대로이며, 서식이 단어 중간에서 끝나면 나머지 글자를 회색으로 덧붙였습니다.':
+      "Emotion is brief and object-directed, mood is weak but lasting, and impression is the first feeling. Remember that credibility is the user's feeling that follows established reliability. Excerpts keep the exact formatted span from the source; in Korean, when the formatting ends mid-word, the rest of the word is added in gray.",
+    '감성의 하위 개념과 신뢰감': 'Components of affect and credibility',
+    '안전성(Safety), 보안성(Security), 안정성(Stability)': 'Safety, security, and stability',
+    'Performance Analytics, PPA)에 속하는 속성들':
+      'Attributes belonging to Product Performance Analytics (PPA)',
+    '디지털 프로덕트가 사용자에게 해를 가하지 않고 안전하다는 것':
+      'That a digital product does not harm users and is safe',
+    '시스템 내에 생성되고 저장되는 데이터를 보호하는 속성':
+      'The property of protecting data created and stored in the system',
+    '시스템 내부나 외부 요인들에 영향받지 않고 서비스의 본질적인 기능을 일정하게 제':
+      'Consistently providing the essential functions of a service regardless of internal or external factors',
+    '신뢰성의 세 가지 구성 요소': 'The three components of reliability',
+    '세 요소의 정의 문장이 p. 20에서 굵게·밑줄로 강조되어 있습니다. 안전성(해가 없음)·보안성(데이터 보호)·안정성(일정한 기능)을 한 단어로 구분할 수 있어야 합니다. p. 22 표의 캡션이 표 내용과 다르다는 점은 전체 강의에 적었습니다.':
+      'The definitions of the three components are bold and underlined on p. 20. Be able to distinguish safety (no harm), security (data protection), and stability (consistent function) in a word. The caption mismatch on p. 22 is noted in the full lecture.',
+    '신뢰성의 세 조건': 'Three conditions of reliability',
+    '안전성 분석은 세 가지 단계': 'Safety analysis has three steps',
+    '‘심각도’와 ‘발생 가능성’을 결합': 'Combining severity and likelihood',
+    '2차원 위험 매트릭스(Risk Matrix)로 표현됨(ISO 14971)':
+      'Represented as a two-dimensional risk matrix (ISO 14971)',
+    '매우 높은 안전성인 ‘1등급’으로 간주': 'Regarded as grade 1, very high safety',
+    '매우 낮은 안전성인 ‘5등급’으로 간주': 'Regarded as grade 5, very low safety',
+    '가로축(Severity, 심각도)': 'Horizontal axis (severity)',
+    '세로축(Likelihood, 발생 가능성)': 'Vertical axis (likelihood)',
+    '네 가지 문제의 위험 정도의 평균치인': 'The average risk level of four problems',
+    '심각도 5단계(사소한~치명적)와 발생 가능성 5단계(매우 낮음~매우 높음)를 결합해 1~5등급을 정합니다. p. 27의 뽀미 사례는 2등급으로 추정되지만 표 2는 슬라이드에 없고, p. 28의 스마트워치 예시는 점수를 곱하는 다른 척도를 씁니다.':
+      'Five severity levels (negligible to catastrophic) combine with five likelihood levels (very low to very high) to give grades 1–5. The Bbomi case on p. 27 is estimated at grade 2, but Table 2 is absent from the slides, and the smartwatch example on p. 28 multiplies scores on a different scale.',
+    '안전성과 위험 매트릭스': 'Safety and the risk matrix',
+    '사이버 공격이나 데이터 가로채기, 데이터 조작 또는 오용의 발생에 대비하는 것':
+      'Preparing for cyberattacks, interception, manipulation, or misuse of data',
+    '디지털 프로덕트의 약점인 정보 취약성(Information Vulnerabilities)':
+      'Information vulnerabilities, a weakness of digital products',
+    '표 3과 같이 보안 정책, 사용자 데이터 암호화, 변경 방지, 경보 발생, 기':
+      'As in Table 3: security policy, user data encryption, tamper prevention, alarm generation, confidentiality',
+    '사용자의 개인 정보가 허가되지 않은 사람에게 공개되거나 허락되지 않은 용도로 사':
+      "Preventing users' personal information from being disclosed to unauthorized people or used for unpermitted purposes",
+    '개인 정보가 승인된 사람에게 필요한 때 필요한 곳에서 즉시 사용될 수 있게 돕는 것':
+      'Helping personal information be used immediately by authorized people when and where needed',
+    '여섯 항목(보안 정책·사용자 데이터 암호화·변경 방지·경보 발생·기밀성·가용성)을 가이드라인 사례와 연결합니다. 자동 로그아웃은 기밀성, 잘못된 변경 알림은 변경 방지·경보 발생, 승인된 사람의 즉시 이용은 가용성입니다.':
+      'Link the six items (security policy, user data encryption, tamper prevention, alarm generation, confidentiality, availability) with guideline examples: automatic logout is confidentiality, alerts about incorrect changes are tamper prevention and alarm generation, and immediate use by authorized people is availability.',
+    '보안성의 세부 항목': 'Security items',
+    안정적: 'Stable',
+    '시스템이 망가지지 않고 잘 작동하는 것과, 의도하지 않은 오류가 발생하지 않는 것 전반을 아':
+      'Encompassing both a system working without breaking down and the absence of unintended errors',
+    '측정 도구가 안정적이지 못해 환자가 혈당을 측정할 때마다 다른 수치가 나온다면, 환자는':
+      'If an unstable measuring tool gives a different blood-glucose reading each time',
+    '외부의 신뢰할 수 있는 기관으로부터 공인 인증': 'Certification from a trusted external body',
+    '안정성은 망가지지 않음과 의도치 않은 오류가 없음을 함께 뜻합니다. 혈당 측정기 사례와 외부 공인 인증 시험이라는 확보 방법을 함께 기억합니다.':
+      'Stability covers both not breaking down and avoiding unintended errors. Remember the glucose-meter example together with external certification testing as a way to secure it.',
+    '발생 가능한 문제': 'Possible problems',
+    '‘위험 요소 분석 및 식별’-‘대응 방안 평가’-‘위험 요':
+      'Risk analysis and identification – evaluation of responses – risk control',
+    '80001-1:2020)’': 'IEC 80001-1:2020',
+    '모든 검진 데이터를 익명화하고 개인 식별이 가능한 자료는 삭제하는 대안을 마':
+      'An alternative that anonymizes all checkup data and deletes personally identifiable records',
+    '데 발생할 이익과 손해를 분석함으로써 적절한 위험 요소 통제 방안을 선택함':
+      'Selecting an appropriate risk control by analyzing the benefits and costs that arise',
+    '분석 및 식별 → 대응 방안 평가 → 위험 요소 통제가 하나의 주기로 반복됩니다. ‘마음검진’ 사례는 익명화(대응 방안)와 암호화·보안 서버(통제)를 단계별로 보여 줍니다.':
+      'Analysis and identification → evaluation of responses → risk control repeat as a cycle. The Maeum Checkup example shows anonymization (response) and encryption with a secure server (control) at each stage.',
+    '위험 관리 세 단계': 'Three stages of risk management',
+    '사용자 보안': 'User security',
+    '‘사용자 중심 보안(Usable Security)’': 'Usable security',
+    '중하다 보면 사용성이 낮아져 보안성이 훼손될 수 있음':
+      'Overemphasis lowers usability and can undermine security',
+    '핵심은 사용성과 신뢰성 간의 상충관계를 이해하고 그 균형을 맞추는 데에 있음':
+      'The key lies in understanding and balancing the trade-off between usability and reliability',
+    '시스템 인터페이스상에 가시적으로 보안 기능을 제공해 사용자의 접근성을 높일 필요가 있음':
+      'Security features should be visible in the interface to improve access',
+    'AI-UX 디자인 가이드라인': 'AI-UX design guidelines',
+    '보안이 불편하면 사용자는 오히려 위험한 선택을 합니다. 정보 제공(눈높이·쉬운 안내)과 접근 방식(가시성·단순함)의 두 측면, 그리고 사용성과 신뢰성의 균형이 핵심입니다.':
+      'When security is inconvenient, users make riskier choices. The essentials are how information is provided (suited to users, easy to understand), how features are accessed (visible, simple), and balancing usability with reliability.',
+    '사용자 중심 보안': 'Usable security',
+    '안전성, 보안성, 안정성': 'Safety, security, and stability',
+    '인공지능의 판단 결과와 과정을 사용자에게 설명하는 것은 매우 어려움':
+      "Explaining AI's judgments and processes to users is very difficult",
+    '인공지능의 구조에 대한 문제와 인공지능의 지식에 대한 문제 때문임':
+      "Because of problems of AI's structure and of knowledge about AI",
+    '결과를 확인할 수 있지만, 결과를 산출한 과':
+      'Results can be seen, but the process that produced them',
+    '인공지능에 대한 사람들의 신뢰감이 충분히 형성되지 못했다고 해석할 수 있음':
+      "It can be interpreted that people's credibility toward AI has not sufficiently formed",
+    '인공지능에 의한 프로덕트는 기존의 프로덕트에 비해 더욱 안':
+      'AI-based products are, compared with conventional ones, safer',
+    '운전에 대한 주도권이 사람에서 시스템으로 넘어간다는 것':
+      'Control of driving passes from people to the system',
+    '인공지능이 가지지 못한 신뢰감을 HCI적 접근으로 해결':
+      'Addressing the credibility AI lacks through an HCI approach',
+    '인공지능은 통계적 확률을 기반으로 하기 때문에 99.9%의 정확도를 가지고 있다고 할지라도 0.1%의 확률로 틀':
+      'Because AI is based on statistical probability, even at 99.9% accuracy it can be wrong 0.1% of the time',
+    '설명이 어려운 이유(구조·지식), 실제 성능과 인식의 차이, 주도권 이동으로 인한 신뢰감 상실을 순서대로 연결합니다. 원본의 통계 수치는 원본이 인용한 값이며, 정확도를 높이는 것과 신뢰감을 주는 것은 별개라는 결론이 핵심입니다.':
+      'Connect in order why AI is hard to explain (structure and knowledge), the gap between performance and perception, and the loss of credibility from shifting control. The statistics are those cited by the source; the key conclusion is that improving accuracy and conveying credibility are separate.',
+    '인공지능의 신뢰감': 'Credibility of AI',
+    '‘책임지는 인공지능(Responsible AI)’이란 그림 3과 같이 공정성, 안전성, 보안성 등의 개념으로 정의':
+      'Responsible AI is defined through concepts such as fairness, safety, and security, as in Figure 3',
+    '체적이고, 능동적으로 사회적 선행을 추구해야 한다는 점':
+      'That AI should pursue social good more holistically and actively',
+    '신뢰성의 요인으로 설명한 안전성과 보안성':
+      'Safety and security, described as reliability factors',
+    '편향된 데이터가 주어질 경우 편향된 인공지능 모델': 'Biased data produces a biased AI model',
+    '인공지능 시스템을 설계하는 담당자가 시스템의 작동에 대한 책임을 지는 것':
+      'Those who design an AI system take responsibility for how it operates',
+    '여섯 개념(공정성·안전성·보안성·다양성·투명성·책무성)을 각각 한 문장 뜻과 원본 사례(법률 AI, 운동 데이터, 인사 업무)로 연결합니다. 설명 가능한 AI보다 더 능동적인 개념이라는 점이 p. 52의 강조입니다.':
+      "Link each of the six concepts (fairness, safety, security, diversity, transparency, accountability) with a one-sentence meaning and the source's cases (legal AI, exercise data, HR). Page 52 emphasizes that it is more active than explainable AI.",
+    '믿음직한 인공지능(Trustable AI),': 'Trustable AI',
+    '예측 가능성(Predictability)': 'Predictability',
+    '의지 가능성(Dependability)': 'Dependability',
+    '믿음(Faithfulness)': 'Faithfulness',
+    '깊은 수준의 믿음은 디지털 프로덕트가 도출한 결론이 사용자의 상식 혹은 외부 정보에 반하는 것이더라도':
+      "Deep faith means believing a product's conclusion even if it contradicts common sense or other information",
+    '신뢰성의 속성인 안전성, 보안성, 안정성을 기반으로 예측 가능하고, 의지할 수 있으며, 믿을 수 있는 인공지':
+      'Based on safety, security, and stability, AI that is predictable, dependable, and trustworthy',
+    '디지털 프로덕트가 안전하고 효과적으로 사용되기 위한 필수 조건으로':
+      'As an essential condition for digital products to be used safely and effectively',
+    '‘위험 요소 분석 및 식별 → 대응 방안 평가 → 위험 요소 통제’':
+      'Risk analysis and identification → evaluation of responses → risk control',
+    '세 조건은 납득 가능한 결과(예측 가능성), 능동적 친밀감(의지 가능성), 믿고 맡김(믿음)입니다. p. 61의 핵심 정리 표는 정의 부분이 밑줄, 요소 이름이 굵게 표시되어 있어 장 전체 복습에 그대로 쓸 수 있습니다.':
+      'The three conditions are reasonable results (predictability), active rapport (dependability), and entrusting goals (faithfulness). In the recap table on p. 61, definitions are underlined and component names are bold, so it serves as a whole-chapter review.',
+    '믿음직한 인공지능과 장 정리': 'Trustable AI and chapter recap',
+    '알람 시계가 정확한 시각에 적절한 소리로 울리지만, 한 달에 한 번꼴로 이유 없이 울리지 않습니다. 가장 먼저 문제 삼을 특성은?':
+      'An alarm clock rings at the right time and volume, but fails to ring about once a month for no reason. Which property is primarily at issue?',
+    '소프트웨어 신뢰성을 주로 해치는 원인으로 원본이 든 것은?':
+      'According to the source, what mainly damages software reliability?',
+    '특정 대상과 상관없이 하루 종일 이어지는 불쾌한 기분은 감성의 어떤 하위 개념인가?':
+      'A day-long irritable mood unrelated to any particular object is which component of affect?',
+    '혈당 측정기가 잴 때마다 다른 수치를 보여 줍니다. 원본의 설명에 가장 가까운 요소는?':
+      "A glucose meter shows a different reading each time. Which component best matches the source's explanation?",
+    'p. 26 위험 매트릭스에서 심각도 ‘치명적’, 발생 가능성 ‘매우 낮음’의 안전성 등급은?':
+      'In the risk matrix on p. 26, what safety grade corresponds to catastrophic severity and very low likelihood?',
+    '일정 시간 사용하지 않으면 자동으로 로그아웃되는 기능을 원본 p. 32는 어떤 항목의 반영으로 설명하나?':
+      'Page 32 explains automatic logout after inactivity as reflecting which item?',
+    'IEC 80001-1:2020 기반 위험 관리에서 ‘대응 방안의 이익과 손해를 분석해 선택하고 효과를 평가’하는 단계는?':
+      'In risk management based on IEC 80001-1:2020, which stage analyzes the benefits and costs of responses, selects one, and evaluates its effect?',
+    '비밀번호를 여러 번 입력하게 했더니 사용자들이 같은 비밀번호를 반복해 쓰기 시작했습니다. 원본이 강조한 관점은?':
+      'Requiring repeated password entry led users to reuse the same password. Which perspective does the source emphasize?',
+    '인사 담당자가 AI의 추천 결과를 받았지만 근거를 이해할 수 없어 수용하기 어렵습니다. 책임지는 인공지능의 어떤 개념과 관련되나?':
+      'An HR manager cannot accept an AI recommendation because its grounds are incomprehensible. Which concept of responsible AI is involved?',
+    '마음 건강 앱이 ‘기분 전환을 위해 밀린 업무를 해보세요’라고 제안해 사용자가 당황했습니다. 믿음직한 인공지능의 어떤 조건이 부족한가?':
+      'A mental-health app suggests catching up on overdue work to refresh, confusing the user. Which condition of trustable AI is lacking?',
+    '원본 65쪽을 대조했습니다. 요약에 발췌한 강조는 45쪽에 걸쳐 있으며, 종류별 선정 페이지는 아래와 같습니다. 발췌는 강조된 모든 문장을 복사한 것이 아니라 각 페이지의 대표 구절을 고른 것입니다.':
+      'All 65 source pages were reviewed. Excerpted emphasis spans 45 pages; the selected pages for each kind are listed below. Excerpts select representative phrases from each page rather than reproducing every emphasized sentence.',
+    '포함: 본문의 빨강·파랑 글자, 검은색 굵은 글자, 굵게+밑줄, 밑줄만 있는 글자. 2026-10-06부터 굵게·밑줄도 교수님 강조 범주로 봅니다. 색과 굵게가 겹치면 색으로 표시했습니다.':
+      'Included: red and blue body text, black bold text, bold with underline, and underline only. From 2026-10-06, bold and underline also count as instructor emphasis. Where color and bold overlap, the color is shown.',
+    '제외: 표지·Q&A의 이메일, 교재 구성(p. 2)과 장 위치 안내, 슬라이드 제목, 표 머리글과 행 라벨, ‘표 N’·‘그림 N’ 캡션, 토론 질문의 서식 굵게(p. 62), 마지막 인사, 그림의 선·배경·라벨 색.':
+      'Excluded: cover and Q&A email, textbook structure (p. 2) and chapter placement, slide titles, table headers and row labels, ‘Table N’ and ‘Figure N’ captions, formatting bold in the discussion questions (p. 62), closing pages, and colors in diagram lines, backgrounds, and labels.',
+    '보완: 정의 풀이, 비교표, 추가 사례와 복습 문제는 자체 학습 설명입니다. 강조를 출제 확정이나 중요도 순위로 해석하지 않습니다.':
+      'Supplements: explanatory definitions, comparison tables, additional examples, and recall questions are authored learning material. Emphasis does not establish exam inclusion or a ranking of importance.',
+    '5장 전체 강의 ↗': 'Chapter 5 full lecture ↗',
+    '신뢰성의 원리': 'Principles of reliability',
+    '사람들이 믿고 의지할 수 있는 디지털 프로덕트의 조건을 안전성·보안성·안정성으로 나누고, 인공지능에 대한 신뢰감을 주는 방법을 설명합니다.':
+      'Divide the conditions for digital products people can rely on into safety, security, and stability, and explain how to convey credibility for AI.',
+    '5장 교수님 강조 요약': 'Chapter 5 instructor-emphasis summary',
+    '원문의 파랑·굵게·밑줄 구절과 보완 설명을 구분해 신뢰성의 조건과 인공지능의 신뢰감을 복습합니다.':
+      "Review the conditions of reliability and the credibility of AI while distinguishing the source's blue, bold, and underlined excerpts from learning supplements.",
+    '안전성 · 보안성 · 안정성': 'Safety · security · stability',
+    '사용자가 믿고 맡기는 마음': "Users' willingness to rely on it",
+    '믿음직한 AI': 'Trustable AI',
+    '예측 · 의지 · 믿음': 'Predictable · dependable · faithful',
+    '표시는 원본의 실제 강조(파랑·굵게·밑줄)를 뜻하며 시험 출제 확정을 뜻하지 않습니다. 5장 본문에는 빨간 강조가 없습니다.':
+      'Labels identify actual source emphasis (blue, bold, underline), not confirmed exam content. Chapter 5 has no red emphasis in its body text.',
+    '← 4장 전체 강의': '← Chapter 4 full lecture',
+    '← 4장 강조 요약': '← Chapter 4 emphasis summary',
+    '5장 전체 강의': 'Chapter 5 full lecture',
+    '5장 목차': 'Chapter 5 contents',
+    '강의자료 65쪽 기반': 'Based on 65 source pages',
+    'HCI 3.0 · 5장 신뢰성의 원리': 'HCI 3.0 · Chapter 5 Principles of Reliability',
+    'HCI 3.0 · 5장 교수님 강조 요약': 'HCI 3.0 · Chapter 5 Instructor-Emphasis Summary',
+    'HCI. · 5장 신뢰성의 원리': 'HCI. · Chapter 5 Principles of Reliability',
+    '원본 표기 확인': 'Source notation',
+    '원문 파랑 · 선정 페이지': 'Source blue · selected pages',
+    '신뢰란 무엇이고, 신뢰를 얻기 위해서는 어떤 노력을 해야 할까?':
+      'What is trust, and what effort is needed to earn it?',
+    '신뢰성의 개념': 'The concept of reliability',
+    믿음: 'Faith',
+    '한 줄로 구분하기': 'In one line',
+    '사용자에게 해를 끼치지 않는가': 'Does it avoid harming users?',
+    '스마트워치 심박 경고 오류 (p. 28)': 'False smartwatch heart-rate warnings (p. 28)',
+    '데이터를 보호하는가': 'Does it protect data?',
+    '자동 로그아웃, 암호화 저장·전송 (pp. 31–33)':
+      'Automatic logout, encrypted storage and transmission (pp. 31–33)',
+    '기능이 일정하게 작동하는가': 'Does it function consistently?',
+    '잴 때마다 다른 혈당 수치 (p. 34)': 'Blood-glucose readings that differ each time (p. 34)',
+    '이해 보완 · 세 조건 구분표': 'Supplement · telling the three conditions apart',
+    '안전성 • 보안성 • 안정성': 'Safety • security • stability',
+    '원본 65쪽을 대조했습니다. 요약에 발췌한 강조는 46쪽에 걸쳐 있으며, 종류별 선정 페이지는 아래와 같습니다. 발췌는 강조된 모든 문장을 복사한 것이 아니라 각 페이지의 대표 구절을 고른 것입니다.':
+      'All 65 source pages were reviewed. Excerpted emphasis spans 46 pages; the selected pages for each kind are listed below. Excerpts select representative phrases from each page rather than reproducing every emphasized sentence.',
   },
   patterns: [
     {
