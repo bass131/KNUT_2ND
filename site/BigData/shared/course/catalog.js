@@ -187,6 +187,23 @@
         ['review', '코드 검토와 복습', 'AI 코드 검토 오류 복습 SQL 입력 정제 집계 실행 위치'],
       ],
     },
+    {
+      id: '05',
+      title: 'Spark SQL과 DataFrame 결과 비교',
+      sections: [
+        ['scope', '4장과 5장의 학습 범위', 'SQL scope 4장과 5장의 학습 범위'],
+        ['input', '12행 입력과 Schema 확인', 'SQL input 12행 입력과 Schema 확인'],
+        ['views', 'Temporary View와 첫 SQL 조회', 'SQL views Temporary View와 첫 SQL 조회'],
+        ['filter', 'SELECT 계산식과 WHERE 조건', 'SQL filter SELECT 계산식과 WHERE 조건'],
+        ['aggregate', 'GROUP BY 집계와 NULL', 'SQL aggregate GROUP BY 집계와 NULL'],
+        ['having', 'WHERE와 HAVING 구분', 'SQL having WHERE와 HAVING 구분'],
+        ['compare', '두 방식과 예상값 비교', 'SQL compare 두 방식과 예상값 비교'],
+        ['coalesce', 'COALESCE로 NULL 대체', 'SQL coalesce COALESCE로 NULL 대체'],
+        ['case', 'CASE로 조건별 값 선택', 'SQL case CASE로 조건별 값 선택'],
+        ['actions', '집계값과 결과 행 수 구분', 'SQL actions 집계값과 결과 행 수 구분'],
+        ['review', '잘못된 SQL 찾기와 복습', 'SQL review 잘못된 SQL 찾기와 복습'],
+      ],
+    },
   ];
   site.chapters = chapters;
 })();

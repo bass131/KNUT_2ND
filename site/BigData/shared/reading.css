@@ -868,3 +868,25 @@ html[lang='en'] .analogy::before {
     object-fit: contain;
   }
 }
+
+/* Native navigation remains available without scripts and wraps on narrow screens. */
+.course-return {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0 0 24px;
+}
+.course-return a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 4px 0;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.course-return a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 4px;
+  border-radius: 4px;
+}

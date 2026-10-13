@@ -4883,3 +4883,845 @@ window.KNUT_TRANSLATIONS = {
     },
   ],
 };
+
+// Chapter 06 and course navigation: reviewed bilingual content.
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  '관계자 분석의 의미와 세 단계': 'Meaning and three stages of stakeholder analysis',
+  '관계자 분석(Stakeholder Analysis)은 시스템 개발과 인터랙션 디자인에 영향을 주거나 받는 사람·조직·시스템을 식별하고 분석하는 활동입니다. 직접 조작하는 사용자뿐 아니라 구매자, 지원 인력, 관련 기관과 기술적 행위자까지 살펴봅니다.':
+    'Stakeholder analysis identifies and examines people, organizations, and systems that influence or are affected by system development and interaction design. It considers buyers, support staff, related institutions, and technical actors as well as direct users.',
+  '카페에 AI를 들이면 누구의 경험이 달라질까':
+    'Whose experience changes when a cafe introduces AI?',
+  '원본 p.5의 카페에는 빨리 커피를 받고 싶은 출근길 손님, 대화를 나누며 쉬려는 손님, 공부하거나 식사하려는 손님이 찾아옵니다. 대화형 AI의 추천 기능이 좋아도 긴 대화가 모든 손님의 목표에 맞지는 않습니다. 기술을 도입하기 전에 서로 다른 목적과 이용 상황을 조사해야 합니다.':
+    'In the cafe on p.5, commuters want coffee quickly, some visitors want conversation and rest, and others want to study or eat. Even good conversational AI recommendations do not make long conversations suitable for everyone. Different goals and use situations must be investigated before introducing technology.',
+  단계: 'Stage',
+  '질문과 산출물': 'Questions and outputs',
+  '1. 관계자 분석 준비': '1. Prepare stakeholder analysis',
+  '누가 관련되는가? 관계자 파악 → 특성 구분 → 영향 파악 → 우선순위 설정. 관계자 목록·특성표·영향 매핑표를 만듭니다.':
+    'Who is involved? Identify stakeholders → distinguish characteristics → assess impacts → prioritize. Produce stakeholder lists, characteristic tables, and impact maps.',
+  '2. 사회기술모형 작성': '2. Build a socio-technical model',
+  '생태계에서 무엇을 주고받는가? 집단 조사 → 기본 정의 → 개념 모형 → 평가. 사람·기술·조직의 연결 구조를 나타냅니다.':
+    'What is exchanged in the ecosystem? Investigate groups → root definition → conceptual model → evaluation. Represent connections among people, technology, and organizations.',
+  '3. 페르소나 모형 작성': '3. Build persona models',
+  '그 안의 사용자는 왜, 어떻게 행동하는가? 조사 단서로 대표 인물을 만들고 검증한 뒤 가치·사용성·신뢰성 프로파일로 구체화합니다.':
+    'Why and how do users act within it? Build and validate representative people from research evidence, then develop value, usability, and credibility profiles.',
+  '원본 pp.6, 9–16의 절차를 재구성': 'Process adapted from pp.6 and 9–16',
+  '세 단계는 한 번 통과하면 끝나는 체크리스트가 아닙니다. 페르소나에서 새 제약을 발견하면 관계자 목록이나 사회기술모형으로 돌아가 수정합니다. p.16은 페르소나 절차를 묶어서 소개하고, pp.86–98은 일곱 단계로 자세히 풉니다.':
+    'These stages are iterative. A new constraint discovered through a persona can require changes to the stakeholder list or socio-technical model. Page 16 groups the persona process for an overview, while pp.86–98 explain seven detailed stages.',
+  '원본 pp.1–4는 표지·교재 구성·분석하기 도입입니다. 이 장은 관계자 분석을 다루며 과업 분석과 맥락 분석은 다음 장의 주제입니다.':
+    'Pages 1–4 contain the cover, textbook structure, and introduction to analysis. This chapter covers stakeholder analysis; task and context analysis belong to subsequent chapters.',
+  '관계자 파악과 특성 구분': 'Identify stakeholders and distinguish their characteristics',
+  '분석 준비에서는 관계자의 목적·동기·기술 수준·사용 맥락·의사결정 구조를 적습니다. 서비스의 규모와 특성에 맞게 조사 범위를 정하고, 각 집단의 관점·책임·이익·위험을 함께 살핍니다.':
+    'Record stakeholders’ purposes, motivations, technical skills, use contexts, and decision structures. Match the research scope to the service’s size and characteristics, and examine each group’s viewpoints, responsibilities, benefits, and risks.',
+  범주: 'Category',
+  '구분 기준': 'Basis',
+  '원본 사례': 'Source examples',
+  '주 사용자 · Primary user': 'Primary user',
+  '시스템과 직접 상호작용하며 목표를 달성합니다.':
+    'Interacts directly with the system to achieve a goal.',
+  '환자, 의사, 학생, 소비자': 'Patients, doctors, students, consumers',
+  '부 사용자 · Secondary user': 'Secondary user',
+  '직접 사용하지 않아도 사용자의 활동에 영향을 주거나 받습니다.':
+    'Influences or is affected by users’ activities without necessarily using the system directly.',
+  '부모, 교사, 관리자': 'Parents, teachers, managers',
+  '구매자 · Buyer': 'Buyer',
+  '도입과 지불을 결정하며 비용·효과·위험·확장성을 평가합니다.':
+    'Decides adoption and payment, considering cost, effects, risks, and scalability.',
+  '보험사, 학교 행정기관, IT 구매부서':
+    'Insurers, school administrations, IT purchasing departments',
+  '관련 기관 · Related institutions': 'Related institutions',
+  '규제·인증·지원·연계를 맡고 안전·보안·형평성·접근성을 고려합니다.':
+    'Provides regulation, certification, support, and connections, considering safety, security, equity, and access.',
+  '교육청, 심리 상담 센터, 정부·인증기관':
+    'Education offices, counseling centers, government and certification bodies',
+  '네 관계자 범주': 'Four stakeholder categories',
+  '구매자의 평가 기준에는 총소유비용(TCO), 비용-효과(CEA), 비용-편익(CBA), 비용-효용(CUA), 투자 회수율(ROI)이 포함됩니다. 관련 기관은 공공가치와 신뢰를 고려합니다. 원본 p.20은 의사결정에 영향을 미치는 AI 시스템·데이터 분석가·알고리즘 개발자도 관계자에 포함합니다.':
+    'Buyer criteria include total cost of ownership (TCO), cost-effectiveness (CEA), cost-benefit (CBA), cost-utility (CUA), and return on investment (ROI). Institutions also consider public value and trust. Page 20 includes AI systems, data analysts, and algorithm developers as actors influencing decisions.',
+  '뽀미 사례: 한 사람이 여러 역할을 맡는다': 'ForMe case: one person can have several roles',
+  'p.20의 표는 환자와 의사를 주 사용자, 보호자를 주 사용자이면서 구매자, 심리 상담 센터와 교육청을 부 사용자·관련 기관으로 분류합니다. 같은 보호자도 자녀의 사용을 돕는 역할과 비용을 지불하는 역할에서 목표가 다릅니다.':
+    'The table on p.20 classifies patients and doctors as primary users, caregivers as both primary users and buyers, and counseling centers and education offices as secondary users and related institutions. A caregiver’s goals differ between supporting use and paying for it.',
+  '분류는 직업에 영구히 붙는 이름이 아닙니다. 어떤 서비스에서 어떤 행위를 맡는지 먼저 적고 역할을 판단합니다. 이 강의의 뽀미·의료 사례는 원본의 분석 예시이며 치료 효과를 검증한 결과로 읽지 않습니다.':
+    'Categories are not permanent labels attached to occupations. First describe the person’s actions in the service, then determine the role. The ForMe and medical cases are source analysis examples, not verified treatment-effect findings.',
+  '관계자에게 미치는 네 가지 영향': 'Four kinds of stakeholder impact',
+  '영향 분석은 서비스가 각 관계자에게 줄 긍정적 결과와 부정적 결과를 함께 예상하는 과정입니다. 같은 집단 안에서도 역할이 다르면 영향을 나누어 기록하고, 불이익을 줄일 대안적 설계를 검토합니다.':
+    'Impact analysis anticipates positive and negative consequences for each stakeholder. Separate impacts for different roles within one group and consider alternative designs that reduce disadvantages.',
+  영향: 'Impact',
+  뜻: 'Meaning',
+  '원본 예시': 'Source examples',
+  '사용효과에 의한 영향': 'Impact driven by effects of use',
+  '사용 행위 자체가 만드는 즉각적 반응과 경험 변화':
+    'Immediate responses and changes in experience caused by use',
+  '집중력 향상, 사용 피로도 증가': 'Improved concentration; increased fatigue',
+  '비용적 영향': 'Economic impact',
+  '경제적 이득 또는 손실': 'Economic gains or losses',
+  '의료비 절감, 보험비 감소': 'Reduced medical or insurance costs',
+  '업무적 영향': 'Operational impact',
+  '업무 효율성·정확성·협업 방식의 변화': 'Changes in work efficiency, accuracy, and collaboration',
+  '교사 업무 자동화, 보고 절차 단축': 'Automated teacher tasks; shorter reporting processes',
+  '사회적 가치 영향': 'Social value impact',
+  '사회 전체의 인식·신뢰·포용성 변화': 'Changes in social perceptions, trust, and inclusion',
+  '교육 형평성 개선, 기술 의존도 증가':
+    'Improved educational equity; greater dependence on technology',
+  'p.24 이미지 표의 네 영향 범주': 'Four impact categories from the image table on p.24',
+  'p.25의 뽀미 표는 환자의 치료 효과 향상, 의사의 진단 효율성 향상, 보호자의 자녀 치료 효과 향상과 비용 감소, 상담 센터의 서비스 확대, 교육청의 학업 이수 도움을 모두 긍정적 영향으로 제시합니다. 표가 긍정적 사례만 담았다고 해서 부정적 영향 조사까지 끝난 것은 아닙니다.':
+    'The ForMe table on p.25 presents only positive anticipated impacts: better treatment outcomes for patients, diagnostic efficiency for doctors, children’s outcomes and lower costs for caregivers, more services for counseling centers, and educational completion support for education offices. A table containing only positive examples does not complete the investigation of negative impacts.',
+  '이해 보완 예시: 학습 앱이 집중 시간을 늘려도 교사의 확인 업무가 늘 수 있습니다. 전자는 사용효과, 후자는 업무적 영향입니다. 하나의 기능을 한 종류의 영향으로만 묶지 않습니다.':
+    'Supplement example: a learning app may increase concentration time while adding checking work for teachers. The first is an effect of use; the second is operational impact. One function can have several kinds of impact.',
+  '분석의 우선순위': 'Priorities for analysis',
+  '모든 관계자를 같은 깊이로 조사하기는 어렵습니다. 서비스 목표와의 관련성(Relevance), 다른 관계자와 성과에 미치는 영향력(Influence)을 함께 고려해 조사 깊이를 정합니다.':
+    'It is difficult to investigate every stakeholder equally deeply. Consider relevance to service goals and influence on other stakeholders and outcomes when deciding research depth.',
+  그룹: 'Group',
+  '다루는 방식': 'Treatment',
+  '필수 · Primary': 'Primary',
+  '성공에 핵심적이며 직접 상호작용하는 관계자입니다. 반드시 심층 분석합니다.':
+    'Critical to success and direct interaction. Requires in-depth analysis.',
+  '중요 · Significant': 'Significant',
+  '유지·운영·정책 등 가치 창출을 지원합니다. 기능과 시스템 설계에서 고려합니다.':
+    'Supports value creation through operation, maintenance, or policy. Must be considered in functional and system design.',
+  '고려 · Considered': 'Considered',
+  '간접 영향·피드백·홍보·데이터 연계를 살피는 보조 분석 대상입니다.':
+    'A supporting analysis category for indirect effects, feedback, publicity, or data connections.',
+  '참조 · Referenced': 'Referenced',
+  '직접 영향은 적지만 시장 동향·업계 표준·유관 기업 등을 참고합니다.':
+    'Direct influence is small, but market trends, standards, and related companies provide reference information.',
+  'p.27의 우선순위 분류': 'Priority categories on p.27',
+  'p.28의 구체적 사례에서는 아동·의사·주 사용자 역할의 보호자가 필수이고, 구매자 역할의 보호자·상담 센터·교육청은 고려입니다. p.27의 일반 예시와 p.28의 실제 적용은 동일한 직업명만으로 고정되지 않습니다. 서비스가 확장되면 고려·참조 그룹도 다시 심층 조사할 수 있습니다.':
+    'In the specific example on p.28, children, doctors, and caregivers acting as primary users are primary priorities; caregivers acting as buyers, counseling centers, and education offices are considered priorities. The general examples on p.27 do not fix the classification by occupation. Expansion may require deeper research into considered and referenced groups.',
+  '관련성과 영향력은 판단 근거이며 원본에는 모든 서비스에 통용되는 점수 임계값이나 자동 분류식이 없습니다. 아래 연습은 사례의 역할을 비교하는 활동입니다.':
+    'Relevance and influence guide judgment. The source provides no universal numeric thresholds or automatic classification formula. The practice below compares roles in the source case.',
+  '사회기술모형과 페르소나의 연결': 'Connecting socio-technical and persona models',
+  관점: 'Perspective',
+  사회기술모형: 'Socio-technical model',
+  '페르소나 모형': 'Persona model',
+  '핵심 질문': 'Main question',
+  '누가 누구와 연결되는가?': 'Who is connected to whom?',
+  '이 사용자는 왜, 어떻게 사용하는가?': 'Why and how does this user use the service?',
+  '분석 초점': 'Focus',
+  '생태계 구조, 관계, 역할, 영향 경로': 'Ecosystem structure, relationships, roles, impact paths',
+  '사용자의 목표, 동기, 행동, 맥락': 'User goals, motivations, behavior, context',
+  산출물: 'Output',
+  '관계도·정보 흐름·개념 모형': 'Relationship maps, information flows, conceptual models',
+  '대표 인물의 프로필·사용 시나리오': 'Representative profiles and use scenarios',
+  '상호 보완': 'Feedback',
+  '페르소나를 만들 집단과 환경을 알려 줍니다.': 'Identifies groups and contexts for personas.',
+  '놓친 관계자나 제약을 찾아 모형을 수정하게 합니다.':
+    'Reveals missing actors or constraints and prompts model revision.',
+  '거시적 구조와 미시적 경험': 'Macro structure and micro experience',
+  '원본은 HCI 3.0의 분석에서 경험의 의미와 사회적 가치까지 다룹니다. 사회기술모형으로 교사·보호자·기관의 연결을 발견한 뒤 페르소나의 목표를 구체화하고, 페르소나에서 새 행동 패턴이 나오면 다시 관계 구조를 보완합니다.':
+    'The source includes meaning and social value in HCI 3.0 analysis. A socio-technical model can reveal connections to teachers, caregivers, and institutions; personas then make goals concrete, and new behavior patterns lead to revisions of the relationship structure.',
+  '사회기술모형과 SSM': 'Socio-technical models and SSM',
+  '사회기술모형은 하드웨어·소프트웨어·알고리즘·데이터 같은 기술적 영역과 사람·업무·조직·문화·윤리 같은 사회적 영역을 함께 분석하는 틀입니다. 기술이 바뀌면 조직의 일이 바뀌고, 조직의 요구는 기술의 방향을 바꾸는 공진화(Co-evolution)가 일어납니다.':
+    'A socio-technical model examines technical elements such as hardware, software, algorithms, and data alongside people, work, organizations, culture, and ethics. Technology changes work, while organizational needs redirect technology: the source calls this co-evolution.',
+  모형: 'Model',
+  '원본에서의 초점': 'Focus in the source',
+  'USTM · User Skills and Task Match': 'USTM · User Skills and Task Match',
+  '사용자의 기술 수준과 과업 요구의 적합성': 'Fit between users’ skills and task demands',
+  'CUSTOM / OSTA': 'CUSTOM / OSTA',
+  '개방형 시스템의 작업 흐름과 기술·인간·환경 관계':
+    'Workflows and technology–human–environment relationships in open systems',
+  ETHICS: 'ETHICS',
+  '기술적 효율성과 인간의 자율성·참여를 함께 고려하는 설계':
+    'Design combining technical efficiency with human autonomy and participation',
+  'SSM · Soft Systems Methodology': 'SSM · Soft Systems Methodology',
+  '복잡한 문제를 구조화하고 현실 세계와 개념적 시스템 세계를 비교·개선':
+    'Structure complex problems and compare and improve the real and conceptual system worlds',
+  'SMM · Socio-Managerial Model': 'SMM · Socio-Managerial Model',
+  '조직 전체에서 사람과 기술의 상호작용 분석':
+    'Analyze human–technology interaction across an organization',
+  'p.38에 소개된 분석 모형': 'Analysis models introduced on p.38',
+  'SSM의 일곱 단계': 'Seven SSM stages',
+  '문제 상황 인식: 현장의 복잡한 상황과 관계자를 관찰합니다.':
+    'Recognize the problem situation: observe complexity and stakeholders.',
+  '문제 상황 표현: 이슈와 관계를 시각적으로 구조화합니다.':
+    'Express the situation: visually structure issues and relationships.',
+  '루트 정의: 목적·가치·환경·제약을 문장으로 적습니다.':
+    'Root definition: state purpose, value, environment, and constraints.',
+  '개념 모델 작성: 목적을 실현할 활동과 관계를 모형으로 만듭니다.':
+    'Conceptual modeling: model activities and relationships that realize the purpose.',
+  '현실과 모델 비교: 실제 환경과 개념 모델의 차이를 찾습니다.':
+    'Compare model and reality: find differences from the actual environment.',
+  '개선 방안 도출: 바람직하면서 실행 가능한 변화를 정합니다.':
+    'Identify improvements: choose desirable, feasible changes.',
+  '실행 및 피드백: 개선안을 적용하고 관찰 결과로 다시 수정합니다.':
+    'Act and gather feedback: apply changes and revise from observations.',
+  'SSM의 일곱 단계와 이 강의의 사회기술모형 작성 네 단계는 설명 수준이 다릅니다. 전자는 문제 탐구와 현실 개선의 순환이고, 후자는 조사 → 기본 정의 → 개념 모형 → 평가라는 제작 순서입니다.':
+    'The seven SSM stages and this lecture’s four model-building stages have different levels of detail. SSM describes a cycle of inquiry and real-world improvement; the lecture organizes work as investigation → root definition → conceptual model → evaluation.',
+  '조사 질문에 맞는 방법 고르기': 'Choose methods that fit the research question',
+  '정량적 리서치는 빈도·수량·비율을 측정해 얼마나 자주, 얼마나 많이 일어나는지 보여 줍니다. 정성적 리서치는 이유·맥락·감정·동기를 탐구합니다. 행동은 실제로 하는 일, 태도는 말하거나 느끼는 생각입니다. 두 축을 조합하면 조사 방법이 답할 수 있는 질문이 선명해집니다.':
+    'Quantitative research measures frequencies, quantities, and proportions. Qualitative research explores reasons, context, emotions, and motivations. Behavior concerns what people do; attitude concerns what they say or feel. Combining these axes clarifies which questions a method can answer.',
+  분류: 'Category',
+  질문: 'Question',
+  방법: 'Method',
+  '정성·태도': 'Qualitative–attitudinal',
+  '무슨 생각을 하며 왜 그렇게 말하는가?': 'What do people think, and why?',
+  '인터뷰, 포커스 그룹, 원본의 설문조사 예시':
+    'Interviews, focus groups, and the source’s survey example',
+  '정성·행동': 'Qualitative–behavioral',
+  '실제로 어떻게 행동하는가?': 'How do people actually behave?',
+  '사용성 테스트, 현장 관찰': 'Usability testing, field observation',
+  '정량·태도': 'Quantitative–attitudinal',
+  '몇 명이 그렇게 생각하는가?': 'How many people think that?',
+  '대규모 온라인 설문': 'Large online surveys',
+  '정량·행동': 'Quantitative–behavioral',
+  '얼마나 자주 행동하는가?': 'How often does the behavior occur?',
+  '웹 로그, 클릭 데이터, A/B 테스트': 'Web logs, click data, A/B tests',
+  'p.42의 연구 분류를 질문으로 읽기': 'Reading the research categories on p.42 as questions',
+  '원본 p.42는 정성·태도에도 설문을 적습니다. 질문이 자유 응답인지 수치 척도인지에 따라 얻는 근거가 달라지므로 도구 이름만으로 정성·정량을 고정하지 않습니다. 이 표는 원본의 재구성이며 외부 프레임워크의 모든 연구 기법을 망라하지 않습니다.':
+    'Page 42 also lists surveys under qualitative attitude research. Open responses and numerical scales yield different evidence, so the tool’s name alone does not determine the category. This is an adaptation of the source, not a complete inventory of an external framework.',
+  '인터뷰: 응답 뒤의 이유를 듣기': 'Interviews: listen for the reasons behind responses',
+  유형: 'Type',
+  '진행과 특징': 'Procedure and characteristics',
+  '심층 인터뷰': 'In-depth interview',
+  '개인과 1:1로 경험과 태도를 깊이 탐색합니다. 비구조화된 질문으로 숨은 니즈를 발견합니다.':
+    'Explore an individual’s experiences and attitudes one to one; unstructured questions can reveal hidden needs.',
+  '포커스 그룹 인터뷰 · FGI': 'Focus group interview · FGI',
+  '원본에서는 유사한 특성의 5~8명이 토론하며 상호작용 속의 다양한 의견을 얻습니다.':
+    'In the source, five to eight people with similar characteristics discuss issues, revealing diverse views through interaction.',
+  '정황적 인터뷰': 'Contextual interview',
+  '실제 이용 현장에서 행동과 맥락을 관찰하며 대화합니다.':
+    'Talk with people while observing behavior and context in the actual use setting.',
+  'p.46의 인터뷰 유형': 'Interview types on p.46',
+  '진행자의 질문·공감·대화 구조가 인터뷰의 질에 영향을 줍니다. 말의 내용뿐 아니라 표정·톤·망설임을 살피며 새로운 단서를 발견합니다. 관찰은 말로 드러나지 않는 습관, 물리적·사회적 제약, 실제 행동 패턴을 확인합니다.':
+    'Questioning, empathy, and conversation structure affect interview quality. Expressions, tone, and hesitation can reveal additional clues. Observation examines habits, physical and social constraints, and actual behavior that words may miss.',
+  '기록할 내용': 'What to record',
+  '포토 다이어리': 'Photo diary',
+  '사용자가 일상·이용 장면을 사진으로 기록합니다. 맥락과 감정의 변화를 살핍니다.':
+    'Users photograph daily life or use situations to reveal context and emotional change.',
+  '장소 조사 · Town watching': 'Town watching',
+  '병원·캠퍼스·공공장소 등 특정 공간에서 사용자와 환경의 관계를 봅니다.':
+    'Observe user–environment relationships in places such as hospitals, campuses, or public spaces.',
+  '문화 탐사물 키트 · Culture probes': 'Culture probes',
+  '일기·엽서·스티커로 경험을 표현하게 합니다. 원본 p.48은 문화 검사물 키트라고 표기합니다.':
+    'Invite expression through diaries, postcards, and stickers. The source labels this a culture-probe kit.',
+  '섀도잉 · Shadowing': 'Shadowing',
+  '연구자가 일정 시간 사용자를 따라다니며 활동의 흐름을 기록합니다.':
+    'Follow a user over a period and record the flow of activities.',
+  'p.48의 관찰 기법': 'Observation methods on p.48',
+  '뽀미 집단 조사에서 기본 정의로': 'From the ForMe group study to root definitions',
+  'p.44의 조사에서는 아동의 병원 두려움, 의사의 연속 데이터 부족, 보호자의 치료 비용 부담, 상담 센터의 지원 확대 요구, 교육청의 소외 방지와 학업 지원 요구가 나옵니다. 이들은 다음 절의 수혜자별 기본 정의로 이어집니다.':
+    'The study on p.44 identifies children’s fear of hospitals, doctors’ lack of continuous data, caregivers’ cost burden, counseling centers’ wish to offer more support, and education offices’ concerns about exclusion and learning. These lead to beneficiary-specific root definitions in the next section.',
+  '인터뷰·관찰·문화 탐사 등 여러 방법을 결합해 삼각검증(Triangulation)을 합니다. 정보의 양만 늘리기보다 관계자의 심리적 동기와 맥락적 의미를 이해하고, 확인한 문제와 니즈를 모형에 반영합니다.':
+    'Combine interviews, observation, and probes for triangulation. The aim is to understand stakeholders’ psychological motives and contextual meanings, then incorporate identified problems and needs into the model, rather than merely collect more information.',
+  '시스템 기본 정의 내리기': 'Write the system’s root definition',
+  '기본 정의(Root Definition)는 시스템이 무엇을 위해 존재하며 누구에게 어떤 가치를 주는지 적은 문장입니다. 기능 목록을 넘어 수혜자, 기대 변화, 관계자의 인식, 실제 사용 환경을 함께 밝힙니다. 조사 결과를 하나의 방향으로 모아 팀의 공통 언어를 만들고 관계자 간 합의를 돕습니다.':
+    'A root definition states why a system exists, whom it serves, and what value it offers. Beyond listing functions, it identifies beneficiaries, expected change, stakeholders’ perceptions, and the use environment. It brings research findings into a shared direction and supports agreement.',
+  수혜자: 'Beneficiary',
+  '원본의 기본 정의': 'Root definition in the source',
+  환자: 'Patient',
+  '아이들에게 친근한 시스템': 'A system that feels friendly to children',
+  의사: 'Doctor',
+  '연속적인 데이터(바이오마커)를 확보할 수 있는 시스템':
+    'A system that provides continuous data (biomarkers)',
+  보호자: 'Caregiver',
+  '디지털 기반의 저렴한 시스템': 'An affordable digital system',
+  '심리 상담 센터': 'Counseling center',
+  '접근성이 높아 고객들에게 제공하기 쉬운 시스템':
+    'An accessible system that is easy to offer to clients',
+  교육청: 'Education office',
+  'ADHD 아동들의 학업 이수에 도움이 되는 시스템':
+    'A system supporting educational completion for children with ADHD',
+  'p.54 이미지 표: 수혜자별 기본 정의': 'Image table on p.54: root definitions by beneficiary',
+  'p.54의 ‘기타 항목(가져올 수 있는 생태계의 변화 등)’ 열은 말줄임표로 남아 있습니다. 아직 채워지지 않은 분석 항목이므로 구체적인 변화를 원본의 확정 결과처럼 덧붙이지 않습니다.':
+    'The “Other items (such as possible ecosystem changes)” column on p.54 contains ellipses. It is an unfinished analysis field, so specific changes must not be presented as established source findings.',
+  'p.51은 학교와 상담기관을 연결해 청소년의 정서적 안정을 돕는 플랫폼을 예로 들고, p.55는 중·장년 만성질환자의 건강 데이터 관리와 의료기관 연동을 위한 개인화 피드백·실시간 모니터링을 예로 듭니다. 수혜자·목적·맥락을 함께 적은 정의입니다.':
+    'Page 51 gives a platform connecting schools and counseling institutions to support adolescents’ emotional stability. Page 55 describes personalized feedback and real-time monitoring to help middle-aged and older people with chronic conditions manage health data and connect with care providers. Both identify beneficiaries, purpose, and context.',
+  '기능: “알림을 보낸다.” 기본 정의: “이용자가 놓친 예약을 줄이도록 일상 일정에 맞는 안내를 제공한다.” 두 문장은 같은 기능을 다뤄도 목적과 수혜자를 드러내는 정도가 다릅니다.':
+    'Feature: “Send notifications.” Root definition: “Provide guidance matched to daily schedules so users miss fewer appointments.” Both concern the same function, but the second identifies the beneficiary and purpose.',
+  '개념 모형 작성과 해석': 'Build and interpret a conceptual model',
+  '개념 모형(Conceptual Model)은 기본 정의를 관계 구조로 구체화한 생태계 도식입니다. 중심 서비스와 관계자를 배치하고, 연결선에 무엇을 주고받는지 적습니다. 단순한 화면 이동 순서나 작업 흐름도와는 질문이 다릅니다.':
+    'A conceptual model turns the root definition into an ecosystem relationship diagram. Place the service and its stakeholders, then label what they exchange. It asks different questions from a screen sequence or task flowchart.',
+  '핵심 서비스를 중심 원으로 놓습니다.': 'Place the core service at the center.',
+  '앞서 찾은 관계자를 주변에 배치합니다.': 'Arrange identified stakeholders around it.',
+  '실선은 강한 직접 관계, 점선은 약한 간접 관계로 구분합니다.':
+    'Use solid lines for strong direct relations and dotted lines for weaker indirect relations.',
+  '연결선에 데이터 제공·결과 공유·가이드 전달·개선 피드백 등 교환 내용을 적습니다.':
+    'Label exchanges such as data, results, guidelines, or improvement feedback.',
+  관계자: 'Stakeholder',
+  '주요 역할과 교환': 'Roles and exchanges',
+  '서비스 제공자': 'Service provider',
+  '플랫폼 운영, 원본이 목표로 제시한 치료 효과·사용자경험 개선':
+    'Platform operation and the source’s intended treatment and experience improvements',
+  '진단 정보 제공, 환자 데이터 활용, 치료 프로토콜 제시':
+    'Provide diagnostic information, use patient data, suggest treatment protocols',
+  '치료 참여, 데이터 기록, 피드백 제공': 'Participate, record data, provide feedback',
+  '관리 참여, 비용 부담, 치료 과정 지원': 'Support care and management, bear costs',
+  '보조적 치료 제공, 효과 검증 참여': 'Provide supplementary care and participate in evaluation',
+  '예방 교육 연계, 학생 데이터 협력': 'Connect prevention education and cooperate on student data',
+  '연구소·복지부 등': 'Research institutes and public bodies',
+  '정책 지원, 연구 결과 공유, 사회 인프라 강화':
+    'Policy support, research exchange, social infrastructure',
+  '사회 인프라': 'Social infrastructure',
+  '시스템이 궁극적으로 영향을 미치는 사회적 기반':
+    'The social foundation ultimately affected by the system',
+  'pp.59–60의 의료 생태계 관계 재구성':
+    'Relationships adapted from the healthcare ecosystem on pp.59–60',
+  '시각 표현에서는 중심성·균형성·명료성을 확인합니다. 연결의 강도와 방향, 교환 내용을 읽고 핵심 피드백 구조, 목표가 충돌하는 지점, 가치가 사회로 퍼지는 경로를 해석합니다. 보기 좋은 관계도만으로 분석이 끝나지는 않습니다.':
+    'Check centrality, balance, and clarity. Read relationship strength, direction, and exchanges to identify feedback loops, conflicting goals, and paths through which value spreads. A visually attractive map alone does not complete the analysis.',
+  '이해관계자 검증과 생태계 검증': 'Stakeholder and ecosystem validation',
+  검증: 'Validation',
+  '방법과 수정': 'Method and revision',
+  '이해관계자 검증': 'Stakeholder validation',
+  '각 집단의 실제 입장과 경험을 정확히 반영했는가?':
+    'Does the model represent each group’s actual viewpoint and experience?',
+  '인터뷰·워크숍·FGI로 피드백 → 누락·왜곡 확인 → 기본 정의와 역할·책임 수정':
+    'Collect feedback through interviews, workshops, or FGI → find omissions and distortions → revise the root definition, roles, and responsibilities',
+  '생태계 검증': 'Ecosystem validation',
+  '기존 사회·기술 체계에 통합되어 지속적으로 작동할 수 있는가?':
+    'Can the system integrate with existing social and technical structures and keep operating?',
+  '대표 관계자의 공동 워크숍과 시나리오로 시스템 연계·정책 제약·기술 호환성 검토':
+    'Use joint workshops and scenarios to examine system connections, policy constraints, and technical compatibility',
+  '두 검증의 질문과 절차': 'Questions and procedures for the two validations',
+  '생태계 검증의 기준은 적합성(Fit), 지속가능성(Sustainability), 형평성(Equity), 확장성(Scalability)입니다. 원본은 의료 플랫폼이 병원 전산망·보험체계·개인정보 보호 규정과 충돌하지 않는지를 예로 듭니다. 이익 불균형, 자원 낭비, 사회적 비용도 살펴봅니다.':
+    'Ecosystem criteria are fit, sustainability, equity, and scalability. The source asks whether a healthcare platform conflicts with hospital information systems, insurance arrangements, or privacy rules. Unequal benefits, wasted resources, and social costs also matter.',
+  '이해관계자 검증은 개별 집단의 현실성을, 생태계 검증은 전체 체계와의 조화를 확인합니다. 둘은 상호 보완적이며, 피드백은 기본 정의 수정뿐 아니라 서비스 설계·정책 제안·UX 개선에도 쓰입니다.':
+    'Stakeholder validation checks realism for individual groups; ecosystem validation checks harmony with the whole system. They complement each other, and feedback informs root definitions, service design, policy proposals, and UX improvements.',
+  '가상 예약 서비스에서 “상담사의 확인 업무가 빠졌다”는 의견은 관계자 관점의 누락입니다. “기관의 기존 예약 시스템과 연동되지 않는다”는 문제는 생태계 통합 문제입니다. 같은 사례에 두 검증이 모두 필요할 수 있습니다.':
+    'In a hypothetical booking service, “the counselor’s checking work is missing” points to a stakeholder omission. “It cannot connect to the institution’s current booking system” points to ecosystem integration. One case can require both validations.',
+  '페르소나의 의미와 혼동하기 쉬운 개념': 'Personas and concepts commonly confused with them',
+  '페르소나(Persona)는 유사한 목표와 행동 패턴을 가진 사용자 집단을 대표하도록 조사 자료에서 만든 가상의 인물입니다. 실존 인물 한 명을 복사하지 않으며, 이름·배경·동기·목표·사용 상황을 연결해 팀이 같은 사용자를 떠올리게 합니다.':
+    'A persona is a fictional person modeled from research to represent a group with similar goals and behavior patterns. It does not copy one real person; it connects a name, background, motivation, goals, and context so the team can imagine the same user.',
+  '페르소나는 행동을 예상하고 문제를 일찍 발견하게 하며, 팀과 관계자의 소통을 돕고, 기술이나 내부 목표에 밀려 사용자 목표를 잊지 않도록 합니다. 사회기술모형의 생태계 구조를 제품·서비스 접점의 구체적 경험으로 연결합니다.':
+    'Personas help anticipate behavior and discover problems early, support communication, and keep user goals visible when technical or internal priorities compete with them. They connect ecosystem structures to concrete experiences at product and service touchpoints.',
+  개념: 'Concept',
+  차이: 'Distinction',
+  '통계적 평균': 'Statistical average',
+  '연령·소득의 평균만으로 목표와 행동을 설명할 수 없습니다. 반복되는 행동 패턴과 맥락이 필요합니다.':
+    'Average age or income alone cannot explain goals and behavior. Repeated behavioral patterns and context are needed.',
+  '실제 인물': 'A real person',
+  '한 사람의 특이한 행동을 대표성으로 착각하지 않습니다. 여러 조사 참여자에게 공통된 패턴을 통합합니다.':
+    'Do not mistake one person’s quirks for representative behavior. Combine common patterns across participants.',
+  '타깃 시장': 'Target market',
+  '시장세분화는 인구통계·시장 규모·가치와 구매를 다룹니다. 페르소나는 심성 모형·기술·태도·행동·목표와 사용 경험을 다룹니다. 일부 요소는 겹칠 수 있습니다.':
+    'Segmentation concerns demographics, market size and value, and purchasing. Personas concern mental models, skills, attitudes, behavior, goals, and use. Some elements may overlap.',
+  '직무 기술서': 'Job description',
+  '업무 목록이나 직함 대신 그 일을 왜 하고 어떤 문제를 해결하려는지 적습니다.':
+    'Describe why people do the work and what problems they seek to solve, rather than only listing tasks or titles.',
+  'pp.76–81: 페르소나와 구분할 것': 'Distinctions on pp.76–81',
+  'p.70은 정성·정량 자료를 함께 언급하지만 p.76은 정성 연구를 강조합니다. 평균값만으로 페르소나를 만드는 일을 경계하는 설명으로 읽고, 정량 자료를 사용할 수 없다는 규칙으로 확대하지 않습니다.':
+    'Page 70 mentions both qualitative and quantitative evidence, while p.76 emphasizes qualitative research. Read this as a caution against building personas from averages alone, not a prohibition on quantitative evidence.',
+  '페르소나에 담을 정보': 'Information to include in a persona',
+  요소: 'Element',
+  '적을 내용': 'What to include',
+  '인물적 배경': 'Personal background',
+  '이름·나이·직업·사진·일상·생활 습관으로 인물을 구체화합니다. 조사와 무관한 장식적 설정은 줄입니다.':
+    'Make the person concrete through name, age, occupation, photo, routine, and habits; avoid decorative details unrelated to research.',
+  '설계 대상과의 관계': 'Relationship to the system',
+  '이용 빈도·주요 기능·경험 수준을 적습니다. 원본은 복합단지의 관리자·입주자·방문자, 카메라의 초보자·중급자·전문가를 예로 듭니다.':
+    'Record frequency, main functions, and experience level. Source examples include complex managers, residents, and visitors, or novice, intermediate, and expert camera users.',
+  '목적·요구·태도': 'Goals, needs, and attitudes',
+  '이용 이유, 해결할 문제, 기대 가치와 서비스에 대한 관점을 적습니다. 설계안으로 목표를 달성할 수 있는지 판단하는 근거입니다.':
+    'Record reasons for use, problems, expected value, and attitudes. These help assess whether a design supports the goals.',
+  '갈등과 긴장': 'Tensions and frustrations',
+  '반복 로그인, 과도한 정보처럼 사용을 방해하는 구체적 상황과 미해결 문제를 적습니다.':
+    'Record specific barriers and unresolved problems, such as repeated login or information overload.',
+  'p.82의 이미지 표와 pp.83–85의 설명': 'Image table on p.82 and explanations on pp.83–85',
+  'p.82의 상단 설명은 특정 지식·숙련도와 이용맥락도 포함합니다. p.83에는 ‘동일집거사적 특성’이라는 불명확한 표기가 있으므로 뜻을 만들어 정의하지 않고, 확인 가능한 p.82 이미지의 지식·숙련도·이용맥락을 기준으로 설명합니다.':
+    'The upper text on p.82 also includes knowledge, proficiency, and use context. Page 83 contains an unclear Korean expression; rather than inventing its meaning, this explanation follows the legible knowledge, proficiency, and context items in the image on p.82.',
+  '페르소나 제작 일곱 단계': 'Seven stages of persona creation',
+  '수행할 일': 'Work to perform',
+  '1. 관계자의 범주 파악': '1. Identify stakeholder categories',
+  '목표·역할·시장으로 범주를 정합니다. 인생·경험·사용 목표, 일반인·고령자·환자 등 역할, 가정·병원·B2B·B2G 등 시장을 구분합니다.':
+    'Define categories by goals, roles, and markets: life, experience, and use goals; roles such as general users, older adults, or patients; home, hospital, B2B, or B2G markets.',
+  '2. 주요 단서 분류·이름 정하기': '2. Group and name key clues',
+  '인터뷰·관찰 자료에서 중요한 단서를 표시하고 보드로 옮깁니다. 범주와 연결하고 유사한 행동·감정·문제끼리 묶어 이름을 붙입니다.':
+    'Mark important interview and observation clues, move them to a board, connect them to categories, and name groups of similar behavior, feelings, and problems.',
+  '3. 세부범주와 기간구조': '3. Subcategories and skeletons',
+  '중요 집단을 대표하는가, 사업적 성공과 관련되는가, 범주끼리 의미 있는 차이가 있는가를 확인합니다. 목표·행동·니즈를 짧은 기간구조(skeleton)로 적습니다.':
+    'Check whether subcategories represent important groups, matter to success, and differ meaningfully. Summarize goals, behavior, and needs as a short skeleton.',
+  '4. 기간구조 평가·우선순위': '4. Evaluate and prioritize skeletons',
+  '빈도·시장 크기·잠재 구매력·전략적 중요도로 평가하여 주요(primary)·부수적(secondary)·부사용자(served)·부정적(negative) 구조로 구분합니다.':
+    'Consider frequency, market size, potential purchasing power, and strategic importance; classify skeletons as primary, secondary, served, or negative.',
+  '5. 페르소나 작성': '5. Write personas',
+  '기간구조의 단서를 연결해 1~2쪽의 서사로 만듭니다. 과도한 감정 표현을 피하고 객관적 연구 근거를 유지합니다.':
+    'Connect skeleton clues into a one- or two-page narrative, avoiding excessive emotional language and retaining research evidence.',
+  '6. 페르소나 평가': '6. Evaluate personas',
+  '완전성: 중요 특징이 빠졌는가? 중복성: 인물들이 의미 있게 다른가? 타당성: 실제 전형적 사용자와 맞는가?':
+    'Completeness: are important traits missing? Redundancy: do personas differ meaningfully? Validity: do they fit typical actual users?',
+  '7. 사용자 프로파일 작성': '7. Create user profiles',
+  '가치·사용성·신뢰성을 항목과 점수로 구조화합니다. 다음 절에서 각각의 척도를 살펴봅니다.':
+    'Structure value, usability, and credibility as items and scores, as explained in the next section.',
+  '원본 pp.86–93의 제작 순서': 'Creation sequence on pp.86–93',
+  '기간구조는 인물 이야기의 뼈대': 'A skeleton is the framework of the persona story',
+  '여기서 기간구조는 시간표나 일정이 아니라 사용자 유형의 핵심 특성을 모은 뼈대입니다. “반복 입력을 피하고 짧은 시간에 일을 끝내려 한다”처럼 연구 단서를 압축한 뒤, 배경과 상황을 연결해 페르소나로 발전시킵니다.':
+    'Here, a skeleton is a framework of a user type’s core characteristics, not a timeline. Condense evidence such as “avoids repeated input and wants to finish quickly,” then connect it to background and situations to develop a persona.',
+  'p.91 리본(Rebone) 사례의 두 축': 'The two axes of the Rebone example on p.91',
+  '원본 그림의 세로축은 위쪽 ‘자율적 운동 수행’과 아래쪽 ‘의존적 운동 수행’, 가로축은 왼쪽 ‘폐경 심각성 인지도 낮음’과 오른쪽 ‘폐경 심각성 인지도 높음’입니다. 점들은 조사 대상의 분포를 나타내지만 개별 점의 수치나 범례는 제공되지 않습니다.':
+    'The source diagram places autonomous exercise above dependent exercise on the vertical axis, and low awareness of menopausal severity on the left versus high awareness on the right. Dots show the distribution of participants, but individual numerical values and a dot legend are not supplied.',
+  구분: 'Type',
+  조건: 'Conditions',
+  Primary: 'Primary',
+  '자율적으로 운동하고 폐경 심각성 인지도가 높은 유형':
+    'Autonomous exercise and high awareness of menopausal severity',
+  Secondary: 'Secondary',
+  '의존적으로 운동하고 폐경 심각도 인지도가 낮은 유형':
+    'Dependent exercise and low awareness of menopausal severity',
+  'p.91의 명시된 우선순위 설명': 'Explicit priority descriptions on p.91',
+  '이 두 축은 해당 서비스 사례의 기간구조 우선순위입니다. 앞의 관계자 분석 준비에서 사용한 관련성·영향력 축으로 바꾸지 않습니다. 그림에 명시되지 않은 나머지 사분면의 우선순위도 임의로 붙이지 않습니다.':
+    'These are skeleton-priority axes for this particular service. Do not replace them with the relevance and influence axes used earlier, or invent priority labels for the other quadrants.',
+  '가치·사용성·신뢰성 프로파일': 'Value, usability, and credibility profiles',
+  '사용자 프로파일은 페르소나의 특성을 항목과 점수로 정리한 자료입니다. 서사에 담긴 요구를 비교하고 설계 우선순위를 논의하도록 돕습니다. 점수는 조사 결과를 바탕으로 부여하며, 수치로 썼다는 이유만으로 객관성이 자동 확보되지는 않습니다.':
+    'A user profile structures persona characteristics into items and scores to compare needs and discuss design priorities. Scores must be grounded in research; numerical presentation alone does not guarantee objectivity.',
+  프로파일: 'Profile',
+  속성: 'Attributes',
+  '점수의 뜻': 'Meaning of scores',
+  '사용 가치 · Use value': 'Use value',
+  '기능적·유희적·사회적·개인적 가치': 'Functional, hedonic, social, and personal value',
+  '10: 성공에 반드시 충족되어야 할 가치. 1: 관련되거나 중요하게 여기는 정도가 낮은 가치.':
+    '10: essential to success. 1: little relevance or importance.',
+  '사용성 · Usability criteria': 'Usability criteria',
+  '효율성·정확성·일관성·유연성·의미성':
+    'Efficiency, accuracy, consistency, flexibility, meaningfulness',
+  '10: 사용자가 가장 중요하게 여기는 속성. 1: 거의 고려하거나 기대하지 않는 속성.':
+    '10: most important to the user. 1: scarcely considered or expected.',
+  '신뢰성 · Credibility': 'Credibility',
+  '안전성·보안성·안정성과 맥락별 하위 항목':
+    'Safety, security, stability, and contextual subattributes',
+  '1~10점으로 위험 민감성과 안심하고 사용할 조건을 표현합니다.':
+    'Scores from 1 to 10 express risk sensitivity and conditions for confident use.',
+  '세 프로파일과 원본의 1~10점 척도': 'Three profiles and the source’s 1–10 scales',
+  'p.97 첫 설명은 ‘안전성·보안성·정당성’을, 이어지는 기본 속성 목록은 ‘안전성·보안성·안정성’을 적습니다. 이 페이지는 5장의 세 조건과 연결되는 후자의 목록을 사용하되 원문의 불일치를 남깁니다. 제목의 credibility profile 표기도 그대로 소개합니다.':
+    'The first explanation on p.97 lists safety, security, and legitimacy, while the following basic-attribute list gives safety, security, and stability. This page uses the latter, consistent with Chapter 5, while preserving notice of the inconsistency. It also retains the source title “credibility profile.”',
+  '가상 예시: 바쁜 사용자의 효율성 중요도를 9로 적었다면 “왜 9인가”를 뒷받침할 인터뷰·관찰 단서를 함께 남깁니다. 이 점수는 현재 제품의 성능 점수와 다릅니다.':
+    'Hypothetical example: if efficiency importance is rated 9 for a busy user, retain interview or observation evidence explaining why. This importance score differs from a performance score for the current product.',
+  'AI의 페르소나와 AI로 작성한 페르소나': 'An AI persona versus a persona drafted with AI',
+  '원본 pp.99–100은 AI 자체의 페르소나를 다룹니다. 사람보다 확보할 정보가 적어 제공자의 의도와 목표로 보완하고, 현재(as-is)뿐 아니라 지향할 사용자경험(to-be)을 포함합니다. 절차가 비슷해도 관찰 자료와 설계 의도를 구분해야 합니다.':
+    'Pages 99–100 discuss a persona for AI itself. With less information available than for human users, it incorporates the provider’s intentions and goals and the intended to-be experience as well as the as-is state. Even when procedures are similar, observations and design intentions must be distinguished.',
+  'p.101은 생성형 AI를 이용해 사람의 페르소나 초안을 만드는 일을 다룹니다. 후보를 빠르게 만들 수 있지만 실제 사용자 표본을 확보한 결과는 아닙니다. 최종안은 연구자가 검토하고 실제 사용자 연구와 비교해 타당성을 확인해야 합니다.':
+    'Page 101 concerns using generative AI to draft human personas. It can quickly produce candidates, but this does not constitute a sample of actual users. Researchers must review final personas and compare them with actual user research.',
+  '“AI 시스템을 어떤 성격과 목표로 설계할까”와 “AI 도구로 사용자 설명을 만들어 볼까”는 서로 다른 질문입니다. p.105의 마지막 정리는 AI 시스템의 페르소나 작업을 분석보다 기획 단계에 둡니다. 이를 모든 사용자 페르소나를 기획 단계에서만 만든다는 뜻으로 넓히지 않습니다.':
+    '“What traits and goals should the AI system have?” differs from “Can an AI tool draft a user description?” The last recap item on p.105 places AI-system personas in planning rather than analysis. This does not mean all user personas are created only in planning.',
+  '김혜진 사례를 설계 단서로 읽기': 'Read the Kim Hyejin case for design clues',
+  '원본의 김혜진은 일과 육아를 병행하는 38세 직장인입니다. 업무 성취와 가족 돌봄을 모두 원하지만 불규칙한 퇴근, 자녀 동반 장보기, 식재료 선택의 어려움, 지역 정보 부족이 목표를 방해합니다. 휴대전화로 일정을 확인하고 레시피를 찾지만, 필요한 식재료를 결정하고 구매하는 과정까지 쉽게 이어지지는 않습니다.':
+    'The source’s Kim Hyejin is a 38-year-old employee balancing work and childcare. She wants achievement at work and care for her family, but irregular finishing times, shopping with children, difficulty choosing ingredients, and limited local information interfere. Checking schedules and recipes on a phone does not necessarily make deciding and purchasing ingredients easy.',
+  단서: 'Clue',
+  '설계에서 물을 질문': 'Design question',
+  '업무 성취와 가족 돌봄을 함께 원함': 'Wants work achievement and family care',
+  '시간을 줄이는 기능이 두 목표를 어떻게 돕는가?':
+    'How can time-saving functions support both goals?',
+  '퇴근 일정이 불규칙하고 주말 장보기도 어려움':
+    'Irregular work hours and difficult weekend shopping',
+  '계획 변경이나 짧은 이용 시간에 대응할 수 있는가?':
+    'Can the service accommodate changed plans and short sessions?',
+  '요리와 식재료 선택을 연결하기 어려움': 'Difficulty connecting recipes with ingredients',
+  '정보 검색에서 구매까지 연결할 수 있는가?': 'Can information seeking connect to purchasing?',
+  '지역 모임에 참여하기 어려워 정보가 부족함':
+    'Limited local information because meetings are hard to attend',
+  '시간·장소 제약 없이 필요한 정보를 얻을 수 있는가?':
+    'Can necessary information be accessed without time and place constraints?',
+  'IPTV 쇼핑은 간단하다고 느낌': 'Finds IPTV shopping straightforward',
+  '익숙한 구매 흐름의 어떤 특성을 참고할 수 있는가?':
+    'Which characteristics of a familiar purchase flow are worth examining?',
+  '원본 서사에서 찾은 목표·맥락·문제':
+    'Goals, context, and problems identified in the source narrative',
+  '표의 질문은 서사를 읽고 만든 이해 보완입니다. 원본에 등장하는 성 역할 평가나 음식·질환에 관한 인물의 생각을 일반적 사실 또는 의료 인과관계로 해석하지 않습니다. 이름과 긴 이야기를 붙이는 것보다 설계에 필요한 목표·제약·반복 행동을 근거와 연결하는 것이 핵심입니다.':
+    'The questions are learning supplements derived from the narrative. The character’s views on gender roles, food, or illness are not general facts or medical causal findings. The aim is to connect design-relevant goals, constraints, and repeated behavior to evidence, rather than merely add a name and a long story.',
+  '6장 핵심 정리': 'Chapter 6 recap',
+  'p.105의 열 항목은 관계자 개념에서 AI 페르소나까지 장 전체를 정리합니다. 아래 목록은 원문의 순서를 유지한 풀이입니다.':
+    'The ten items on p.105 summarize the chapter from stakeholders to AI personas. The following explanation preserves their order.',
+  '1. 관계자는 제품과 직간접적으로 관련된 사람으로 사용자의 확장 개념입니다.':
+    '1. Stakeholders extend the user concept to people directly or indirectly connected to the product.',
+  '2. 관계자 분석은 이들을 광범위하게 분석합니다.':
+    '2. Stakeholder analysis examines these people broadly.',
+  '3. 성공적인 활용을 위해 넓게 조사하며 불확실성이 큰 AI 시스템에서는 더욱 필요합니다.':
+    '3. Broad analysis supports successful use and matters especially for uncertain AI systems.',
+  '4. 분석 준비 → 사회기술모형 → 페르소나 모형의 세 단계입니다.':
+    '4. The three stages are preparation → socio-technical modeling → persona modeling.',
+  '5. 준비는 파악 → 특성 구분 → 영향 파악 → 우선순위입니다.':
+    '5. Preparation identifies stakeholders, characteristics, impacts, and priorities.',
+  '6. 사회기술모형은 관계자 생태계에 초점을 두며 이 강의는 SSM을 사용합니다.':
+    '6. Socio-technical modeling focuses on the stakeholder ecosystem; this lecture uses SSM.',
+  '7. 사회기술모형은 집단 조사 → 기본 정의 → 개념 모형 → 평가로 작성합니다.':
+    '7. Model building proceeds through group investigation → root definition → conceptual model → evaluation.',
+  '8. 페르소나는 대표 사용자 유형을 표현한 전형적인 가상 인물입니다.':
+    '8. A persona is a fictional representative of a typical user group.',
+  '9. 페르소나는 범주 → 단서 → 기간구조 → 우선순위 → 인물 작성 → 평가 → 프로파일의 일곱 단계입니다.':
+    '9. Persona creation uses seven stages: categories → clues → skeletons → priorities → narrative → evaluation → profiles.',
+  '10. AI 시스템의 페르소나는 사용자와 개발자의 이해를 돕고 분석보다 기획 단계에서 작성합니다.':
+    '10. AI-system personas support understanding between users and developers and are created in planning rather than analysis.',
+  'p.106은 HCI 3.0·HCI 1.0 교재와 대학 강의자료를 참고문헌으로 적고, pp.107–108은 질의응답과 끝인사입니다. 이들 페이지에는 별도 학습 개념을 추가하지 않았습니다.':
+    'Page 106 lists the HCI 3.0 and HCI 1.0 textbooks and university lecture materials as references; pp.107–108 close with questions and thanks. These pages introduce no additional learning concepts.',
+  '이해 보완 · p.28의 역할별 우선순위를 p.44의 조사 단서와 p.54의 기본 정의에 연결해 봅니다. 버튼을 선택하면 해당 역할의 설명이 나타납니다.':
+    'Supplement · connect role priorities on p.28 with research clues on p.44 and root definitions on p.54. Select a button to see that role’s explanation.',
+  '관계자 역할 선택': 'Choose a stakeholder role',
+  아동: 'Child',
+  '보호자 · 사용 역할': 'Caregiver · user role',
+  '보호자 · 구매 역할': 'Caregiver · buyer role',
+  '아동은 주 사용자이며 p.28에서 필수입니다. 기대 영향은 치료 효과 향상, p.44 조사 단서는 병원에 가는 두려움, p.54 기본 정의는 아이들에게 친근한 시스템입니다.':
+    'Children are primary users and a primary priority on p.28. The anticipated impact is improved treatment outcomes, the clue on p.44 is fear of hospitals, and the root definition on p.54 is a child-friendly system.',
+  '보호자가 사용을 돕는 역할은 주 사용자이며 p.28에서 필수입니다. 자녀의 경험과 사용 지원을 심층 조사합니다.':
+    'A caregiver’s use-support role is a primary-user role and a primary priority on p.28. Investigate children’s experience and support for use in depth.',
+  '보호자의 구매 역할은 p.28에서 고려입니다. 비용 부담과 경제적 영향을 살핍니다. 같은 보호자라도 사용 역할의 우선순위와 다릅니다.':
+    'The caregiver’s buyer role is considered on p.28. Examine cost burdens and economic impact. Its priority differs from the same caregiver’s user role.',
+  '교육청은 관련 기관이며 p.28에서 고려입니다. p.44는 소외 방지와 학업 지원 요구, p.54는 학업 이수에 도움이 되는 시스템이라는 기본 정의를 제시합니다.':
+    'The education office is a related institution and considered on p.28. Page 44 identifies inclusion and learning needs, and p.54 defines a system supporting educational completion.',
+  '직접 적용하기: 학내 예약 서비스': 'Apply it: a campus booking service',
+  '가상 학내 상담 예약 서비스를 정하고 직접 사용자·구매자·관련 기관을 적습니다.':
+    'Choose a hypothetical campus counseling-booking service and identify direct users, buyers, and institutions.',
+  '각 역할의 사용효과·비용·업무·사회적 가치 영향을 하나씩 적고 긍정·부정을 구분합니다.':
+    'List use, economic, operational, and social-value impacts for each role, including benefits and disadvantages.',
+  '누구를 위해 어떤 변화를 만드는지 기본 정의를 쓰고 관계자 사이의 교환 내용을 연결합니다.':
+    'Write a root definition stating for whom the service creates what change, and connect exchanges between stakeholders.',
+  '조사할 행동 단서, 페르소나 기간구조, 검증 질문을 적습니다. 아직 조사하지 않은 가정은 가정이라고 표시합니다.':
+    'Record behavioral evidence to investigate, a persona skeleton, and validation questions. Mark unresearched assumptions as assumptions.',
+  '예시 답안 보기': 'View an example response',
+  '가상 예시: 학생은 예약과 변경을 하고 상담사는 일정을 확인합니다. 행정 담당자는 도입·비용을 맡습니다. 학생의 대기 감소와 상담사의 확인 업무 증가를 함께 적고, ‘학업 일정 속에서 상담 예약을 쉽게 조정하도록 돕는 서비스’로 정의할 수 있습니다. 실제 사용자의 인터뷰·관찰 전에는 페르소나를 검증된 조사 결과로 제시하지 않습니다.':
+    'Hypothetical example: students book and change appointments, counselors check schedules, and administrators handle adoption and costs. Record both shorter student waits and added checking work. A root definition might be a service helping students adjust counseling appointments around study schedules. Do not present personas as validated research before interviewing and observing actual users.',
+  '관계자 역할 비교와 적용 활동': 'Compare roles and apply the concepts',
+  '이해 보완 · 개념 구분을 위한 자체 확인 문제입니다. 실제 시험 문제가 아닙니다.':
+    'Learning supplement · authored questions for distinguishing concepts, not actual exam questions.',
+  '한 사람이 여러 역할을 가질 수 있습니다. p.20과 p.28은 보호자의 사용 역할과 지불 역할을 구분합니다.':
+    'One person can have several roles. Pages 20 and 28 distinguish caregivers’ use and payment roles.',
+  '1. 보호자가 앱을 조작하며 이용료도 냅니다. 가장 적절한 분석은?':
+    '1. A caregiver operates the app and pays for it. Which analysis fits best?',
+  '주 사용자와 구매자 역할을 나누어 본다.': 'Analyze primary-user and buyer roles separately.',
+  '직업명이 같으므로 하나로만 분류한다.':
+    'Use only one category because the occupation is the same.',
+  '관련 기관으로만 분류한다.': 'Classify only as an institution.',
+  '업무 효율성·정확성·협업 방식의 변화는 업무적 영향입니다. 한 기능에 다른 영향도 함께 생길 수 있습니다. (p.24)':
+    'Changes to work efficiency, accuracy, and collaboration are operational impacts; other impacts may coexist. (p.24)',
+  '2. 새 서비스로 보고 절차가 짧아졌습니다. 주로 어떤 영향인가요?':
+    '2. A service shortens reporting procedures. Which impact is this mainly?',
+  '개인적 가치': 'Personal value',
+  '페르소나 중복성': 'Persona redundancy',
+  '필수 그룹은 성공에 핵심적이므로 심층 분석합니다. 고려·참조 그룹도 확장 시 재검토합니다. (pp.27–28)':
+    'Primary groups are critical to success and require in-depth study; considered and referenced groups are revisited during expansion. (pp.27–28)',
+  '3. 원본의 필수(Primary) 관계자는 어떻게 조사하나요?':
+    '3. How should primary stakeholders be investigated in the source?',
+  '표 이름만 기록한다.': 'Record only their label.',
+  '반드시 심층 분석한다.': 'Investigate them in depth.',
+  '서비스가 끝난 뒤에만 조사한다.': 'Investigate only after the service ends.',
+  '생태계 구조는 사용자 유형을 찾게 하고 페르소나의 행동 단서는 관계 구조를 다시 보완합니다. (pp.30–35)':
+    'The ecosystem reveals user types, while persona behavior clues refine the relationship structure. (pp.30–35)',
+  '4. 사회기술모형과 페르소나의 관계는?': '4. How do socio-technical and persona models relate?',
+  '같은 도표의 다른 이름이다.': 'They are different names for one diagram.',
+  '한 번만 순서대로 만들고 수정하지 않는다.': 'Create them once in sequence without revising.',
+  '거시적 관계와 미시적 경험을 서로 보완한다.':
+    'They complement macro relationships with micro experience.',
+  '인터뷰는 이유·맥락을, 관찰은 말로 드러나지 않는 행동을 보여 줍니다. 여러 방법은 삼각검증에 도움이 됩니다. (pp.43–49)':
+    'Interviews reveal reasons and context; observation reveals behavior words may miss. Multiple methods support triangulation. (pp.43–49)',
+  '5. 말과 실제 행동의 차이를 확인하려면?':
+    '5. How can differences between statements and actual behavior be examined?',
+  '인터뷰와 현장 관찰을 함께 사용한다.': 'Combine interviews with field observation.',
+  '발언만 더 많이 수집한다.': 'Collect more statements only.',
+  '팀의 추측으로 채운다.': 'Fill gaps with team guesses.',
+  '기본 정의는 시스템이 누구를 위해 어떤 변화를 만드는지 설명합니다. 단순 기능 목록과 구분합니다. (pp.50–55)':
+    'A root definition explains for whom a system creates what change, beyond a feature list. (pp.50–55)',
+  '6. 시스템 기본 정의에 필요한 내용은?': '6. What should a root definition contain?',
+  '버튼 색과 글꼴만': 'Only button colors and fonts',
+  '수혜자·목적·가치·사용 맥락': 'Beneficiaries, purpose, value, and use context',
+  '프로그램 파일 이름만': 'Only program filenames',
+  '기존 체계와의 연계·정책 제약·기술 호환성은 생태계 검증입니다. 관계자 입장을 정확히 반영했는지는 이해관계자 검증입니다. (pp.64–67)':
+    'Connections, policy constraints, and technical compatibility belong to ecosystem validation; accurate representation of viewpoints belongs to stakeholder validation. (pp.64–67)',
+  '7. 기존 병원 전산망과 새 서비스의 호환성을 확인하는 검증은?':
+    '7. Which validation checks compatibility with an existing hospital system?',
+  '중복성 검증': 'Redundancy validation',
+  '페르소나 이름 검사': 'Persona-name checking',
+  '기간구조는 짧게 정리한 사용자 유형이며 이를 서사로 발전시킵니다. 여기서 기간은 일정이라는 뜻이 아닙니다. (pp.89–92)':
+    'A skeleton briefly captures a user type and is developed into a narrative; it is not a schedule. (pp.89–92)',
+  '8. 기간구조(skeleton)에 대한 설명으로 맞는 것은?':
+    '8. Which description of a persona skeleton is correct?',
+  '사용자의 핵심 목표·행동·니즈를 압축한 뼈대':
+    'A framework summarizing key goals, behaviors, and needs',
+  '제품 출시까지의 달력': 'A launch calendar',
+  '통계 평균만 적은 표': 'A table containing only averages',
+  '그림은 자율적 운동 수행과 폐경 심각성 인지도 높음을 Primary로 적습니다. 관계자 관련성·영향력 축과 다릅니다. (p.91)':
+    'The diagram labels autonomous exercise with high awareness of menopausal severity as primary. Its axes differ from stakeholder relevance and influence. (p.91)',
+  '9. p.91 리본 사례의 Primary 유형은?':
+    '9. Which is the primary type in the Rebone example on p.91?',
+  '의존적 운동·심각성 인지도 낮음': 'Dependent exercise and low severity awareness',
+  '자율적 운동·심각성 인지도 높음': 'Autonomous exercise and high severity awareness',
+  '영향력 점수가 10인 모든 사람': 'Everyone with an influence score of 10',
+  '후보를 빠르게 만들 수 있어도 표본을 수집한 결과는 아닙니다. 실제 사용자 연구와 대조해야 합니다. (p.101)':
+    'Rapid candidate generation is not user sampling. Compare drafts with actual user research. (p.101)',
+  '10. 생성형 AI로 만든 페르소나 초안의 올바른 사용은?':
+    '10. How should a generative-AI persona draft be used?',
+  '실제 사용자 표본으로 간주한다.': 'Treat it as an actual user sample.',
+  '연구자 검토 없이 대표 사용자로 확정한다.':
+    'Accept it as representative without researcher review.',
+  '연구자가 실제 조사와 비교해 타당성을 검토한다.':
+    'Have researchers compare it with actual research for validity.',
+  '확인 문제와 해설': 'Review questions and explanations',
+  '예: 관계자, 매핑, 페르소나': 'e.g. stakeholder, mapping, persona',
+  '관계자 · Stakeholder': 'Stakeholder',
+  '시스템에 직간접적으로 영향을 주거나 받는 사람·조직·시스템.':
+    'A person, organization, or system directly or indirectly influencing or affected by the system.',
+  '주 사용자': 'Primary user',
+  '시스템과 직접 상호작용해 목표를 달성하는 사람.':
+    'A person directly interacting with the system to achieve a goal.',
+  '부 사용자': 'Secondary user',
+  '직접 사용하지 않더라도 사용자의 활동에 영향을 주거나 받는 사람.':
+    'A person influencing or affected by use without necessarily using the system directly.',
+  구매자: 'Buyer',
+  '도입·구매·비용 지불을 결정하는 주체.': 'An actor deciding adoption, purchasing, or payment.',
+  '관련 기관': 'Related institution',
+  '규제·인증·지원·연계 등 제도적 맥락에 관여하는 조직.':
+    'An organization involved in regulation, certification, support, or institutional connections.',
+  '영향 매핑': 'Impact mapping',
+  '관계자별 사용효과·비용·업무·사회적 가치 영향을 연결해 정리하는 것.':
+    'Organizing use, economic, operational, and social-value impacts by stakeholder.',
+  '관련성 · Relevance': 'Relevance',
+  '서비스 목표 달성과 얼마나 직접 연관되는지.':
+    'How directly an actor relates to achieving the service goal.',
+  '영향력 · Influence': 'Influence',
+  '다른 관계자나 시스템 성과에 미치는 영향의 크기.':
+    'The extent of influence on other stakeholders or system outcomes.',
+  '기술적 요소와 사회적 요소의 상호작용을 함께 보는 분석틀.':
+    'An analytical framework considering interactions between technical and social elements.',
+  'SSM · 연성 체계 방법론': 'SSM · Soft Systems Methodology',
+  '비정형 문제를 표현하고 개념 모델과 현실을 비교·개선하는 순환적 접근.':
+    'An iterative approach expressing complex problems and comparing conceptual models with reality for improvement.',
+  '정성적 리서치': 'Qualitative research',
+  '행동의 이유·맥락·감정·동기를 탐구하는 조사.':
+    'Research exploring reasons, context, feelings, and motivations.',
+  '정량적 리서치': 'Quantitative research',
+  '빈도·수량·비율 등 수치로 측정하고 분석하는 조사.':
+    'Research measuring and analyzing numerical frequencies, quantities, and proportions.',
+  '삼각검증 · Triangulation': 'Triangulation',
+  '여러 조사 방법이나 자료를 대조해 해석을 보완하는 것.':
+    'Using several methods or evidence sources to cross-check interpretations.',
+  '기본 정의 · Root definition': 'Root definition',
+  '시스템의 수혜자·목적·가치·맥락을 밝히는 진술.':
+    'A statement identifying a system’s beneficiaries, purpose, value, and context.',
+  '개념 모형': 'Conceptual model',
+  '서비스와 관계자 간 역할·교환·연결을 나타낸 생태계 구조.':
+    'An ecosystem structure showing roles, exchanges, and connections around a service.',
+  '각 집단의 실제 입장과 경험이 모형에 반영되었는지 확인.':
+    'Checking whether a model reflects each group’s actual views and experiences.',
+  '기존 사회·기술 체계에 통합되고 지속될 수 있는지 확인.':
+    'Checking integration and sustained operation within existing social and technical systems.',
+  '페르소나 · Persona': 'Persona',
+  '조사 자료에 근거해 대표 사용자 유형을 표현한 가상의 인물.':
+    'A fictional representative user type grounded in research.',
+  '기간구조 · Skeleton': 'Persona skeleton',
+  '사용자 유형의 핵심 목표·행동·니즈를 짧게 정리한 뼈대.':
+    'A concise framework of a user type’s goals, behavior, and needs.',
+  '사용자 프로파일': 'User profile',
+  '가치·사용성·신뢰성의 중요 특성을 항목과 점수로 구조화한 자료.':
+    'Structured items and scores for important value, usability, and credibility characteristics.',
+  '핵심 용어 찾아보기': 'Key terms',
+  '받는 모든 사람, 조직, 시스템을 식별하고 분석하는 활동임':
+    'Identifying and analyzing all affected people, organizations, and systems',
+  '디지털 프로덕트와 관련해 직간접적으로 관련되어 있는 사람':
+    'People directly or indirectly connected to a digital product',
+  '제품·서비스가 사회 속에서 작동할 때': 'When products and services operate in society',
+  '영향을 주고받는 모든 주체를 폭넓게': 'All actors that influence one another, considered broadly',
+  '각 단계는 선형적으로 진행되지만, 실제 현장에서는 피드백을 통해 순환적으로 보완':
+    'Stages proceed linearly, but in practice feedback supplements them iteratively',
+  '‘무엇을, 누구를, 어떤 깊이로 조사할 것인가’를 명확히 결정하는 것':
+    'Clearly deciding what and whom to investigate, and in what depth',
+  '조직적·사회적 맥락과 상호작용한다는 전제':
+    'The premise of interaction with organizational and social contexts',
+  '이 시스템은 누구를 위한 것이며, 어떤 변화를 만들어내는가?':
+    'Whom is this system for, and what change does it create?',
+  '기술 중심의 설계를': 'Technology-centered design',
+  '실제 시스템을 사용하는 주체의 목표, 동기, 행동을 구체화':
+    'Making the goals, motivations, and behaviors of actual system users concrete',
+  '사용가치·사용성·신뢰성 프로파일을 수치화하여 시각화':
+    'Quantifying and visualizing use-value, usability, and credibility profiles',
+  '전체 설명 읽기 ↗': 'Read the full explanation ↗',
+  '관계자 분석(Stakeholder Analysis)': 'Stakeholder analysis',
+  '관점·책임·이익·위험요소': 'Viewpoints, responsibilities, benefits, and risk factors',
+  '주 사용자(Primary User) 와 부 사용자(Secondary User)': 'Primary users and secondary users',
+  '구매자(Buyer)와 관련 기관': 'Buyers and related institutions',
+  '예시: 심리상담센터, 교육청, 보험사, 정부기관 등':
+    'Examples: counseling centers, education offices, insurers, and government institutions',
+  'AI 시스템, 데이터 분석가, 알고리즘 개발자':
+    'AI systems, data analysts, and algorithm developers',
+  '각 관계자의 특성과 역할을 세부적으로 구분하는 것':
+    'Distinguishing each stakeholder’s characteristics and roles in detail',
+  '어떠한 긍정적·부정적 결과를 미칠 수 있는지를 예측':
+    'Anticipating the positive and negative consequences',
+  '어떤 관계자를 우선적으로 심층 분석할 것인지 결정하는 과정':
+    'Deciding which stakeholders to analyze in depth first',
+  '필수(Primary) 그룹은 반드시 심층 분석의 대상이 되며':
+    'The primary group must be investigated in depth',
+  '고려(Considered)와 참조(Referenced)': 'Considered and referenced groups',
+  '‘누가, 무엇을, 어떻게, 왜 사용하고 영향을 주는가’': 'Who uses and influences what, how, and why',
+  '“누가, 무엇과, 어떤 방식으로 연결되어 있으며, 이 관계가 설계 의사결정에 어떻게 반영되는가”를 체계적으로 탐구하는 것을 목표':
+    'Aiming to investigate systematically who is connected to what, how, and how those connections inform design decisions',
+  '사회기술모형(Socio-Technical Model)과 페르소나 모형(Persona Model)':
+    'Socio-technical and persona models',
+  '서로의 결과를 반복적으로 보완하며': 'Repeatedly supplementing each other’s results',
+  '환경적 맥락과 구조적 관계': 'Environmental context and structural relationships',
+  '설계자가 실제 사용자처럼 사고하고 의사결정할 수 있도록 돕는 것':
+    'Helping designers think and make decisions from users’ perspectives',
+  '상호보완적 발전 구조': 'A mutually complementary development structure',
+  '경험의 의미와 사회적 가치 창출': 'The meaning of experience and creation of social value',
+  '기술이 사회적 맥락 안에서 어떻게 구성되고 작동하는지를 이해하기 위해 사회적 요소와 기술적 요소를 통합적으로 고려하는 분석 모델':
+    'An analytical model combining social and technical elements to understand technology’s construction and operation in social context',
+  '공진화(Co-evolution)': 'Co-evolution',
+  '기술의 변화는 조직 구조를 재편하고, 조직의 요구는 다시 기술 발전의 방향을 결정':
+    'Technological changes reshape organizations, and organizational needs redirect technology',
+  'SSM(Soft Systems Methodology)': 'SSM (Soft Systems Methodology)',
+  '순환형 구조': 'An iterative structure',
+  '실제 환경(Real World)과 개념 모델(System World)':
+    'The actual environment (Real World) and conceptual model (System World)',
+  '이유, 맥락, 감정, 동기': 'Reasons, context, emotions, and motivations',
+  '정성적 인사이트와 정량적 근거': 'Qualitative insights and quantitative evidence',
+  '행동(Behavioral), 태도(Attitudinal)': 'Behavioral and attitudinal',
+  '정성(Qualitative)·정량(Quantitative)': 'Qualitative and quantitative',
+  'STEP 1. 관계자 집단 조사하기 - 정성적 조사 실시(인터뷰와 관찰)':
+    'Step 1. Investigate stakeholder groups through qualitative interviews and observation',
+  '깊이 있는 정성적 정보를 직접 수집하는 방법':
+    'A method for directly gathering in-depth qualitative information',
+  '인터뷰는 진행자의 질문 능력, 공감 능력, 그리고 대화 구조 설계에 따라 결과의 질과 해석 수준이 크게 달라질 수 있음':
+    'Interview quality and interpretation depend substantially on questioning, empathy, and conversation structure',
+  '발견적 리서치(Exploratory Research)': 'Exploratory research',
+  '비언어적 습관, 환경적 제약, 행동 패턴':
+    'Nonverbal habits, environmental constraints, and behavior patterns',
+  '사용자와의 거리감을 최소화': 'Minimizing distance from users',
+  '이해관계자의 심리적 동기와 맥락적 의미를 깊이 이해하는 것.':
+    'Deeply understanding stakeholders’ psychological motives and contextual meanings.',
+  'STEP 2. 시스템 기본 정의 내리기': 'Step 2. Define the system’s root definition',
+  '생태적 맥락': 'Ecological context',
+  '어떤 가치로 받아들여지는가?': 'What value is it perceived to offer?',
+  '누구(수혜자), 무엇(목적), 어떻게(맥락)': 'Who (beneficiary), what (purpose), and how (context)',
+  'STEP 3. 개념 모형 작성하기': 'Step 3. Build a conceptual model',
+  '서비스 중심의 생태계 다이어그램(Service-Centered Ecosystem Diagram)':
+    'Service-centered ecosystem diagram',
+  '강한 관계(직접적 상호작용), 점선은 약한 관계(간접적 영향)':
+    'Strong relations (direct interaction); dotted lines indicate weak relations (indirect influence)',
+  '서비스 제공자를 중심으로, 의료 생태계의 주요 관계자들이 서로 어떤 형태로 연결되는지를 보여줌':
+    'Showing how major healthcare stakeholders connect around the service provider',
+  '상호 피드백(Feedback Loop) 형태': 'A feedback-loop structure',
+  '‘무엇을 주고받는가’(What is exchanged)': 'What is exchanged',
+  'STEP 4. 작성된 모형을 평가하기': 'Step 4. Evaluate the model',
+  '이해관계자 검증(Stakeholder Validation)': 'Stakeholder validation',
+  '생태계 검증(Ecosystem Validation)': 'Ecosystem validation',
+  '입장과 관점을 정확히 반영하고 있는가':
+    'Whether positions and viewpoints are represented accurately',
+  '사회적 합의 형성 과정': 'A process of forming social agreement',
+  '설계된 시스템이 생태계 안에서 지속적으로 작동할 수 있는지를 확인함.':
+    'Checking whether the designed system can operate sustainably within the ecosystem.',
+  '시스템 간 연계성, 정책적 제약, 기술적 호환성':
+    'System connections, policy constraints, and technical compatibility',
+  '‘사회 속에서 함께 살아가게 만드는’ 단계임.': 'A stage for enabling coexistence within society.',
+  '사회적 타당성(social validity)': 'Social validity',
+  '실제 사용자 조사로부터 얻은 정성적·정량적 데이터를 기반으로 사용자 집단의 행동 특성과 목표, 동기':
+    'Based on qualitative and quantitative user research: a group’s behavior, goals, and motivations',
+  '제품과 서비스의 실제 사용 행위에 초점을 맞추어 분석하는':
+    'Analyzing actual product and service use',
+  '페르소나 모형은 미시적 분석 도구로서': 'The persona model as a micro-level analysis tool',
+  '실제 사용자 데이터에 근거한 현실적 모델링': 'Realistic modeling grounded in actual user data',
+  '개별 사용자 차원으로 세분화한 응용 단계': 'An application stage refined to individual users',
+  '실제 고객의 행동을 예측하고 문제를 사전에 발견하는 데 도움이 됨.':
+    'Helps anticipate actual customer behavior and identify problems early.',
+  '페르소나는 언제나 고객 중심 사고를 유지시키는 역할을 함.':
+    'Personas help maintain customer-centered thinking.',
+  '행동 패턴과 목표의 공통점을 대표하는 가상의 인물':
+    'A fictional person representing shared behavior patterns and goals',
+  '특정 한 사람의 이야기가 아니라': 'Not the story of one particular person',
+  '사용 행태와 목표 중심으로 모델링된 전형적 사용자 유형':
+    'A typical user type modeled around behavior and goals',
+  '직업 자체가 아니라 행동 기반의 사용자 유형':
+    'A behavior-based user type rather than an occupation',
+  '정신적 모델(Mental Models), 기술·행동·태도(Skills, Attitudes, Behaviors), 목표와 니즈(Goals)':
+    'Mental models, skills, attitudes, behaviors, goals, and needs',
+  '실제 사람처럼 느껴질 수 있도록 ‘인간화(humanize)’한 사용자 모델':
+    'A humanized user model that feels like a real person',
+  '페르소나의 가장 중요한 구성 요소': 'The persona’s most important components',
+  '사용자의 마음과 행동을 이해하기 위한 정성적 모델':
+    'A qualitative model for understanding users’ minds and behavior',
+  '초기 단계에서 사용자 집단을 구분할 기준을 명확히 정의하는 것이 필수적':
+    'Clearly defining user-group criteria early is essential',
+  '목표(goal)': 'Goal',
+  '역할(role)': 'Role',
+  시장: 'Market',
+  'STEP 2: 주요 단서 분류하고 이름 정하기': 'Step 2. Group and name key clues',
+  '(3) 세부범주 간 의미 있는 차이가 존재하는가?': '(3) Do subcategories differ meaningfully?',
+  '기간구조를 주요(primary), 부수적(secondary), 부사용자(served), 부정적(negative) 구조로 분류':
+    'Classifying skeletons as primary, secondary, served, and negative',
+  'STEP 5: 기간구조 바탕으로 페르소나 작성하기': 'Step 5. Write personas from skeletons',
+  'STEP 6: 작성된 페르소나 평가하기': 'Step 6. Evaluate the written personas',
+  'STEP 7: 사용자 프로파일 작성하기': 'Step 7. Create user profiles',
+  '어떤 가치를 얼마나 얻고자 하는지': 'Which values users want, and how much',
+  '1점에서 10점 사이': 'Between 1 and 10',
+  '안전성, 보안성, 안정성': 'Safety, security, and stability',
+  '종류의 위험에 가장 민감하게 반응하는지': 'Kinds of risk to which users are most sensitive',
+  '사용 가치, 사용성, 신뢰성': 'Use value, usability, and credibility',
+  '첫째, 인공지능의 페르소나는 인간 사용자에 비해 수집 가능한 정보가 상대적으로 적다는 특성이 있음.':
+    'First, comparatively less information is available for AI personas than for human-user personas.',
+  '특정 시스템이 지향하고자 하는 목표 사용자 경험(to-be)을 포함하도록 구성하는 것이 필요함.':
+    'The model needs to include the target user experience (to-be) of the system.',
+  '최종 페르소나는 반드시 연구자가 직접 검토하고 타당성을 판단해야 하며, 실제 사용자 기반의 연구 결과와 비교하여 정확성을 확보해야 함':
+    'Researchers must review final personas, judge validity, and compare them with actual user research for accuracy',
+  '관계자 분석 준비, 사회기술 모형 작성, 페르소나 모형 작성의 세 가지 단계':
+    'Three stages: preparation, socio-technical modeling, and persona modeling',
+  '관련된 관계자를 광범위하게 파악하기 → 관계자의 특성을 구분하기 → 시스템이 관계자에게 미치는 영향 파악하기 → 분석의 우선순위를 정하기':
+    'Identify stakeholders broadly → distinguish characteristics → identify system impacts → prioritize analysis',
+  '인터뷰나 관찰을 통해 관계자 집단 조사하기 → 시스템에 대한 기본 정의 내리기 → 개념 모형 작성하기 → 개념 모형 평가하기':
+    'Investigate groups through interviews or observation → root definition → conceptual model → evaluation',
+  '관계자 범주 파악하기 → 주요 단서를 분류하고 이름 정하기 → 세부 범주 파악하고 기간 구조 구축하기 → 기간 구조 평가하고 우선순위 정하기 → 기간 구조를 대상으로 페르소나 작성하기 → 작성된 페르소나 평가하기 → 사용자 프로파일 작성하기':
+    'Identify categories → group and name clues → subcategories and skeletons → evaluate and prioritize skeletons → write personas → evaluate personas → create profiles',
+  '보호자가 앱을 조작하며 이용료도 냅니다. 가장 적절한 분석은?':
+    'A caregiver operates the app and pays for it. Which analysis fits best?',
+  '새 서비스로 보고 절차가 짧아졌습니다. 주로 어떤 영향인가요?':
+    'A service shortens reporting procedures. Which impact is this mainly?',
+  '원본의 필수(Primary) 관계자는 어떻게 조사하나요?':
+    'How should primary stakeholders be investigated in the source?',
+  '사회기술모형과 페르소나의 관계는?': 'How do socio-technical and persona models relate?',
+  '말과 실제 행동의 차이를 확인하려면?':
+    'How can differences between statements and actual behavior be examined?',
+  '시스템 기본 정의에 필요한 내용은?': 'What should a root definition contain?',
+  '기존 병원 전산망과 새 서비스의 호환성을 확인하는 검증은?':
+    'Which validation checks compatibility with an existing hospital system?',
+  '기간구조(skeleton)에 대한 설명으로 맞는 것은?':
+    'Which description of a persona skeleton is correct?',
+  'p.91 리본 사례의 Primary 유형은?': 'Which is the primary type in the Rebone example on p.91?',
+  '생성형 AI로 만든 페르소나 초안의 올바른 사용은?':
+    'How should a generative-AI persona draft be used?',
+  '서술형 복습': 'Recall questions',
+  '출처는 PDF 첫 쪽부터 센 실제 페이지 번호입니다. 본문과 이미지 표를 재구성했으며 원본 PDF·슬라이드 뷰어는 노출하지 않습니다. 가상 사례·연습·확인 문제와 요약의 해설은 이해 보완입니다.':
+    'Source numbers count actual PDF pages from the first page. Text and image tables are adapted without exposing source PDF or slide viewers. Hypothetical examples, activities, questions, and summary explanations are learning supplements.',
+  '요약은 색·검정 굵게·밑줄의 실제 구절만 발췌합니다. 색과 서식이 겹치면 색을 우선합니다. 반복 슬라이드 제목·표 머리글·행 라벨·캡션·장식·이메일은 제외하며, 본문에 놓인 절차 단계 문구는 학습 내용으로 선정했습니다. 표시는 출제 확정이나 중요도 순위가 아닙니다.':
+    'The summary excerpts actual colored, black bold, and underlined passages. Color takes precedence. Repeated slide titles, table headers, row labels, captions, decoration, and email links are excluded; procedural step phrases within the body are included as learning content. Labels do not indicate confirmed exam content or importance rankings.',
+  '이미지 안의 표·그림은 실제 렌더링으로 확인해 본문에서 설명합니다. 이미지의 색이나 굵기를 추출된 글자 서식과 동일하게 간주해 강조 수를 늘리지 않았습니다. 부분 발췌는 문장 전체가 강조되었다는 뜻이 아닙니다.':
+    'Image tables and diagrams were checked visually and explained in the lecture. Their colors or bold lettering were not treated as extracted typography to inflate emphasis counts. A partial excerpt does not mean the whole sentence was emphasized.',
+  '원본 범위와 강조 기준': 'Source scope and emphasis criteria',
+  '강조 선정과 제외 기준': 'Emphasis inclusion and exclusion criteria',
+  '관계자 분석': 'Stakeholder analysis',
+  '관계자를 파악하고 영향을 분석한 뒤, 사회기술모형과 페르소나로 서비스의 관계 구조와 사용 경험을 구체화합니다.':
+    'Identify stakeholders and impacts, then use socio-technical models and personas to make service relationships and use experiences concrete.',
+  '6장 교수님 강조 요약': 'Chapter 6 instructor-emphasis summary',
+  '원본 108쪽의 빨강·파랑·검정 굵게·밑줄에서 선정한 대표 구절과 보완 해설로 관계자 분석을 복습합니다.':
+    'Review stakeholder analysis through selected red, blue, black bold, and underlined passages from the 108-page source and supplementary explanations.',
+  '분석 준비': 'Prepare',
+  '관계자 · 특성 · 영향 · 우선순위': 'Stakeholders · traits · impacts · priorities',
+  '조사 · 기본 정의 · 관계 · 검증': 'Research · root definition · relations · validation',
+  페르소나: 'Persona',
+  '단서 · 기간구조 · 인물 · 프로파일': 'Clues · skeleton · person · profile',
+  '대표 발췌 103개입니다. 원문 발췌와 이해 보완을 구분해 읽습니다.':
+    'There are 103 representative excerpts. Distinguish source excerpts from learning supplements.',
+  '전체 과목 홈': 'All courses',
+  '6장': 'Chapter 6',
+  '원본 108쪽': '108 source pages',
+  '6장 목차': 'Chapter 6 contents',
+  '6장 전체 강의': 'Chapter 6 full lecture',
+  '6장 전체 강의 →': 'Chapter 6 full lecture →',
+  '6장 강조 요약 →': 'Chapter 6 emphasis summary →',
+  '← 5장 전체 강의': '← Chapter 5 full lecture',
+  '← 5장 강조 요약': '← Chapter 5 emphasis summary',
+  '강의자료 108쪽 기반': 'Based on 108 source pages',
+  'HCI 3.0 · 6장 관계자 분석': 'HCI 3.0 · Chapter 6 Stakeholder Analysis',
+  'HCI 3.0 · 6장 교수님 강조 요약': 'HCI 3.0 · Chapter 6 Instructor-Emphasis Summary',
+  'HCI. · 6장 관계자 분석': 'HCI. · Chapter 6 Stakeholder Analysis',
+  'HCI 이론을 이해하고 교수님 강조로 복습하는 챕터별 학습 노트. 1~6장의 전체 강의, 강조 요약, 개념 적용 활동.':
+    'Chapter-based HCI study notes with full lectures, instructor-emphasis summaries, and applied activities for Chapters 1–6.',
+  '1~6장 전체 강의와 교수님 강조 요약.':
+    'Full lectures and instructor-emphasis summaries for Chapters 1–6.',
+  'HCI 3.0의 개념, 사용자경험, 유용성·사용성·신뢰성과 관계자 분석.':
+    'HCI 3.0, user experience, usefulness, usability, reliability, and stakeholder analysis.',
+  '6장 학습하기 ↗': 'Study Chapter 6 ↗',
+  '관계자 특성과 영향, 사회기술모형과 페르소나. 조사 근거를 설계에 연결하는 방법.':
+    'Stakeholder characteristics and impacts, socio-technical models, and personas. Connecting research evidence to design.',
+  '관계자 분석 준비': 'Prepare stakeholder analysis',
+  '6장 · 관계자 역할 비교와 분석': 'Chapter 6 · Compare and analyze stakeholder roles',
+  '교수님 강의자료 기반 · 1–6장 학습 노트':
+    'Based on instructor materials · Chapters 1–6 study notes',
+  'p.6은 관계자 분석을 준비와 분석으로 나누고 분석 아래에 두 모형을 둡니다. p.10의 준비 도식은 서비스 범주·집단·특성·우선순위로 간략화되어 있지만, 같은 페이지의 설명과 본문에서는 영향 파악도 포함합니다.':
+    'Page 6 divides stakeholder analysis into preparation and analysis, with the two models under analysis. The preparation diagram on p.10 is abbreviated as service categories, groups, traits, and priorities; its accompanying explanation and the body also include impact assessment.',
+  'p.59의 그림은 서비스 제공자와 의료 관계자의 연결을 보여 주지만 캡션은 사회기술모형과 페르소나의 피드백 관계라고 적습니다. 본문에서는 그림의 실제 관계 구조와 캡션의 두 모형 관계를 구분합니다.':
+    'The diagram on p.59 shows connections between a service provider and healthcare stakeholders, but its caption describes feedback between socio-technical and persona models. The actual relationship structure is distinguished here from the caption’s statement about the two models.',
+  'p.80의 도식은 시장세분화에 인구통계가 항상 포함되고 시장 규모·가치와 기술·태도·행동은 포함될 수 있다고 표시합니다. 페르소나는 기술·태도·행동과 심성 모형·목표를 항상 포함하고 인구통계는 포함될 수 있다고 표시합니다. p.81의 일반 설명과 함께 읽습니다.':
+    'The diagram on p.80 marks demographics as always present in market segmentation, with segment size/value and skills/attitudes/behaviors as possible. For personas, skills/attitudes/behaviors and mental models/goals are always present, while demographics may be present. Read this alongside the general explanation on p.81.',
+  '원본 pp.86–98의 제작 순서': 'Creation sequence on pp.86–98',
+});

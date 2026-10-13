@@ -282,7 +282,8 @@ window.KNUT_TRANSLATIONS = {
       ' have different Schemas, so use code that matches each input structure.',
     '정의한 Schema를 CSV 읽기 설정에 지정합니다. 다음 경로는':
       'Specify the defined Schema in the CSV reader settings. The path below is ',
-    '이며, 해당 입력 파일은 제공되지 않았습니다.': '; the input file was not supplied.',
+    '입니다. 제공 실습의 12행 orders.csv를 사용할 때는 컨테이너에서 접근할 수 있는 실제 입력 경로에 맞춥니다.':
+      '. When using the supplied 12-row orders.csv, adjust it to the actual input path accessible from the container.',
     '입력 경로를 지정하고 DataFrame을 정의합니다. 데이터 계산은 Action이 결과를 요청할 때 수행되지만, 파일 확인이나 Schema 추론 같은 준비 작업은 그 전에 이루어질 수 있습니다.':
       'Specifies the input path and defines a DataFrame. Data computation runs when an Action requests a result, but preparation such as file checks or Schema inference may happen earlier.',
     'CSV를 읽은 결과에서는 nullable이 true로 표시될 수 있습니다. 실제 NULL·수량·가격 범위는 별도로 검사합니다. 열 이름은 맞는데 값이나 시각이 NULL로 바뀌었다면 입력 형식·자료형·시각 형식을 확인합니다.':
@@ -4345,3 +4346,250 @@ window.KNUT_TRANSLATIONS = {
     },
   ],
 };
+
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  '4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다. 장 번호는 학습 내용의 구분이며 휴강을 반영한 실제 수업 날짜를 뜻하지 않습니다.':
+    'Chapter 4 reads, cleans, and aggregates orders with the DataFrame API. Chapter 5 expresses the same operations in SQL and checks values, row counts, and ordering. Chapter numbers identify topics, not class dates adjusted for holidays.',
+  '2026-bigdata-04.pdf의 88–90쪽과 2026-bigdata-week04-dataframe-notes.md의 23절은 SQL을 후속 학습으로 예고합니다. 새 원본 1쪽은 Join·Window Function·CTE를 범위에서 제외합니다. 따라서 이 장은 SQL 표현과 결과 검증까지 다룹니다.':
+    'Pages 88–90 of 2026-bigdata-04.pdf and section 23 of 2026-bigdata-week04-dataframe-notes.md introduce SQL as the next topic. Page 1 of the new source excludes joins, window functions, and CTEs. This chapter therefore covers SQL expressions and result verification.',
+  '4장 · DataFrame API': 'Chapter 4 · DataFrame API',
+  '5장 · Spark SQL': 'Chapter 5 · Spark SQL',
+  '집계 뒤 filter': 'filter after aggregation',
+  '보조 비유: 같은 주문 장부를 함수 호출 목록으로 설명하거나 조회 문장으로 설명하는 차이입니다. 두 표현 모두 Driver에서 실행계획이 되고, Action이 결과를 요구하면 Executor의 Task가 행을 처리합니다. 표현 언어만 바뀌었다고 계산이 Python 반복문으로 옮겨지는 것은 아닙니다.':
+    'Analogy: the same order ledger can be described as method calls or as a query. Both become execution plans on the Driver; Executor tasks process rows when an action requests results. Changing the notation does not move computation into a Python loop.',
+  'SQL로 바꾸면 주문 계산 위치도 Driver의 Python으로 바뀔까요?':
+    'Does using SQL move order calculations to Python on the Driver?',
+  '네, SQL 문장을 Python에서 전달하기 때문입니다.': 'Yes, because Python submits the SQL string.',
+  '아니요, 두 방식 모두 실행계획에 따라 처리합니다.': 'No, both execute through a Spark plan.',
+  '표현 방식과 실제 행 계산 위치는 구분합니다.':
+    'Distinguish query notation from where rows are computed.',
+  '4장과 5장의 학습 범위': 'How Chapters 4 and 5 connect',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 1–4쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 1–4.',
+  '4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽의 주문 12행을 사용합니다. 로컬 제공 자료의 orders.csv와 대조했으며 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 수치는 원본과 손계산에 따른 예상값이며 이 페이지 작성 중 Spark를 실행한 기록은 아닙니다.':
+    'The four rows in Chapter 4 are a small conceptual example. This chapter uses the 12 orders on source page 3, checked against the supplied local orders.csv. Excluding orders 4, 6, and 9 leaves nine valid orders. Values here come from the source and independent calculations, not from a Spark run performed while writing this page.',
+  '아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다. 원본의 실행 파일명과 폴더명은 출처를 식별하기 위해 그대로 둡니다.':
+    'The following code is an explanatory excerpt. Use it in order inside a Python program in a Spark 4.1.3 environment. The input path is inside the container and must resolve on the Client and every Worker. Original program and directory names are retained as provenance.',
+  'nullable=False는 데이터베이스의 NOT NULL 저장 제약과 적용 시점이 다릅니다. Python List로 createDataFrame을 호출하면 기본 verifySchema=True에서 NULL 불가 필드의 None을 거부합니다. 반면 원본의 CSV 비교 예에서는 읽은 Schema의 nullable이 True가 되고 누락 수량이 남습니다. 선언만 믿지 말고 실제 Schema와 NULL 행을 검사합니다.':
+    'nullable=False is enforced differently from a database NOT NULL storage constraint. With a Python list, createDataFrame uses verifySchema=True by default and rejects None in a non-nullable field. In the source CSV example, the read schema becomes nullable and the missing quantity remains. Inspect the actual schema and null rows instead of relying only on the declaration.',
+  'CSV의 잘못된 수량은 Schema 선언만으로 모두 제거될까요?':
+    'Does declaring a schema remove every invalid CSV quantity?',
+  '네, nullable=False만 지정하면 됩니다.': 'Yes, nullable=False is sufficient.',
+  '아니요, 읽은 값에 품질 조건을 적용해야 합니다.':
+    'No, apply quality conditions to the values read.',
+  '자료형 선언과 행의 품질 검사는 별개입니다.':
+    'Declaring types and checking row quality are separate steps.',
+  '12행 입력과 Schema 확인': 'Check the 12-row input and schema',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 2–10쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 2–10.',
+  'SQL의 FROM은 Python 변수 이름을 직접 찾지 않습니다. Temporary View는 DataFrame을 SQL에서 조회할 이름으로 등록한 임시 뷰입니다. 보조 비유로는 장부에 붙인 조회용 이름표이며, 장부 복사나 메모리 적재 명령이 아닙니다. 같은 SparkSession에서 사용하고 프로그램을 다시 시작하면 다시 등록합니다.':
+    'SQL FROM does not look up Python variables. A temporary view registers a DataFrame under a name that SQL can query. As an analogy, it is a lookup label on a ledger, not an instruction to copy or load the ledger into memory. It belongs to the same SparkSession and must be registered again after restarting the program.',
+  'orders는 Python 변수, orders_view는 등록한 SQL 이름, orders.csv는 입력 파일입니다. 등록하지 않은 이름을 조회하면 이 예제에서는 TABLE_OR_VIEW_NOT_FOUND 오류가 납니다. 이후 코드는 orders라는 View를 사용합니다. spark.sql의 SELECT 결과도 DataFrame이므로 show·count·collect를 호출할 수 있습니다.':
+    'orders is a Python variable, orders_view is a registered SQL name, and orders.csv is the input file. Querying an unregistered name in this example produces TABLE_OR_VIEW_NOT_FOUND. Subsequent code uses the view named orders. A SELECT passed to spark.sql also returns a DataFrame supporting show, count, and collect.',
+  'ORDER BY order_id LIMIT 4의 예상 결과는 주문 1·2·3·4입니다. LIMIT만 쓰면 어느 네 행이 선택되는지 보장하지 않습니다. LIMIT 4가 CSV 네 행만 읽는다는 뜻도 아닙니다. 정렬된 앞부분을 찾으려면 더 많은 입력을 읽어야 할 수 있습니다.':
+    'ORDER BY order_id LIMIT 4 is expected to return orders 1, 2, 3, and 4. LIMIT alone does not guarantee which four rows are selected. LIMIT 4 also does not mean that only four CSV rows are read; finding the sorted prefix may require reading more input.',
+  'View 등록은 어떤 작업인가요?': 'What does registering a view do?',
+  '전체 CSV를 새 파일로 복사합니다.': 'It copies the entire CSV to a new file.',
+  'DataFrame에 SQL 조회 이름을 연결합니다.': 'It associates a SQL query name with a DataFrame.',
+  'Temporary View 등록은 조회 이름을 만들며 결과 수집이나 파일 저장을 대신하지 않습니다.':
+    'A temporary view provides a query name; it does not collect results or save a file.',
+  'Temporary View와 첫 SQL 조회': 'Temporary views and the first SQL query',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 11–14쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 11–14.',
+  'SELECT는 출력할 열과 계산식을, AS는 결과 열 이름을 정합니다. 수량×가격을 계산해도 잘못된 주문은 자동으로 사라지지 않습니다. WHERE에서 수량·가격이 있고 수량은 양수, 가격은 0 이상이라는 조건을 적용합니다.':
+    'SELECT specifies output columns and expressions; AS names a result column. Multiplying quantity by price does not automatically remove invalid orders. WHERE requires non-null quantity and price, positive quantity, and non-negative price.',
+  'WHERE는 TRUE인 행만 남깁니다. NULL은 0도 빈 문자열도 아니며 quantity = NULL의 비교 결과는 NULL입니다. 수량 누락 주문을 찾으려면 IS NULL을 사용합니다. 12행 입력에서 누락 주문은 9번이고, 정상 주문 식별자는 1·2·3·5·7·8·10·11·12입니다.':
+    'WHERE keeps only rows whose condition is TRUE. NULL is neither zero nor an empty string; quantity = NULL evaluates to NULL. Use IS NULL to find missing quantities. Order 9 is missing its quantity; valid order IDs in the 12-row input are 1, 2, 3, 5, 7, 8, 10, 11, and 12.',
+  'NULL 수량을 찾는 조건은 무엇인가요?': 'Which condition finds null quantities?',
+  'NULL 여부는 IS NULL로 검사합니다. 일반 등호 비교는 TRUE가 되지 않습니다.':
+    'Use IS NULL; ordinary equality with NULL does not evaluate to TRUE.',
+  'SELECT 계산식과 WHERE 조건': 'SELECT expressions and WHERE conditions',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 15–18쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 15–18.',
+  'GROUP BY는 같은 사용자 주문을 한 그룹으로 묶습니다. COUNT(*)는 주문 행 수, SUM은 금액 합계, AVG는 평균을 구합니다. 사용자별 한 행에는 그룹 키와 집계값을 둡니다. 서로 다른 주문 번호 네 개를 가진 U001 그룹에서 order_id 하나를 그대로 출력할 수는 없습니다.':
+    'GROUP BY groups orders by user. COUNT(*) counts order rows, SUM totals amounts, and AVG calculates the mean. Each user result contains the group key and aggregate values. A group such as U001 contains four different order IDs, so an unaggregated order_id does not identify a single value.',
+  '표는 12행 입력을 정제한 예상값이며 평균은 소수점 6자리 기준입니다. 예를 들어 U001은 24000+24000+35000+25000=108000이고 주문 4건의 평균은 27000입니다. COUNT(*)는 상품 수량의 합계가 아닙니다.':
+    'The table shows expected values after cleaning the 12-row input, with averages to six decimal places. For U001, 24000+24000+35000+25000=108000 across four orders, giving an average of 27000. COUNT(*) is not the sum of item quantities.',
+  '필터 전 원본에서 COUNT(*)는 12, COUNT(quantity)는 NULL 수량 하나를 제외한 11입니다. SUM·AVG도 NULL 값을 제외합니다. 값이 모두 NULL이거나 입력이 없으면 SUM·AVG는 NULL이고 COUNT(column)은 0입니다. 모든 열이 NULL인 행도 존재하는 행이므로 COUNT(*)에는 포함됩니다.':
+    'Before filtering, COUNT(*) is 12 while COUNT(quantity) is 11 because one quantity is null. SUM and AVG also ignore null values. If all values are null or the input is empty, SUM and AVG return NULL and COUNT(column) returns zero. An existing row whose columns are all null still contributes to COUNT(*).',
+  '원본 12행에서 COUNT(quantity)가 11인 이유는 무엇인가요?':
+    'Why is COUNT(quantity) 11 for the original 12 rows?',
+  '수량 0인 주문을 제외하기 때문입니다.': 'It excludes the order with quantity zero.',
+  '수량이 NULL인 주문을 제외하기 때문입니다.': 'It excludes the order whose quantity is NULL.',
+  'COUNT(column)은 0을 포함하며 NULL 값만 세지 않습니다.':
+    'COUNT(column) counts zero and excludes only null values.',
+  'GROUP BY 집계와 NULL': 'GROUP BY aggregates and NULL',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 19–22쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 19–22.',
+  'WHERE는 집계 전 주문 행을 고릅니다. HAVING은 집계한 사용자 그룹을 고릅니다. 보조 비유로는 잘못된 영수증을 먼저 버리는 일이 WHERE, 고객별 합계를 낸 후 기준 금액 이상인 고객을 고르는 일이 HAVING입니다.':
+    'WHERE selects order rows before aggregation. HAVING selects aggregated user groups. As an analogy, discarding invalid receipts first is WHERE; selecting customers whose totals meet a threshold after adding their receipts is HAVING.',
+  '이미 정상 주문만 담긴 valid_enriched를 사용하므로 이 SQL에는 WHERE가 없습니다. 9개 주문을 세 사용자로 집계한 다음 총액 50000 이상인 U001·U002 두 행이 남습니다. 이 설명은 조회문의 의미이며 Spark의 물리 실행 순서를 고정하지 않습니다.':
+    'This query needs no WHERE because valid_enriched already contains valid orders. Nine orders become three user groups; HAVING then keeps U001 and U002, whose totals are at least 50000. This explains query semantics, not a fixed physical execution order in Spark.',
+  '사용자별 총액 50000 이상을 검사할 위치는 어디인가요?':
+    'Where should a condition on user totals of at least 50000 be applied?',
+  '주문 행의 WHERE입니다.': 'In WHERE on individual order rows.',
+  '집계 뒤 HAVING입니다.': 'In HAVING after aggregation.',
+  '그룹의 총액은 집계 결과이므로 HAVING 또는 집계 뒤 filter로 검사합니다.':
+    'A group total is an aggregate result, checked with HAVING or filter after aggregation.',
+  'WHERE와 HAVING 구분': 'Distinguish WHERE from HAVING',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 23–25쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 23–25.',
+  '같은 입력에서 필터·계산식·집계·정렬 기준을 모두 맞춥니다. 두 구현이 같은 조건을 빠뜨리면 서로의 결과는 같아도 틀릴 수 있습니다. 작은 결과에 한해 두 방식의 일치와 독립적으로 계산한 정답을 함께 검사합니다.':
+    'Match filters, expressions, aggregates, and ordering on the same input. Two implementations can agree and still be wrong if both omit the same condition. For a small result, check agreement between methods and independently calculated expected values.',
+  '금액 정답은 부동소수점 float 대신 Decimal로 표현하고, 평균 비교 자릿수를 맞춥니다. 컬럼 이름·자료형 비교는 원본의 값·순서 비교에 덧붙인 보충 검사입니다. 총액 내림차순과 동률일 때 user_id 오름차순을 양쪽에 동일하게 지정해야 행 순서 비교가 의미를 가집니다.':
+    'Represent expected money with Decimal rather than float and normalize the average precision. Comparing column names and types is a supplementary check added to the source comparison of values and order. Row-order comparisons require the same descending-total and ascending-user tie-break ordering in both methods.',
+  '두 결과가 같으면 정답 검증을 끝내도 될까요?': 'Is agreement between the two results enough?',
+  '네, 서로 같으면 요구사항도 만족합니다.': 'Yes, agreement guarantees the requirements.',
+  '아니요, 예상 주문 수와 금액도 검사합니다.': 'No, also verify expected counts and amounts.',
+  '두 코드가 같은 오류를 가질 수 있으므로 독립적인 예상값이 필요합니다.':
+    'Both implementations can share a mistake, so an independent expected result is necessary.',
+  '두 방식과 예상값 비교': 'Compare both methods with expected values',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 26–30쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 26–30.',
+  'COALESCE는 각 행에서 인수를 왼쪽부터 확인해 처음 NULL이 아닌 값을 선택합니다. 여러 행을 더하는 SUM과 다릅니다. 문자열 값은 작은따옴표로, 컬럼 이름은 이 예제처럼 그대로 씁니다. 모든 인수가 NULL이면 결과도 NULL입니다.':
+    'COALESCE selects the first non-null argument from left to right for each row. Unlike SUM, it does not add multiple rows. String literals use single quotes; column names are written as identifiers in this example. If all arguments are null, the result is null.',
+  '첫 조회는 FROM 없이 상수를 계산하며 예상 결과는 한 행의 Seoul·UNKNOWN·NULL입니다. 두 번째 조회는 12행을 유지하고 주문 9의 수량만 NULL에서 0으로 바꿉니다. 원본 파일과 orders는 그대로입니다. 수량 0은 quantity > 0을 만족하지 않으므로 대체했다고 정상 주문이 되지는 않습니다.':
+    'The first query computes constants without FROM, producing one expected row: Seoul, UNKNOWN, NULL. The second keeps all 12 rows and replaces only order 9’s null quantity with zero. The original file and orders remain unchanged. Zero still fails quantity > 0, so replacement does not make that order valid.',
+  'NULL 수량을 0으로 바꾸면 어떤 변화가 있나요?':
+    'What changes when a null quantity is replaced with zero?',
+  '주문 9가 정상 주문 집계에 포함됩니다.': 'Order 9 becomes a valid order.',
+  '행 수는 유지되지만 정상 주문 조건은 여전히 통과하지 못합니다.':
+    'The row count is unchanged, but the order still fails validation.',
+  'NULL 대체와 업무상 유효성 검사는 서로 다른 연산입니다.':
+    'Null replacement and business-rule validation are different operations.',
+  'COALESCE로 NULL 대체': 'Replace NULL with COALESCE',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 31–35쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 31–35.',
+  'CASE는 조건을 위에서부터 검사해 처음 만족하는 값을 선택합니다. DataFrame의 when·otherwise와 같은 역할입니다. 정상 주문의 금액을 HIGH·MEDIUM·LOW로 분류할 때 큰 금액 조건부터 검사합니다.':
+    'CASE checks conditions from top to bottom and selects the first matching value. It corresponds to DataFrame when and otherwise. To classify valid order amounts as HIGH, MEDIUM, or LOW, test the highest threshold first.',
+  '예상 결과는 정상 주문 9행 그대로이며 HIGH는 주문 2·5·8의 3건, MEDIUM은 6건, LOW는 0건입니다. 10000 이상 조건을 먼저 쓰면 35000도 먼저 일치해 MEDIUM이 됩니다. NULL 처리와 달리 이 예제는 이미 정상 주문만 남긴 입력을 사용합니다.':
+    'The expected result still has nine valid orders: HIGH for orders 2, 5, and 8, six MEDIUM rows, and no LOW rows. Testing >=10000 first would classify 35000 as MEDIUM. Unlike the null-replacement example, this query starts from already validated orders.',
+  '35000을 HIGH로 분류하려면 어느 조건을 먼저 쓰나요?':
+    'Which condition comes first to classify 35000 as HIGH?',
+  'CASE는 첫 번째 TRUE 조건에서 값을 선택하므로 큰 금액 조건이 먼저입니다.':
+    'CASE selects the first TRUE branch, so test the higher threshold first.',
+  'CASE로 조건별 값 선택': 'Choose values with CASE',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 36–38쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 36–38.',
+  'SELECT 결과도 DataFrame입니다. show는 표를 콘솔에 출력하고, count는 그 DataFrame의 행 수를 Python 정수로 반환하며, collect는 모든 결과 행을 Row 객체의 Python List로 가져옵니다. 사용자별 집계 결과는 3행이지만 전체 주문 수를 구하는 집계 쿼리 결과는 1행입니다.':
+    'A SELECT result is also a DataFrame. show prints a table, count returns its row count as a Python integer, and collect brings all result rows into a Python list of Row objects. The user summary has three rows, while the query that counts all orders has one result row.',
+  '모든 열이 NULL인 한 행의 예상 집계값은 1·0·0입니다. 행이 없는 입력과 혼동하지 않습니다. View 등록만으로 결과를 계산하지 않으며 SELECT 결과에 Action을 호출해 확인합니다. collect는 결과 전체를 Driver 메모리로 모으므로 이 장에서는 크기를 아는 3행 집계 결과에만 사용합니다.':
+    'One row whose columns are all null has expected counts of 1, 0, and 0. Do not confuse it with an empty input. Registering a view does not compute the result; request it with an action on the SELECT DataFrame. collect gathers the entire result into Driver memory, so this chapter uses it only for the known three-row summary.',
+  'SELECT COUNT(*)의 결과에 count()를 호출하면 무엇을 세나요?':
+    'What does count() count on the result of SELECT COUNT(*)?',
+  '원본 주문 12행입니다.': 'The 12 original order rows.',
+  '집계값을 담은 결과 1행입니다.': 'The single result row containing the aggregate value.',
+  '집계값 12와 그 값을 담은 DataFrame의 행 수 1은 서로 다릅니다.':
+    'The aggregate value 12 differs from the result DataFrame’s row count of 1.',
+  '집계값과 결과 행 수 구분': 'Distinguish aggregate values from result row counts',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 39–42쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 39–42.',
+  '오류 없이 실행되는 SQL도 요구사항을 놓칠 수 있습니다. WHERE 없이 원본을 집계하면 U001·U002·U003 총액은 우연히 같아도 U004의 -100이 추가되고, 수량 0인 주문 4 때문에 U003 주문 수가 달라집니다. 총액 하나만 확인해서는 이 오류를 잡을 수 없습니다.':
+    'SQL can run without errors and still miss the requirements. Aggregating without WHERE happens to preserve the totals for U001, U002, and U003, but adds U004 with -100 and changes U003’s order count by including order 4 with zero quantity. Checking only a total would miss this error.',
+  '검사 대상': 'Check',
+  '예상 기준': 'Expected criterion',
+  '정상 주문 식별자': 'Valid order IDs',
+  '정상·제외 행 수': 'Valid and excluded rows',
+  '사용자별 주문 수': 'Orders per user',
+  '사용자별 총액': 'Totals per user',
+  '정렬과 비교': 'Ordering and comparison',
+  '총액 내림차순·user_id 오름차순, 이름·자료형·값·행 수·순서 비교':
+    'Total descending, user_id ascending; compare names, types, values, row counts, and order',
+  '확인 문제: 총액 50000 이상 사용자를 HAVING으로 선택하고, NULL 수량은 IS NULL로 찾아 COALESCE로 0을 지정해 봅니다. CASE의 조건 순서를 뒤집었을 때 어떤 주문이 달라지는지도 설명합니다. 코드가 종료될 때는 spark.stop()으로 세션을 정리합니다. 실제 실행 시에는 자신의 결과와 위 예상 기준을 비교합니다.':
+    'Review: select users with totals >=50000 using HAVING; find null quantities with IS NULL and replace them with zero using COALESCE. Explain which orders change if the CASE conditions are reversed. Stop the session with spark.stop() at the end of the program. Compare your own execution results against the expected criteria above.',
+  '두 구현의 총액만 같으면 놓칠 수 있는 오류는 무엇인가요?':
+    'Which error can matching totals alone miss?',
+  '결과는 항상 같으므로 놓치는 오류가 없습니다.': 'None; the results must be equivalent.',
+  '수량 0인 주문 포함으로 주문 건수가 달라지는 오류입니다.':
+    'Including a zero-quantity order and changing the order count.',
+  '총액 외에 선택된 행·주문 수·사용자 수·순서도 검사합니다.':
+    'Check selected rows, order counts, user counts, and order as well as totals.',
+  '잘못된 SQL 찾기와 복습': 'Find incorrect SQL and review',
+  '출처: 2026-bigdata-week05-lecture-notes.pdf, 43–46쪽.':
+    'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 43–46.',
+  '05. Spark SQL과 DataFrame 결과 비교 · BigData':
+    '05. Spark SQL and DataFrame Result Comparison · BigData',
+  'Spark SQL의 View, 정제·집계·NULL 처리와 DataFrame 결과 검증.':
+    'Spark SQL views, filtering, aggregation, NULL handling, and DataFrame result verification.',
+  'Spark SQL과 DataFrame 결과 비교': 'Spark SQL and DataFrame Result Comparison',
+  '같은 주문을 두 방식으로 처리하고, 선택한 행·금액·집계·순서를 예상값과 비교합니다.':
+    'Process the same orders with two methods and compare selected rows, amounts, aggregates, and ordering against expected values.',
+  '5장 · SQL 표현과 검증': 'Chapter 5 · SQL and verification',
+  '46쪽 원본 기반': 'Based on 46 source pages',
+  '← 4장 · Spark DataFrame 프로그래밍': '← Chapter 4 · Spark DataFrame Programming',
+  '4장 · 주문 데이터': 'Chapter 4 · Order data',
+  '이 장은 개념별 코드 발췌와 4행 예시로 설명합니다. 현재 로컬 제공 실습에는 orders.csv 12행과 비교 프로그램이 있으며, 5장의 예상값은 그 12행을 기준으로 합니다.':
+    'This chapter explains concepts through code excerpts and a four-row example. The current local lab includes a 12-row orders.csv and a comparison program; Chapter 5 uses those 12 rows for its expected values.',
+  '출처: 2026-bigdata-04.pdf, 4–12쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 4–12; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 13–20쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 13–20; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 21–22, 39–43쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 21–22, 39–43; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 28–38쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 28–38; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 44–48쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 44–48; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 23–28, 49–53쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 23–28, 49–53; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 23–24, 54–58쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 23–24, 54–58; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 59–61쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 59–61; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 62–65쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 62–65; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 9–10, 66–67쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 9–10, 66–67; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 68–78쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 68–78; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 79–81쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 79–81; 2026-bigdata-week04-dataframe-notes.md.',
+  '출처: 2026-bigdata-04.pdf, 82–90쪽 · 2026-bigdata-week04-dataframe-notes.md.':
+    'Source: 2026-bigdata-04.pdf, pp. 82–90; 2026-bigdata-week04-dataframe-notes.md.',
+  '장 구분과 원본 범위': 'Chapter boundaries and source coverage',
+  '4장은 DataFrame API의 자료 구조·정제·집계·실행을 다룹니다. 원본의 주차 표기는 파일 출처로 유지하며, 장 번호를 실제 수업 주차와 일치시키지 않습니다.':
+    'Chapter 4 covers DataFrame structures, cleaning, aggregation, and execution. Week labels remain in source filenames; chapter numbers do not assert the actual teaching week.',
+  '원본 쪽·절': 'Source pages or sections',
+  '학습 내용과 위치': 'Topic and location',
+  '4장: 주문·Schema·중첩 구조·Column·정제·집계·정렬':
+    'Chapter 4: orders, schema, nested data, columns, cleaning, aggregation, sorting',
+  '4장: 실행계획·Action·collect·코드 검토':
+    'Chapter 4: execution plans, actions, collect, code review',
+  'SQL 후속 학습 예고 → 5장': 'Introduction to the next SQL topic → Chapter 5',
+  '5장: View·SQL 연산·두 방식의 결과 검증':
+    'Chapter 5: views, SQL operations, and result verification',
+  '5장 · Spark SQL과 DataFrame 결과 비교 →':
+    'Chapter 5 · Spark SQL and DataFrame Result Comparison →',
+  '빅데이터 1~5장 강의 정리와 Docker·Spark 실습 자료.':
+    'Big Data Chapters 1–5 and Docker/Spark practice materials.',
+  '1~5장에서 데이터 처리, Spark 분산 실행, DataFrame과 SQL을 배우고 결과를 검증합니다.':
+    'Chapters 1–5 cover data processing, distributed Spark execution, DataFrames, SQL, and result verification.',
+  '강의자료 126슬라이드 · DataFrame 90쪽 · SQL 46쪽':
+    '126 source slides · DataFrame: 90 pages · SQL: 46 pages',
+  '개의 공개 실습 ZIP': 'public practice ZIPs',
+  '1~5장': 'Chapters 1–5',
+  '1~5장 강의와 제공 실습을 다룹니다. 4장은 DataFrame API, 5장은 같은 주문을 처리하는 SQL과 결과 비교입니다.':
+    'The materials cover Chapters 1–5 and supplied labs. Chapter 4 uses the DataFrame API; Chapter 5 processes the same orders with SQL and compares results.',
+  비교: 'Compare',
+  'View를 등록하고 SQL로 정제·집계합니다. NULL과 조건식, 집계 전후 필터를 구분하고 예상값과 비교합니다.':
+    'Register views, filter and aggregate with SQL, distinguish NULL handling and pre/post-aggregation filters, and compare with expected values.',
+  '결과 검증': 'Result verification',
+  '46쪽': '46 pages',
+  '전체 과목 홈': 'All courses',
+  '빅데이터 학습 홈': 'BigData home',
+  '상위 학습 홈': 'Learning home navigation',
+});
+
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  '5장에서는 같은 조건을 Spark SQL로 표현하고 결과를 비교합니다.':
+    'Chapter 5 expresses the same conditions in Spark SQL and compares the results.',
+});
+
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  'View · SQL · 결과 검증': 'View · SQL · Result verification',
+});
+
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  '표는 12행 입력을 정제한 예상값이며 평균은 소수점 6자리 기준입니다. 예를 들어 U001의 총액은 24000 + 24000 + 35000 + 25000 = 108000입니다. 주문 4건의 평균은 27000입니다. COUNT(*)는 상품 수량의 합계가 아닙니다.':
+    'The table shows expected values after cleaning the 12-row input, with averages to six decimal places. For U001, 24000+24000+35000+25000=108000 across four orders, giving an average of 27000. COUNT(*) is not the sum of item quantities.',
+});

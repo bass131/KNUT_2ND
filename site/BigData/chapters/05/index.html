@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko"><head></head><body data-page="05" data-root="../../">﻿
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Spark SQL의 View, 정제·집계·NULL 처리와 DataFrame 결과 검증.">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>05. Spark SQL과 DataFrame 결과 비교 · BigData</title>
+  <link rel="icon" href="../../shared/favicon.svg" type="image/svg+xml">
+  <script src="../../shared/theme.js"></script>
+  <link rel="stylesheet" href="../../shared/styles.css">
+  <link rel="stylesheet" href="../../shared/themes.css">
+  <link rel="stylesheet" href="../../shared/reading.css">
+  <script src="../../shared/course/catalog.js" defer=""></script>
+  <script src="../../shared/course/state.js" defer=""></script>
+  <script src="../../shared/course/navigation.js" defer=""></script>
+  <script src="../../shared/course/content.js" defer=""></script>
+  <script src="../../shared/course/visuals.js" defer=""></script>
+  <script src="../../shared/course.js" defer=""></script>
+  <link rel="stylesheet" href="../../shared/language.css">
+  <script src="../../shared/translations-en.js" defer=""></script>
+  <script src="../../shared/language.js" defer=""></script>
+
+<div id="course-shell"></div><main id="main-content" class="main-content">
+<nav class="course-return" data-course-return="" aria-label="상위 학습 홈"><a data-all-courses="" href="../../../index.html">전체 과목 홈</a><a href="../../index.html">빅데이터 학습 홈</a></nav>
+<header class="chapter-hero"><p class="eyebrow">CHAPTER 05 · SPARK SQL</p><h1>Spark SQL과 DataFrame 결과 비교</h1><p class="hero-description">같은 주문을 두 방식으로 처리하고, 선택한 행·금액·집계·순서를 예상값과 비교합니다.</p><div class="hero-meta"><span>5장 · SQL 표현과 검증</span><span>46쪽 원본 기반</span></div></header><section class="lesson-section" id="scope" data-title="4장과 5장의 학습 범위"><div class="section-heading"><span class="section-number">01</span><h2>4장과 5장의 학습 범위</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 1–4쪽.</p><p>4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다. 장 번호는 학습 내용의 구분이며 휴강을 반영한 실제 수업 날짜를 뜻하지 않습니다.</p>
+<p>2026-bigdata-04.pdf의 88–90쪽과 2026-bigdata-week04-dataframe-notes.md의 23절은 SQL을 후속 학습으로 예고합니다. 새 원본 1쪽은 Join·Window Function·CTE를 범위에서 제외합니다. 따라서 이 장은 SQL 표현과 결과 검증까지 다룹니다.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">4장 · DataFrame API</th><th scope="col">5장 · Spark SQL</th></tr></thead><tbody><tr><td>select / withColumn</td><td>SELECT / AS</td></tr><tr><td>filter / where</td><td>WHERE</td></tr><tr><td>groupBy / agg</td><td>GROUP BY / COUNT / SUM / AVG</td></tr><tr><td>집계 뒤 filter</td><td>HAVING</td></tr><tr><td>fillna / when</td><td>COALESCE / CASE</td></tr><tr><td>orderBy</td><td>ORDER BY</td></tr></tbody></table></div>
+<p>보조 비유: 같은 주문 장부를 함수 호출 목록으로 설명하거나 조회 문장으로 설명하는 차이입니다. 두 표현 모두 Driver에서 실행계획이 되고, Action이 결과를 요구하면 Executor의 Task가 행을 처리합니다. 표현 언어만 바뀌었다고 계산이 Python 반복문으로 옮겨지는 것은 아닙니다.</p>
+<div class="quiz" data-answer="1" data-explanation="표현 방식과 실제 행 계산 위치는 구분합니다."><h3>SQL로 바꾸면 주문 계산 위치도 Driver의 Python으로 바뀔까요?</h3><div class="quiz-options"><button type="button">네, SQL 문장을 Python에서 전달하기 때문입니다.</button><button type="button">아니요, 두 방식 모두 실행계획에 따라 처리합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-scope"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="input" data-title="12행 입력과 Schema 확인"><div class="section-heading"><span class="section-number">02</span><h2>12행 입력과 Schema 확인</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 2–10쪽.</p><p>4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽의 주문 12행을 사용합니다. 로컬 제공 자료의 orders.csv와 대조했으며 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 수치는 원본과 손계산에 따른 예상값이며 이 페이지 작성 중 Spark를 실행한 기록은 아닙니다.</p>
+<pre><code>order_id,user_id,product_id,quantity,price,event_time
+1,U001,P001,2,12000.00,2026-09-01 09:00:00
+2,U002,P002,1,35000.00,2026-09-01 09:05:00
+3,U001,P003,3,8000.00,2026-09-01 09:10:00
+4,U003,P001,0,12000.00,2026-09-01 09:15:00
+5,U002,P004,2,15000.00,2026-09-01 09:20:00
+6,U004,P002,1,-100.00,2026-09-01 09:25:00
+7,U003,P005,4,5000.00,2026-09-01 09:30:00
+8,U001,P002,1,35000.00,2026-09-01 09:35:00
+9,U004,P003,,8000.00,2026-09-01 09:40:00
+10,U002,P001,2,12000.00,2026-09-01 09:45:00
+11,U003,P004,1,15000.00,2026-09-01 09:50:00
+12,U001,P005,5,5000.00,2026-09-01 09:55:00</code></pre>
+<p>아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다. 원본의 실행 파일명과 폴더명은 출처를 식별하기 위해 그대로 둡니다.</p>
+<pre><code>from pyspark.sql import SparkSession, functions as F
+from pyspark.sql.types import (
+    StructType, StructField, LongType, StringType,
+    IntegerType, DecimalType, TimestampType,
+)
+spark = SparkSession.builder.appName("Orders-SQL-Comparison").getOrCreate()
+order_schema = StructType([
+    StructField("order_id", LongType(), False),
+    StructField("user_id", StringType(), False),
+    StructField("product_id", StringType(), False),
+    StructField("quantity", IntegerType(), True),
+    StructField("price", DecimalType(12, 2), True),
+    StructField("event_time", TimestampType(), True),
+])
+orders = (spark.read.option("header", True)
+    .option("timestampFormat", "yyyy-MM-dd HH:mm:ss")
+    .schema(order_schema).csv("/opt/spark/data/orders.csv"))
+orders.printSchema()</code></pre>
+<p>nullable=False는 데이터베이스의 NOT NULL 저장 제약과 적용 시점이 다릅니다. Python List로 createDataFrame을 호출하면 기본 verifySchema=True에서 NULL 불가 필드의 None을 거부합니다. 반면 원본의 CSV 비교 예에서는 읽은 Schema의 nullable이 True가 되고 누락 수량이 남습니다. 선언만 믿지 말고 실제 Schema와 NULL 행을 검사합니다.</p>
+<pre><code>required_id = StructType([StructField("order_id", LongType(), False)])
+try:
+    spark.createDataFrame([(None,)], required_id)
+except ValueError:
+    print("NULL_REJECTED")
+orders.filter(F.col("quantity").isNull()).select("order_id").show()</code></pre>
+<div class="quiz" data-answer="1" data-explanation="자료형 선언과 행의 품질 검사는 별개입니다."><h3>CSV의 잘못된 수량은 Schema 선언만으로 모두 제거될까요?</h3><div class="quiz-options"><button type="button">네, nullable=False만 지정하면 됩니다.</button><button type="button">아니요, 읽은 값에 품질 조건을 적용해야 합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-input"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="views" data-title="Temporary View와 첫 SQL 조회"><div class="section-heading"><span class="section-number">03</span><h2>Temporary View와 첫 SQL 조회</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 11–14쪽.</p><p>SQL의 FROM은 Python 변수 이름을 직접 찾지 않습니다. Temporary View는 DataFrame을 SQL에서 조회할 이름으로 등록한 임시 뷰입니다. 보조 비유로는 장부에 붙인 조회용 이름표이며, 장부 복사나 메모리 적재 명령이 아닙니다. 같은 SparkSession에서 사용하고 프로그램을 다시 시작하면 다시 등록합니다.</p>
+<pre><code>orders.createOrReplaceTempView("orders_view")
+first_result = spark.sql("""
+    SELECT order_id, user_id, quantity
+    FROM orders_view
+    ORDER BY order_id
+    LIMIT 4
+""")
+first_result.show()
+orders.createOrReplaceTempView("orders")</code></pre>
+<p>orders는 Python 변수, orders_view는 등록한 SQL 이름, orders.csv는 입력 파일입니다. 등록하지 않은 이름을 조회하면 이 예제에서는 TABLE_OR_VIEW_NOT_FOUND 오류가 납니다. 이후 코드는 orders라는 View를 사용합니다. spark.sql의 SELECT 결과도 DataFrame이므로 show·count·collect를 호출할 수 있습니다.</p>
+<p>ORDER BY order_id LIMIT 4의 예상 결과는 주문 1·2·3·4입니다. LIMIT만 쓰면 어느 네 행이 선택되는지 보장하지 않습니다. LIMIT 4가 CSV 네 행만 읽는다는 뜻도 아닙니다. 정렬된 앞부분을 찾으려면 더 많은 입력을 읽어야 할 수 있습니다.</p>
+<div class="quiz" data-answer="1" data-explanation="Temporary View 등록은 조회 이름을 만들며 결과 수집이나 파일 저장을 대신하지 않습니다."><h3>View 등록은 어떤 작업인가요?</h3><div class="quiz-options"><button type="button">전체 CSV를 새 파일로 복사합니다.</button><button type="button">DataFrame에 SQL 조회 이름을 연결합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-views"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="filter" data-title="SELECT 계산식과 WHERE 조건"><div class="section-heading"><span class="section-number">04</span><h2>SELECT 계산식과 WHERE 조건</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 15–18쪽.</p><p>SELECT는 출력할 열과 계산식을, AS는 결과 열 이름을 정합니다. 수량×가격을 계산해도 잘못된 주문은 자동으로 사라지지 않습니다. WHERE에서 수량·가격이 있고 수량은 양수, 가격은 0 이상이라는 조건을 적용합니다.</p>
+<pre><code>valid_enriched = spark.sql("""
+    SELECT order_id, user_id, product_id, quantity, price, event_time,
+           quantity * price AS amount
+    FROM orders
+    WHERE quantity IS NOT NULL AND price IS NOT NULL
+      AND quantity &gt; 0 AND price &gt;= 0
+""")
+valid_enriched.createOrReplaceTempView("valid_enriched")
+valid_enriched.orderBy("order_id").show()</code></pre>
+<p>WHERE는 TRUE인 행만 남깁니다. NULL은 0도 빈 문자열도 아니며 quantity = NULL의 비교 결과는 NULL입니다. 수량 누락 주문을 찾으려면 IS NULL을 사용합니다. 12행 입력에서 누락 주문은 9번이고, 정상 주문 식별자는 1·2·3·5·7·8·10·11·12입니다.</p>
+<pre><code>missing = spark.sql("SELECT order_id FROM orders WHERE quantity IS NULL")
+missing.show()</code></pre>
+<div class="quiz" data-answer="1" data-explanation="NULL 여부는 IS NULL로 검사합니다. 일반 등호 비교는 TRUE가 되지 않습니다."><h3>NULL 수량을 찾는 조건은 무엇인가요?</h3><div class="quiz-options"><button type="button">quantity = NULL</button><button type="button">quantity IS NULL</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-filter"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="aggregate" data-title="GROUP BY 집계와 NULL"><div class="section-heading"><span class="section-number">05</span><h2>GROUP BY 집계와 NULL</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 19–22쪽.</p><p>GROUP BY는 같은 사용자 주문을 한 그룹으로 묶습니다. COUNT(*)는 주문 행 수, SUM은 금액 합계, AVG는 평균을 구합니다. 사용자별 한 행에는 그룹 키와 집계값을 둡니다. 서로 다른 주문 번호 네 개를 가진 U001 그룹에서 order_id 하나를 그대로 출력할 수는 없습니다.</p>
+<pre><code>sql_summary = spark.sql("""
+    SELECT user_id, COUNT(*) AS order_count,
+           SUM(amount) AS total_amount, AVG(amount) AS avg_amount
+    FROM valid_enriched
+    GROUP BY user_id
+    ORDER BY total_amount DESC, user_id ASC
+""")
+sql_summary.show()</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">user_id</th><th scope="col">order_count</th><th scope="col">total_amount</th><th scope="col">avg_amount</th></tr></thead><tbody><tr><td>U001</td><td>4</td><td>108000.00</td><td>27000.000000</td></tr><tr><td>U002</td><td>3</td><td>89000.00</td><td>29666.666667</td></tr><tr><td>U003</td><td>2</td><td>35000.00</td><td>17500.000000</td></tr></tbody></table></div>
+<p>표는 12행 입력을 정제한 예상값이며 평균은 소수점 6자리 기준입니다. 예를 들어 U001의 총액은 24000 + 24000 + 35000 + 25000 = 108000입니다. 주문 4건의 평균은 27000입니다. COUNT(*)는 상품 수량의 합계가 아닙니다.</p>
+<pre><code>spark.sql("""
+    SELECT COUNT(*) AS all_rows, COUNT(quantity) AS quantity_values
+    FROM orders
+""").show()</code></pre>
+<p>필터 전 원본에서 COUNT(*)는 12, COUNT(quantity)는 NULL 수량 하나를 제외한 11입니다. SUM·AVG도 NULL 값을 제외합니다. 값이 모두 NULL이거나 입력이 없으면 SUM·AVG는 NULL이고 COUNT(column)은 0입니다. 모든 열이 NULL인 행도 존재하는 행이므로 COUNT(*)에는 포함됩니다.</p>
+<div class="quiz" data-answer="1" data-explanation="COUNT(column)은 0을 포함하며 NULL 값만 세지 않습니다."><h3>원본 12행에서 COUNT(quantity)가 11인 이유는 무엇인가요?</h3><div class="quiz-options"><button type="button">수량 0인 주문을 제외하기 때문입니다.</button><button type="button">수량이 NULL인 주문을 제외하기 때문입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-aggregate"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="having" data-title="WHERE와 HAVING 구분"><div class="section-heading"><span class="section-number">06</span><h2>WHERE와 HAVING 구분</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 23–25쪽.</p><p>WHERE는 집계 전 주문 행을 고릅니다. HAVING은 집계한 사용자 그룹을 고릅니다. 보조 비유로는 잘못된 영수증을 먼저 버리는 일이 WHERE, 고객별 합계를 낸 후 기준 금액 이상인 고객을 고르는 일이 HAVING입니다.</p>
+<pre><code>high_total = spark.sql("""
+    SELECT user_id, SUM(amount) AS total_amount
+    FROM valid_enriched
+    GROUP BY user_id
+    HAVING SUM(amount) &gt;= 50000
+    ORDER BY total_amount DESC, user_id ASC
+""")
+df_high_total = (valid_enriched.groupBy("user_id")
+    .agg(F.sum("amount").alias("total_amount"))
+    .filter(F.col("total_amount") &gt;= 50000)
+    .orderBy(F.desc("total_amount"), F.asc("user_id")))</code></pre>
+<p>이미 정상 주문만 담긴 valid_enriched를 사용하므로 이 SQL에는 WHERE가 없습니다. 9개 주문을 세 사용자로 집계한 다음 총액 50000 이상인 U001·U002 두 행이 남습니다. 이 설명은 조회문의 의미이며 Spark의 물리 실행 순서를 고정하지 않습니다.</p>
+<div class="quiz" data-answer="1" data-explanation="그룹의 총액은 집계 결과이므로 HAVING 또는 집계 뒤 filter로 검사합니다."><h3>사용자별 총액 50000 이상을 검사할 위치는 어디인가요?</h3><div class="quiz-options"><button type="button">주문 행의 WHERE입니다.</button><button type="button">집계 뒤 HAVING입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-having"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="compare" data-title="두 방식과 예상값 비교"><div class="section-heading"><span class="section-number">07</span><h2>두 방식과 예상값 비교</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 26–30쪽.</p><p>같은 입력에서 필터·계산식·집계·정렬 기준을 모두 맞춥니다. 두 구현이 같은 조건을 빠뜨리면 서로의 결과는 같아도 틀릴 수 있습니다. 작은 결과에 한해 두 방식의 일치와 독립적으로 계산한 정답을 함께 검사합니다.</p>
+<pre><code>df_valid = orders.filter(
+    F.col("quantity").isNotNull() &amp; F.col("price").isNotNull()
+    &amp; (F.col("quantity") &gt; 0) &amp; (F.col("price") &gt;= 0)
+)
+df_enriched = df_valid.withColumn("amount", F.col("quantity") * F.col("price"))
+df_summary = (df_enriched.groupBy("user_id")
+    .agg(F.count("*").alias("order_count"),
+         F.sum("amount").alias("total_amount"),
+         F.avg("amount").alias("avg_amount"))
+    .orderBy(F.desc("total_amount"), F.asc("user_id")))
+sql_full_summary = spark.sql("""
+    SELECT user_id, COUNT(*) AS order_count,
+           SUM(quantity * price) AS total_amount,
+           AVG(quantity * price) AS avg_amount
+    FROM orders
+    WHERE quantity IS NOT NULL AND price IS NOT NULL
+      AND quantity &gt; 0 AND price &gt;= 0
+    GROUP BY user_id
+    ORDER BY total_amount DESC, user_id ASC
+""")</code></pre>
+<pre><code>from decimal import Decimal
+sql_rows = sql_full_summary.collect()
+df_rows = df_summary.collect()
+assert sql_full_summary.columns == df_summary.columns
+assert sql_full_summary.dtypes == df_summary.dtypes
+assert sql_rows == df_rows
+expected = [
+    ("U001", 4, Decimal("108000.00"), Decimal("27000.000000")),
+    ("U002", 3, Decimal("89000.00"), Decimal("29666.666667")),
+    ("U003", 2, Decimal("35000.00"), Decimal("17500.000000")),
+]
+actual = [(r["user_id"], r["order_count"], r["total_amount"],
+           r["avg_amount"].quantize(Decimal("0.000001"))) for r in sql_rows]
+assert actual == expected</code></pre>
+<p>금액 정답은 부동소수점 float 대신 Decimal로 표현하고, 평균 비교 자릿수를 맞춥니다. 컬럼 이름·자료형 비교는 원본의 값·순서 비교에 덧붙인 보충 검사입니다. 총액 내림차순과 동률일 때 user_id 오름차순을 양쪽에 동일하게 지정해야 행 순서 비교가 의미를 가집니다.</p>
+<div class="quiz" data-answer="1" data-explanation="두 코드가 같은 오류를 가질 수 있으므로 독립적인 예상값이 필요합니다."><h3>두 결과가 같으면 정답 검증을 끝내도 될까요?</h3><div class="quiz-options"><button type="button">네, 서로 같으면 요구사항도 만족합니다.</button><button type="button">아니요, 예상 주문 수와 금액도 검사합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-compare"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="coalesce" data-title="COALESCE로 NULL 대체"><div class="section-heading"><span class="section-number">08</span><h2>COALESCE로 NULL 대체</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 31–35쪽.</p><p>COALESCE는 각 행에서 인수를 왼쪽부터 확인해 처음 NULL이 아닌 값을 선택합니다. 여러 행을 더하는 SUM과 다릅니다. 문자열 값은 작은따옴표로, 컬럼 이름은 이 예제처럼 그대로 씁니다. 모든 인수가 NULL이면 결과도 NULL입니다.</p>
+<pre><code>spark.sql("""
+    SELECT COALESCE('Seoul', 'UNKNOWN') AS with_value,
+           COALESCE(NULL, 'UNKNOWN') AS missing_value,
+           COALESCE(NULL, NULL) AS all_missing
+""").show()
+filled = spark.sql("""
+    SELECT order_id, COALESCE(quantity, 0) AS quantity
+    FROM orders ORDER BY order_id
+""")
+df_filled = (orders.fillna({"quantity": 0})
+    .select("order_id", "quantity").orderBy("order_id"))</code></pre>
+<p>첫 조회는 FROM 없이 상수를 계산하며 예상 결과는 한 행의 Seoul·UNKNOWN·NULL입니다. 두 번째 조회는 12행을 유지하고 주문 9의 수량만 NULL에서 0으로 바꿉니다. 원본 파일과 orders는 그대로입니다. 수량 0은 quantity &gt; 0을 만족하지 않으므로 대체했다고 정상 주문이 되지는 않습니다.</p>
+<div class="quiz" data-answer="1" data-explanation="NULL 대체와 업무상 유효성 검사는 서로 다른 연산입니다."><h3>NULL 수량을 0으로 바꾸면 어떤 변화가 있나요?</h3><div class="quiz-options"><button type="button">주문 9가 정상 주문 집계에 포함됩니다.</button><button type="button">행 수는 유지되지만 정상 주문 조건은 여전히 통과하지 못합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-coalesce"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="case" data-title="CASE로 조건별 값 선택"><div class="section-heading"><span class="section-number">09</span><h2>CASE로 조건별 값 선택</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 36–38쪽.</p><p>CASE는 조건을 위에서부터 검사해 처음 만족하는 값을 선택합니다. DataFrame의 when·otherwise와 같은 역할입니다. 정상 주문의 금액을 HIGH·MEDIUM·LOW로 분류할 때 큰 금액 조건부터 검사합니다.</p>
+<pre><code>classified = spark.sql("""
+    SELECT order_id, amount,
+           CASE WHEN amount &gt;= 30000 THEN 'HIGH'
+                WHEN amount &gt;= 10000 THEN 'MEDIUM'
+                ELSE 'LOW' END AS amount_level
+    FROM valid_enriched ORDER BY order_id
+""")
+df_classified = (df_enriched.withColumn("amount_level",
+    F.when(F.col("amount") &gt;= 30000, "HIGH")
+     .when(F.col("amount") &gt;= 10000, "MEDIUM").otherwise("LOW"))
+    .select("order_id", "amount", "amount_level").orderBy("order_id"))</code></pre>
+<p>예상 결과는 정상 주문 9행 그대로이며 HIGH는 주문 2·5·8의 3건, MEDIUM은 6건, LOW는 0건입니다. 10000 이상 조건을 먼저 쓰면 35000도 먼저 일치해 MEDIUM이 됩니다. NULL 처리와 달리 이 예제는 이미 정상 주문만 남긴 입력을 사용합니다.</p>
+<div class="quiz" data-answer="1" data-explanation="CASE는 첫 번째 TRUE 조건에서 값을 선택하므로 큰 금액 조건이 먼저입니다."><h3>35000을 HIGH로 분류하려면 어느 조건을 먼저 쓰나요?</h3><div class="quiz-options"><button type="button">amount &gt;= 10000</button><button type="button">amount &gt;= 30000</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-case"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="actions" data-title="집계값과 결과 행 수 구분"><div class="section-heading"><span class="section-number">10</span><h2>집계값과 결과 행 수 구분</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 39–42쪽.</p><p>SELECT 결과도 DataFrame입니다. show는 표를 콘솔에 출력하고, count는 그 DataFrame의 행 수를 Python 정수로 반환하며, collect는 모든 결과 행을 Row 객체의 Python List로 가져옵니다. 사용자별 집계 결과는 3행이지만 전체 주문 수를 구하는 집계 쿼리 결과는 1행입니다.</p>
+<pre><code>sql_order_count = spark.sql("SELECT COUNT(*) AS order_count FROM orders")
+assert sql_order_count.first()["order_count"] == 12
+assert sql_order_count.count() == 1
+assert sql_full_summary.count() == 3
+null_row = spark.createDataFrame([(None, None)], "a string, b string")
+null_row.createOrReplaceTempView("null_row")
+spark.sql("""
+    SELECT COUNT(*) AS all_rows, COUNT(a) AS a_values, COUNT(b) AS b_values
+    FROM null_row
+""").show()</code></pre>
+<p>모든 열이 NULL인 한 행의 예상 집계값은 1·0·0입니다. 행이 없는 입력과 혼동하지 않습니다. View 등록만으로 결과를 계산하지 않으며 SELECT 결과에 Action을 호출해 확인합니다. collect는 결과 전체를 Driver 메모리로 모으므로 이 장에서는 크기를 아는 3행 집계 결과에만 사용합니다.</p>
+<div class="quiz" data-answer="1" data-explanation="집계값 12와 그 값을 담은 DataFrame의 행 수 1은 서로 다릅니다."><h3>SELECT COUNT(*)의 결과에 count()를 호출하면 무엇을 세나요?</h3><div class="quiz-options"><button type="button">원본 주문 12행입니다.</button><button type="button">집계값을 담은 결과 1행입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-actions"> 이 내용을 이해했어요</label></section>
+<section class="lesson-section" id="review" data-title="잘못된 SQL 찾기와 복습"><div class="section-heading"><span class="section-number">11</span><h2>잘못된 SQL 찾기와 복습</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 43–46쪽.</p><p>오류 없이 실행되는 SQL도 요구사항을 놓칠 수 있습니다. WHERE 없이 원본을 집계하면 U001·U002·U003 총액은 우연히 같아도 U004의 -100이 추가되고, 수량 0인 주문 4 때문에 U003 주문 수가 달라집니다. 총액 하나만 확인해서는 이 오류를 잡을 수 없습니다.</p>
+<pre><code>-- Incorrect example: missing quality conditions
+SELECT user_id, COUNT(*) AS order_count,
+       SUM(quantity * price) AS total_amount
+FROM orders
+GROUP BY user_id
+ORDER BY total_amount DESC, user_id ASC</code></pre>
+<div class="table-wrap"><table><thead><tr><th scope="col">검사 대상</th><th scope="col">예상 기준</th></tr></thead><tbody><tr><td>정상 주문 식별자</td><td>1, 2, 3, 5, 7, 8, 10, 11, 12</td></tr><tr><td>정상·제외 행 수</td><td>9 / 3</td></tr><tr><td>사용자별 주문 수</td><td>U001=4, U002=3, U003=2</td></tr><tr><td>사용자별 총액</td><td>108000.00 / 89000.00 / 35000.00</td></tr><tr><td>정렬과 비교</td><td>총액 내림차순·user_id 오름차순, 이름·자료형·값·행 수·순서 비교</td></tr></tbody></table></div>
+<p>확인 문제: 총액 50000 이상 사용자를 HAVING으로 선택하고, NULL 수량은 IS NULL로 찾아 COALESCE로 0을 지정해 봅니다. CASE의 조건 순서를 뒤집었을 때 어떤 주문이 달라지는지도 설명합니다. 코드가 종료될 때는 spark.stop()으로 세션을 정리합니다. 실제 실행 시에는 자신의 결과와 위 예상 기준을 비교합니다.</p>
+<div class="quiz" data-answer="1" data-explanation="총액 외에 선택된 행·주문 수·사용자 수·순서도 검사합니다."><h3>두 구현의 총액만 같으면 놓칠 수 있는 오류는 무엇인가요?</h3><div class="quiz-options"><button type="button">결과는 항상 같으므로 놓치는 오류가 없습니다.</button><button type="button">수량 0인 주문 포함으로 주문 건수가 달라지는 오류입니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-review"> 이 내용을 이해했어요</label></section><nav class="chapter-footer" aria-label="챕터 이동"><a class="button secondary" href="../04/index.html">← 4장 · Spark DataFrame 프로그래밍</a><a class="button" href="../../index.html">강의 목록으로</a></nav></main>
+</body></html>

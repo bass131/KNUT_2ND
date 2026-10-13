@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko"><!-- shared/chapter-template.html 기반 · ch03 원본 전체 범위 --><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>3장 · 소켓 주소 구조체 · Network Notes</title><link rel="stylesheet" href="../shared/styles.css"><script src="../shared/syntax-highlight.js" defer=""></script><script src="../shared/lecture.js" defer=""></script><link rel="stylesheet" href="../shared/language.css"><script src="../shared/translations-en.js" defer=""></script><script src="../shared/language.js" defer=""></script><link rel="stylesheet" href="../shared/course-navigation.css"><link rel="stylesheet" href="assets/chapter.css"></head>
+<body class="toc-closed" data-chapter="ch03">
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="topbar"><div class="brand-group"><button class="icon-btn" id="toc-toggle" aria-controls="sidebar" aria-expanded="false" aria-label="목차 열기">☰</button><a class="brand" href="../index.html"><img src="../shared/network.svg" width="23" height="23" alt=""><span>Network Notes</span><span>Chapter 03</span></a></div><nav class="toplinks" aria-label="상단 메뉴"><a href="../index.html">전체 강의</a><button class="print-btn" id="print-btn">인쇄 / PDF ↗</button></nav></header>
+<aside class="sidebar" id="sidebar" aria-label="강의 목차"><div class="sidebar-title">CONTENTS</div><div class="chapter-label">3장 · 소켓 주소 구조체</div><nav class="toc" aria-label="주제별 목차"><a href="#overview"><span>00</span> 학습 순서</a><a href="#address"><span>01</span> 주소 구조체</a><a href="#byte-order"><span>02</span> 바이트 순서</a><a href="#conversion"><span>03</span> IP 주소 변환</a><a href="#names"><span>04</span> DNS와 이름 변환</a><a href="#practice"><span>05</span> 주소 변환 실습</a><a href="#appendix"><span>06</span> common.h 부록</a><a href="#review"><span>07</span> 이해도 체크</a><a href="#sources"><span>08</span> 출처와 원본 범위</a></nav><div class="progress-card"><div class="progress-label"><span>나의 학습 진도</span><span id="progress-text">0 / 6</span></div><progress id="progress" max="6" value="0" aria-label="학습 완료 주제 수"></progress><p id="storage-note">완료 체크는 이 브라우저의 현재 주소에 저장됩니다.</p></div></aside>
+<button class="scrim" id="scrim" aria-label="목차 닫기" tabindex="-1"></button>
+<main class="page" id="main"><div class="content">
+<nav class="course-navigation" aria-label="과목 이동"><a href="../../../index.html">전체 과목 홈</a><a href="../index.html">네트워크 강의 홈</a></nav>
+<section class="hero" id="overview"><div class="eyebrow">CHAPTER 03</div><h1>소켓 주소 구조체</h1><p class="lead">IP 주소와 포트를 구조체에 담고, 바이트 순서를 맞춘 뒤 주소와 이름을 변환합니다.</p><div class="hero-actions"><a class="pill" href="#address">주소 구조체부터 읽기</a><a class="pill secondary" href="#practice">전체 C 실습</a></div><div class="grid two"><a class="card card-link" href="#address"><h3>주소 구조체</h3></a><a class="card card-link" href="#byte-order"><h3>바이트 순서</h3></a><a class="card card-link" href="#conversion"><h3>IP 주소 변환</h3></a><a class="card card-link" href="#names"><h3>DNS와 이름 변환</h3></a></div></section>
+<section class="section" id="address"><div class="section-top"><span class="kicker">01 / CHAPTER 03</span><span class="source-ref">원본 PDF 3–8쪽 · 슬라이드 5–15</span></div><h2>주소 구조체는 통신할 위치를 담습니다</h2><p>2-2장에서 만든 소켓은 운영체제의 통신 자원입니다. 주소 구조체는 그 소켓을 어느 주소에 묶거나 어느 상대와 연결할지 알려 주는 별도의 값입니다. 소켓 번호와 IP 주소는 같은 것이 아닙니다.</p><figure class="address-figure"><div class="address-flow"><div class="address-step">문자열 주소 · 127.0.0.1</div><div class="address-step">주소 구조체 · 주소 계열 + IP + 포트</div><div class="address-step">소켓 함수 · bind / connect</div></div><figcaption>보충 도식 · 구조체를 채운 뒤 주소와 크기를 소켓 함수에 전달합니다. 여기서 bind와 connect를 실행하는 것은 아닙니다.</figcaption></figure><p>sockaddr는 여러 주소 계열을 받기 위한 공통 인터페이스입니다. IPv4 값은 sockaddr_in, IPv6 값은 sockaddr_in6에 보관하고 함수가 요구할 때 sockaddr 포인터로 전달합니다. 형변환이 IPv4를 IPv6로 바꾸거나 메모리 크기를 늘려 주지는 않습니다.</p><div class="table-wrap"><table><thead><tr><th>필드</th><th>IPv4</th><th>IPv6</th><th>역할</th></tr></thead><tbody><tr><td>주소 계열</td><td>sin_family = AF_INET</td><td>sin6_family = AF_INET6</td><td>구조체 해석 방법</td></tr><tr><td>포트</td><td>sin_port</td><td>sin6_port</td><td>16비트 서비스 번호</td></tr><tr><td>IP</td><td>sin_addr · in_addr</td><td>sin6_addr · in6_addr</td><td>32비트 / 128비트 주소</td></tr><tr><td>나머지</td><td>sin_zero</td><td>sin6_flowinfo, sin6_scope_id</td><td>패딩 / 흐름 정보와 범위 식별</td></tr></tbody></table></div><p>in_addr의 s_addr에는 4바이트 주소가 들어갑니다. IPv6는 16바이트이며 이식 가능한 바이트 접근에는 s6_addr를 씁니다. 원본의 운영체제별 공용체 내부 이름을 그대로 복사하지 않아도 됩니다.</p><p>원본의 크기 표는 sockaddr와 sockaddr_in을 16바이트, sockaddr_in6를 28바이트, Bluetooth용 sockaddr_bth를 30바이트로 보여 줍니다. 이 크기가 모든 운영체제에서 보장되는 것은 아닙니다. 함수 인수에는 실제 객체의 sizeof를 사용합니다. 여러 주소 계열의 결과를 담아야 할 때는 sockaddr_storage를 사용할 수 있습니다.</p><p class="note">보충 · 함수를 호출해 주소를 받아올 때는 버퍼의 길이도 준비합니다. Linux의 accept 같은 함수는 socklen_t 길이를 입력·출력 인수로 받고, Winsock은 int 길이를 사용합니다. 반환된 길이와 주소 계열을 확인한 뒤 해석합니다.</p><label class="complete"><input type="checkbox" id="done-address"> 소켓과 주소 구조체의 역할을 구분할 수 있어요</label></section>
+<section class="section" id="byte-order"><div class="section-top"><span class="kicker">02 / CHAPTER 03</span><span class="source-ref">원본 PDF 9–13쪽 · 슬라이드 17–25</span></div><h2>바이트 순서를 맞추는 이유</h2><p>바이트 정렬은 여러 바이트로 이루어진 정수를 메모리에 놓는 순서입니다. 여기서는 메모리의 정렬 경계나 비트 순서를 바꾸는 작업을 뜻하지 않습니다. 같은 0x12345678도 낮은 주소부터 어떤 바이트를 두는지에 따라 배열이 달라집니다.</p><figure class="address-figure"><div class="byte-row"><b>낮은 메모리 주소 → 높은 주소</b><div>빅엔디언 <code>12 | 34 | 56 | 78</code></div><div>리틀엔디언 <code>78 | 56 | 34 | 12</code></div></div><figcaption>보충 도식 · 숫자는 모두 16진수 바이트입니다. 네트워크 바이트 순서는 빅엔디언입니다.</figcaption></figure><p>호스트 바이트 순서는 CPU 환경의 표현이고, 네트워크 바이트 순서는 통신 규약에서 정한 표현입니다. 포트와 IP 주소는 네트워크 순서를 따릅니다. 응용프로그램이 보내는 정수 데이터의 표현도 송신자와 수신자가 별도로 약속해야 합니다. send가 임의의 구조체를 자동으로 변환해 주지는 않습니다.</p><div class="table-wrap"><table><thead><tr><th>방향</th><th>16 bit</th><th>32 bit</th></tr></thead><tbody><tr><td>호스트 → 네트워크</td><td>htons</td><td>htonl</td></tr><tr><td>네트워크 → 호스트</td><td>ntohs</td><td>ntohl</td></tr></tbody></table></div><p>s는 16비트, l은 32비트 변환을 뜻합니다. 16비트 포트에는 htons를 쓰고 출력할 때 ntohs로 되돌립니다. 원본의 htonl(x1)은 16비트 변수에 32비트 변환을 적용한 잘못된 선택을 보여 줍니다. x1이 정수 승격된 뒤 변환되므로 포트용 변환과 결과가 다릅니다.</p><p>주소 계열은 호스트 순서로 둡니다. inet_pton이 만든 IP는 이미 네트워크 순서이므로 다시 htonl을 적용하지 않습니다. IPv6 예제에서는 flowinfo와 scope_id를 0으로 초기화합니다. 링크 로컬 주소의 scope_id는 인터페이스 선택과 관련 있으므로 주소의 16바이트와 구분해야 합니다.</p><p class="note">실습 출력 주의 · htons 결과를 정수로 바로 출력한 값은 호스트 바이트 순서에 따라 달라질 수 있습니다. 바이트 배열과 원래 값으로 되돌린 결과를 함께 확인하면 혼동을 줄일 수 있습니다.</p><label class="complete"><input type="checkbox" id="done-byte-order"> 포트와 IP에 필요한 변환을 구분할 수 있어요</label></section>
+<section class="section" id="conversion"><div class="section-top"><span class="kicker">03 / CHAPTER 03</span><span class="source-ref">원본 PDF 14–17쪽 · 슬라이드 27–33</span></div><h2>문자열 IP를 구조체에 넣고 다시 읽기</h2><p>사용자가 입력하는 127.0.0.1은 문자들의 나열입니다. 소켓 API는 이 문자열 자체가 아니라 이진 주소를 사용합니다. inet_pton의 p는 표시용 문자열, n은 네트워크 형식을 뜻합니다. inet_ntop은 반대 방향으로 변환합니다.</p><figure class="address-figure"><div class="address-flow"><div class="address-step">127.0.0.1 · 문자열</div><div class="address-step">inet_pton → 7f 00 00 01</div><div class="address-step">inet_ntop → 127.0.0.1</div></div><figcaption>보충 도식 · 이진 주소는 NUL로 끝나는 문자열이 아닙니다. %s로 직접 출력하지 않습니다.</figcaption></figure><p>IPv4에는 AF_INET과 in_addr를, IPv6에는 AF_INET6와 in6_addr를 대응시킵니다. 출력 버퍼는 각각 INET_ADDRSTRLEN, INET6_ADDRSTRLEN을 사용하면 문자열 종료 공간까지 확보할 수 있습니다. IPv6의 연속된 0은 ::로 줄일 수 있어서 변환 후 문자열의 표기는 입력과 달라도 같은 주소일 수 있습니다.</p><div class="table-wrap"><table><thead><tr><th>API · Linux</th><th>성공</th><th>실패와 처리</th></tr></thead><tbody><tr><td>inet_pton</td><td>1</td><td>0: 잘못된 주소 문자열 / -1: 지원하지 않는 주소 계열, errno 확인</td></tr><tr><td>inet_ntop</td><td>출력 버퍼 포인터</td><td>NULL: errno 확인, 작은 버퍼 등</td></tr></tbody></table></div><p>반환값이 0인 inet_pton 실패에 perror만 쓰면 이전 errno의 내용을 잘못 보여 줄 수 있습니다. 입력 형식 오류와 시스템 오류를 나누어 처리합니다. 변환 성공을 확인한 뒤에만 결과 구조체를 사용합니다.</p><div class="codebox"><div class="codehead"><span>C 발췌 · 주소 준비, 독립 실행 파일 아님</span><button class="copy-btn" type="button">코드 복사</button></div><pre><code data-language="c">struct sockaddr_in peer = {0};
+peer.sin_family = AF_INET;
+peer.sin_port = htons(9000);
+int status = inet_pton(AF_INET, "127.0.0.1", &amp;peer.sin_addr);
+/* Continue only when status == 1. */</code></pre></div><p class="note">원본 보완 · PDF 14쪽의 IPv4 전용 입력 위젯은 과거 GUI 사용 예입니다. 이 장의 콘솔 실습은 문자열을 직접 변환합니다. inet_pton은 도메인 이름을 검색하지 않으므로 www.example.com 같은 이름에는 이름 변환 API가 필요합니다.</p><label class="complete"><input type="checkbox" id="done-conversion"> IP 변환의 반환값을 확인하고 결과를 출력할 수 있어요</label></section>
+<section class="section" id="names"><div class="section-top"><span class="kicker">04 / CHAPTER 03</span><span class="source-ref">원본 PDF 18–21쪽 · 슬라이드 35–42</span></div><h2>DNS와 이름 변환 결과 읽기</h2><p>DNS는 도메인 이름과 IP 주소 등의 정보를 연결하는 이름 시스템입니다. 하나의 이름에 여러 IP가 연결될 수 있고, 여러 이름이 같은 IP를 가리킬 수도 있습니다. 이름을 주소로 찾는 정방향 조회와 주소에서 이름을 찾는 역방향 조회는 서로 독립적인 데이터에 의존하므로 왕복해도 원래 이름이 보장되지는 않습니다.</p><p>프로그램의 이름 변환 함수는 운영체제의 이름 해석 기능을 사용합니다. 결과가 로컬 hosts 파일이나 캐시에서 올 수도 있어 함수 호출마다 반드시 DNS 패킷이 나가는 것은 아닙니다. 외부 이름 조회는 네트워크 설정과 조회 시점에 따라 성공 여부와 결과가 달라집니다.</p><h3>원본의 gethostbyname과 hostent</h3><p>원본은 gethostbyname으로 이름을 조회하고 gethostbyaddr로 역조회합니다. 성공 결과인 hostent는 이름, 별명 목록, 주소 계열, 주소 하나의 길이, 주소 목록을 가리킵니다. 실패하면 NULL이므로 필드에 접근하기 전에 검사해야 합니다.</p><figure class="address-figure"><div class="hostent-map"><div><code>h_name</code> → 공식 이름 문자열</div><div><code>h_aliases</code> → 포인터 배열: [0] 별명 문자열, [1] 별명 문자열, [2] NULL</div><div><code>h_addrtype / h_length</code> → <code>AF_INET / 4</code></div><div><code>h_addr_list</code> → 포인터 배열: [0] 4바이트 주소, [1] 4바이트 주소, [2] NULL</div></div><figcaption>PDF 19–20쪽을 다시 그린 IPv4 예시입니다. h_length는 목록의 개수가 아니라 주소 하나의 바이트 수입니다.</figcaption></figure><p>h_aliases와 h_addr_list는 포인터 배열입니다. 배열의 원소가 다음 원소를 가리키는 연결 리스트가 아닙니다. h_addr_list의 각 포인터가 가리키는 이진 주소를 주소 계열과 길이에 맞게 해석하고, 배열 끝의 NULL까지 순회합니다.</p><p>원본의 GetIPAddr는 첫 주소만 복사하므로 결과가 여러 개일 수 있다는 점을 놓치지 않아야 합니다. 반환 메모리를 임의로 free하지 않고, 다음 조회 뒤에도 필요할 값은 별도 공간에 복사합니다.</p><p class="note">원본 보완 · PDF 20쪽은 AF_INET6와 16바이트 주소를 가진 hostent 모양을 설명합니다. 이것이 Windows gethostbyname의 IPv6 지원을 뜻하지는 않습니다. Winsock의 gethostbyname은 IPv4만 반환하며 새 코드에는 getaddrinfo가 권장됩니다.</p><h3>보충: getaddrinfo와 getnameinfo</h3><p>getaddrinfo는 이름과 서비스 번호를 받아 소켓 주소 후보를 연결 리스트로 돌려줍니다. AF_UNSPEC으로 IPv4와 IPv6 후보를 허용하고 ai_next를 따라 확인합니다. 실제 연결 프로그램에서는 첫 결과만 가정하지 말고 후보별 연결 실패를 처리해야 합니다. 사용을 마치면 리스트의 처음 포인터로 freeaddrinfo를 호출합니다.</p><p>Linux에서 getaddrinfo는 성공 시 0, 실패 시 오류 코드를 반환하며 gai_strerror로 설명을 얻습니다. getnameinfo는 반대 방향으로 소켓 주소를 이름과 서비스 문자열로 바꿉니다. NI_NAMEREQD는 역조회 이름이 없을 때 실패하도록 하고, NI_NUMERICHOST는 숫자 주소 문자열을 요청합니다.</p><p>원본 GetDomainName의 strncpy(name, ..., namelen)은 길이가 부족하면 문자열 끝의 NUL을 보장하지 않습니다. 복사 전에 목적지 크기를 검사하거나 결과 길이를 확인하는 방식으로 보완해야 합니다. Linux의 옛 gethostbyname 오류는 h_errno 계열이며 일반 소켓 오류의 errno와 구분합니다.</p><label class="complete"><input type="checkbox" id="done-names"> hostent 목록과 이름 조회의 한계를 설명할 수 있어요</label></section>
+<section class="section" id="practice"><div class="section-top"><span class="kicker">05 / CHAPTER 03</span><span class="source-ref">원본 PDF 12–13, 16–17, 21쪽 · 슬라이드 23–25, 32–33, 42</span></div><h2>주소 변환 실습</h2><p>다음은 원본 실습 3-1·3-2의 변환 과정을 합치고 오류 처리를 보완한 Ubuntu/POSIX용 예제입니다. IPv4·IPv6 루프백 주소, 포트 바이트, 32비트 정수 왕복 변환을 확인합니다. 마지막 getaddrinfo는 숫자 전용 옵션을 사용하므로 DNS 조회나 서버 연결을 하지 않습니다.</p><p>print_bytes는 메모리를 바이트 단위로 출력하는 보조 함수이고 main이 실행의 시작점입니다. 주소 준비 → 변환과 확인 → 출력 → 후보 목록 생성과 해제 순서로 읽습니다. 소켓을 생성하지 않으므로 close할 소켓도 없습니다.</p><div class="download-row"><a href="examples/address_lab.c" download="">주소 변환 C 소스 다운로드</a></div><div class="codebox"><div class="codehead"><span>address_lab.c · Ubuntu / POSIX</span><button class="copy-btn" type="button">코드 복사</button></div><pre><code data-language="c" data-source="examples/address_lab.c">#define _POSIX_C_SOURCE 200112L
+#include &lt;arpa/inet.h&gt;
+#include &lt;inttypes.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/socket.h&gt;
+
+static void print_bytes(const void *data, size_t length)
+{
+    const unsigned char *bytes = data;
+    for (size_t i = 0; i &lt; length; ++i) {
+        printf("%s%02x", i ? " " : "", (unsigned int)bytes[i]);
+    }
+    putchar('\n');
+}
+
+int main(int argc, char **argv)
+{
+    const char *input = argc &gt; 1 ? argv[1] : "127.0.0.1";
+    struct sockaddr_in address = {0};
+    address.sin_family = AF_INET;
+    address.sin_port = htons(9000);
+
+    int converted = inet_pton(AF_INET, input, &amp;address.sin_addr);
+    if (converted != 1) {
+        if (converted == 0) {
+            fprintf(stderr, "Invalid IPv4 address: %s\n", input);
+        } else {
+            perror("inet_pton IPv4");
+        }
+        return EXIT_FAILURE;
+    }
+
+    char text[INET_ADDRSTRLEN];
+    if (inet_ntop(AF_INET, &amp;address.sin_addr, text, sizeof(text)) == NULL) {
+        perror("inet_ntop IPv4");
+        return EXIT_FAILURE;
+    }
+    printf("IPv4: %s, port: %u\n", text, (unsigned int)ntohs(address.sin_port));
+    printf("IPv4 bytes: ");
+    print_bytes(&amp;address.sin_addr, sizeof(address.sin_addr));
+    printf("Port bytes: ");
+    print_bytes(&amp;address.sin_port, sizeof(address.sin_port));
+
+    uint32_t host = UINT32_C(0x12345678);
+    uint32_t network = htonl(host);
+    printf("Host bytes: ");
+    print_bytes(&amp;host, sizeof(host));
+    printf("Network bytes: ");
+    print_bytes(&amp;network, sizeof(network));
+    printf("Round trip: 0x%08" PRIx32 "\n", ntohl(network));
+
+    struct sockaddr_in6 address6 = {0};
+    address6.sin6_family = AF_INET6;
+    address6.sin6_port = htons(9000);
+    if (inet_pton(AF_INET6, "::1", &amp;address6.sin6_addr) != 1) {
+        fputs("IPv6 conversion failed\n", stderr);
+        return EXIT_FAILURE;
+    }
+    char text6[INET6_ADDRSTRLEN];
+    if (inet_ntop(AF_INET6, &amp;address6.sin6_addr, text6, sizeof(text6)) == NULL) {
+        perror("inet_ntop IPv6");
+        return EXIT_FAILURE;
+    }
+    printf("IPv6: %s\n", text6);
+
+    /* Numeric input only: no DNS request or socket connection. */
+    struct addrinfo hints = {0};
+    struct addrinfo *result = NULL;
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags = AI_NUMERICHOST | AI_NUMERICSERV;
+    int error = getaddrinfo(input, "9000", &amp;hints, &amp;result);
+    if (error != 0) {
+        fprintf(stderr, "getaddrinfo: %s\n", gai_strerror(error));
+        return EXIT_FAILURE;
+    }
+
+    size_t count = 0;
+    for (const struct addrinfo *p = result; p != NULL; p = p-&gt;ai_next) {
+        ++count;
+    }
+    printf("Numeric address candidates: %zu\n", count);
+    freeaddrinfo(result);
+    return EXIT_SUCCESS;
+}
+</code></pre></div><h3>Ubuntu · Bash에서 빌드하고 실행</h3><p>다운로드한 address_lab.c가 있는 폴더에서 실행합니다. GCC와 C 표준 라이브러리가 필요합니다. 아래 gcc 명령은 컴파일과 링크를 함께 수행하며 생성한 address_lab을 이어서 실행합니다. Windows의 Dev-C++에 이 POSIX 소스를 그대로 넣는 방법은 아닙니다.</p><div class="codebox"><div class="codehead"><span>Ubuntu · Bash</span><button class="copy-btn" type="button">코드 복사</button></div><pre><code data-language="bash">gcc -std=c17 -Wall -Wextra -Wpedantic -g -O0 address_lab.c -o address_lab
+./address_lab
+./address_lab 999.1.1.1
+echo $?</code></pre></div><p>정상 실행의 주요 예상 출력은 다음과 같습니다. Host bytes는 CPU에 따라 다릅니다. 잘못된 주소 실행은 Invalid IPv4 address 메시지와 종료 코드 1을 출력하며, 마지막 echo는 그 종료 코드를 확인합니다.</p><div class="codebox output"><div class="codehead"><span>예상 출력 · 정상 실행의 일부</span></div><pre><code>IPv4: 127.0.0.1, port: 9000
+IPv4 bytes: 7f 00 00 01
+Port bytes: 23 28
+Network bytes: 12 34 56 78
+Round trip: 0x12345678
+IPv6: ::1</code></pre></div><p class="note">추가 확인 · ./address_lab 192.0.2.1로 실행하면 문서용 IPv4 주소의 바이트를 비교할 수 있습니다. 이 프로그램은 입력 주소로 통신하지 않습니다. 외부 DNS의 실시간 결과를 고정된 예상 정답으로 사용하지 않습니다.</p><label class="complete"><input type="checkbox" id="done-practice"> 정상 입력과 잘못된 입력의 결과를 구분할 수 있어요</label></section>
+<section class="section" id="appendix"><div class="section-top"><span class="kicker">06 / CHAPTER 03</span><span class="source-ref">원본 PDF 22–25쪽 · 슬라이드 43–49</span></div><h2>common.h와 운영체제별 준비</h2><p>원본 common.h는 여러 예제에서 쓰는 헤더와 오류 출력 함수를 한곳에 모은 보조 파일입니다. C 언어가 기본 제공하는 헤더 이름이 아닙니다. Windows와 Linux용 내용을 섞어 한 파일로 복사하면 안 됩니다.</p><div class="grid two"><article class="card"><h3>Windows · Winsock</h3><p>winsock2.h와 ws2tcpip.h를 포함하고 Winsock 사용 전 WSAStartup 성공을 확인합니다. 사용을 마치면 WSACleanup으로 초기화와 짝을 맞춥니다. MSVC의 pragma comment(lib)는 MinGW 링크 옵션을 대신하지 않으므로 MinGW에서는 -lws2_32가 필요합니다.</p></article><article class="card"><h3>Linux · POSIX</h3><p>주소 변환은 arpa/inet.h, 이름 조회는 netdb.h, 소켓 인터페이스는 sys/socket.h를 사용합니다. WSAStartup은 없습니다. 원본의 SOCKET typedef와 INVALID_SOCKET 매크로는 이름을 맞추는 보조 정의이며 모든 API 차이를 없애지는 않습니다.</p></article></div><p>원본 err_quit는 오류를 출력한 뒤 프로그램을 끝내고, err_display는 호출한 곳으로 돌아갑니다. Windows의 FormatMessageA는 반환값을 검사한 뒤 메시지 버퍼를 사용하고 할당 성공 시 LocalFree로 해제해야 합니다. Linux에서는 실패 직후 errno를 보존해야 다른 호출이 오류 값을 덮어쓰는 일을 피할 수 있습니다.</p><p>이 장의 실습은 필요한 헤더만 포함한 한 파일로 구성했습니다. common.h 부록의 pthread·poll·epoll 헤더가 이번 주소 변환 실습에 모두 필요하다는 뜻은 아닙니다. 이전 장의 오류 처리·자원 정리 설명과 함께 읽으세요.</p><p><a href="../2-2장/index.html#errors">2-2장 · 오류 처리 다시 읽기</a></p><label class="complete"><input type="checkbox" id="done-appendix"> Windows와 Linux의 준비·오류 처리를 구분할 수 있어요</label></section>
+<section class="section" id="review"><div class="section-top"><span class="kicker">07 / CHAPTER 03</span><span class="source-ref">원본 개념 + 보충 질문</span></div><h2>이해도 체크</h2><details class="quiz-item"><summary>sockaddr 포인터로 형변환하면 IPv4가 IPv6가 되나요?</summary><p>아닙니다. 함수가 주소를 받는 인터페이스에 맞추는 포인터 형변환입니다. 실제 객체의 주소 계열·필드·크기는 그대로입니다.</p></details><details class="quiz-item"><summary>inet_pton 결과에 htonl을 한 번 더 적용하나요?</summary><p>아닙니다. 결과는 이미 네트워크 순서입니다. 정수로 준비한 포트에는 htons를 따로 적용합니다.</p></details><details class="quiz-item"><summary>htons는 항상 두 바이트를 뒤집나요?</summary><p>아닙니다. 호스트가 이미 빅엔디언이면 바이트 순서를 유지할 수 있습니다. 목적은 네트워크 순서로 표현하는 것입니다.</p></details><details class="quiz-item"><summary>hostent의 h_length가 4이면 주소가 네 개인가요?</summary><p>아닙니다. IPv4 주소 하나의 길이가 4바이트라는 뜻입니다. 주소 개수는 h_addr_list의 NULL까지 확인합니다.</p></details><details class="quiz-item"><summary>이름을 IP로 바꿨다가 역조회하면 항상 원래 이름인가요?</summary><p>아닙니다. 정방향·역방향 데이터는 별개이며 역방향 이름이 없거나 다른 이름을 반환할 수 있습니다.</p></details><details class="quiz-item"><summary>주소 변환 실습을 실행하면 서버에 연결되나요?</summary><p>아닙니다. 주소를 변환하고 숫자 주소 후보를 생성할 뿐입니다. socket·connect·send는 호출하지 않습니다.</p></details></section>
+<section class="section" id="sources"><div class="section-top"><span class="kicker">08 / CHAPTER 03</span><span class="source-ref">원본 PDF 1–25쪽</span></div><h2>원본 범위와 참고 문서</h2><p>강의 원본은 <span translate="no">ch03_소켓 주소 구조체1.pdf</span>입니다. 파일은 25쪽이며 한 쪽에 슬라이드 두 장을 배치합니다. 표의 슬라이드 번호는 인쇄 번호를 기준으로 하고, 번호 없는 표지·목차·구분 화면은 배치 순서로 셉니다. 마지막 감사 화면은 번호가 없습니다. PDF 쪽은 파일의 실제 페이지 위치입니다.</p><div class="table-wrap"><table><thead><tr><th>PDF</th><th>인쇄 슬라이드</th><th>내용</th></tr></thead><tbody><tr><td>1–2</td><td>1–4</td><td>장 목표와 목차</td></tr><tr><td>3–8</td><td>5–16</td><td>주소 구조체·IPv4·IPv6·함수 인수</td></tr><tr><td>9–13</td><td>17–26</td><td>바이트 순서·변환 함수·실습 3-1</td></tr><tr><td>14–17</td><td>27–34</td><td>IP 입력·주소 변환·실습 3-2</td></tr><tr><td>18–21</td><td>35–42</td><td>DNS·hostent·사용자 함수·실습 3-3</td></tr><tr><td>22–25</td><td>43–49</td><td>Windows/Linux common.h와 main 골격</td></tr></tbody></table></div><p>1장은 네트워크·주소·포트의 개념과 에코 프로그램, 2-1장은 C 자료구조, 2-2장은 소켓 생성·오류 처리를 다룹니다. 이 장은 그 주소 필드를 직접 채우고 변환 결과를 읽는 단계입니다. 수업 주차 대신 장 번호로 구분하며 기존 강의 주소와 완료 체크는 유지합니다.</p><p>도식은 원본 관계를 HTML로 다시 표현했습니다. sockaddr_storage·반환값 검사·getaddrinfo 비교와 독립 C 실습은 보충 내용입니다. 원본 실습의 외부 도메인 조회 결과나 과거 GUI 화면을 현재 실행 결과로 제시하지 않습니다.</p><ul class="source-list"><li><a href="https://man7.org/linux/man-pages/man3/inet_pton.3.html">Linux man-pages · inet_pton</a></li><li><a href="https://man7.org/linux/man-pages/man3/inet_ntop.3.html">Linux man-pages · inet_ntop</a></li><li><a href="https://man7.org/linux/man-pages/man3/byteorder.3.html">Linux man-pages · byteorder</a></li><li><a href="https://man7.org/linux/man-pages/man3/getaddrinfo.3.html">Linux man-pages · getaddrinfo</a></li><li><a href="https://man7.org/linux/man-pages/man3/getnameinfo.3.html">Linux man-pages · getnameinfo</a></li><li><a href="https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-gethostbyname">Microsoft · gethostbyname</a></li></ul></section><footer class="footer"><span>Network Notes · Chapter 03</span><a href="../2-2장/index.html">← 2-2 · 오류 처리와 소켓 API</a><a href="../index.html">전체 강의로 돌아가기</a></footer>
+</div></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body></html>

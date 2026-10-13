@@ -4,7 +4,7 @@
 
 ## 한국어
 
-빅데이터, 인간컴퓨터상호작용(HCI), 네트워크 프로그래밍의 개념과 예제를 정리한 개인 학습 저장소입니다. 장별 학습 페이지를 웹에서 읽을 수 있습니다.
+빅데이터, 인간컴퓨터상호작용(HCI), 네트워크 프로그래밍의 개념과 예제를 정리한 개인 학습 저장소입니다. 장별 학습 페이지를 웹에서 읽을 수 있습니다. 과목 안에서는 **전체 과목 홈 / All courses** 링크로 첫 화면에 돌아옵니다.
 
 **[학습 사이트 열기 →](https://bass131.github.io/KNUT_2ND/)**
 
@@ -13,7 +13,7 @@
 | 빅데이터 | 인간컴퓨터상호작용(HCI) | 네트워크 프로그래밍 |
 | :---: | :---: | :---: |
 | [![데이터 처리와 분석을 표현한 이미지](site/assets/readme-bigdata.png)](https://bass131.github.io/KNUT_2ND/BigData/) | [![사람과 인터페이스의 상호작용을 표현한 이미지](site/assets/readme-hci.png)](https://bass131.github.io/KNUT_2ND/HumanComputerInteraction_HCI/) | [![컴퓨터와 서버의 연결을 표현한 이미지](site/assets/readme-network.png)](https://bass131.github.io/KNUT_2ND/Network_Programing/Lecture_HTML/) |
-| 1~4장 개념·DataFrame 정리 | 1~5장 전체 강의·강조 요약 | 1장·2-1·2-2 소켓 강의·C 예제 |
+| 1~5장 개념·DataFrame·SQL 결과 비교 | 1~6장 전체 강의·강조 요약 | 1장·2-1·2-2·3장 소켓 강의·주소 구조체·C 예제 |
 
 [빅데이터 실습 안내](https://bass131.github.io/KNUT_2ND/BigData/practice/)에서 준비 환경, 전체 코드, 입력 데이터와 예상 결과를 확인할 수 있습니다.
 
@@ -26,7 +26,7 @@
 
 ## English
 
-A personal study repository with notes and examples for three courses: Big Data, Human–Computer Interaction (HCI), and Network Programming. Each chapter can be read as a web page.
+A personal study repository with notes and examples for three courses: Big Data, Human–Computer Interaction (HCI), and Network Programming. Each chapter can be read as a web page. Use **All courses** on any course page to return to the main page.
 
 **[Open the study site →](https://bass131.github.io/KNUT_2ND/)**
 
@@ -35,7 +35,7 @@ Pages open in English by default. Use the **English / 한국어** buttons on eac
 | Big Data | Human–Computer Interaction (HCI) | Network Programming |
 | :---: | :---: | :---: |
 | [![Illustration of data processing and analysis](site/assets/readme-bigdata.png)](https://bass131.github.io/KNUT_2ND/BigData/) | [![Illustration of people interacting with an interface](site/assets/readme-hci.png)](https://bass131.github.io/KNUT_2ND/HumanComputerInteraction_HCI/) | [![Illustration of computers connected to a server](site/assets/readme-network.png)](https://bass131.github.io/KNUT_2ND/Network_Programing/Lecture_HTML/) |
-| Chapters 1–4: concepts and DataFrames | Chapters 1–5: full lectures and emphasis summaries | Chapter 1, 2-1, 2-2: socket lectures and C examples |
+| Chapters 1–5: concepts, DataFrames, and SQL result comparison | Chapters 1–6: full lectures and emphasis summaries | Chapters 1, 2-1, 2-2, 3: sockets, address structures, and C examples |
 
 The [Big Data lab instructions](https://bass131.github.io/KNUT_2ND/BigData/practice/) cover the setup, full code, input data, and expected results.
 

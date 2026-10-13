@@ -2,7 +2,7 @@
 <html lang="ko"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="빅데이터 1~4장 강의 정리와 Docker·Spark 실습 자료.">
+  <meta name="description" content="빅데이터 1~5장 강의 정리와 Docker·Spark 실습 자료.">
   <meta name="theme-color" content="#f5f5f7">
   <title>BigData — 강의 정리와 실습</title>
   <link rel="icon" href="shared/favicon.svg" type="image/svg+xml">
@@ -24,24 +24,26 @@
 <body data-page="home" data-root="./">
   <div id="course-shell"></div>
   <main id="main-content" class="main-content home-main">
+<nav class="course-return" data-course-return="" aria-label="상위 학습 홈"><a data-all-courses="" href="../index.html">전체 과목 홈</a></nav>
+
     <div class="home-hero">
       <div class="hero-copy">
         <p class="eyebrow"><span class="status-dot"></span> DATA ENGINEERING · 2026</p>
         <h1>빅데이터<span>강의 정리 · Docker · Spark</span></h1>
-        <p class="hero-description">1~4장에서 데이터 수집·정리, 작업을 나누어 계산하는 분산 처리, 표 형태의 데이터 구조인 DataFrame을 배웁니다.</p>
+        <p class="hero-description">1~5장에서 데이터 처리, Spark 분산 실행, DataFrame과 SQL을 배우고 결과를 검증합니다.</p>
         <div class="hero-actions"><a class="button" id="continue-learning" href="chapters/01/index.html">1장 열기 <span aria-hidden="true">↗</span></a><a class="text-link" href="#curriculum">강의 목록 <span aria-hidden="true">↓</span></a></div>
         <p><a class="text-link" href="practice/index.html">1~3장 보충 실습 · 코드와 실행 안내 →</a></p>
-        <p class="hero-caption">강의자료 126슬라이드 · 4주차 90쪽 · 제공 실습파일</p>
+        <p class="hero-caption">강의자료 126슬라이드 · DataFrame 90쪽 · SQL 46쪽</p>
       </div>
       <figure class="home-cover" aria-hidden="true"><img src="assets/covers/bigdata.png" alt="" width="1536" height="1024" fetchpriority="high"></figure>
     </div>
 
     <div class="course-overview" aria-label="학습 구성">
-      <div><strong>04</strong><span>개의 챕터</span></div><div><strong>216</strong><span>쪽·슬라이드의 강의자료</span></div><div><strong>02</strong><span>개의 제공 실습 묶음</span></div>
+      <div><strong>05</strong><span>개의 챕터</span></div><div><strong>262</strong><span>쪽·슬라이드의 강의자료</span></div><div><strong>02</strong><span>개의 공개 실습 ZIP</span></div>
     </div>
 
     <section id="curriculum" class="lesson-section home-section" data-title="학습 챕터">
-      <div class="section-heading"><div><p class="eyebrow">YOUR LEARNING PATH</p><h2>강의 목록</h2></div><span class="section-aside">1~4장</span></div>
+      <div class="section-heading"><div><p class="eyebrow">YOUR LEARNING PATH</p><h2>강의 목록</h2></div><span class="section-aside">1~5장</span></div>
       <div class="chapter-cards">
         <a class="chapter-card" href="chapters/01/index.html">
           <div class="chapter-card-top"><span class="chapter-tag">CHAPTER 01</span><span class="card-arrow" aria-hidden="true">↗</span></div>
@@ -63,6 +65,7 @@
           <div class="chapter-illustration pipeline-mini" aria-hidden="true"><span>읽기</span><i>→</i><span>정제</span><i>→</i><span>집계</span></div>
           <div class="chapter-card-content"><p class="card-kicker">04 · DataFrame</p><h3>Spark DataFrame 프로그래밍</h3><p>코드 예시로 주문 데이터를 표로 읽고 자료형과 비어 있는 값을 확인합니다. 주문 금액을 계산하고 사용자별로 합산합니다.</p><div class="chapter-card-meta"><span>자료 구조 · 정제 · 집계 · 실행계획</span><span>90쪽</span></div><div class="chapter-progress"><span data-chapter-progress="04"></span></div><span class="progress-caption" data-chapter-caption="04">학습을 시작해 보세요</span></div>
         </a>
+<a class="chapter-card" href="chapters/05/index.html"><div class="chapter-card-top"><span class="chapter-tag">CHAPTER 05</span><span class="card-arrow" aria-hidden="true">↗</span></div><div class="chapter-illustration pipeline-mini" aria-hidden="true"><span>View</span><i>→</i><span>SQL</span><i>→</i><span>비교</span></div><div class="chapter-card-content"><p class="card-kicker">05 · Spark SQL</p><h3>Spark SQL과 DataFrame 결과 비교</h3><p>View를 등록하고 SQL로 정제·집계합니다. NULL과 조건식, 집계 전후 필터를 구분하고 예상값과 비교합니다.</p><div class="chapter-card-meta"><span>View · SQL · 결과 검증</span><span>46쪽</span></div><div class="chapter-progress"><span data-chapter-progress="05"></span></div><span class="progress-caption" data-chapter-caption="05">학습을 시작해 보세요</span></div></a>
       </div>
       <p class="muted roadmap-note">1장부터 순서대로 읽습니다. 제공 실습에 필요한 환경, 전체 코드와 실습 ZIP 두 개는 3장 앞부분에 있습니다.</p>
     </section>
@@ -73,7 +76,7 @@
     </section>
 
     <section id="materials" class="lesson-section home-section" data-title="실습 파일과 출처">
-      <div class="materials-banner"><div><p class="eyebrow">PRACTICE</p><h2>실습 파일과 출처</h2><p>1~4장 강의와 제공 실습을 다룹니다. 4장은 개념과 코드 예시로 구성되며 별도 실행 파일은 없습니다.</p><p>보충 실습의 코드와 입력 파일은 강의 제공 실습과 별도로 작성한 학습용 예제입니다.</p></div><div class="material-links"><a href="practice/index.html">보충 실습 코드와 실행 순서 <span>1–3장 →</span></a><a href="chapters/03/index.html#full-source">제공 실습 전체 코드와 ZIP <span>실행 관찰·성능 비교 →</span></a></div></div>
+      <div class="materials-banner"><div><p class="eyebrow">PRACTICE</p><h2>실습 파일과 출처</h2><p>1~5장 강의와 제공 실습을 다룹니다. 4장은 DataFrame API, 5장은 같은 주문을 처리하는 SQL과 결과 비교입니다.</p><p>보충 실습의 코드와 입력 파일은 강의 제공 실습과 별도로 작성한 학습용 예제입니다.</p></div><div class="material-links"><a href="practice/index.html">보충 실습 코드와 실행 순서 <span>1–3장 →</span></a><a href="chapters/03/index.html#full-source">제공 실습 전체 코드와 ZIP <span>실행 관찰·성능 비교 →</span></a></div></div>
     </section>
     <footer class="page-footer"><span>BigData · 강의 정리와 실습</span><span>2026학년도 강의 정리</span></footer>
   </main>
