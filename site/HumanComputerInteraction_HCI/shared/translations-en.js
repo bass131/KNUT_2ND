@@ -306,10 +306,9 @@ window.KNUT_TRANSLATIONS = {
       'After defining the experience to provide, specify the design direction for implementing it.',
     '앞의 세 단계를 종합해 목표 경험과 설계 방향을 정리합니다.':
       'Combine the first three stages to define the target experience and design direction.',
-    '본문 파랑 강조는': 'Blue emphasis in the body appears on',
+
     '이며, 본문 빨강 강조는 p. 91에 있습니다.': '; red body emphasis appears on p. 91.',
-    '검정 서식 발췌 39개는 굵게·밑줄 15쪽, 굵게 11쪽, 밑줄 13쪽에 걸쳐 있으며, 중복을 빼면 36쪽입니다.':
-      'The 39 black-style excerpts cover 15 pages with bold and underline, 11 with bold, and 13 with underline, or 36 distinct pages.',
+
     '강조 기준:': 'Emphasis criteria:',
     'PDF 본문의 색·굵게·밑줄': 'Color, bold, and underline in the PDF body',
     '선정 범위:': 'Selection scope:',
@@ -657,8 +656,7 @@ window.KNUT_TRANSLATIONS = {
       'Predictability is the expectation of reasonable results, dependability is rapport built through interaction, and faithfulness is the willingness to entrust goals. Credibility for AI also rests on safety, security, and stability.',
     '이해 보완 · 답을 먼저 설명한 뒤 펼쳐서 이유를 확인하는 서술형 복습입니다.':
       'Supplement · explain your answer first, then open it to check the reasoning.',
-    '요약은 46쪽의 대표 강조 구절을 담고 있습니다.':
-      'The summary includes representative emphasized excerpts from 46 pages.',
+
     '기준: PDF 본문의 색·굵게·밑줄이며, 색과 글자 서식이 겹치면 색으로 표시합니다.':
       'Basis: color, bold, and underline in the PDF body text; color labels take precedence when they overlap with typography.',
     '범위: 본문의 개념 설명을 발췌하며, 제목·표 머리글·캡션·장식의 서식은 강조에서 제외합니다.':
@@ -666,7 +664,7 @@ window.KNUT_TRANSLATIONS = {
     '보완: 정의 풀이·비교표·추가 사례·복습 문제는 원문과 구분한 설명이며, 강조 표시는 실제 출제 여부를 뜻하지 않습니다.':
       'Supplements: definitions, comparison tables, added examples, and recall questions are distinguished from the source; emphasis labels do not indicate actual exam inclusion.',
     '개념 구분': 'Concept distinctions',
-    '굵게·밑줄 선정 기록': 'Bold and underline selection record',
+
     '5장 전체 강의 →': 'Chapter 5 full lecture →',
     '5장 강조 요약 →': 'Chapter 5 emphasis summary →',
     '1~5장 전체 강의와 교수님 강조 요약.':
@@ -710,9 +708,7 @@ window.KNUT_TRANSLATIONS = {
       'People review results and use feedback to shape the system’s next action.',
     '세 차원의 방향을 비교한 개념 도식입니다. 실제 측정값을 나타내지 않습니다.':
       'This conceptual diagram compares the directions of the three dimensions. It does not show measured values.',
-    '상세 검증 보고서': 'Detailed verification report',
-    '원본 대조 기록': 'Source comparison record',
-    '내용·강조 대조 기록': 'Content and emphasis comparison record',
+
     '원본 자료와 작업 문서는 공개하지 않습니다.':
       'Original materials and working documents are not published.',
     'HCI · 강의 정리': ' HCI · Lecture notes',
@@ -1418,7 +1414,7 @@ window.KNUT_TRANSLATIONS = {
     '완료 기준:': ' Completion criteria: ',
     '사용자·과업·맥락, 행동과 반응 세 쌍, 세 평가 기준의 근거, 개선안 하나를 기록했는지 확인합니다.':
       ' Check that you recorded the user, task, and context; three action–response pairs; evidence for the three evaluation criteria; and one improvement.',
-    '검토일 2026. 09. 08.': ' Reviewed September 8, 2026',
+
     '원본에 충실하게.': ' Faithful to the source.',
     '설명은 더 정확하게.': ' More precise explanations.',
     '원본 강의자료: 1장 HCI 3.0의 개념 · 58쪽':
@@ -1653,7 +1649,7 @@ window.KNUT_TRANSLATIONS = {
     '본문 색상 강조 페이지': ' Pages with body-text color emphasis',
     '빨간색 강조 페이지': ' Pages with red emphasis',
     '강의자료 기반': ' Based on lecture materials',
-    '상세 검증 보고서 ↗': ' Detailed verification report ↗',
+
     '전체 강의본 ↗': ' Full lecture version ↗',
     '출처: 최일준 교수 「1장. HCI 3.0의 개념」 · 각 p. 표시는 강의자료의 실제 페이지 번호입니다.':
       ' Source: Professor Choi Il-jun, “Chapter 1. The concept of HCI 3.0” · Page references indicate actual pages in the lecture materials.',
@@ -2158,7 +2154,7 @@ window.KNUT_TRANSLATIONS = {
     '가상현실(VR)은 가상 환경을, 증강현실(AR)은 현실에 디지털 요소를 겹치는 방식을 뜻합니다.':
       ' Virtual reality (VR) provides a virtual environment; augmented reality (AR) overlays digital elements on reality.',
     '검색 결과가 없습니다. 다른 용어로 검색해 보세요.': ' No results found. Try another term.',
-    '원본 대조 기록 ↗': ' Source comparison record ↗',
+
     '이해 보완 · 자체 학습 활동. 강의의 경험 차원을 적용하는 가상 사례이며 교수님 강조나 실제 시험 문제가 아닙니다.':
       ' Supplementary explanation · Self-study activity. This fictional case applies the lecture’s experience dimensions and is neither instructor emphasis nor an actual exam question.',
     상황: ' Situation',
@@ -2200,7 +2196,7 @@ window.KNUT_TRANSLATIONS = {
     '빨간 강조: 결국 어떤 경험을 제공할 것인가.':
       ' Red emphasis: what experience will ultimately be provided?',
     '가리고 떠올리는 서술형 복습.': ' Written review with answers hidden.',
-    '강조 위치와 선정 기준.': ' Emphasis locations and selection criteria.',
+
     '강조된 이론을,': ' Turn emphasized theory, ',
     '설명할 수 있는 지식으로.': ' into knowledge you can explain.',
     '2장 교수님 강조 요약. 정의와 비교, 조절 요인, 목표 경험 설정을 원본 페이지와 함께 복습합니다.':
@@ -2285,8 +2281,7 @@ window.KNUT_TRANSLATIONS = {
     '31쪽': ' 31 pages',
     '본문 파랑 · 추출 목록': ' Body-text blue emphasis · Extracted list',
     '본문 빨강 · 이미지 확인': ' Body-text red emphasis · Image verification',
-    'p. 2의 교재 목차, 표지·마지막 페이지의 이메일 링크 색상은 본문 강조 수에서 제외했습니다.':
-      ' The textbook contents on p. 2 and colored email links on the cover and final page are excluded from body-text emphasis counts.',
+
     '2장 전체 강의 ↗': ' Chapter 2 full lecture ↗',
     '← 1장 강조 요약': '← Chapter 1 emphasis summary',
     '3장 강조 요약 →': ' Chapter 3 emphasis summary →',
@@ -2978,7 +2973,7 @@ window.KNUT_TRANSLATIONS = {
     '한 측면을 높이는 선택이 다른 측면에 불리하게 작용할 수 있는 관계.':
       ' A relationship in which improving one aspect can disadvantage another.',
     'rPPG · 원격 광용적맥파 측정': ' rPPG · Remote photoplethysmography',
-    '내용·강조 대조 기록 ↗': ' Content and emphasis comparison record ↗',
+
     '이해 보완 · 자체 학습 활동. 아래는 개념을 적용하기 위한 가상 사례입니다. 실제 서비스 평가 결과가 아닙니다.':
       ' Supplementary explanation · Self-study activity. The following is a fictional case for applying concepts, not an actual service evaluation result.',
     '학생이 수업 전에 빈 강의실을 찾아 조별 모임을 열려고 합니다. 서비스는 강의실 목록과 사용 가능 시간을 보여 주지만, 건물 위치와 인원 제한은 표시하지 않습니다.':
@@ -3566,7 +3561,7 @@ window.KNUT_TRANSLATIONS = {
       'A judgment error involving misunderstanding or misapplication of a situation, knowledge, or rule.',
     '검색 결과가 없습니다.': 'No matching terms.',
     '핵심 용어 찾아보기': 'Key terms',
-    '원본 범위와 보완 설명': 'Source scope and learning supplements',
+
     '사용성이란 무엇일까': 'What is usability?',
     '사용자가 특정한 목적을 달성하기 위해 시스템이나 제품을 이용할 때, 그 과정이 얼마나 효과적':
       'When users employ a system or product to achieve a particular goal, how effective the process is',
@@ -3680,7 +3675,7 @@ window.KNUT_TRANSLATIONS = {
       'What must be distinguished from intended action on p. 69?',
     '서술형 복습': 'Recall questions',
     '4장 전체 강의 ↗': 'Chapter 4 full lecture ↗',
-    '강조 선정과 제외 기준': 'Emphasis inclusion and exclusion criteria',
+
     '사용성의 원리': 'Principles of usability',
     '사용자의 목표와 맥락을 기준으로 효율성·정확성·의미성·유연성·일관성을 구분하고, 오류를 줄이는 설계를 설명합니다.':
       "Distinguish efficiency, accuracy, meaningfulness, flexibility, and consistency through users' goals and contexts, and explain designs that reduce errors.",
@@ -3711,7 +3706,7 @@ window.KNUT_TRANSLATIONS = {
     '개발 과정의 네 단계와 반복': 'Four development stages and iteration',
     '사회적 가치와 ESG': 'Social value and ESG',
     '파랑 강조 용어': 'Terms emphasized in blue',
-    '강조 위치와 선정 기준': 'Emphasis locations and selection criteria',
+
     '사용자 경험의 범위': 'The scope of user experience',
     '경험의 세 차원': 'Three dimensions of experience',
     '감각적 경험과 실재감': 'Sensory experience and presence',
@@ -4179,7 +4174,7 @@ window.KNUT_TRANSLATIONS = {
       'Cases performed consciously, but in a way that is incorrect or creates risk',
     '오용 가능성을 사전에 예측하고 경고·차단하는 책임':
       'The responsibility to anticipate possible misuse and to warn against or block it',
-    '굵게·밑줄 선정 기록 ↗': 'Bold and underline selection record ↗',
+
     '실제 빨강·파랑·굵게·밑줄 구절과 보완 설명을 구분해 사용성의 속성과 사용 오류를 복습합니다.':
       'Review usability attributes and use errors while distinguishing actual red, blue, bold, and underlined excerpts from learning supplements.',
     '색상·굵게·밑줄 표시는 원본의 실제 강조를 뜻하며 시험 출제 확정을 뜻하지 않습니다.':
@@ -5670,14 +5665,10 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
   '생성형 AI로 만든 페르소나 초안의 올바른 사용은?':
     'How should a generative-AI persona draft be used?',
   '서술형 복습': 'Recall questions',
-  '출처는 PDF 첫 쪽부터 센 실제 페이지 번호입니다. 본문과 이미지 표를 재구성했으며 원본 PDF·슬라이드 뷰어는 노출하지 않습니다. 가상 사례·연습·확인 문제와 요약의 해설은 이해 보완입니다.':
-    'Source numbers count actual PDF pages from the first page. Text and image tables are adapted without exposing source PDF or slide viewers. Hypothetical examples, activities, questions, and summary explanations are learning supplements.',
+
   '요약은 색·검정 굵게·밑줄의 실제 구절만 발췌합니다. 색과 서식이 겹치면 색을 우선합니다. 반복 슬라이드 제목·표 머리글·행 라벨·캡션·장식·이메일은 제외하며, 본문에 놓인 절차 단계 문구는 학습 내용으로 선정했습니다. 표시는 출제 확정이나 중요도 순위가 아닙니다.':
     'The summary excerpts actual colored, black bold, and underlined passages. Color takes precedence. Repeated slide titles, table headers, row labels, captions, decoration, and email links are excluded; procedural step phrases within the body are included as learning content. Labels do not indicate confirmed exam content or importance rankings.',
-  '이미지 안의 표·그림은 실제 렌더링으로 확인해 본문에서 설명합니다. 이미지의 색이나 굵기를 추출된 글자 서식과 동일하게 간주해 강조 수를 늘리지 않았습니다. 부분 발췌는 문장 전체가 강조되었다는 뜻이 아닙니다.':
-    'Image tables and diagrams were checked visually and explained in the lecture. Their colors or bold lettering were not treated as extracted typography to inflate emphasis counts. A partial excerpt does not mean the whole sentence was emphasized.',
-  '원본 범위와 강조 기준': 'Source scope and emphasis criteria',
-  '강조 선정과 제외 기준': 'Emphasis inclusion and exclusion criteria',
+
   '관계자 분석': 'Stakeholder analysis',
   '관계자를 파악하고 영향을 분석한 뒤, 사회기술모형과 페르소나로 서비스의 관계 구조와 사용 경험을 구체화합니다.':
     'Identify stakeholders and impacts, then use socio-technical models and personas to make service relationships and use experiences concrete.',
@@ -5689,8 +5680,7 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
   '조사 · 기본 정의 · 관계 · 검증': 'Research · root definition · relations · validation',
   페르소나: 'Persona',
   '단서 · 기간구조 · 인물 · 프로파일': 'Clues · skeleton · person · profile',
-  '대표 발췌 103개입니다. 원문 발췌와 이해 보완을 구분해 읽습니다.':
-    'There are 103 representative excerpts. Distinguish source excerpts from learning supplements.',
+
   '전체 과목 홈': 'All courses',
   '6장': 'Chapter 6',
   '원본 108쪽': '108 source pages',
@@ -5724,4 +5714,48 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
   'p.80의 도식은 시장세분화에 인구통계가 항상 포함되고 시장 규모·가치와 기술·태도·행동은 포함될 수 있다고 표시합니다. 페르소나는 기술·태도·행동과 심성 모형·목표를 항상 포함하고 인구통계는 포함될 수 있다고 표시합니다. p.81의 일반 설명과 함께 읽습니다.':
     'The diagram on p.80 marks demographics as always present in market segmentation, with segment size/value and skills/attitudes/behaviors as possible. For personas, skills/attitudes/behaviors and mental models/goals are always present, while demographics may be present. Read this alongside the general explanation on p.81.',
   '원본 pp.86–98의 제작 순서': 'Creation sequence on pp.86–98',
+});
+
+Object.assign(window.KNUT_TRANSLATIONS.text, {
+  '출처와 읽기 안내': 'Sources and reading guide',
+  '강조 표기와 출처': 'Emphasis labels and sources',
+  '라벨은 원문의 글자색과 서식을 나타냅니다. 각 구절의 쪽 번호로 주변 설명을 함께 읽을 수 있습니다.':
+    'Labels identify the color and formatting of the source text. Use each passage’s page number to read its surrounding explanation.',
+  '따옴표 안은 원문 발췌이며, 라벨은 해당 구절의 글자색과 서식을 나타냅니다. 쪽 번호를 따라 주변 정의와 사례를 함께 읽으세요.':
+    'Text in quotation marks is excerpted from the source; labels identify its color and formatting. Follow the page references to read the surrounding definitions and examples.',
+  '강조 라벨은 원문의 글자색·굵게·밑줄을 나타냅니다. 구절 옆의 쪽 번호를 따라 정의와 사례를 함께 읽으세요.':
+    'Emphasis labels identify source text color, bold, and underlining. Follow the page number beside each passage to read the definitions and examples.',
+  구분: 'Group',
+  속성: 'Attribute',
+  '본문 빨강 · 출처 페이지': 'Body red · source pages',
+  '본문 파랑 · 출처 페이지': 'Body blue · source pages',
+  '본문 굵게·밑줄 · 출처 페이지': 'Body bold and underlined · source pages',
+  '본문 굵게 · 출처 페이지': 'Body bold · source pages',
+  '본문 밑줄 · 출처 페이지': 'Body underlined · source pages',
+  '원문 굵게·밑줄': ' Source: bold and underlined emphasis',
+  '원문 굵게': ' Source: bold emphasis',
+  '원문 밑줄': ' Source: underlined emphasis',
+  유용성: 'Usefulness',
+  신뢰성: 'Reliability',
+  해석: 'Interpretation',
+  조건: 'Condition',
+  '3번 선택지.': 'Option 3.',
+  '원본 사례': 'Source example',
+  '강조 라벨과 쪽 번호를 함께 보고, 원문 구절과 보완 설명을 구분해 읽으세요.':
+    'Read the emphasis label and page number together, distinguishing source passages from supplementary explanations.',
+  '원문 파랑 · 출처 페이지': 'Source blue · source pages',
+  '원문 굵게 · 출처 페이지': 'Source bold · source pages',
+  '원문 밑줄 · 출처 페이지': 'Source underlined · source pages',
+  '원문 굵게·밑줄 · 출처 페이지': 'Source bold and underlined · source pages',
+  'p.105의 정리에서는 관계자 분석의 세 단계와 각 모형의 역할을 연결해 복습하세요. 참고문헌은 p.106의 HCI 3.0·HCI 1.0 교재와 대학 강의자료입니다.':
+    'Use the recap on p.105 to connect the three stages of stakeholder analysis with each model’s role. Page 106 lists the HCI 3.0 and HCI 1.0 textbooks and university lecture materials as references.',
+  '출처는 「6장 분석하기」 강의자료이며, 쪽 번호는 PDF 첫 쪽부터 셉니다. 가상 사례·연습·확인 문제와 요약의 해설은 이해 보완입니다.':
+    'The source is the Chapter 6 lecture material on analysis; page numbers count from the first PDF page. Hypothetical examples, activities, questions, and summary explanations are learning supplements.',
+  '요약의 라벨은 원문 구절의 글자색·굵게·밑줄을 나타내며, 색과 서식이 겹치면 색으로 표시합니다. 제목·표 머리글·행 라벨·캡션·장식·이메일의 서식은 본문 강조와 구분합니다. 본문의 절차 단계도 강조 구절에 포함되며, 강조가 출제 확정이나 중요도 순위를 뜻하지는 않습니다.':
+    'Summary labels identify the color, bold, and underlining of source passages, with color taking precedence where styles overlap. Formatting in titles, table headers, row labels, captions, decoration, and email links is distinct from body emphasis. Procedural steps in the body are also included; emphasis does not indicate confirmed exam content or importance rankings.',
+  '표·그림의 해설은 전체 강의에서 해당 쪽 번호와 함께 읽을 수 있습니다. 그림의 색과 도형은 관계나 구조를 설명하는 표시이며 본문의 글자 강조와 구분합니다. 부분 발췌의 강조 라벨은 그 구절에만 해당합니다.':
+    'Read explanations of tables and diagrams alongside their page references in the full lecture. Colors and shapes in diagrams describe relationships or structures and are distinct from emphasis in body text. A partial excerpt’s emphasis label applies only to that passage.',
+  '원문 발췌는 강조 라벨과 쪽 번호로 확인하고, 이해 보완은 개념을 연결하는 해설로 읽으세요.':
+    'Identify source excerpts by their emphasis labels and page numbers, and read learning supplements as explanations connecting the concepts.',
+  '원문 빨강 · 출처 페이지': 'Source red · source pages',
 });

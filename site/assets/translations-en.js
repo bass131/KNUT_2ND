@@ -10,7 +10,7 @@ window.KNUT_TRANSLATIONS = {
     '라이트 모드로 전환': 'Switch to light mode',
     'KNUT 4학년 2학기': 'KNUT Year 4, Semester 2',
     '과목 정리 모음': 'Course notes',
-    '나의 과목': 'Courses',
+    '과목 목록': 'Courses',
     '3과목 · 챕터별 강의와 실습': '3 courses · Lectures and practice by chapter',
     빅데이터: 'Big Data',
     '데이터를 모으고 처리하는 큰 그림부터': 'From collecting and processing data',
@@ -49,7 +49,7 @@ window.KNUT_TRANSLATIONS = {
     'WSL · GCC 설치 가이드 ↗': 'WSL · GCC setup guide ↗',
     'HCI 6장 강조 요약 ↗': 'HCI Chapter 6: emphasis summary ↗',
     '빅데이터 공유본 ↓': 'Download Big Data pages ↓',
-    'KNUT_2ND · 나의 2학기 학습 공간': 'KNUT_2ND · Semester 2 study notes',
+    'KNUT_2ND · 2학기 학습 자료': 'KNUT_2ND · Semester 2 study materials',
     '각 과목의 ‘전체 과목 홈’에서 이 페이지로 돌아올 수 있습니다.':
       'Select “All courses” on any course page to return here.',
   },

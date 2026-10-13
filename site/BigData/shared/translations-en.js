@@ -17,8 +17,8 @@ window.KNUT_TRANSLATIONS = {
     '정상 실행에서는 관찰 대기 후': ' On a successful run, after the observation wait, the',
     '을 호출해 세션을 종료합니다. 오류가 나도 종료를 시도하며, 정상 경로에서만':
       ' to stop the session. Shutdown is also attempted after an error; only on the normal path',
-    '는 같은 Compose 프로젝트에서 현재 설정에 없는 서비스의 컨테이너를 제거합니다. 이전 설정의 세 번째 Worker가 남아 있다면 함께 제거됩니다.':
-      ' removes containers for services absent from the current configuration within the same Compose project. A third Worker left over from an earlier configuration is removed as well.',
+    '는 같은 Compose 프로젝트에서 현재 설정에 없는 서비스의 컨테이너를 제거합니다. 실행 전에 같은 프로젝트에서 유지해야 할 컨테이너가 있는지 확인하세요.':
+      ' removes containers for services absent from the current configuration within the same Compose project. Before running it, check whether any containers in that project need to be retained.',
     '로그 명령은 보충 진단용입니다. Master의 healthy는 웹 응답 확인이므로 Worker 등록도 따로 확인하세요.':
       ' The log command is a supplementary diagnostic. Master’s healthy status confirms a web response; check Worker registration separately.',
     '은 각 행의 어떤 열을 어떻게 계산할지 정의한 규칙입니다. Driver에서 이 표현식을 만들고, Executor가 각 행에 적용해 계산합니다.':
@@ -68,8 +68,8 @@ window.KNUT_TRANSLATIONS = {
     '가게에서 주문을 정리한 뒤 창고·배송을 연결하고, 주문이 제대로 전달되는지 확인하는 과정과 비슷합니다.':
       'The sequence is like organizing orders in a shop, connecting warehouse and delivery operations, then checking that the orders arrive correctly.',
     '주차별 강의 범위': 'Course topics by week',
-    '표의 후반 주차는 강의 계획이며, 상세 학습 페이지는 아직 없습니다.':
-      'The later weeks are part of the course plan; their detailed learning pages are not yet available.',
+    'Docker 환경에서 분산 실행을 확인하고, DataFrame과 SQL로 주문 데이터를 정제·집계합니다. Lakehouse와 Streaming은 그다음에 연결할 주제입니다.':
+      'Verify distributed execution in Docker, then clean and aggregate orders with DataFrame and SQL. Lakehouse and Streaming are topics that build on these foundations.',
     '용어 정리 · 파일 형식과 후반부 기술': 'Terms · File formats and later course technologies',
     '강의 계획의': 'In the course plan,',
     '은 학습 범위를 넓혀 가는 순서를 나타냅니다. CSV·Parquet은 파일 형식, Iceberg는 테이블 형식, Kafka는 이벤트 플랫폼입니다.':
@@ -164,8 +164,8 @@ window.KNUT_TRANSLATIONS = {
     '학습 확인 항목': 'Learning Checklist',
     '아래는 강의에서 제공한 실습 파일입니다. 같은 폴더 구조로 저장한 뒤 이 장의 준비·검사·제출 순서로 실행합니다.':
       'These are the supplied lab files. Preserve their folder structure and follow the setup, checking, and submission steps in this chapter.',
-    '제공 README의 안내는 실제 실행 검증을 거치지 않았으므로, 자신의 PC에서 위 확인 항목을 점검합니다.':
-      'The supplied README’s instructions were not verified by running them. Check the items above on your own PC.',
+    '실행 후에는 위 확인 항목으로 이미지·등록·통신·계산·종료 상태를 각각 점검합니다.':
+      'After running the lab, use the checklist above to check the image, registration, communication, computation, and shutdown separately.',
     '내 PC에서': 'On Your PC:',
     '1부터 100까지의 합을 여러 계산 자원에 나누어 구합니다. 환경과 전체 코드를 확인하고, 데이터가 나뉘고 합쳐지는 과정을 배웁니다. Worker와 코어 수를 바꾸어 실행 구조와 처리 시간을 비교합니다.':
       ' Compute the sum of 1 through 100 across multiple computing resources. Check the environment and full source, then learn how data is split and combined. Change the Worker and core counts to compare execution and processing time.',
@@ -426,8 +426,8 @@ window.KNUT_TRANSLATIONS = {
     '로그를 확인한 뒤 실습 환경을 종료합니다.':
       ' Check the logs, then shut down the lab environment.',
     '예상값과 측정값': 'Expected values and measurements',
-    '합계·단어 수는 합성 입력의 예상값이며 Spark 실행·성능은 미검증 상태이므로, 빈 측정 CSV에는 자신의 환경에서 실행한 값을 기록합니다.':
-      'The sums and word counts are expected values for the synthetic inputs; Spark execution and performance have not been verified, so fill the blank measurement CSV with results from your own environment.',
+    '합계·단어 수는 합성 입력에서 계산한 예상값입니다. 실행 결과를 예상값과 비교하고, 빈 측정 CSV에는 자신의 환경에서 측정한 시간과 자원 사용을 기록합니다.':
+      'Sums and word counts are expected values calculated from the synthetic input. Compare your results with these values, and record the time and resource usage measured in your environment in the blank measurement CSV.',
     '파일 이름을 누르면 다운로드 파일과 같은 전체 내용이 펼쳐집니다. 코드 블록의 복사 버튼으로 복사해 UTF-8로 저장할 수 있습니다.':
       'Select a file name to expand its full contents, which match the download. Use the copy button on each code block and save the text as UTF-8.',
     'Spark 실행 구조 복습': 'Review Spark execution',
@@ -715,7 +715,8 @@ window.KNUT_TRANSLATIONS = {
     기말시험: ' Final exam',
     '설계·구현·검증의 선택을 설명할 수 있을까?':
       ' Can I explain my design, implementation, and verification choices?',
-    '현재 학습 페이지는 1–4장입니다.': ' The current learning pages cover Chapters 1–4.',
+    '1~5장에서는 Spark의 실행과 표 연산을 배웁니다.':
+      'Chapters 1–5 cover Spark execution and table operations.',
     이름: ' Name',
     '우선 알아둘 뜻': ' Initial definition',
     '쉼표 등 구분자로 열을 나눈 텍스트 파일 형식':
@@ -1058,11 +1059,11 @@ window.KNUT_TRANSLATIONS = {
     '이 장의 제공 실습:': ' Supplied lab for this chapter:',
     아래에서: ' Check the files under',
     '의 파일을 확인하고 진행합니다.': ' before proceeding.',
-    '별도 공개 실습:': ' Separate public lab:',
-    '공개 실습 파일과 준비 안내': ' Public lab files and setup instructions',
+    '별도 보충 실습:': 'Separate supplementary lab:',
+    '보충 실습 파일과 준비 안내': 'Supplementary lab files and setup instructions',
     '에서 Compose·Python·Bash 전체 파일을 받을 수 있습니다.':
       ' provide the complete Compose, Python, and Bash files.',
-    '공개용 첫 계산': ' The public first-calculation lab',
+    '보충 합계 실습': 'The supplementary sum lab',
     '은 별도 practice 폴더와 Master 28080·Driver 24041 포트를 사용합니다.':
       ' uses a separate practice folder and ports 28080 for Master and 24041 for Driver.',
     'Linux용 Spark 환경을 Windows에서 실행하려고':
@@ -1387,8 +1388,8 @@ window.KNUT_TRANSLATIONS = {
     '학습용 비유 · 출석과 전화 확인': ' Learning analogy · Attendance and phone checks',
     '는 백그라운드 실행입니다. 첫 줄은 이번 실습에 쓸 네 서비스를 지정합니다.':
       ' runs in the background. The first line names the four services used in this lab.',
-    '는 같은 Compose 프로젝트에서 현재 파일에 정의되지 않은 서비스의 컨테이너를 제거합니다. 이전 설정으로 만든 세 번째 Worker가 남아 있다면 함께 정리됩니다.':
-      ' removes containers in the same Compose project whose services are absent from the current file. A third Worker left over from an earlier configuration is removed as well.',
+    '는 같은 Compose 프로젝트에서 현재 파일에 정의되지 않은 서비스의 컨테이너를 제거합니다. 실행 전에 같은 프로젝트에서 유지해야 할 컨테이너가 있는지 확인하세요.':
+      ' removes containers in the same Compose project whose services are absent from the current file. Before running it, check whether any containers in that project need to be retained.',
     '준비가 끝날 때까지 기다린 뒤 네 컨테이너의 상태를 확인하세요. 옵션의 의미는':
       ' Wait for startup, then inspect the four containers. For option details, see',
     'Docker Compose up 공식 문서': ' the official Docker Compose up documentation',
@@ -2275,7 +2276,7 @@ window.KNUT_TRANSLATIONS = {
     '그룹별 count': ' Grouped count',
     '전체 count': ' Overall count',
     '파일을 받아 같은 연산 실행하기': ' Download files and run the same operations',
-    '합성 문장으로 단어를 세는 공개 실습': ' The public synthetic-sentence word-count lab',
+    '합성 문장으로 단어를 세는 보충 실습': 'The supplementary synthetic-sentence word-count lab',
     '에는 입력 텍스트, 전체 Python 코드, 예상 CSV가 있습니다. HDFS 없이 local[2]에서 입력·중간 표·Parquet 저장과 재읽기를 확인합니다. 클러스터 Worker 비교는 별도의 분산 실습에서 진행합니다.':
       ' provides input text, complete Python code, and expected CSV. It checks input, intermediate tables, Parquet writing, and rereading in local[2] without HDFS. Worker comparisons use a separate distributed lab.',
     '실제 코드 · 제출부터 종료까지': ' Actual code · From submission to shutdown',
@@ -3088,8 +3089,8 @@ window.KNUT_TRANSLATIONS = {
       ' Check correctness and actual resource usage, then explain measurements together with overhead.',
     '5–6쪽, 단계 8–10과 풀이 기준 ·': ' Pages 5–6, steps 8–10 and interpretation criteria ·',
     '성능 측정 코드': ' Performance measurement code',
-    '독립적으로 실행할 공개 예제': ' A public example that runs independently',
-    '공개 Worker 성능 비교': ' Public Worker performance comparison',
+    '독립적으로 실행할 보충 예제': 'A supplementary example that runs independently',
+    '보충 Worker 성능 비교': 'Supplementary Worker performance comparison',
     '에 전체 측정 코드, 제출 스크립트, Compose 설정과 빈 CSV 기록표가 있습니다. 작은 입력 확인부터 1·2·4·8 Worker와 Core 상한 비교까지 안내합니다.':
       ' provides full measurement code, submission script, Compose settings, and a blank CSV record sheet. It covers small-input checks and comparisons of 1, 2, 4, and 8 Workers and core limits.',
     '이전 · 2장': ' Previous · Chapter 2',
@@ -4348,10 +4349,10 @@ window.KNUT_TRANSLATIONS = {
 };
 
 Object.assign(window.KNUT_TRANSLATIONS.text, {
-  '4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다. 장 번호는 학습 내용의 구분이며 휴강을 반영한 실제 수업 날짜를 뜻하지 않습니다.':
-    'Chapter 4 reads, cleans, and aggregates orders with the DataFrame API. Chapter 5 expresses the same operations in SQL and checks values, row counts, and ordering. Chapter numbers identify topics, not class dates adjusted for holidays.',
-  '2026-bigdata-04.pdf의 88–90쪽과 2026-bigdata-week04-dataframe-notes.md의 23절은 SQL을 후속 학습으로 예고합니다. 새 원본 1쪽은 Join·Window Function·CTE를 범위에서 제외합니다. 따라서 이 장은 SQL 표현과 결과 검증까지 다룹니다.':
-    'Pages 88–90 of 2026-bigdata-04.pdf and section 23 of 2026-bigdata-week04-dataframe-notes.md introduce SQL as the next topic. Page 1 of the new source excludes joins, window functions, and CTEs. This chapter therefore covers SQL expressions and result verification.',
+  '4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다.':
+    'Chapter 4 reads, cleans, and aggregates orders with the DataFrame API. Chapter 5 expresses the same operations in SQL and checks values, row counts, and ordering.',
+  'DataFrame의 열 선택·조건식·집계에 대응하는 SQL을 배우고, 두 방식의 결과를 비교합니다. Join·Window Function·CTE는 이 장의 범위에 포함하지 않습니다. 선행 개념과의 연결은 2026-bigdata-04.pdf 88–90쪽과 2026-bigdata-week04-dataframe-notes.md 23절을 참고합니다.':
+    'Learn the SQL counterparts of DataFrame column selection, conditions, and aggregation, then compare both results. Join, Window Functions, and CTEs are outside this chapter’s scope. For connections to the preceding concepts, see pages 88–90 of 2026-bigdata-04.pdf and section 23 of 2026-bigdata-week04-dataframe-notes.md.',
   '4장 · DataFrame API': 'Chapter 4 · DataFrame API',
   '5장 · Spark SQL': 'Chapter 5 · Spark SQL',
   '집계 뒤 filter': 'filter after aggregation',
@@ -4366,10 +4367,10 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
   '4장과 5장의 학습 범위': 'How Chapters 4 and 5 connect',
   '출처: 2026-bigdata-week05-lecture-notes.pdf, 1–4쪽.':
     'Source: 2026-bigdata-week05-lecture-notes.pdf, pp. 1–4.',
-  '4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽의 주문 12행을 사용합니다. 로컬 제공 자료의 orders.csv와 대조했으며 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 수치는 원본과 손계산에 따른 예상값이며 이 페이지 작성 중 Spark를 실행한 기록은 아닙니다.':
-    'The four rows in Chapter 4 are a small conceptual example. This chapter uses the 12 orders on source page 3, checked against the supplied local orders.csv. Excluding orders 4, 6, and 9 leaves nine valid orders. Values here come from the source and independent calculations, not from a Spark run performed while writing this page.',
-  '아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다. 원본의 실행 파일명과 폴더명은 출처를 식별하기 위해 그대로 둡니다.':
-    'The following code is an explanatory excerpt. Use it in order inside a Python program in a Spark 4.1.3 environment. The input path is inside the container and must resolve on the Client and every Worker. Original program and directory names are retained as provenance.',
+  '4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽과 제공 실습 orders.csv의 주문 12행을 사용합니다. 수량·가격 조건에 따라 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 표와 수치는 이 입력을 정제·집계한 예상 결과입니다.':
+    'The four rows in Chapter 4 are a small conceptual example. This chapter uses the 12 orders on source page 3 and in the supplied orders.csv. Applying the quantity and price conditions excludes orders 4, 6, and 9, leaving nine valid orders. The tables and values below are the expected results of cleaning and aggregating this input.',
+  '아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다.':
+    'The code below consists of excerpts for explaining the lecture. Place them in order within a Python program running in Spark 4.1.3. File paths are inside the containers, and the input CSV must be available at the same path in the Client and every Worker.',
   'nullable=False는 데이터베이스의 NOT NULL 저장 제약과 적용 시점이 다릅니다. Python List로 createDataFrame을 호출하면 기본 verifySchema=True에서 NULL 불가 필드의 None을 거부합니다. 반면 원본의 CSV 비교 예에서는 읽은 Schema의 nullable이 True가 되고 누락 수량이 남습니다. 선언만 믿지 말고 실제 Schema와 NULL 행을 검사합니다.':
     'nullable=False is enforced differently from a database NOT NULL storage constraint. With a Python list, createDataFrame uses verifySchema=True by default and rejects None in a non-nullable field. In the source CSV example, the read schema becomes nullable and the missing quantity remains. Inspect the actual schema and null rows instead of relying only on the declaration.',
   'CSV의 잘못된 수량은 Schema 선언만으로 모두 제거될까요?':
@@ -4518,8 +4519,8 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
   '46쪽 원본 기반': 'Based on 46 source pages',
   '← 4장 · Spark DataFrame 프로그래밍': '← Chapter 4 · Spark DataFrame Programming',
   '4장 · 주문 데이터': 'Chapter 4 · Order data',
-  '이 장은 개념별 코드 발췌와 4행 예시로 설명합니다. 현재 로컬 제공 실습에는 orders.csv 12행과 비교 프로그램이 있으며, 5장의 예상값은 그 12행을 기준으로 합니다.':
-    'This chapter explains concepts through code excerpts and a four-row example. The current local lab includes a 12-row orders.csv and a comparison program; Chapter 5 uses those 12 rows for its expected values.',
+  '이 장은 개념별 코드 발췌와 4행 예시로 설명합니다. 제공 실습의 orders.csv는 12행이며, 5장에서는 이 입력으로 DataFrame과 SQL의 결과를 비교합니다.':
+    'This chapter uses code excerpts and a four-row example to explain each concept. The supplied orders.csv contains 12 rows; Chapter 5 uses this input to compare DataFrame and SQL results.',
   '출처: 2026-bigdata-04.pdf, 4–12쪽 · 2026-bigdata-week04-dataframe-notes.md.':
     'Source: 2026-bigdata-04.pdf, pp. 4–12; 2026-bigdata-week04-dataframe-notes.md.',
   '출처: 2026-bigdata-04.pdf, 13–20쪽 · 2026-bigdata-week04-dataframe-notes.md.':
@@ -4546,9 +4547,9 @@ Object.assign(window.KNUT_TRANSLATIONS.text, {
     'Source: 2026-bigdata-04.pdf, pp. 79–81; 2026-bigdata-week04-dataframe-notes.md.',
   '출처: 2026-bigdata-04.pdf, 82–90쪽 · 2026-bigdata-week04-dataframe-notes.md.':
     'Source: 2026-bigdata-04.pdf, pp. 82–90; 2026-bigdata-week04-dataframe-notes.md.',
-  '장 구분과 원본 범위': 'Chapter boundaries and source coverage',
-  '4장은 DataFrame API의 자료 구조·정제·집계·실행을 다룹니다. 원본의 주차 표기는 파일 출처로 유지하며, 장 번호를 실제 수업 주차와 일치시키지 않습니다.':
-    'Chapter 4 covers DataFrame structures, cleaning, aggregation, and execution. Week labels remain in source filenames; chapter numbers do not assert the actual teaching week.',
+  'DataFrame에서 SQL로': 'From DataFrame to SQL',
+  '4장은 DataFrame API의 자료 구조·정제·집계·실행을 다룹니다. 5장에서는 같은 처리를 SQL로 표현하고 두 방식의 결과를 비교합니다.':
+    'Chapter 4 covers data structures, cleaning, aggregation, and execution with the DataFrame API. Chapter 5 expresses the same operations in SQL and compares the results.',
   '원본 쪽·절': 'Source pages or sections',
   '학습 내용과 위치': 'Topic and location',
   '4장: 주문·Schema·중첩 구조·Column·정제·집계·정렬':

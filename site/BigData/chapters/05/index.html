@@ -24,12 +24,12 @@
 
 <div id="course-shell"></div><main id="main-content" class="main-content">
 <nav class="course-return" data-course-return="" aria-label="상위 학습 홈"><a data-all-courses="" href="../../../index.html">전체 과목 홈</a><a href="../../index.html">빅데이터 학습 홈</a></nav>
-<header class="chapter-hero"><p class="eyebrow">CHAPTER 05 · SPARK SQL</p><h1>Spark SQL과 DataFrame 결과 비교</h1><p class="hero-description">같은 주문을 두 방식으로 처리하고, 선택한 행·금액·집계·순서를 예상값과 비교합니다.</p><div class="hero-meta"><span>5장 · SQL 표현과 검증</span><span>46쪽 원본 기반</span></div></header><section class="lesson-section" id="scope" data-title="4장과 5장의 학습 범위"><div class="section-heading"><span class="section-number">01</span><h2>4장과 5장의 학습 범위</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 1–4쪽.</p><p>4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다. 장 번호는 학습 내용의 구분이며 휴강을 반영한 실제 수업 날짜를 뜻하지 않습니다.</p>
-<p>2026-bigdata-04.pdf의 88–90쪽과 2026-bigdata-week04-dataframe-notes.md의 23절은 SQL을 후속 학습으로 예고합니다. 새 원본 1쪽은 Join·Window Function·CTE를 범위에서 제외합니다. 따라서 이 장은 SQL 표현과 결과 검증까지 다룹니다.</p>
+<header class="chapter-hero"><p class="eyebrow">CHAPTER 05 · SPARK SQL</p><h1>Spark SQL과 DataFrame 결과 비교</h1><p class="hero-description">같은 주문을 두 방식으로 처리하고, 선택한 행·금액·집계·순서를 예상값과 비교합니다.</p><div class="hero-meta"><span>5장 · SQL 표현과 검증</span><span>46쪽 원본 기반</span></div></header><section class="lesson-section" id="scope" data-title="4장과 5장의 학습 범위"><div class="section-heading"><span class="section-number">01</span><h2>4장과 5장의 학습 범위</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 1–4쪽.</p><p>4장은 DataFrame API로 주문을 읽고 정제·집계하는 방법을 다룹니다. 5장은 같은 처리를 SQL로 표현하고 값·행 수·정렬 순서가 같은지 확인합니다.</p>
+<p>DataFrame의 열 선택·조건식·집계에 대응하는 SQL을 배우고, 두 방식의 결과를 비교합니다. Join·Window Function·CTE는 이 장의 범위에 포함하지 않습니다. 선행 개념과의 연결은 2026-bigdata-04.pdf 88–90쪽과 2026-bigdata-week04-dataframe-notes.md 23절을 참고합니다.</p>
 <div class="table-wrap"><table><thead><tr><th scope="col">4장 · DataFrame API</th><th scope="col">5장 · Spark SQL</th></tr></thead><tbody><tr><td>select / withColumn</td><td>SELECT / AS</td></tr><tr><td>filter / where</td><td>WHERE</td></tr><tr><td>groupBy / agg</td><td>GROUP BY / COUNT / SUM / AVG</td></tr><tr><td>집계 뒤 filter</td><td>HAVING</td></tr><tr><td>fillna / when</td><td>COALESCE / CASE</td></tr><tr><td>orderBy</td><td>ORDER BY</td></tr></tbody></table></div>
 <p>보조 비유: 같은 주문 장부를 함수 호출 목록으로 설명하거나 조회 문장으로 설명하는 차이입니다. 두 표현 모두 Driver에서 실행계획이 되고, Action이 결과를 요구하면 Executor의 Task가 행을 처리합니다. 표현 언어만 바뀌었다고 계산이 Python 반복문으로 옮겨지는 것은 아닙니다.</p>
 <div class="quiz" data-answer="1" data-explanation="표현 방식과 실제 행 계산 위치는 구분합니다."><h3>SQL로 바꾸면 주문 계산 위치도 Driver의 Python으로 바뀔까요?</h3><div class="quiz-options"><button type="button">네, SQL 문장을 Python에서 전달하기 때문입니다.</button><button type="button">아니요, 두 방식 모두 실행계획에 따라 처리합니다.</button></div><p class="quiz-feedback" aria-live="polite"></p></div><label class="completion"><input type="checkbox" data-complete="05-scope"> 이 내용을 이해했어요</label></section>
-<section class="lesson-section" id="input" data-title="12행 입력과 Schema 확인"><div class="section-heading"><span class="section-number">02</span><h2>12행 입력과 Schema 확인</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 2–10쪽.</p><p>4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽의 주문 12행을 사용합니다. 로컬 제공 자료의 orders.csv와 대조했으며 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 수치는 원본과 손계산에 따른 예상값이며 이 페이지 작성 중 Spark를 실행한 기록은 아닙니다.</p>
+<section class="lesson-section" id="input" data-title="12행 입력과 Schema 확인"><div class="section-heading"><span class="section-number">02</span><h2>12행 입력과 Schema 확인</h2></div><p class="source-note">출처: 2026-bigdata-week05-lecture-notes.pdf, 2–10쪽.</p><p>4장의 4행 표는 개념을 설명하는 작은 예시입니다. 이 장은 원본 3쪽과 제공 실습 orders.csv의 주문 12행을 사용합니다. 수량·가격 조건에 따라 주문 4·6·9를 제외하면 정상 주문은 9건입니다. 아래 표와 수치는 이 입력을 정제·집계한 예상 결과입니다.</p>
 <pre><code>order_id,user_id,product_id,quantity,price,event_time
 1,U001,P001,2,12000.00,2026-09-01 09:00:00
 2,U002,P002,1,35000.00,2026-09-01 09:05:00
@@ -43,7 +43,7 @@
 10,U002,P001,2,12000.00,2026-09-01 09:45:00
 11,U003,P004,1,15000.00,2026-09-01 09:50:00
 12,U001,P005,5,5000.00,2026-09-01 09:55:00</code></pre>
-<p>아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다. 원본의 실행 파일명과 폴더명은 출처를 식별하기 위해 그대로 둡니다.</p>
+<p>아래 코드는 강의 해설용 발췌입니다. Spark 4.1.3 환경에서 Python 프로그램 안에 순서대로 작성하며, 파일 경로는 컨테이너 내부 경로입니다. 입력 CSV가 Client와 모든 Worker의 같은 경로에 있어야 합니다.</p>
 <pre><code>from pyspark.sql import SparkSession, functions as F
 from pyspark.sql.types import (
     StructType, StructField, LongType, StringType,

@@ -137,7 +137,7 @@ footer p{color:inherit}
 <a href="#contents">목차</a><a href="#install">설치·실행</a><a href="#gcc">GCC</a><a href="#trouble">도움말</a>
 </nav>
 <button class="print" id="print-button" type="button">인쇄 / PDF 저장</button>
-<p class="side-note">Windows 11 · WSL 2 · Ubuntu<br>공식 문서 확인: 2026.09.07<br>외부 라이브러리 없이 열리는 가이드</p>
+<p class="side-note">Windows 11 · WSL 2 · Ubuntu<br>외부 라이브러리 없이 열리는 가이드</p>
 </aside>
 <main id="main">
 <nav class="course-navigation" aria-label="과목 이동"><a href="../index.html">전체 과목 홈</a><a href="Lecture_HTML/index.html">네트워크 강의 홈</a></nav>
@@ -229,7 +229,7 @@ cat /etc/os-release</code></pre></div>
 <div class="terminal ubuntu"><div class="terminal-head"><span class="shell">Ubuntu · Bash</span></div><pre><code>exit</code></pre></div>
 <p>다음 실습 때는 PowerShell에서 <code>wsl -d Ubuntu-22.04</code>를 실행하고, Ubuntu 안에서 <code>cd ~/projects/network-practice</code>로 이동하세요. 이 폴더를 아직 만들지 않았다면 <a href="#files">STEP 04</a>를 먼저 진행합니다. 매번 설치하거나 계정을 다시 만들 필요는 없습니다.</p>
 <div class="note"><code>exit</code>는 현재 셸을 닫는 명령으로, 다른 터미널이나 백그라운드 프로세스까지 모두 종료하지는 않습니다. 해당 Ubuntu 전체를 중지해야 할 때만 작업을 저장하고 PowerShell에서 <code>wsl --terminate Ubuntu-22.04</code>를 실행하세요. 이 명령은 그 배포판 안의 실행 중인 프로세스도 종료합니다.</div>
-<p class="sources">실행 절차 확인: 2026년 9월 14일 · <a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands">Microsoft WSL 기본 명령</a> · <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment">Microsoft 계정 및 터미널 설정</a></p>
+<p class="sources">실행 명령과 계정 설정: <a href="https://learn.microsoft.com/en-us/windows/wsl/basic-commands">Microsoft WSL 기본 명령</a> · <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment">Microsoft 계정 및 터미널 설정</a></p>
 </section>
 <section id="ubuntu"><h2><span class="num">STEP 03</span>Ubuntu 계정과 패키지 준비</h2>
 <p>Ubuntu 최초 실행 시 소문자 영문으로 사용자 이름을 정하고 비밀번호를 두 번 입력합니다. Windows 로그인 계정과 별개이며, 비밀번호를 입력해도 문자나 별표가 표시되지 않습니다.</p>
@@ -366,7 +366,7 @@ wsl -d Ubuntu-22.04</code></pre></div></details>
 <div class="note blue">다음 작업부터는 <a href="#launch">Ubuntu 실행 가이드</a>에 따라 Ubuntu를 열고 <code>cd ~/projects/network-practice</code>로 이동해 소스를 편집하고 GCC로 빌드하세요.</div>
 </section>
 <footer><p>Windows 11 · WSL 2 · Ubuntu · GCC 실습 가이드</p>
-<p>공식 문서 확인일: 2026년 9월 7일. 설치되는 Ubuntu 및 도구 버전에 따라 화면과 출력은 다를 수 있습니다. 본문은 오프라인에서도 볼 수 있으며, 설치와 외부 문서 열기에는 인터넷이 필요합니다.</p></footer>
+<p>설치되는 Ubuntu 및 도구 버전에 따라 화면과 출력은 다를 수 있습니다. 본문은 오프라인에서도 볼 수 있으며, 설치와 외부 문서 열기에는 인터넷이 필요합니다.</p></footer>
 </main></div>
 <div id="status" class="status" role="status" aria-live="polite"></div>
 <script>

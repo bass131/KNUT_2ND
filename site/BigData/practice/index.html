@@ -254,7 +254,7 @@ docker compose logs --tail 100 spark-master spark-worker
 docker compose down
 docker compose ps -a</code></pre>
     <p>이 프로젝트의 컨테이너와 기본 네트워크가 제거됩니다. 바인드 마운트한 PC의 <code>output</code>과 원본 입력은 남습니다. 다음에는 같은 폴더에서 <code>up</code>으로 시작한 뒤 등록부터 다시 확인합니다.</p>
-    <div class="callout"><strong>예상값과 측정값</strong><p>합계·단어 수는 합성 입력의 예상값이며 Spark 실행·성능은 미검증 상태이므로, 빈 측정 CSV에는 자신의 환경에서 실행한 값을 기록합니다.</p></div>
+    <div class="callout"><strong>예상값과 측정값</strong><p>합계·단어 수는 합성 입력에서 계산한 예상값입니다. 실행 결과를 예상값과 비교하고, 빈 측정 CSV에는 자신의 환경에서 측정한 시간과 자원 사용을 기록합니다.</p></div>
   </section>
 
   <section class="lesson-section" id="sources" data-title="전체 코드와 입력">
